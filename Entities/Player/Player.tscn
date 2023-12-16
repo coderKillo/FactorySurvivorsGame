@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bukmtg3hk4xkj"]
+
+[ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
+[ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="1_hxsbr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvdrj"]
+size = Vector2(5.5, 3.25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fugj"]
+atlas = ExtResource("1_hxsbr")
+region = Rect2(48, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr8q0"]
+atlas = ExtResource("1_hxsbr")
+region = Rect2(64, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wo25m"]
+atlas = ExtResource("1_hxsbr")
+region = Rect2(64, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3hbo"]
+atlas = ExtResource("1_hxsbr")
+region = Rect2(80, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll12o"]
+atlas = ExtResource("1_hxsbr")
+region = Rect2(96, 192, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_20hi3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fugj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr8q0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wo25m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3hbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll12o")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(233, 138)
+script = ExtResource("1_h72yr")
+movement_speed = 150.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, -1.375)
+shape = SubResource("RectangleShape2D_yvdrj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_20hi3")
+animation = &"idle"
+frame_progress = 0.727551
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true

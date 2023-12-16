@@ -1,0 +1,30 @@
+extends CharacterBody2D
+
+@export var movement_speed = 300.0
+
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+
+
+func _physics_process(delta):
+	var direction = Vector2(
+		Input.get_action_strength("right") - Input.get_action_strength("left"),
+		Input.get_action_strength("down") - Input.get_action_strength("up")
+	)
+
+	set_animation(direction)
+
+	velocity = direction * movement_speed
+
+	move_and_slide()
+
+
+func set_animation(direction: Vector2):
+	if direction:
+		animation.play("walk")
+	else:
+		animation.play("idle")
+
+	if direction.x > 0:
+		animation.flip_h = true
+	elif direction.x < 0:
+		animation.flip_h = false
