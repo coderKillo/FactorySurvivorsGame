@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://d14eb3225pytf"]
+[gd_scene load_steps=18 format=3 uid="uid://d14eb3225pytf"]
 
 [ext_resource type="Script" path="res://Entities/Entities/StirlingEngineEntity.gd" id="1_3kojx"]
 [ext_resource type="Texture2D" uid="uid://cefs8imenf7wr" path="res://Shared/animations/pump_idle.png" id="1_kw4ew"]
+[ext_resource type="Script" path="res://Systems/Power/PowerSource.gd" id="3_cqnus"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_axffm"]
 atlas = ExtResource("1_kw4ew")
@@ -108,3 +109,6 @@ frame_progress = 0.955011
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hwb7i")
+
+[node name="PowerSource" type="Node2D" parent="."]
+script = ExtResource("3_cqnus")
