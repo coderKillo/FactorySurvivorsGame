@@ -2,18 +2,18 @@ extends Entity
 
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _power_source: PowerSource = $PowerSource
-@onready var _material_receiver: MaterialReceiver = $MaterialReceiver
+@onready var _heat_receiver: HeatReceiver = $HeatReceiver
 
 var _active: bool = false
 
 
 func _ready():
-	_material_receiver.matieral_provided.connect(_on_material_provided)
+	_heat_receiver.matieral_provided.connect(_on_heat_provided)
 	_set_active(_active)
 
 
-func _on_material_provided(amount):
-	_power_source.efficency = amount / _material_receiver.required_material
+func _on_heat_provided(amount):
+	_power_source.efficency = amount / _heat_receiver.required_heat
 
 	if _power_source.efficency > 0.0 and not _active:
 		_set_active(true)

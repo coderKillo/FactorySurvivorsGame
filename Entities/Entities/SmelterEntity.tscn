@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Entities/Entities/SmelterEntity.gd" id="1_pkhbk"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="2_iyxwc"]
-[ext_resource type="Script" path="res://Systems/Mining/MaterialProvider.gd" id="3_43xgg"]
+[ext_resource type="Script" path="res://Systems/Mining/HeatProvider.gd" id="3_4kk5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cy755"]
 size = Vector2(16, 16)
@@ -10,7 +10,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxq4u"]
 size = Vector2(12, 12)
 
-[node name="SmelterEntity" type="StaticBody2D" groups=["material_provider"]]
+[node name="SmelterEntity" type="StaticBody2D" groups=["heat_provider"]]
 script = ExtResource("1_pkhbk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -27,7 +27,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MaterialEnterArea"]
 shape = SubResource("RectangleShape2D_yxq4u")
 
-[node name="MaterialProvider" type="Node2D" parent="."]
-script = ExtResource("3_43xgg")
+[node name="HeatProvider" type="Node2D" parent="."]
+script = ExtResource("3_4kk5f")
 
 [connection signal="body_entered" from="MaterialEnterArea" to="." method="_on_material_enter_area_body_entered"]

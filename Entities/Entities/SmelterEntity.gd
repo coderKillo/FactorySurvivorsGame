@@ -1,7 +1,7 @@
 extends Entity
 
-@onready var _material_provider: MaterialProvider = $MaterialProvider
+@onready var _heat_provider: HeatProvider = $HeatProvider
 
 
 func _process(delta):
-	_material_provider.amount = 100
+	_heat_provider.amount = 100

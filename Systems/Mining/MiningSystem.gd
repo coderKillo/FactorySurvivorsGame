@@ -1,8 +1,8 @@
 class_name MiningSystem
 extends RefCounted
 
-var material_receivers = {}
-var material_providers = {}
+var heat_receivers = {}
+var heat_providers = {}
 
 
 func _init():
@@ -12,31 +12,31 @@ func _init():
 
 
 func _on_entity_placed(entity: Entity, cellv: Vector2):
-	if entity.is_in_group(Types.MATERIAL_PROVIDER):
-		material_providers[cellv] = entity.get_node_or_null("MaterialProvider")
+	if entity.is_in_group(Types.HEAT_PROVIDER):
+		heat_providers[cellv] = entity.get_node_or_null("HeatProvider")
 
-	if entity.is_in_group(Types.MATERIAL_RECEIVER):
-		material_receivers[cellv] = entity.get_node_or_null("MaterialReceiver")
+	if entity.is_in_group(Types.HEAT_RECEIVER):
+		heat_receivers[cellv] = entity.get_node_or_null("HeatReceiver")
 
 
 func _on_entity_removed(_entity: Entity, cellv: Vector2):
-	material_providers.erase(cellv)
-	material_receivers.erase(cellv)
+	heat_providers.erase(cellv)
+	heat_receivers.erase(cellv)
 
 
 func _on_system_tick(_delta):
-	for provider in material_providers:
+	for provider in heat_providers:
 		var receivers = _get_neighbor_receivers(provider)
-		var material_used = 0
-		var material_total = material_providers[provider].amount
+		var heat_used = 0
+		var heat_total = heat_providers[provider].amount
 
 		for pos in receivers:
-			var receiver: MaterialReceiver = material_receivers[pos]
-			var material_provided = min(receiver.required_material, material_total / len(receivers))
-			material_used += material_provided
-			receiver.matieral_provided.emit(material_provided)
+			var receiver: HeatReceiver = heat_receivers[pos]
+			var heat_provided = min(receiver.required_heat, heat_total / len(receivers))
+			heat_used += heat_provided
+			receiver.matieral_provided.emit(heat_provided)
 
-		material_providers[provider].amount -= material_used
+		heat_providers[provider].amount -= heat_used
 
 
 func _get_neighbor_receivers(provider: Vector2) -> Array:
@@ -48,7 +48,7 @@ func _get_neighbor_receivers(provider: Vector2) -> Array:
 				continue
 
 			var neighbor: Vector2 = provider + Vector2(i, j)
-			if neighbor not in material_receivers:
+			if neighbor not in heat_receivers:
 				continue
 
 			receivers.append(neighbor)

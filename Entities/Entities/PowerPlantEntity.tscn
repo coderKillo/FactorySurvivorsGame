@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Entities/Entities/PowerPlantEntity.gd" id="1_bjnb1"]
 [ext_resource type="Texture2D" uid="uid://bu0nssebqfb4e" path="res://Shared/animations/powerplant-tall_idle.png" id="2_r07na"]
 [ext_resource type="Script" path="res://Systems/Power/PowerSource.gd" id="3_wmamp"]
-[ext_resource type="Script" path="res://Systems/Mining/MaterialReceiver.gd" id="4_j32fl"]
+[ext_resource type="Script" path="res://Systems/Mining/HeatReceiver.gd" id="4_aokwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8q2t"]
 size = Vector2(16, 16)
@@ -84,7 +84,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="PowerPlantEntity" type="StaticBody2D" groups=["material_receiver", "power_source"]]
+[node name="PowerPlantEntity" type="StaticBody2D" groups=["heat_receiver", "power_source"]]
 script = ExtResource("1_bjnb1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -98,5 +98,5 @@ animation = &"active"
 [node name="PowerSource" type="Node2D" parent="."]
 script = ExtResource("3_wmamp")
 
-[node name="MaterialReceiver" type="Node2D" parent="."]
-script = ExtResource("4_j32fl")
+[node name="HeatReceiver" type="Node2D" parent="."]
+script = ExtResource("4_aokwd")
