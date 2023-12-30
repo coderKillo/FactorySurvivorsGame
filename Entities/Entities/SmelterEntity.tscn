@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl1vvohs3eypo"]
+
+[ext_resource type="Script" path="res://Entities/Entities/SmelterEntity.gd" id="1_pkhbk"]
+[ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="2_iyxwc"]
+[ext_resource type="Script" path="res://Systems/Mining/MaterialProvider.gd" id="3_43xgg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cy755"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxq4u"]
+size = Vector2(12, 12)
+
+[node name="SmelterEntity" type="StaticBody2D" groups=["material_provider"]]
+script = ExtResource("1_pkhbk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_iyxwc")
+region_enabled = true
+region_rect = Rect2(144, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cy755")
+
+[node name="MaterialEnterArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MaterialEnterArea"]
+shape = SubResource("RectangleShape2D_yxq4u")
+
+[node name="MaterialProvider" type="Node2D" parent="."]
+script = ExtResource("3_43xgg")
+
+[connection signal="body_entered" from="MaterialEnterArea" to="." method="_on_material_enter_area_body_entered"]

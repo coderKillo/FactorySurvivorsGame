@@ -112,3 +112,4 @@ shape = SubResource("RectangleShape2D_hwb7i")
 
 [node name="PowerSource" type="Node2D" parent="."]
 script = ExtResource("3_cqnus")
+power_amount = 25.0

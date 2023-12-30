@@ -1,0 +1,102 @@
+[gd_scene load_steps=16 format=3 uid="uid://b45rogijccek3"]
+
+[ext_resource type="Script" path="res://Entities/Entities/PowerPlantEntity.gd" id="1_bjnb1"]
+[ext_resource type="Texture2D" uid="uid://bu0nssebqfb4e" path="res://Shared/animations/powerplant-tall_idle.png" id="2_r07na"]
+[ext_resource type="Script" path="res://Systems/Power/PowerSource.gd" id="3_wmamp"]
+[ext_resource type="Script" path="res://Systems/Mining/MaterialReceiver.gd" id="4_j32fl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8q2t"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2a1h"]
+atlas = ExtResource("2_r07na")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0fja"]
+atlas = ExtResource("2_r07na")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgn8d"]
+atlas = ExtResource("2_r07na")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqvfi"]
+atlas = ExtResource("2_r07na")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d28rc"]
+atlas = ExtResource("2_r07na")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7tem"]
+atlas = ExtResource("2_r07na")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6isg"]
+atlas = ExtResource("2_r07na")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naj6k"]
+atlas = ExtResource("2_r07na")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri4je"]
+atlas = ExtResource("2_r07na")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_45q88"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2a1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0fja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgn8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqvfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d28rc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7tem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6isg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naj6k")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri4je")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="PowerPlantEntity" type="StaticBody2D" groups=["material_receiver", "power_source"]]
+script = ExtResource("1_bjnb1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p8q2t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_45q88")
+animation = &"active"
+
+[node name="PowerSource" type="Node2D" parent="."]
+script = ExtResource("3_wmamp")
+
+[node name="MaterialReceiver" type="Node2D" parent="."]
+script = ExtResource("4_j32fl")

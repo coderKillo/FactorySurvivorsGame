@@ -1,6 +1,10 @@
 extends Node
 
+@export var simulation_speed = 1.0 / 30.0
+
 var _tracker = EntityTracker.new()
+var _power_system = PowerSystem.new()
+var _mining_system = MiningSystem.new()
 
 @onready var _entity_placer = $GameWorld/EntityPlacer
 @onready var _player = $GameWorld/Player
@@ -9,3 +13,9 @@ var _tracker = EntityTracker.new()
 
 func _ready():
 	_entity_placer.setup(_tracker, _ground, _player)
+	$SimulationTimer.start(simulation_speed)
+	$SimulationTimer.timeout.connect(_on_SimulationTimer_timeout)
+
+
+func _on_SimulationTimer_timeout() -> void:
+	Events.system_tick.emit(simulation_speed)

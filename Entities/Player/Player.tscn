@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="1_hxsbr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvdrj"]
-size = Vector2(5.5, 3.25)
+size = Vector2(5.5, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0fugj"]
 atlas = ExtResource("1_hxsbr")
@@ -61,7 +61,7 @@ script = ExtResource("1_h72yr")
 movement_speed = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, -1.375)
+position = Vector2(0.25, 1)
 shape = SubResource("RectangleShape2D_yvdrj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -13,7 +13,9 @@ var _player: CharacterBody2D
 @onready var Library = {
 	"StirlingEngine":
 	preload("res://Entities/Blueprints/StirlingEngineBlueprint.tscn").instantiate(),
-	"Wire": preload("res://Entities/Blueprints/WireBlueprint.tscn").instantiate()
+	"Wire": preload("res://Entities/Blueprints/WireBlueprint.tscn").instantiate(),
+	"PowerPlant": preload("res://Entities/Blueprints/PowerPlantBlueprint.tscn").instantiate(),
+	"Smelter": preload("res://Entities/Blueprints/SmelterBlueprint.tscn").instantiate()
 }
 
 ########## PUBLIC
@@ -26,6 +28,8 @@ func setup(tracker: EntityTracker, ground: TileMap, player: CharacterBody2D):
 
 	Library[Library.StirlingEngine] = preload("res://Entities/Entities/StirlingEngineEntity.tscn")
 	Library[Library.Wire] = preload("res://Entities/Entities/WireEntity.tscn")
+	Library[Library.PowerPlant] = preload("res://Entities/Entities/PowerPlantEntity.tscn")
+	Library[Library.Smelter] = preload("res://Entities/Entities/SmelterEntity.tscn")
 
 	for child in get_children():
 		if not child is Entity:
@@ -72,26 +76,28 @@ func _unhandled_input(event: InputEvent):
 		_blueprint = null
 
 	elif event.is_action_pressed("quickbar_1"):
-		if _blueprint:
-			remove_child(_blueprint)
-
-		_blueprint = Library.StirlingEngine
-		add_child(_blueprint)
-		_move_blueprint_in_world(_get_cell_under_mouse())
+		_select_blueprint(Library.PowerPlant)
 
 	elif event.is_action_pressed("quickbar_2"):
-		if _blueprint:
-			remove_child(_blueprint)
+		_select_blueprint(Library.Wire)
 
-		_blueprint = Library.Wire
-		add_child(_blueprint)
-		_move_blueprint_in_world(_get_cell_under_mouse())
+	elif event.is_action_pressed("quickbar_3"):
+		_select_blueprint(Library.Smelter)
 
 	elif event is InputEventMouseMotion:
 		if not _has_placable_blueprint():
 			return
 
 		_move_blueprint_in_world(_get_cell_under_mouse())
+
+
+func _select_blueprint(blueprint):
+	if _blueprint:
+		remove_child(_blueprint)
+
+	_blueprint = blueprint
+	add_child(_blueprint)
+	_move_blueprint_in_world(_get_cell_under_mouse())
 
 
 func _process(_delta):

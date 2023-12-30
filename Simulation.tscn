@@ -33,3 +33,5 @@ script = ExtResource("3_sbt4h")
 script = ExtResource("4_h002n")
 
 [node name="Player" parent="GameWorld" instance=ExtResource("2_trfnq")]
+
+[node name="SimulationTimer" type="Timer" parent="."]

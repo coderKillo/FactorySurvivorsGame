@@ -13,3 +13,6 @@ const NEIGHBORS = {
 const POWER_MOVERS = "power_movers"
 const POWER_RECEIVERS = "power_receivers"
 const POWER_SOURCES = "power_sources"
+
+const MATERIAL_PROVIDER = "material_provider"
+const MATERIAL_RECEIVER = "material_receiver"
