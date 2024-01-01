@@ -84,7 +84,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="PowerPlantEntity" type="StaticBody2D" groups=["heat_receiver", "power_source"]]
+[node name="PowerPlantEntity" type="StaticBody2D" groups=["heat_receiver", "power_sources"]]
+collision_layer = 8
+collision_mask = 11
 script = ExtResource("1_bjnb1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

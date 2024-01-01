@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=11 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="1_hxsbr"]
+[ext_resource type="Script" path="res://Entities/Player/Weapon.gd" id="3_tfivi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvdrj"]
-size = Vector2(5.5, 8)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
+radius = 2.75
+height = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0fugj"]
 atlas = ExtResource("1_hxsbr")
@@ -57,12 +59,12 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(233, 138)
+collision_mask = 8
 script = ExtResource("1_h72yr")
 movement_speed = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, 1)
-shape = SubResource("RectangleShape2D_yvdrj")
+shape = SubResource("CapsuleShape2D_dydcu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_20hi3")
@@ -72,3 +74,6 @@ frame_progress = 0.727551
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("3_tfivi")

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dht8kyiiakbav"]
+
+[ext_resource type="Script" path="res://Systems/Weapon/Projectile.gd" id="1_iavd4"]
+[ext_resource type="Texture2D" uid="uid://kyf4i5y2xnwo" path="res://Shared/projectile.png" id="1_pyuuj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drxmm"]
+atlas = ExtResource("1_pyuuj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv4dm"]
+atlas = ExtResource("1_pyuuj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cx6u5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drxmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv4dm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ego7o"]
+radius = 2.0
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 256
+collision_mask = 10
+script = ExtResource("1_iavd4")
+speed = 300
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cx6u5")
+frame_progress = 0.938454
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ego7o")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

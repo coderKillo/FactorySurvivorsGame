@@ -16,3 +16,5 @@ const POWER_SOURCES = "power_sources"
 
 const HEAT_PROVIDER = "heat_provider"
 const HEAT_RECEIVER = "heat_receiver"
+
+const ENEMY = "enemy"

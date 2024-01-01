@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 @export var movement_speed = 300.0
 
-@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _weapon: Weapon = $Weapon
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
@@ -18,13 +19,18 @@ func _physics_process(delta):
 	move_and_slide()
 
 
+func _unhandled_input(event):
+	if event.is_action_pressed("left_click"):
+		_weapon.fire()
+
+
 func set_animation(direction: Vector2):
 	if direction:
-		animation.play("walk")
+		_animation.play("walk")
 	else:
-		animation.play("idle")
+		_animation.play("idle")
 
 	if direction.x > 0:
-		animation.flip_h = true
+		_animation.flip_h = true
 	elif direction.x < 0:
-		animation.flip_h = false
+		_animation.flip_h = false

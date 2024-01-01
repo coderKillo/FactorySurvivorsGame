@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://dmx658sv84bh3"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/Enemy.gd" id="1_g8at1"]
+[ext_resource type="Texture2D" uid="uid://c2qnigvemibam" path="res://Shared/enemies/cyclops.png" id="2_n7q43"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfq0h"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obpko"]
+atlas = ExtResource("2_n7q43")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw6da"]
+atlas = ExtResource("2_n7q43")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4v7w"]
+atlas = ExtResource("2_n7q43")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4twf"]
+atlas = ExtResource("2_n7q43")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o03q7"]
+atlas = ExtResource("2_n7q43")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ydou"]
+atlas = ExtResource("2_n7q43")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5sno"]
+atlas = ExtResource("2_n7q43")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftqfc"]
+atlas = ExtResource("2_n7q43")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iborn"]
+atlas = ExtResource("2_n7q43")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v5hoj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obpko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw6da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4v7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4twf")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o03q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ydou")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5sno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftqfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iborn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Cyclops" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 8
+safe_margin = 1.0
+script = ExtResource("1_g8at1")
+attack_range = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hfq0h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v5hoj")
+animation = &"attack"
+frame = 1
+frame_progress = 0.233443
