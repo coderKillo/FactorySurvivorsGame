@@ -61,4 +61,6 @@ func _face_target():
 
 
 func _on_death():
+	Events.enemy_died.emit(self)
+
 	queue_free()

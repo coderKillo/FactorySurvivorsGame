@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1ekrghgk3sc"]
+
+[ext_resource type="Texture2D" uid="uid://dnf3l1wlxp5jd" path="res://Shared/ore.png" id="1_yedru"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krrxw"]
+radius = 2.0
+height = 8.0
+
+[node name="Ore" type="RigidBody2D"]
+collision_layer = 1024
+gravity_scale = 0.0
+linear_damp = 1.0
+angular_damp = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yedru")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_krrxw")

@@ -20,8 +20,8 @@ func _physics_process(_delta):
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("left_click"):
-		_weapon.fire()
+	if event.is_action("left_click"):
+		_weapon.fire(event.is_pressed())
 
 
 func set_animation(direction: Vector2):

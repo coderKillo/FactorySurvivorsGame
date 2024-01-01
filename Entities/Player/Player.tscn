@@ -61,7 +61,7 @@ y_sort_enabled = true
 position = Vector2(233, 138)
 collision_mask = 8
 script = ExtResource("1_h72yr")
-movement_speed = 150.0
+movement_speed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_dydcu")
@@ -77,3 +77,5 @@ position_smoothing_enabled = true
 
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("3_tfivi")
+
+[node name="Cooldown" type="Timer" parent="Weapon"]

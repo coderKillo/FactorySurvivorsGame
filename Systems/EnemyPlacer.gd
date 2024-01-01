@@ -40,3 +40,5 @@ func _spawn_enemy():
 	enemy.target = _player
 
 	add_child(enemy)
+
+	Events.enemy_spawn.emit(enemy)
