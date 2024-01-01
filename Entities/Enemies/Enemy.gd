@@ -11,6 +11,11 @@ enum States { IDLE, MOVE, ATTACK }
 var _current_state: States = States.IDLE
 
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _health: Health = $Health
+
+
+func _ready():
+	_health.death.connect(_on_death)
 
 
 func _process(_delta):
@@ -53,3 +58,7 @@ func _face_target():
 		_animation.flip_h = false
 	elif direction.x < 0:
 		_animation.flip_h = true
+
+
+func _on_death():
+	queue_free()

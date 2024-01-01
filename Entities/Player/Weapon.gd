@@ -14,3 +14,4 @@ func fire():
 	projectile.top_level = true
 
 	add_child(projectile)
+	projectile.owner = owner

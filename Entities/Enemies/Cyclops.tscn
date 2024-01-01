@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmx658sv84bh3"]
+[gd_scene load_steps=15 format=3 uid="uid://dmx658sv84bh3"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Enemy.gd" id="1_g8at1"]
 [ext_resource type="Texture2D" uid="uid://c2qnigvemibam" path="res://Shared/enemies/cyclops.png" id="2_n7q43"]
+[ext_resource type="Script" path="res://Systems/Health/Health.gd" id="3_8dqtg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfq0h"]
 radius = 4.0
@@ -103,3 +104,6 @@ sprite_frames = SubResource("SpriteFrames_v5hoj")
 animation = &"attack"
 frame = 1
 frame_progress = 0.233443
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("3_8dqtg")
