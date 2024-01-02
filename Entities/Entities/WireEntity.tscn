@@ -7,23 +7,27 @@
 script = ExtResource("1_e3rvy")
 
 [node name="SpriteUp" type="Sprite2D" parent="."]
+z_index = -1
 texture = ExtResource("2_4g7yf")
 region_enabled = true
 region_rect = Rect2(16, 208, 16, 16)
 
 [node name="SpriteRight" type="Sprite2D" parent="."]
+z_index = -1
 rotation = 1.5708
 texture = ExtResource("2_4g7yf")
 region_enabled = true
 region_rect = Rect2(16, 208, 16, 16)
 
 [node name="SpriteDown" type="Sprite2D" parent="."]
+z_index = -1
 rotation = 3.14159
 texture = ExtResource("2_4g7yf")
 region_enabled = true
 region_rect = Rect2(16, 208, 16, 16)
 
 [node name="SpriteLeft" type="Sprite2D" parent="."]
+z_index = -1
 rotation = 4.71239
 texture = ExtResource("2_4g7yf")
 region_enabled = true

@@ -6,7 +6,7 @@
 radius = 2.0
 height = 8.0
 
-[node name="Ore" type="RigidBody2D"]
+[node name="Ore" type="RigidBody2D" groups=["ore"]]
 collision_layer = 1024
 gravity_scale = 0.0
 linear_damp = 1.0

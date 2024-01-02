@@ -148,6 +148,7 @@ sample={
 2d_physics/layer_4="Buildings"
 2d_physics/layer_9="Player Bullets"
 2d_physics/layer_11="Ore"
+2d_physics/layer_12="Smelter"
 
 [rendering]
 

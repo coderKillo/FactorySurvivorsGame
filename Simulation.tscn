@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn036liop3mqv"]
+[gd_scene load_steps=9 format=3 uid="uid://bn036liop3mqv"]
 
 [ext_resource type="Script" path="res://Systems/Simulation.gd" id="1_j5ers"]
 [ext_resource type="TileSet" uid="uid://bhar52vwaumua" path="res://Shared/factory_tileset.tres" id="1_nv8he"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Entities/DestructionTimer.gd" id="4_h002n"]
 [ext_resource type="Script" path="res://Systems/EnemyPlacer.gd" id="5_ttm65"]
 [ext_resource type="Script" path="res://Systems/Mining/OreSpawner.gd" id="6_gnnh1"]
-[ext_resource type="PackedScene" uid="uid://d1ekrghgk3sc" path="res://Entities/Mining/Ore.tscn" id="8_d673m"]
 
 [sub_resource type="TileSet" id="TileSet_njyke"]
 
@@ -48,8 +47,6 @@ script = ExtResource("6_gnnh1")
 [node name="Player" parent="GameWorld" instance=ExtResource("2_trfnq")]
 slide_on_ceiling = false
 safe_margin = 1.0
-
-[node name="Ore" parent="GameWorld" instance=ExtResource("8_d673m")]
-position = Vector2(277, 127)
+movement_speed = 50.0
 
 [node name="SimulationTimer" type="Timer" parent="."]
