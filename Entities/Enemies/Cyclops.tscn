@@ -92,6 +92,7 @@ animations = [{
 [node name="Cyclops" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 8
+motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_g8at1")
 attack_range = 10

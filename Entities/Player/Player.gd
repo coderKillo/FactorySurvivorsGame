@@ -21,8 +21,7 @@ func _physics_process(_delta):
 
 	# only add direction change to velocity
 	var direction_diff = input_direction - _last_direction
-	if direction_diff != Vector2.ZERO:
-		velocity += direction_diff * movement_speed
+	velocity += direction_diff * movement_speed
 	_last_direction = input_direction
 
 	move_and_slide()

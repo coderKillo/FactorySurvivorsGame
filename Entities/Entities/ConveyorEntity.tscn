@@ -147,7 +147,7 @@ script = ExtResource("1_1aslv")
 z_index = -1
 rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_y2mn6")
-animation = &"idle"
+animation = &"active"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_chgpv")
