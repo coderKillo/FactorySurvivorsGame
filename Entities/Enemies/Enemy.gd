@@ -9,6 +9,7 @@ extends CharacterBody2D
 enum States { IDLE, MOVE, ATTACK }
 
 var _current_state: States = States.IDLE
+var _last_direction := Vector2.ZERO
 
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _health: Health = $Health
@@ -30,10 +31,15 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
-	velocity = Vector2.ZERO
+	var direction = Vector2.ZERO
 
 	if _current_state == States.MOVE:
-		velocity = position.direction_to(target.position) * speed
+		direction = position.direction_to(target.position)
+
+	# only add direction change to velocity
+	var direction_diff = direction - _last_direction
+	velocity += direction_diff * speed
+	_last_direction = direction
 
 	move_and_slide()
 

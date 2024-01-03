@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="3_8dqtg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfq0h"]
-radius = 4.0
-height = 12.0
+radius = 3.0
+height = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_obpko"]
 atlas = ExtResource("2_n7q43")
@@ -97,6 +97,7 @@ script = ExtResource("1_g8at1")
 attack_range = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_hfq0h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

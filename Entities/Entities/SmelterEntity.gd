@@ -8,4 +8,8 @@ func _process(_delta):
 
 
 func _on_material_enter_area_body_entered(body: Node2D):
-	body.queue_free()
+	if body.is_in_group("enemy"):
+		body.queue_free()
+
+	if body.is_in_group("ore"):
+		body.queue_free()

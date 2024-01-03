@@ -5,16 +5,25 @@ extends CharacterBody2D
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _weapon: Weapon = $Weapon
 
+var _last_direction := Vector2.ZERO
+
 
 func _physics_process(_delta):
-	var direction = Vector2(
-		Input.get_action_strength("right") - Input.get_action_strength("left"),
-		Input.get_action_strength("down") - Input.get_action_strength("up")
+	var input_direction = (
+		Vector2(
+			Input.get_action_strength("right") - Input.get_action_strength("left"),
+			Input.get_action_strength("down") - Input.get_action_strength("up")
+		)
+		. normalized()
 	)
 
-	set_animation(direction)
+	set_animation(input_direction)
 
-	velocity = direction * movement_speed
+	# only add direction change to velocity
+	var direction_diff = input_direction - _last_direction
+	if direction_diff != Vector2.ZERO:
+		velocity += direction_diff * movement_speed
+	_last_direction = input_direction
 
 	move_and_slide()
 

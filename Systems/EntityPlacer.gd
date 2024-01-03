@@ -15,7 +15,8 @@ var _player: CharacterBody2D
 	preload("res://Entities/Blueprints/StirlingEngineBlueprint.tscn").instantiate(),
 	"Wire": preload("res://Entities/Blueprints/WireBlueprint.tscn").instantiate(),
 	"PowerPlant": preload("res://Entities/Blueprints/PowerPlantBlueprint.tscn").instantiate(),
-	"Smelter": preload("res://Entities/Blueprints/SmelterBlueprint.tscn").instantiate()
+	"Smelter": preload("res://Entities/Blueprints/SmelterBlueprint.tscn").instantiate(),
+	"Conveyor": preload("res://Entities/Blueprints/ConveyorBlueprint.tscn").instantiate()
 }
 
 ########## PUBLIC
@@ -30,6 +31,7 @@ func setup(tracker: EntityTracker, ground: TileMap, player: CharacterBody2D):
 	Library[Library.Wire] = preload("res://Entities/Entities/WireEntity.tscn")
 	Library[Library.PowerPlant] = preload("res://Entities/Entities/PowerPlantEntity.tscn")
 	Library[Library.Smelter] = preload("res://Entities/Entities/SmelterEntity.tscn")
+	Library[Library.Conveyor] = preload("res://Entities/Entities/ConveyorEntity.tscn")
 
 	for child in get_children():
 		if not child is Entity:
@@ -75,6 +77,10 @@ func _unhandled_input(event: InputEvent):
 		remove_child(_blueprint)
 		_blueprint = null
 
+	elif event.is_action_pressed("rotate_blueprint"):
+		if _has_placable_blueprint() and _blueprint.rotateable:
+			_blueprint.global_rotation_degrees += 90
+
 	elif event.is_action_pressed("quickbar_1"):
 		_select_blueprint(Library.PowerPlant)
 
@@ -83,6 +89,9 @@ func _unhandled_input(event: InputEvent):
 
 	elif event.is_action_pressed("quickbar_3"):
 		_select_blueprint(Library.Smelter)
+
+	elif event.is_action_pressed("quickbar_4"):
+		_select_blueprint(Library.Conveyor)
 
 	elif event is InputEventMouseMotion:
 		if not _has_placable_blueprint():
@@ -111,6 +120,7 @@ func _process(_delta):
 func _place_entity(location: Vector2i):
 	var entity: Entity = Library[_blueprint].instantiate()
 	entity.global_position = to_global(map_to_local(location))
+	entity.global_rotation = _blueprint.global_rotation
 	entity._setup(_blueprint)
 
 	add_child(entity)

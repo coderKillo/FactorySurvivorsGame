@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
 radius = 2.75
-height = 10.0
+height = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0fugj"]
 atlas = ExtResource("1_hxsbr")
@@ -64,6 +64,7 @@ script = ExtResource("1_h72yr")
 movement_speed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_dydcu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
