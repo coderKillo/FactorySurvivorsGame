@@ -16,7 +16,8 @@ var _player: CharacterBody2D
 	"Wire": preload("res://Entities/Blueprints/WireBlueprint.tscn").instantiate(),
 	"PowerPlant": preload("res://Entities/Blueprints/PowerPlantBlueprint.tscn").instantiate(),
 	"Smelter": preload("res://Entities/Blueprints/SmelterBlueprint.tscn").instantiate(),
-	"Conveyor": preload("res://Entities/Blueprints/ConveyorBlueprint.tscn").instantiate()
+	"Conveyor": preload("res://Entities/Blueprints/ConveyorBlueprint.tscn").instantiate(),
+	"SpikeTrap": preload("res://Entities/Blueprints/SpikeTrapBlueprint.tscn").instantiate(),
 }
 
 ########## PUBLIC
@@ -32,6 +33,7 @@ func setup(tracker: EntityTracker, ground: TileMap, player: CharacterBody2D):
 	Library[Library.PowerPlant] = preload("res://Entities/Entities/PowerPlantEntity.tscn")
 	Library[Library.Smelter] = preload("res://Entities/Entities/SmelterEntity.tscn")
 	Library[Library.Conveyor] = preload("res://Entities/Entities/ConveyorEntity.tscn")
+	Library[Library.SpikeTrap] = preload("res://Entities/Entities/SpikeTrapEntity.tscn")
 
 	for child in get_children():
 		if not child is Entity:
@@ -53,6 +55,10 @@ func _ready():
 func _exit_tree():
 	Library.StirlingEngine.queue_free()
 	Library.Wire.queue_free()
+	Library.PowerPlant.queue_free()
+	Library.Smelter.queue_free()
+	Library.Conveyor.queue_free()
+	Library.SpikeTrap.queue_free()
 
 
 func _unhandled_input(event: InputEvent):
@@ -92,6 +98,9 @@ func _unhandled_input(event: InputEvent):
 
 	elif event.is_action_pressed("quickbar_4"):
 		_select_blueprint(Library.Conveyor)
+
+	elif event.is_action_pressed("quickbar_5"):
+		_select_blueprint(Library.SpikeTrap)
 
 	elif event is InputEventMouseMotion:
 		if not _has_placable_blueprint():

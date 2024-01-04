@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://cxgai8gqi237l"]
+[gd_scene load_steps=23 format=3 uid="uid://cxgai8gqi237l"]
 
 [ext_resource type="Script" path="res://Entities/Entities/ConveyorEntity.gd" id="1_1aslv"]
 [ext_resource type="Texture2D" uid="uid://cn5j2fqgalneh" path="res://Shared/animations/conveyor-green_idle.png" id="1_flwq5"]
+[ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_5ch1f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_motvr"]
 atlas = ExtResource("1_flwq5")
@@ -138,7 +139,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chgpv"]
 size = Vector2(16, 10)
 
-[node name="ConveyorEntity" type="Area2D"]
+[node name="ConveyorEntity" type="Area2D" groups=["power_receivers"]]
 collision_layer = 8
 collision_mask = 1027
 script = ExtResource("1_1aslv")
@@ -151,6 +152,10 @@ animation = &"active"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_chgpv")
+
+[node name="PowerReceiver" type="Node2D" parent="."]
+script = ExtResource("3_5ch1f")
+power_required = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

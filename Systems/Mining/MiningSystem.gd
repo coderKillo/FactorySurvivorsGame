@@ -20,23 +20,29 @@ func _on_entity_placed(entity: Entity, cellv: Vector2):
 
 
 func _on_entity_removed(_entity: Entity, cellv: Vector2):
-	heat_providers.erase(cellv)
 	heat_receivers.erase(cellv)
+	if heat_providers.erase(cellv):
+		_distribute_heat(cellv, 0)
 
 
 func _on_system_tick(_delta):
-	for provider in heat_providers:
-		var receivers = _get_neighbor_receivers(provider)
-		var heat_used = 0
-		var heat_total = heat_providers[provider].amount
+	for provider_pos in heat_providers:
+		var provider = heat_providers[provider_pos]
+		provider.amount -= _distribute_heat(provider_pos, provider.amount)
 
-		for pos in receivers:
-			var receiver: HeatReceiver = heat_receivers[pos]
-			var heat_provided = min(receiver.required_heat, heat_total / len(receivers))
-			heat_used += heat_provided
-			receiver.matieral_provided.emit(heat_provided)
 
-		heat_providers[provider].amount -= heat_used
+func _distribute_heat(provider: Vector2, heat_total: int) -> int:
+	var receivers = _get_neighbor_receivers(provider)
+	var heat_used = 0
+
+	for pos in receivers:
+		var receiver: HeatReceiver = heat_receivers[pos]
+		var heat_provided: int = min(receiver.required_heat, float(heat_total) / len(receivers))
+
+		heat_used += heat_provided
+		receiver.matieral_provided.emit(heat_provided)
+
+	return heat_used
 
 
 func _get_neighbor_receivers(provider: Vector2) -> Array:
