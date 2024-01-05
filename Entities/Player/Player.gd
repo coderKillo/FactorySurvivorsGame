@@ -5,8 +5,6 @@ extends CharacterBody2D
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _weapon: Weapon = $Weapon
 
-var _last_direction := Vector2.ZERO
-
 
 func _physics_process(_delta):
 	var input_direction = (
@@ -19,10 +17,7 @@ func _physics_process(_delta):
 
 	set_animation(input_direction)
 
-	# only add direction change to velocity
-	var direction_diff = input_direction - _last_direction
-	velocity += direction_diff * movement_speed
-	_last_direction = input_direction
+	velocity = input_direction * movement_speed
 
 	move_and_slide()
 

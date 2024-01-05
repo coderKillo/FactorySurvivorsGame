@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dnf3l1wlxp5jd" path="res://Shared/ore.png" id="1_yedru"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krrxw"]
-radius = 1.0
-height = 4.0
+radius = 1.5083
+height = 5.16432
 
 [node name="Ore" type="RigidBody2D" groups=["ore"]]
 collision_layer = 1024
@@ -15,9 +15,10 @@ linear_damp = 1.0
 script = ExtResource("1_ijka4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
 texture = ExtResource("1_yedru")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.505)
-scale = Vector2(-1.326, 1.254)
+position = Vector2(0, -3)
+scale = Vector2(1.14895, -1.16182)
 shape = SubResource("CapsuleShape2D_krrxw")
