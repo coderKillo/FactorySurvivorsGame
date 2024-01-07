@@ -6,11 +6,12 @@ extends CharacterBody2D
 @export var attack_range = 8
 @export var target: Node2D = null
 
-enum States { IDLE, MOVE, ATTACK }
+enum States { IDLE, MOVE, ATTACK, DEATH }
 
 var _current_state: States = States.IDLE
 
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _collision: CollisionShape2D = $CollisionShape2D
 @onready var _health: Health = $Health
 
 
@@ -19,7 +20,9 @@ func _ready():
 
 
 func _process(_delta):
-	if target == null:
+	if _current_state == States.DEATH:
+		pass
+	elif target == null:
 		_current_state = States.IDLE
 	elif position.distance_to(target.position) < attack_range:
 		_current_state = States.ATTACK
@@ -30,6 +33,9 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
+	if _current_state == States.DEATH:
+		return
+
 	var direction = Vector2.ZERO
 
 	if _current_state == States.MOVE:
@@ -52,6 +58,10 @@ func _set_animation() -> void:
 		_animation.play("attack")
 		_face_target()
 
+	elif _current_state == States.DEATH:
+		if _animation.animation != "death":
+			_animation.play("death")
+
 
 func _face_target():
 	var direction = position.direction_to(target.position)
@@ -65,4 +75,12 @@ func _face_target():
 func _on_death():
 	Events.enemy_died.emit(self)
 
-	queue_free()
+	_current_state = States.DEATH
+
+	# remove from enemy layer
+	set_collision_layer_value(2, false)
+	# add to draggable object
+	set_collision_layer_value(3, true)
+
+	# _collision.set_deferred("disabled", true)
+	# _draggable.set_deferred("disabled", false)

@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=15 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="1_hxsbr"]
 [ext_resource type="Script" path="res://Entities/Player/Weapon.gd" id="3_tfivi"]
+[ext_resource type="Script" path="res://Entities/Mining/OreCollector.gd" id="4_u5q7k"]
+[ext_resource type="Script" path="res://Entities/Player/DragObjects.gd" id="5_7xnov"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
 radius = 2.0
@@ -56,6 +58,11 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vvagi"]
+radius = 23.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4b2o"]
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(233, 138)
@@ -79,6 +86,29 @@ process_callback = 0
 position_smoothing_enabled = true
 
 [node name="Weapon" type="Node2D" parent="."]
+position = Vector2(0, -3)
 script = ExtResource("3_tfivi")
 
 [node name="Cooldown" type="Timer" parent="Weapon"]
+
+[node name="Marker2D" type="Marker2D" parent="Weapon"]
+position = Vector2(7, 0)
+
+[node name="OreCollector" type="Area2D" parent="."]
+collision_mask = 1024
+script = ExtResource("4_u5q7k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OreCollector"]
+visible = false
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_vvagi")
+debug_color = Color(0.541176, 0.407843, 0.996078, 0.419608)
+
+[node name="DragObjects" type="Area2D" parent="."]
+position = Vector2(0, -3)
+collision_mask = 4
+script = ExtResource("5_7xnov")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragObjects"]
+shape = SubResource("CircleShape2D_s4b2o")
+debug_color = Color(0, 0.643137, 0.301961, 0.419608)

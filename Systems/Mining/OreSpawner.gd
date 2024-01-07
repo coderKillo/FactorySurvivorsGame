@@ -11,4 +11,4 @@ func _on_enemy_died(enemy: Enemy):
 	var ore = Ore.instantiate()
 	ore.position = enemy.position
 
-	add_child(ore)
+	call_deferred("add_child", ore)
