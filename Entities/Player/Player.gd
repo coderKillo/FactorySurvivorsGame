@@ -5,6 +5,12 @@ extends CharacterBody2D
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _weapon: Weapon = $Weapon
 @onready var _drag_objects: DragObjects = $DragObjects
+@onready var _inventory: Inventory = $Inventory
+@onready var _ore_collector: OreCollector = $OreCollector
+
+
+func _ready():
+	_ore_collector.ore_collected.connect(_on_ore_collected)
 
 
 func _physics_process(_delta):
@@ -16,7 +22,7 @@ func _physics_process(_delta):
 		. normalized()
 	)
 
-	set_animation(input_direction)
+	_set_animation(input_direction)
 
 	var speed = movement_speed
 	# reduce speed the more bodies are grabed with a maximum of 10
@@ -37,7 +43,11 @@ func _unhandled_input(event):
 		_drag_objects.release()
 
 
-func set_animation(direction: Vector2):
+func _on_ore_collected(value):
+	_inventory.add("ore", value)
+
+
+func _set_animation(direction: Vector2):
 	if direction:
 		_animation.play("walk")
 	else:

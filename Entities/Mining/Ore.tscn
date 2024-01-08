@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1ekrghgk3sc"]
+[gd_scene load_steps=4 format=3 uid="uid://d1ekrghgk3sc"]
 
+[ext_resource type="Script" path="res://Entities/Mining/Ore.gd" id="1_ijka4"]
 [ext_resource type="Texture2D" uid="uid://dnf3l1wlxp5jd" path="res://Shared/ore.png" id="1_yedru"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krrxw"]
@@ -8,6 +9,7 @@ height = 5.16432
 
 [node name="Ore" type="StaticBody2D" groups=["ore"]]
 collision_layer = 1024
+script = ExtResource("1_ijka4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -3)

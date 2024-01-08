@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=18 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="1_hxsbr"]
+[ext_resource type="Script" path="res://Entities/Player/Inventory.gd" id="3_eb6ai"]
 [ext_resource type="Script" path="res://Entities/Player/Weapon.gd" id="3_tfivi"]
 [ext_resource type="Script" path="res://Entities/Mining/OreCollector.gd" id="4_u5q7k"]
 [ext_resource type="Script" path="res://Entities/Player/DragObjects.gd" id="5_7xnov"]
@@ -86,6 +87,9 @@ frame_progress = 0.727551
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource("3_eb6ai")
 
 [node name="Weapon" type="Node2D" parent="."]
 position = Vector2(0, -3)
