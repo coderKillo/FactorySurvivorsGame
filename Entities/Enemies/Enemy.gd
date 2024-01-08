@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-@export var damage = 10
+@export var damage = 2
 @export var speed = 20
 @export var attack_range = 8
 @export var target: Node2D = null
@@ -11,12 +11,12 @@ enum States { IDLE, MOVE, ATTACK, DEATH }
 var _current_state: States = States.IDLE
 
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
-@onready var _collision: CollisionShape2D = $CollisionShape2D
 @onready var _health: Health = $Health
 
 
 func _ready():
 	_health.death.connect(_on_death)
+	_animation.animation_looped.connect(_on_animation_looped)
 
 
 func _process(_delta):
@@ -24,7 +24,7 @@ func _process(_delta):
 		pass
 	elif target == null:
 		_current_state = States.IDLE
-	elif position.distance_to(target.position) < attack_range:
+	elif _target_in_range():
 		_current_state = States.ATTACK
 	else:
 		_current_state = States.MOVE
@@ -72,6 +72,24 @@ func _face_target():
 		_animation.flip_h = true
 
 
+func _on_animation_looped():
+	if _animation.animation == "attack":
+		_attack()
+
+
+func _attack():
+	if not _target_in_range():
+		return
+
+	var health = target.get_node_or_null("Health") as Health
+	if health != null:
+		health.damage(damage)
+
+
+func _target_in_range() -> bool:
+	return target != null and global_position.distance_to(target.global_position) < attack_range
+
+
 func _on_death():
 	Events.enemy_died.emit(self)
 
@@ -81,6 +99,3 @@ func _on_death():
 	set_collision_layer_value(2, false)
 	# add to draggable object
 	set_collision_layer_value(3, true)
-
-	# _collision.set_deferred("disabled", true)
-	# _draggable.set_deferred("disabled", false)

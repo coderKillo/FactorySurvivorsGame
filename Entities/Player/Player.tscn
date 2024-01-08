@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=17 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="1_hxsbr"]
 [ext_resource type="Script" path="res://Entities/Player/Weapon.gd" id="3_tfivi"]
 [ext_resource type="Script" path="res://Entities/Mining/OreCollector.gd" id="4_u5q7k"]
 [ext_resource type="Script" path="res://Entities/Player/DragObjects.gd" id="5_7xnov"]
+[ext_resource type="Script" path="res://Systems/Health/Health.gd" id="6_bhgi1"]
+[ext_resource type="PackedScene" uid="uid://br6bd0htohj1r" path="res://Systems/Health/HealthBar.tscn" id="7_5k7j5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
 radius = 2.0
@@ -112,3 +114,10 @@ script = ExtResource("5_7xnov")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DragObjects"]
 shape = SubResource("CircleShape2D_s4b2o")
 debug_color = Color(0, 0.643137, 0.301961, 0.419608)
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("6_bhgi1")
+max_health = 40
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("7_5k7j5")]
+_health = NodePath("../Health")

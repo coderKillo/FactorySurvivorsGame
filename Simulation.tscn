@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bn036liop3mqv"]
+[gd_scene load_steps=11 format=3 uid="uid://bn036liop3mqv"]
 
 [ext_resource type="Script" path="res://Systems/Simulation.gd" id="1_j5ers"]
 [ext_resource type="TileSet" uid="uid://bhar52vwaumua" path="res://Shared/factory_tileset.tres" id="1_nv8he"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Systems/EnemyPlacer.gd" id="5_ttm65"]
 [ext_resource type="PackedScene" uid="uid://b45rogijccek3" path="res://Entities/Entities/PowerPlantEntity.tscn" id="6_en6u6"]
 [ext_resource type="Script" path="res://Systems/Mining/OreSpawner.gd" id="6_gnnh1"]
-[ext_resource type="PackedScene" uid="uid://dmx658sv84bh3" path="res://Entities/Enemies/Cyclops.tscn" id="8_2ti7o"]
 
 [sub_resource type="TileSet" id="TileSet_njyke"]
 
@@ -45,16 +44,10 @@ position = Vector2(248, 120)
 
 [node name="EnemyPlacer" type="Node2D" parent="GameWorld"]
 script = ExtResource("5_ttm65")
-spawn_time = 2
-spawn_distance = 200
+spawn_distance = 20
+max_concurent_enemies = 1
 
 [node name="SpawnTimer" type="Timer" parent="GameWorld/EnemyPlacer"]
-
-[node name="Cyclops" parent="GameWorld/EnemyPlacer" instance=ExtResource("8_2ti7o")]
-position = Vector2(172, 116)
-
-[node name="Cyclops2" parent="GameWorld/EnemyPlacer" instance=ExtResource("8_2ti7o")]
-position = Vector2(179, 137)
 
 [node name="OreSpawner" type="Node2D" parent="GameWorld"]
 script = ExtResource("6_gnnh1")

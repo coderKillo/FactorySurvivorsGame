@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmx658sv84bh3"]
+[gd_scene load_steps=18 format=3 uid="uid://dmx658sv84bh3"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Enemy.gd" id="1_g8at1"]
 [ext_resource type="Texture2D" uid="uid://c2qnigvemibam" path="res://Shared/enemies/cyclops.png" id="2_n7q43"]
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="3_8dqtg"]
+[ext_resource type="PackedScene" uid="uid://br6bd0htohj1r" path="res://Systems/Health/HealthBar.tscn" id="4_m1cb1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfq0h"]
 radius = 3.0
@@ -103,7 +104,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iborn")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -123,7 +124,10 @@ shape = SubResource("CapsuleShape2D_hfq0h")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_v5hoj")
-animation = &"death"
+animation = &"walk"
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("3_8dqtg")
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("4_m1cb1")]
+_health = NodePath("../Health")
