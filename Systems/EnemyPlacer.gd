@@ -1,7 +1,7 @@
 class_name EnemyPlacer
 extends Node2D
 
-@export var spawn_time = 1  # sek
+@export var spawn_time = 1.0  # sek
 @export var spawn_distance = 10
 @export var max_concurent_enemies = 5
 

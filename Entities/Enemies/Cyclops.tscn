@@ -1,13 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmx658sv84bh3"]
+[gd_scene load_steps=19 format=3 uid="uid://dmx658sv84bh3"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Enemy.gd" id="1_g8at1"]
 [ext_resource type="Texture2D" uid="uid://c2qnigvemibam" path="res://Shared/enemies/cyclops.png" id="2_n7q43"]
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="3_8dqtg"]
 [ext_resource type="PackedScene" uid="uid://br6bd0htohj1r" path="res://Systems/Health/HealthBar.tscn" id="4_m1cb1"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfq0h"]
-radius = 3.0
-height = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_obpko"]
 atlas = ExtResource("2_n7q43")
@@ -109,22 +105,38 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4d1gg"]
+radius = 1.0
+height = 4.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ynex"]
+radius = 2.0
+height = 6.0
+
 [node name="Cyclops" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
-collision_mask = 8
+collision_mask = 10
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_g8at1")
 attack_range = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
-shape = SubResource("CapsuleShape2D_hfq0h")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_v5hoj")
-animation = &"walk"
+animation = &"death"
+frame = 1
+frame_progress = 1.0
+
+[node name="CollisionShapeCorpse" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4d1gg")
+disabled = true
+
+[node name="CollisionShapeAlive" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_0ynex")
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("3_8dqtg")

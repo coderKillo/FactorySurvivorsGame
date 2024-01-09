@@ -44,8 +44,8 @@ position = Vector2(248, 120)
 
 [node name="EnemyPlacer" type="Node2D" parent="GameWorld"]
 script = ExtResource("5_ttm65")
+spawn_time = 0.2
 spawn_distance = 20
-max_concurent_enemies = 1
 
 [node name="SpawnTimer" type="Timer" parent="GameWorld/EnemyPlacer"]
 

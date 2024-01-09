@@ -9,7 +9,7 @@ extends Entity
 @onready var _marker: Marker2D = $Marker2D
 
 var _active = false
-var _bodies = []
+var _bodies: Array[PhysicsBody2D] = []
 
 
 func _ready():
@@ -24,9 +24,11 @@ func _physics_process(delta):
 
 	for body in _bodies:
 		if _collision.shape.get_rect().has_point(body.global_position - global_position):
-			body.global_position = body.global_position.move_toward(
-				_marker.global_position, speed * delta
+			var motion = (
+				body.global_position.move_toward(_marker.global_position, speed * delta)
+				- body.global_position
 			)
+			body.move_and_collide(motion)
 
 
 func _on_received_power(amount, _delta):

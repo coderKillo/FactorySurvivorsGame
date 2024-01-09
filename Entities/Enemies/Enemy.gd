@@ -97,5 +97,10 @@ func _on_death():
 
 	# remove from enemy layer
 	set_collision_layer_value(2, false)
+	set_collision_mask_value(2, false)
 	# add to draggable object
 	set_collision_layer_value(3, true)
+	set_collision_mask_value(3, false)
+
+	$CollisionShapeAlive.disabled = true
+	$CollisionShapeCorpse.disabled = false

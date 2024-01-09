@@ -137,7 +137,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chgpv"]
-size = Vector2(16, 10)
+size = Vector2(16, 16)
 
 [node name="ConveyorEntity" type="Node2D" groups=["power_receivers"]]
 script = ExtResource("1_1aslv")
