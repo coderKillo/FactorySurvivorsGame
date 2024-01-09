@@ -101,7 +101,7 @@ script = ExtResource("3_tfivi")
 position = Vector2(7, 0)
 
 [node name="OreCollector" type="Area2D" parent="."]
-collision_mask = 1024
+collision_mask = 0
 script = ExtResource("4_u5q7k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OreCollector"]

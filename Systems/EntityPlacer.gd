@@ -18,6 +18,7 @@ var _player: CharacterBody2D
 	"Smelter": preload("res://Entities/Blueprints/SmelterBlueprint.tscn").instantiate(),
 	"Conveyor": preload("res://Entities/Blueprints/ConveyorBlueprint.tscn").instantiate(),
 	"SpikeTrap": preload("res://Entities/Blueprints/SpikeTrapBlueprint.tscn").instantiate(),
+	"Crusher": preload("res://Entities/Blueprints/CrusherBlueprint.tscn").instantiate(),
 }
 
 ########## PUBLIC
@@ -34,6 +35,7 @@ func setup(tracker: EntityTracker, ground: TileMap, player: CharacterBody2D):
 	Library[Library.Smelter] = preload("res://Entities/Entities/SmelterEntity.tscn")
 	Library[Library.Conveyor] = preload("res://Entities/Entities/ConveyorEntity.tscn")
 	Library[Library.SpikeTrap] = preload("res://Entities/Entities/SpikeTrapEntity.tscn")
+	Library[Library.Crusher] = preload("res://Entities/Entities/CrusherEntity.tscn")
 
 	for child in get_children():
 		if not child is Entity:
@@ -59,6 +61,7 @@ func _exit_tree():
 	Library.Smelter.queue_free()
 	Library.Conveyor.queue_free()
 	Library.SpikeTrap.queue_free()
+	Library.Crusher.queue_free()
 
 
 func _unhandled_input(event: InputEvent):
@@ -101,6 +104,9 @@ func _unhandled_input(event: InputEvent):
 
 	elif event.is_action_pressed("quickbar_5"):
 		_select_blueprint(Library.SpikeTrap)
+
+	elif event.is_action_pressed("quickbar_6"):
+		_select_blueprint(Library.Crusher)
 
 	elif event is InputEventMouseMotion:
 		if not _has_placable_blueprint():

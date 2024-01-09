@@ -8,7 +8,7 @@
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxq4u"]
-size = Vector2(8, 8)
+size = Vector2(12.1622, 12.1622)
 
 [node name="SmelterEntity" type="StaticBody2D" groups=["heat_provider"]]
 collision_layer = 2048
@@ -26,8 +26,8 @@ shape = SubResource("RectangleShape2D_cy755")
 
 [node name="MaterialEnterArea" type="Area2D" parent="."]
 scale = Vector2(1.48, 1.48)
-collision_layer = 2048
-collision_mask = 1026
+collision_layer = 0
+collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MaterialEnterArea"]
 shape = SubResource("RectangleShape2D_yxq4u")

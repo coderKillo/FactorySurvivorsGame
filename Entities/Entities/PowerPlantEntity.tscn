@@ -99,6 +99,7 @@ animation = &"active"
 
 [node name="PowerSource" type="Node2D" parent="."]
 script = ExtResource("3_wmamp")
+power_amount = 50.0
 
 [node name="HeatReceiver" type="Node2D" parent="."]
 script = ExtResource("4_aokwd")
