@@ -16,6 +16,10 @@ func setup(gui: GUI):
 	_gui = gui
 
 
+func _process(_delta):
+	_update_label()
+
+
 func _gui_input(event: InputEvent) -> void:
 	var left_click := event.is_action_pressed("left_click")
 	var right_click := event.is_action_pressed("right_click")
@@ -60,15 +64,21 @@ func _update_label() -> void:
 
 
 func _swap_item() -> void:
-	var temp = held_item
-	held_item = _gui.blueprint
-	_gui.blueprint = temp
+	var temp1 = held_item
+	var temp2 = _gui.blueprint
+	# clear parents else add_child would fail
+	held_item = null
+	_gui.blueprint = null
+	held_item = temp2
+	_gui.blueprint = temp1
+	held_item.position = Vector2.ZERO
 
 
 func _release_item() -> void:
 	var temp = _gui.blueprint
 	_gui.blueprint = null  # first reset to remove the parent
 	held_item = temp
+	held_item.position = Vector2.ZERO
 
 
 func _grep_item() -> void:

@@ -7,7 +7,6 @@
 [node name="QuickbarInventoryPanel" type="VBoxContainer"]
 offset_right = 16.0
 offset_bottom = 30.0
-mouse_filter = 0
 theme = ExtResource("1_hpa7f")
 theme_override_constants/separation = -3
 script = ExtResource("2_db8ab")

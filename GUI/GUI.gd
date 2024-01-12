@@ -33,15 +33,6 @@ func _ready():
 	_inventory.setup(self)
 	_quickbar.setup(self)
 
-	for inventory in _inventory.inventories:
-		for panel in inventory.panels:
-			panel = panel as InventoryPanel
-			panel.held_item_changed.connect(_on_panel_held_item_changed)
-
-	for panel in _quickbar.panels:
-		panel = panel as InventoryPanel
-		panel.held_item_changed.connect(_on_panel_held_item_changed)
-
 
 func _process(_delta):
 	mouse_in_gui = _inventory_container.get_global_rect().has_point(get_global_mouse_position())
@@ -66,10 +57,6 @@ func _unhandled_input(event):
 
 func destroy_blueprint():
 	_drag_preview.destroy_blueprint()
-
-
-func _on_panel_held_item_changed(panel, held_item):
-	pass
 
 
 func _simulate_input(panel: InventoryPanel) -> void:

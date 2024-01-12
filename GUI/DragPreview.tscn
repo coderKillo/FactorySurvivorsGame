@@ -1,15 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxfuoin5a4kit"]
+[gd_scene load_steps=3 format=3 uid="uid://dxfuoin5a4kit"]
 
 [ext_resource type="Script" path="res://GUI/DragPreview.gd" id="1_67rgg"]
+[ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_bcp5e"]
 
 [node name="DragPreview" type="Control"]
 top_level = true
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
+theme = ExtResource("1_bcp5e")
 script = ExtResource("1_67rgg")
 
 [node name="Label" type="Label" parent="."]
+z_index = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 6

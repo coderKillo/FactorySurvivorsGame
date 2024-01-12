@@ -12,5 +12,5 @@ func _make_panels():
 
 		panels.append(inventory_panel)
 
-		var index := wrapi(i + 1, 1, slot_count)
+		var index := wrapi(i + 1, 0, slot_count)
 		label.text = str(index)

@@ -11,3 +11,5 @@ signal enemy_spawn(enemy: Enemy)
 signal enemy_died(enemy: Enemy)
 
 signal mouse_grid_position(pos: Vector2)
+
+signal inventory_item_added(blueprint: BlueprintEntity)

@@ -9,6 +9,8 @@ var blueprint: BlueprintEntity:
 
 var _mouse_grid_pos = Vector2.ZERO
 
+@onready var _label: Label = $Label
+
 
 func _ready():
 	Events.mouse_grid_position.connect(_on_mouse_grid_position)
@@ -49,3 +51,16 @@ func _set_blueprint(entity: BlueprintEntity):
 	if blueprint != null:
 		add_child(blueprint)
 		move_child(blueprint, 0)
+
+	_update_label()
+
+
+func _update_label() -> void:
+	var can_be_stacked := blueprint != null and blueprint.stack_count > 1
+
+	if can_be_stacked:
+		_label.text = str(blueprint.stack_count)
+		_label.show()
+	else:
+		_label.text = str(1)
+		_label.hide()

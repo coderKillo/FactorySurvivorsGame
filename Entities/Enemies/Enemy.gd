@@ -102,5 +102,5 @@ func _on_death():
 	set_collision_layer_value(3, true)
 	set_collision_mask_value(3, false)
 
-	$CollisionShapeAlive.disabled = true
-	$CollisionShapeCorpse.disabled = false
+	$CollisionShapeAlive.set_deferred("disabled", true)
+	$CollisionShapeCorpse.set_deferred("disabled", false)

@@ -5,7 +5,6 @@ extends CharacterBody2D
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _weapon: Weapon = $Weapon
 @onready var _drag_objects: DragObjects = $DragObjects
-@onready var _inventory: Inventory = $Inventory
 @onready var _ore_collector: OreCollector = $OreCollector
 
 
@@ -44,7 +43,9 @@ func _unhandled_input(event):
 
 
 func _on_ore_collected(value):
-	_inventory.add("ore", value)
+	var ore: BlueprintEntity = Library.blueprints.Ore.instantiate()
+	ore.stack_count = value
+	Events.inventory_item_added.emit(ore)
 
 
 func _set_animation(direction: Vector2):
