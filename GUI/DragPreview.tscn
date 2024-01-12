@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxfuoin5a4kit"]
+
+[ext_resource type="Script" path="res://GUI/DragPreview.gd" id="1_67rgg"]
+
+[node name="DragPreview" type="Control"]
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_67rgg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

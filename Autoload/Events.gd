@@ -9,3 +9,5 @@ signal system_tick(delta)
 signal enemy_spawn(enemy: Enemy)
 
 signal enemy_died(enemy: Enemy)
+
+signal mouse_grid_position(pos: Vector2)

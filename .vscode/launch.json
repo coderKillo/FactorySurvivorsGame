@@ -10,20 +10,8 @@
             "request": "launch",
             "project": "${workspaceFolder}",
             "address": "127.0.0.1",
-            "port": 6007,
+            "port": 6006,
+            "debugServer": 6006,
         },
-        {
-            "name": "Run Godot Run",
-            "type": "coreclr",
-            "request": "launch",
-            "program": "N:/programs/godot/Godot.exe",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "stopAtEntry": false,
-            "args": [
-                "--path",
-                "${workspaceRoot}"
-            ]
-        }
     ]
 }

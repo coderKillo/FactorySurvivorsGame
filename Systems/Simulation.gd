@@ -10,10 +10,11 @@ var _mining_system = MiningSystem.new()
 @onready var _enemy_placer = $GameWorld/EnemyPlacer
 @onready var _player = $GameWorld/Player
 @onready var _ground = $GameWorld/GroundMap
+@onready var _gui = $CanvasLayer/GUI
 
 
 func _ready():
-	_entity_placer.setup(_tracker, _ground, _player)
+	_entity_placer.setup(_gui, _tracker, _ground, _player)
 	_enemy_placer.setup(_player)
 	$SimulationTimer.start(simulation_speed)
 	$SimulationTimer.timeout.connect(_on_SimulationTimer_timeout)

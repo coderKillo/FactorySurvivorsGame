@@ -49,7 +49,7 @@ shape = SubResource("RectangleShape2D_ktmyr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dvgis")
-frame_progress = 0.94212
+frame_progress = 0.413087
 
 [node name="InputArea" type="Area2D" parent="."]
 position = Vector2(-10, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bn036liop3mqv"]
+[gd_scene load_steps=12 format=3 uid="uid://bn036liop3mqv"]
 
 [ext_resource type="Script" path="res://Systems/Simulation.gd" id="1_j5ers"]
 [ext_resource type="TileSet" uid="uid://bhar52vwaumua" path="res://Shared/factory_tileset.tres" id="1_nv8he"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Systems/EnemyPlacer.gd" id="5_ttm65"]
 [ext_resource type="PackedScene" uid="uid://b45rogijccek3" path="res://Entities/Entities/PowerPlantEntity.tscn" id="6_en6u6"]
 [ext_resource type="Script" path="res://Systems/Mining/OreSpawner.gd" id="6_gnnh1"]
+[ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="10_cj28n"]
 
 [sub_resource type="TileSet" id="TileSet_njyke"]
 
@@ -58,3 +59,7 @@ safe_margin = 1.0
 movement_speed = 50.0
 
 [node name="SimulationTimer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("10_cj28n")]

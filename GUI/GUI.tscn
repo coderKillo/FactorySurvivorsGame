@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3ljipsd1xli"]
+
+[ext_resource type="PackedScene" uid="uid://dksd7mouyfmbx" path="res://GUI/InventoryWindow.tscn" id="1_6clxo"]
+[ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
+[ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
+[ext_resource type="PackedScene" uid="uid://dxfuoin5a4kit" path="res://GUI/DragPreview.tscn" id="3_luiu2"]
+
+[node name="GUI" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_my5u3")
+script = ExtResource("2_tddr5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="InventoryWindow" parent="HBoxContainer" instance=ExtResource("1_6clxo")]
+visible = false
+layout_mode = 2
+
+[node name="DragPreview" parent="." instance=ExtResource("3_luiu2")]
+layout_mode = 2
