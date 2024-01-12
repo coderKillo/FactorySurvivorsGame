@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://djeswshcnoath"]
+
+[ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_hpa7f"]
+[ext_resource type="PackedScene" uid="uid://tcvkyspk3vu" path="res://GUI/InventoryPanel.tscn" id="1_tl2gl"]
+[ext_resource type="Script" path="res://GUI/QuickbarInventoryPanel.gd" id="2_db8ab"]
+
+[node name="QuickbarInventoryPanel" type="VBoxContainer"]
+offset_right = 16.0
+offset_bottom = 30.0
+mouse_filter = 0
+theme = ExtResource("1_hpa7f")
+theme_override_constants/separation = -3
+script = ExtResource("2_db8ab")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="InventoryPanel" parent="." instance=ExtResource("1_tl2gl")]
+layout_mode = 2
