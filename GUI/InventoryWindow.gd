@@ -21,16 +21,14 @@ func setup(gui: GUI):
 		_panels.append_array(inventory.panels)
 
 	# test
-	inventories[0].panels[0].held_item = Library.blueprints.Smelter.instantiate()
-	inventories[0].panels[1].held_item = Library.blueprints.PowerPlant.instantiate()
-	inventories[0].panels[1].held_item = Library.blueprints.Ore.instantiate()
+	# inventories[0].panels[0].held_item = Library.blueprints.Smelter.instantiate()
+	# inventories[0].panels[1].held_item = Library.blueprints.PowerPlant.instantiate()
 
 
 func _on_inventory_item_added(blueprint: BlueprintEntity):
 	var panel = _find_panel_not_full_stack(blueprint)
 
 	if panel != null:
-
 		var stack_left = panel.held_item.stack_size - panel.held_item.stack_count
 		if stack_left >= blueprint.stack_count:
 			panel.held_item.stack_count += blueprint.stack_count

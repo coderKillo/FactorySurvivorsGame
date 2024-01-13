@@ -1,45 +1,91 @@
-[gd_scene load_steps=17 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=31 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
-[ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="1_hxsbr"]
-[ext_resource type="Script" path="res://Entities/Player/Weapon.gd" id="3_tfivi"]
 [ext_resource type="Script" path="res://Entities/Mining/OreCollector.gd" id="4_u5q7k"]
 [ext_resource type="Script" path="res://Entities/Player/DragObjects.gd" id="5_7xnov"]
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="6_bhgi1"]
+[ext_resource type="Script" path="res://Entities/Player/WeaponList.gd" id="6_pn85v"]
 [ext_resource type="PackedScene" uid="uid://br6bd0htohj1r" path="res://Systems/Health/HealthBar.tscn" id="7_5k7j5"]
+[ext_resource type="Script" path="res://Entities/Player/Blaster.gd" id="7_bipw4"]
+[ext_resource type="Script" path="res://Entities/Player/PickAxe.gd" id="8_2foof"]
+[ext_resource type="Texture2D" uid="uid://b7jpgv4aavsw3" path="res://Shared/player.png" id="8_3ndie"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
 radius = 2.0
 height = 6.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0fugj"]
-atlas = ExtResource("1_hxsbr")
-region = Rect2(48, 176, 16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vvagi"]
+radius = 23.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rr8q0"]
-atlas = ExtResource("1_hxsbr")
-region = Rect2(64, 176, 16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4b2o"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wo25m"]
-atlas = ExtResource("1_hxsbr")
-region = Rect2(64, 192, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_66wbc"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(16, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q3hbo"]
-atlas = ExtResource("1_hxsbr")
-region = Rect2(80, 192, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf4vb"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(32, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ll12o"]
-atlas = ExtResource("1_hxsbr")
-region = Rect2(96, 192, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_desfx"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjeqa"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6x2cf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66wbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uf4vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_desfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjeqa")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2ngo"]
+size = Vector2(5.5, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b5fn"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq3vn"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au38u"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwiog"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reis1"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_20hi3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0fugj")
+"texture": SubResource("AtlasTexture_3b5fn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rr8q0")
+"texture": SubResource("AtlasTexture_eq3vn")
 }],
 "loop": true,
 "name": &"idle",
@@ -47,23 +93,66 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wo25m")
+"texture": SubResource("AtlasTexture_au38u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q3hbo")
+"texture": SubResource("AtlasTexture_qwiog")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ll12o")
+"texture": SubResource("AtlasTexture_reis1")
 }],
 "loop": true,
 "name": &"walk",
 "speed": 8.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vvagi"]
-radius = 23.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8e60"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s4b2o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb07c"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihhrf"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wpco"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4am4p"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3cpw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8e60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb07c")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihhrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wpco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4am4p")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -77,30 +166,16 @@ movement_speed = 100.0
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_dydcu")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -4)
-sprite_frames = SubResource("SpriteFrames_20hi3")
-animation = &"idle"
-frame_progress = 0.727551
-
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
-
-[node name="Weapon" type="Node2D" parent="."]
-position = Vector2(0, -3)
-script = ExtResource("3_tfivi")
-
-[node name="Cooldown" type="Timer" parent="Weapon"]
-
-[node name="Marker2D" type="Marker2D" parent="Weapon"]
-position = Vector2(7, 0)
 
 [node name="OreCollector" type="Area2D" parent="."]
 collision_mask = 1024
 script = ExtResource("4_u5q7k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OreCollector"]
+visible = false
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_vvagi")
 debug_color = Color(0.541176, 0.407843, 0.996078, 0.419608)
@@ -111,6 +186,7 @@ collision_mask = 4
 script = ExtResource("5_7xnov")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DragObjects"]
+visible = false
 shape = SubResource("CircleShape2D_s4b2o")
 debug_color = Color(0, 0.643137, 0.301961, 0.419608)
 
@@ -120,3 +196,53 @@ max_health = 40
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("7_5k7j5")]
 _health = NodePath("../Health")
+
+[node name="Weapons" type="Node2D" parent="."]
+script = ExtResource("6_pn85v")
+
+[node name="Blaster" type="Node2D" parent="Weapons"]
+position = Vector2(0, -3)
+script = ExtResource("7_bipw4")
+
+[node name="Marker2D" type="Marker2D" parent="Weapons/Blaster"]
+position = Vector2(7, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapons/Blaster"]
+position = Vector2(1, 0)
+texture = ExtResource("8_3ndie")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
+
+[node name="PickAxe" type="Node2D" parent="Weapons"]
+position = Vector2(0, -3)
+script = ExtResource("8_2foof")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Weapons/PickAxe"]
+sprite_frames = SubResource("SpriteFrames_6x2cf")
+animation = &"attack"
+frame = 3
+frame_progress = 1.0
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="Weapons/PickAxe"]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapons/PickAxe/Area2D"]
+position = Vector2(5, 1)
+shape = SubResource("RectangleShape2D_d2ngo")
+
+[node name="Cooldown" type="Timer" parent="Weapons"]
+
+[node name="Model" type="Node2D" parent="."]
+
+[node name="Body" type="AnimatedSprite2D" parent="Model"]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_20hi3")
+animation = &"idle"
+
+[node name="Hands" type="AnimatedSprite2D" parent="Model"]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_i3cpw")
+animation = &"walk"
