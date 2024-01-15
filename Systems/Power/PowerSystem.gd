@@ -29,7 +29,7 @@ func _on_entity_placed(entity: Entity, cellv: Vector2):
 		retrace = true
 
 	if entity.is_in_group(Types.POWER_MOVERS):
-		power_movers[cellv] = entity.get_node_or_null("PowerMover")
+		power_movers[cellv] = entity
 		retrace = true
 
 	if retrace:
@@ -64,6 +64,8 @@ func _on_system_tick(delta):
 
 			power_available += source.get_effective_power()
 
+		var total_power = power_available
+
 		for pos in network[NETWORK_RECEIVERS]:
 			if not pos in power_receivers:
 				continue
@@ -74,8 +76,15 @@ func _on_system_tick(delta):
 			receiver.received_power.emit(power_provided, delta)
 			power_available -= power_provided
 
-			if power_available <= 0:
-				break
+		var network_utilization = (1 - (power_available / total_power)) if total_power > 0 else 0
+
+		for pos in network[NETWORK_SOURCES]:
+			if not pos in power_sources:
+				continue
+
+			var source: PowerSource = power_sources[pos]
+			source.utilization = network_utilization
+			source.power_updated.emit(source.get_effective_power(), delta)
 
 
 func _retrace_paths():
@@ -94,24 +103,44 @@ func _retrace_paths():
 		while not cell_queue.is_empty():
 			var cell = cell_queue.pop_front()
 
-			if cell in power_sources:
-				network[NETWORK_SOURCES].append(cell)
 			if cell in power_receivers:
+				# power receivers are endpoints, so no futher search
 				network[NETWORK_RECEIVERS].append(cell)
 
-			for direction in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
-				var neighbor = cell + direction
-				if neighbor in cell_travelled:
-					continue
+			if cell in power_sources:
+				# power sources are startpoints, so only search for movers
+				network[NETWORK_SOURCES].append(cell)
 
-				if (
-					(not neighbor in power_sources)
-					and (not neighbor in power_receivers)
-					and (not neighbor in power_movers)
-				):
-					continue
+				for direction in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
+					var neighbor = cell + direction
 
-				cell_travelled.append(neighbor)
-				cell_queue.push_back(neighbor)
+					if neighbor in cell_travelled:
+						continue
+					if neighbor not in power_movers:
+						continue
+
+					cell_queue.push_back(neighbor)
+					cell_travelled.append(neighbor)
+
+			if cell in power_movers:
+				# power movers subscribe to neighbor sources / receivers
+				for direction in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
+					var neighbor = cell + direction
+
+					if neighbor in power_sources:
+						var power: PowerSource = power_sources[neighbor]
+						var wire: WireEntity = power_movers[cell]
+						power.power_updated.connect(wire._on_power_input.bind(direction))
+
+					elif neighbor in power_receivers:
+						var receiver: PowerReceiver = power_receivers[neighbor]
+						var wire: WireEntity = power_movers[cell]
+						receiver.received_power.connect(wire._on_power_output.bind(direction))
+
+					if neighbor in cell_travelled:
+						continue
+
+					cell_queue.push_back(neighbor)
+					cell_travelled.append(neighbor)
 
 		networks.append(network)

@@ -31,6 +31,8 @@ func _process(_delta):
 	elif position_mode == PositionMode.SNAP:
 		blueprint.global_position = _mouse_grid_pos
 
+	_update_label()
+
 
 func destroy_blueprint() -> void:
 	if blueprint:

@@ -200,9 +200,10 @@ _health = NodePath("../Health")
 [node name="Weapons" type="Node2D" parent="."]
 script = ExtResource("6_pn85v")
 
-[node name="Blaster" type="Node2D" parent="Weapons"]
+[node name="Blaster" type="Node2D" parent="Weapons" node_paths=PackedStringArray("projectile_container")]
 position = Vector2(0, -3)
 script = ExtResource("7_bipw4")
+projectile_container = NodePath("../Projectiles")
 
 [node name="Marker2D" type="Marker2D" parent="Weapons/Blaster"]
 position = Vector2(7, 0)
@@ -234,6 +235,9 @@ position = Vector2(5, 1)
 shape = SubResource("RectangleShape2D_d2ngo")
 
 [node name="Cooldown" type="Timer" parent="Weapons"]
+one_shot = true
+
+[node name="Projectiles" type="Node2D" parent="Weapons"]
 
 [node name="Model" type="Node2D" parent="."]
 

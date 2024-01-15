@@ -14,3 +14,9 @@ func _make_panels():
 
 		var index := wrapi(i + 1, 0, slot_count)
 		label.text = str(index)
+
+	# test
+	panels[0].held_item = Library.blueprints.Wire.instantiate()
+	panels[0].held_item.stack_count = 20
+	panels[1].held_item = Library.blueprints.Conveyor.instantiate()
+	panels[1].held_item.stack_count = 20

@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://b45rogijccek3"]
+[gd_scene load_steps=19 format=3 uid="uid://b45rogijccek3"]
 
 [ext_resource type="Script" path="res://Entities/Entities/PowerPlantEntity.gd" id="1_bjnb1"]
 [ext_resource type="Texture2D" uid="uid://bu0nssebqfb4e" path="res://Shared/animations/powerplant-tall_idle.png" id="2_r07na"]
 [ext_resource type="Script" path="res://Systems/Power/PowerSource.gd" id="3_wmamp"]
 [ext_resource type="Script" path="res://Systems/Mining/HeatReceiver.gd" id="4_aokwd"]
+[ext_resource type="Script" path="res://Systems/Power/UtilizationBar.gd" id="5_h3hei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8q2t"]
 size = Vector2(16, 16)
@@ -84,6 +85,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7ndd"]
+bg_color = Color(0.40625, 0.433594, 0.597656, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts6tt"]
+bg_color = Color(0, 0.709804, 0.247059, 1)
+
 [node name="PowerPlantEntity" type="StaticBody2D" groups=["heat_receiver", "power_sources"]]
 collision_layer = 8
 collision_mask = 11
@@ -96,10 +103,24 @@ shape = SubResource("RectangleShape2D_p8q2t")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_45q88")
 animation = &"active"
+frame_progress = 0.865871
 
 [node name="PowerSource" type="Node2D" parent="."]
 script = ExtResource("3_wmamp")
-power_amount = 50.0
+power_amount = 5.0
 
 [node name="HeatReceiver" type="Node2D" parent="."]
 script = ExtResource("4_aokwd")
+
+[node name="UtilizationBar" type="ProgressBar" parent="." node_paths=PackedStringArray("power_source")]
+offset_left = -5.0
+offset_top = 2.0
+offset_right = 5.0
+offset_bottom = 3.0
+theme_override_styles/background = SubResource("StyleBoxFlat_i7ndd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ts6tt")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+script = ExtResource("5_h3hei")
+power_source = NodePath("../PowerSource")

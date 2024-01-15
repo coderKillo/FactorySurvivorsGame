@@ -15,8 +15,6 @@ var _gui: GUI
 func setup(gui: GUI):
 	_gui = gui
 
-
-func _process(_delta):
 	_update_label()
 
 
@@ -50,6 +48,9 @@ func _set_held_item(blueprint: BlueprintEntity):
 	if held_item:
 		_mask.add_child(held_item)
 		_mask.move_child(held_item, 0)
+		held_item.modulate = Color.WHITE
+
+	_update_label()
 
 
 func _update_label() -> void:

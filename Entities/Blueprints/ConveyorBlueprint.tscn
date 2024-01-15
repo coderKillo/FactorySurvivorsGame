@@ -8,7 +8,6 @@ script = ExtResource("1_jed8a")
 rotateable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
 rotation = 3.14159
 texture = ExtResource("1_ixuww")
 region_enabled = true
