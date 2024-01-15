@@ -1,14 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl1vvohs3eypo"]
+[gd_scene load_steps=13 format=3 uid="uid://dl1vvohs3eypo"]
 
 [ext_resource type="Script" path="res://Entities/Entities/SmelterEntity.gd" id="1_pkhbk"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="2_iyxwc"]
 [ext_resource type="Script" path="res://Systems/Mining/HeatProvider.gd" id="3_4kk5f"]
+[ext_resource type="Texture2D" uid="uid://rpb5g8uoxfv4" path="res://Shared/animations/Smelter_Fire.png" id="4_gjms3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cy755"]
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxq4u"]
 size = Vector2(12.1622, 12.1622)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr4rr"]
+atlas = ExtResource("2_iyxwc")
+region = Rect2(0, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6idjh"]
+atlas = ExtResource("4_gjms3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l57ku"]
+atlas = ExtResource("4_gjms3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejn3c"]
+atlas = ExtResource("4_gjms3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmvb1"]
+atlas = ExtResource("4_gjms3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2hys"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr4rr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6idjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l57ku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejn3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmvb1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="SmelterEntity" type="StaticBody2D" groups=["heat_provider"]]
 collision_layer = 2048
@@ -34,5 +78,11 @@ shape = SubResource("RectangleShape2D_yxq4u")
 
 [node name="HeatProvider" type="Node2D" parent="."]
 script = ExtResource("3_4kk5f")
+
+[node name="FireAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v2hys")
+autoplay = "default"
+frame = 1
+frame_progress = 0.314541
 
 [connection signal="body_entered" from="MaterialEnterArea" to="." method="_on_material_enter_area_body_entered"]
