@@ -1,7 +1,9 @@
+class_name Projectile
 extends Area2D
 
 @export var speed = 750
 @export var damage = 10
+@export var cost = 10
 
 @onready var _sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _animation: AnimationPlayer = $AnimationPlayer

@@ -68,6 +68,11 @@ func _process(_delta):
 	_update_blueprint()
 	_update_mouse_position_on_grid()
 
+	if _has_placable_blueprint():
+		_player.set_process_unhandled_input(false)
+	else:
+		_player.set_process_unhandled_input(true)
+
 
 ########## PRIVATE
 

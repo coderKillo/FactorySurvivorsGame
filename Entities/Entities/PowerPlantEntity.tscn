@@ -103,11 +103,11 @@ shape = SubResource("RectangleShape2D_p8q2t")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_45q88")
 animation = &"active"
-frame_progress = 0.204715
+frame_progress = 0.0834711
 
 [node name="PowerSource" type="Node2D" parent="."]
 script = ExtResource("3_wmamp")
-power_amount = 5.0
+power_amount = 50.0
 
 [node name="HeatReceiver" type="Node2D" parent="."]
 script = ExtResource("4_aokwd")

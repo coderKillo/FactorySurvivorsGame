@@ -1,6 +1,8 @@
 class_name Weapon
 extends Node2D
 
+signal energy_used(amount)
+
 @export var fire_rate = 0.3
 @export var damage = 10
 

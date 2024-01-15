@@ -1,12 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=36 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Mining/OreCollector.gd" id="4_u5q7k"]
 [ext_resource type="Script" path="res://Entities/Player/DragObjects.gd" id="5_7xnov"]
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="6_bhgi1"]
+[ext_resource type="Script" path="res://Entities/Player/Energy.gd" id="6_ogtao"]
 [ext_resource type="Script" path="res://Entities/Player/WeaponList.gd" id="6_pn85v"]
 [ext_resource type="PackedScene" uid="uid://br6bd0htohj1r" path="res://Systems/Health/HealthBar.tscn" id="7_5k7j5"]
 [ext_resource type="Script" path="res://Entities/Player/Blaster.gd" id="7_bipw4"]
+[ext_resource type="Script" path="res://Entities/Player/EnergyBar.gd" id="7_pixv8"]
 [ext_resource type="Script" path="res://Entities/Player/PickAxe.gd" id="8_2foof"]
 [ext_resource type="Texture2D" uid="uid://b7jpgv4aavsw3" path="res://Shared/player.png" id="8_3ndie"]
 
@@ -18,6 +20,14 @@ height = 6.0
 radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4b2o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxvlr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwdvn"]
+bg_color = Color(0.078125, 0.0273438, 0.183594, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap7fx"]
+bg_color = Color(0.308594, 0.640625, 0.71875, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66wbc"]
 atlas = ExtResource("8_3ndie")
@@ -197,10 +207,34 @@ max_health = 40
 [node name="HealthBar" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("7_5k7j5")]
 _health = NodePath("../Health")
 
+[node name="Energy" type="Node2D" parent="."]
+script = ExtResource("6_ogtao")
+
+[node name="Area2D" type="Area2D" parent="Energy"]
+position = Vector2(0, -3)
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Energy/Area2D"]
+shape = SubResource("CircleShape2D_sxvlr")
+
+[node name="EnergyBar" type="ProgressBar" parent="." node_paths=PackedStringArray("_energy")]
+offset_left = -5.0
+offset_top = -11.0
+offset_right = 5.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_xwdvn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ap7fx")
+value = 48.79
+show_percentage = false
+script = ExtResource("7_pixv8")
+_energy = NodePath("../Energy")
+
 [node name="Weapons" type="Node2D" parent="."]
 script = ExtResource("6_pn85v")
 
 [node name="Blaster" type="Node2D" parent="Weapons" node_paths=PackedStringArray("projectile_container")]
+visible = false
 position = Vector2(0, -3)
 script = ExtResource("7_bipw4")
 projectile_container = NodePath("../Projectiles")
@@ -216,6 +250,7 @@ region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
 [node name="PickAxe" type="Node2D" parent="Weapons"]
+visible = false
 position = Vector2(0, -3)
 script = ExtResource("8_2foof")
 

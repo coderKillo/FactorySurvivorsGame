@@ -7,10 +7,12 @@ extends CharacterBody2D
 @onready var _weapon_timer: Timer = $Weapons/Cooldown
 @onready var _drag_objects: DragObjects = $DragObjects
 @onready var _ore_collector: OreCollector = $OreCollector
+@onready var _energy: Energy = $Energy
 
 
 func _ready():
 	_ore_collector.ore_collected.connect(_on_ore_collected)
+	_weapons[1].energy_used.connect(_on_weapon_energy_used)
 
 
 func _process(_delta):
@@ -43,7 +45,7 @@ func _physics_process(_delta):
 func _unhandled_input(event):
 	if event.is_action("left_click"):
 		_weapons[0].fire(event.is_pressed())
-	if event.is_action("right_click"):
+	if event.is_action("right_click") and _energy.energy > 0:
 		_weapons[1].fire(event.is_pressed())
 
 	if event.is_action_pressed("grab"):
@@ -56,6 +58,13 @@ func _on_ore_collected(value):
 	var ore: BlueprintEntity = Library.blueprints.Ore.instantiate()
 	ore.stack_count = value
 	Events.inventory_item_added.emit(ore)
+
+
+func _on_weapon_energy_used(amount):
+	_energy.energy -= amount
+
+	if _energy.energy <= 0:
+		_weapons[1].fire(false)
 
 
 func _set_animation(direction: Vector2):
