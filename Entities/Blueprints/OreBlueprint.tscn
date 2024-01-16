@@ -7,6 +7,7 @@
 script = ExtResource("1_o45xq")
 placeable = false
 stack_size = 45
+craftable = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)

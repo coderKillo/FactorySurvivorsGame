@@ -23,6 +23,7 @@ var blueprint: BlueprintEntity:
 var mouse_in_gui := false
 
 @onready var _inventory: InventoryWindow = $HBoxContainer/InventoryWindow
+@onready var _crafting: CraftingWindow = $HBoxContainer/CraftingWindow
 @onready var _inventory_container: Container = $HBoxContainer
 @onready var _quickbar: Quickbar = $MarginContainer/Quickbar
 @onready var _quickbar_container: Container = $MarginContainer
@@ -31,6 +32,7 @@ var mouse_in_gui := false
 
 func _ready():
 	_inventory.setup(self)
+	_crafting.setup(self)
 	_quickbar.setup(self)
 
 
@@ -71,9 +73,11 @@ func _open_inventory() -> void:
 	_quickbar_container.remove_child(_quickbar)
 	_inventory.inventory_path.add_child(_quickbar)
 	_inventory.visible = true
+	_crafting.visible = true
 
 
 func _close_inventory() -> void:
 	_inventory.inventory_path.remove_child(_quickbar)
 	_quickbar_container.add_child(_quickbar)
 	_inventory.visible = false
+	_crafting.visible = false

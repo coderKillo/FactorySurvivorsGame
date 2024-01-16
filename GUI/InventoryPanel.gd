@@ -42,6 +42,7 @@ func _gui_input(event: InputEvent) -> void:
 func _set_held_item(blueprint: BlueprintEntity):
 	if held_item and held_item.get_parent() == _mask:
 		_mask.remove_child(held_item)
+		held_item.stack_count_changed.disconnect(_on_held_item_stack_count_changed)
 
 	held_item = blueprint
 
@@ -49,7 +50,12 @@ func _set_held_item(blueprint: BlueprintEntity):
 		_mask.add_child(held_item)
 		_mask.move_child(held_item, 0)
 		held_item.modulate = Color.WHITE
+		held_item.stack_count_changed.connect(_on_held_item_stack_count_changed)
 
+	_update_label()
+
+
+func _on_held_item_stack_count_changed(_count: int) -> void:
 	_update_label()
 
 
