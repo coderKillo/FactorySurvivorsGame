@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=11 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="PackedScene" uid="uid://dksd7mouyfmbx" path="res://GUI/InventoryWindow.tscn" id="1_6clxo"]
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
 [ext_resource type="PackedScene" uid="uid://dxfuoin5a4kit" path="res://GUI/DragPreview.tscn" id="3_luiu2"]
 [ext_resource type="PackedScene" uid="uid://dckp5fvjnbxnj" path="res://GUI/Quickbar.tscn" id="5_heml8"]
+[ext_resource type="Script" path="res://GUI/ScoreUI.gd" id="6_6dn62"]
+[ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="6_f4nhr"]
+[ext_resource type="PackedScene" uid="uid://dbadmpq6k0uoo" path="res://GUI/GUISprite.tscn" id="6_t50jr"]
+[ext_resource type="Texture2D" uid="uid://dnolouw5gm8e8" path="res://Shared/PixelTheme/Images/Button1.png" id="6_x8ryg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7csh"]
+texture = ExtResource("6_x8ryg")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 5.0
+modulate_color = Color(0, 1, 0.913725, 1)
 
 [node name="GUI" type="CenterContainer"]
 anchors_preset = 15
@@ -33,3 +45,41 @@ theme_override_constants/margin_top = 140
 
 [node name="Quickbar" parent="MarginContainer" instance=ExtResource("5_heml8")]
 layout_mode = 2
+
+[node name="ScoreUI" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 260
+theme_override_constants/margin_bottom = 150
+script = ExtResource("6_6dn62")
+
+[node name="PanelContainer" type="PanelContainer" parent="ScoreUI"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_r7csh")
+
+[node name="MarginContainer" type="MarginContainer" parent="ScoreUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = -4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="GUISprite" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("6_t50jr")]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("6_f4nhr")
+region_enabled = true
+
+[node name="Label" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 6
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 1

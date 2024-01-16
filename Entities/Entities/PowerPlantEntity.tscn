@@ -103,7 +103,7 @@ shape = SubResource("RectangleShape2D_p8q2t")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_45q88")
 animation = &"active"
-frame_progress = 0.0834711
+frame_progress = 0.597912
 
 [node name="PowerSource" type="Node2D" parent="."]
 script = ExtResource("3_wmamp")

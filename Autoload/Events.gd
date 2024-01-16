@@ -13,3 +13,7 @@ signal enemy_died(enemy: Enemy)
 signal mouse_grid_position(pos: Vector2)
 
 signal inventory_item_added(blueprint: BlueprintEntity)
+
+signal power_produced(amount: int)
+
+signal score_update(value: int)

@@ -86,6 +86,8 @@ func _on_system_tick(delta):
 			source.utilization = network_utilization
 			source.power_updated.emit(source.get_effective_power(), delta)
 
+		Events.power_produced.emit(int(total_power))
+
 
 func _retrace_paths():
 	networks.clear()
