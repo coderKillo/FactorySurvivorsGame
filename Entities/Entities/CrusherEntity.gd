@@ -10,9 +10,6 @@ var Ore = preload("res://Entities/Mining/Ore.tscn")
 
 
 func _ready():
-	assert(_input != null, "hhahac")
-	assert(_ouput != null, "hhahac")
-
 	_timer.timeout.connect(_on_timer_timeout)
 
 

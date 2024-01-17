@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://ttwt5lj1j33o"]
+
+[ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_ds6j6"]
+[ext_resource type="Script" path="res://Systems/Work/WorkComponent.gd" id="1_q3mpj"]
+[ext_resource type="PackedScene" uid="uid://tcvkyspk3vu" path="res://GUI/InventoryPanel.tscn" id="2_ss1vx"]
+[ext_resource type="Script" path="res://GUI/GUISprite.gd" id="3_tvyxq"]
+[ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="4_n3ptk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71hak"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hox8i"]
+bg_color = Color(0, 0.717647, 0.364706, 1)
+
+[node name="WorkComponent" type="Node2D"]
+script = ExtResource("1_q3mpj")
+
+[node name="GUI" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.78
+offset_top = -29.08
+offset_right = 21.22
+offset_bottom = -9.08
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ds6j6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="GUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_71hak")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hox8i")
+value = 31.01
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="InputPanel" parent="GUI/VBoxContainer/HBoxContainer" instance=ExtResource("2_ss1vx")]
+layout_mode = 2
+
+[node name="GUISprite" type="Control" parent="GUI/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+script = ExtResource("3_tvyxq")
+texture = ExtResource("4_n3ptk")
+region_enabled = true
+region_rect = Rect2(32, 176, 16, 16)
+
+[node name="OutputPanel" parent="GUI/VBoxContainer/HBoxContainer" instance=ExtResource("2_ss1vx")]
+layout_mode = 2
+
+[node name="ProcessTimer" type="Timer" parent="."]
+
+[node name="PickUpTimer" type="Timer" parent="."]

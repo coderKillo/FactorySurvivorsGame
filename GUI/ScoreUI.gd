@@ -1,7 +1,7 @@
 class_name ScoreUI
 extends MarginContainer
 
-const SCORE_POWER_FACTOR = 1000
+const SCORE_POWER_FACTOR = 1000.0
 
 var _power := 0
 var _score: int = 0:
@@ -18,7 +18,7 @@ func _ready():
 
 func _on_power_produced(amount):
 	_power += amount
-	_score = (_power / SCORE_POWER_FACTOR)
+	_score = int(_power / SCORE_POWER_FACTOR)
 
 
 func _set_score(value):

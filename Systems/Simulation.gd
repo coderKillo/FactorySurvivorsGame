@@ -3,7 +3,11 @@ extends Node
 @export var simulation_speed = 1.0 / 30.0
 
 var _tracker = EntityTracker.new()
+@warning_ignore("unused_variable")
+@warning_ignore("unused_private_class_variable")
 var _power_system = PowerSystem.new()
+@warning_ignore("unused_variable")
+@warning_ignore("unused_private_class_variable")
 var _mining_system = MiningSystem.new()
 
 @onready var _entity_placer = $GameWorld/EntityPlacer
