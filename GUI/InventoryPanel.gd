@@ -3,6 +3,9 @@ extends Panel
 
 signal held_item_changed(panel, item)
 
+# only allow specifc item to contain
+@export var item_filter := ""
+
 var held_item: BlueprintEntity:
 	set = _set_held_item
 
@@ -29,10 +32,10 @@ func _gui_input(event: InputEvent) -> void:
 	var inventory_holds_item: bool = held_item != null
 
 	if mouse_holds_item and inventory_holds_item:
-		if left_click:
+		if left_click and Library.is_valid_item(_gui.blueprint, item_filter):
 			_swap_item()
 	elif mouse_holds_item and not inventory_holds_item:
-		if left_click:
+		if left_click and Library.is_valid_item(_gui.blueprint, item_filter):
 			_release_item()
 	elif not mouse_holds_item and inventory_holds_item:
 		if left_click:

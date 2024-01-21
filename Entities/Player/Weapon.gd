@@ -3,8 +3,9 @@ extends Node2D
 
 signal energy_used(amount)
 
-@export var fire_rate = 0.3
-@export var damage = 10
+@export var fire_rate := 0.3
+@export var damage := 10
+@export var type := ""
 
 var is_right = false
 
@@ -15,7 +16,6 @@ var _cooldown_timer: Timer
 
 func setup(timer: Timer):
 	_cooldown_timer = timer
-	_cooldown_timer.timeout.connect(_on_cooldown_timeout)
 
 
 func _process(_delta):
@@ -23,13 +23,13 @@ func _process(_delta):
 	look_at(mouse)
 
 	_set_weapon_direction(mouse)
+	_on_cooldown = _cooldown_timer.time_left > 0.0
 
 	if _firing and not _on_cooldown:
 		show()
 
 		_fire()
 
-		_on_cooldown = true
 		_cooldown_timer.start(fire_rate)
 
 	elif not _firing and not _on_cooldown:
@@ -38,10 +38,6 @@ func _process(_delta):
 
 func fire(pressed: bool):
 	_firing = pressed
-
-
-func _on_cooldown_timeout():
-	_on_cooldown = false
 
 
 func _set_weapon_direction(pos: Vector2):

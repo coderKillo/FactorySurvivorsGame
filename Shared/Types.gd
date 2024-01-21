@@ -18,3 +18,6 @@ const HEAT_PROVIDER = "heat_provider"
 const HEAT_RECEIVER = "heat_receiver"
 
 const ENEMY = "enemy"
+
+const WEAPON_BLASTER = "blaster"
+const WEAPON_PICKAXE = "pickaxe"

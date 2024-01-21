@@ -1,7 +1,7 @@
-class_name OreCollector
+class_name CollectObjects
 extends Area2D
 
-signal ore_collected(value)
+signal entity_collected(ground: GroundEntity)
 
 @export var collect_distance = 1
 @export var collect_gravity = 100
@@ -10,11 +10,14 @@ signal ore_collected(value)
 func _physics_process(delta):
 	for body in get_overlapping_bodies():
 		var distance = global_position.distance_to(body.global_position)
-		var ore := body as Ore
+		var entity := body as GroundEntity
 
-		if ore != null and distance < collect_distance:
+		if not entity.is_collectable:
+			continue
+
+		if distance < collect_distance:
+			entity_collected.emit(entity)
 			body.queue_free()
-			ore_collected.emit(ore.value)
 			continue
 
 		body.global_position = body.global_position.move_toward(

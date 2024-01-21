@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
-[ext_resource type="Script" path="res://Entities/Mining/OreCollector.gd" id="4_u5q7k"]
+[ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
 [ext_resource type="Script" path="res://Entities/Player/DragObjects.gd" id="5_7xnov"]
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="6_bhgi1"]
 [ext_resource type="Script" path="res://Entities/Player/Energy.gd" id="6_ogtao"]
@@ -66,7 +66,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2ngo"]
-size = Vector2(5.5, 12)
+size = Vector2(11, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3b5fn"]
 atlas = ExtResource("8_3ndie")
@@ -180,11 +180,11 @@ shape = SubResource("CapsuleShape2D_dydcu")
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="OreCollector" type="Area2D" parent="."]
-collision_mask = 1024
-script = ExtResource("4_u5q7k")
+[node name="CollectObjects" type="Area2D" parent="."]
+collision_mask = 4
+script = ExtResource("2_4cwld")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OreCollector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectObjects"]
 visible = false
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_vvagi")
@@ -238,6 +238,7 @@ visible = false
 position = Vector2(0, -3)
 script = ExtResource("7_bipw4")
 projectile_container = NodePath("../Projectiles")
+type = "blaster"
 
 [node name="Marker2D" type="Marker2D" parent="Weapons/Blaster"]
 position = Vector2(7, 0)
@@ -253,6 +254,8 @@ region_rect = Rect2(0, 32, 16, 16)
 visible = false
 position = Vector2(0, -3)
 script = ExtResource("8_2foof")
+fire_rate = 1.0
+type = "pickaxe"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Weapons/PickAxe"]
 sprite_frames = SubResource("SpriteFrames_6x2cf")
@@ -266,7 +269,7 @@ collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapons/PickAxe/Area2D"]
-position = Vector2(5, 1)
+position = Vector2(6.5, 0)
 shape = SubResource("RectangleShape2D_d2ngo")
 
 [node name="Cooldown" type="Timer" parent="Weapons"]

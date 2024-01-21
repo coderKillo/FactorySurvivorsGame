@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://djvu0wme8upq3"]
+
+[ext_resource type="Script" path="res://Entities/Entities/GroundEntity.gd" id="1_3ftao"]
+[ext_resource type="Texture2D" uid="uid://c2qnigvemibam" path="res://Shared/enemies/cyclops.png" id="2_n8fsw"]
+[ext_resource type="Script" path="res://Systems/Mining/DestructionComponent.gd" id="3_maydv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4d1gg"]
+radius = 1.0
+height = 6.0
+
+[node name="EnemyCorpsEntity" type="AnimatableBody2D"]
+collision_layer = 4
+collision_mask = 12
+script = ExtResource("1_3ftao")
+entity_name = "EnemyCorps"
+is_draggable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("2_n8fsw")
+region_enabled = true
+region_rect = Rect2(176, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4d1gg")
+
+[node name="DestructionComponent" type="Node2D" parent="."]
+script = ExtResource("3_maydv")
+destruction_filter = "pickaxe"
+destruction_entity = "Ore"

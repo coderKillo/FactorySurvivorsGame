@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg2o7kxucoxhs"]
+
+[ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_a81g3"]
+[ext_resource type="Texture2D" uid="uid://c2qnigvemibam" path="res://Shared/enemies/cyclops.png" id="2_l2j02"]
+
+[node name="EnemyCorpsBlueprint" type="Node2D"]
+script = ExtResource("1_a81g3")
+placeable = false
+stack_size = 45
+craftable = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -5)
+texture = ExtResource("2_l2j02")
+region_enabled = true
+region_rect = Rect2(176, 0, 16, 16)

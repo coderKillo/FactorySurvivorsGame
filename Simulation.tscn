@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dl1vvohs3eypo" path="res://Entities/Entities/SmelterEntity.tscn" id="5_bv3hl"]
 [ext_resource type="Script" path="res://Systems/EnemyPlacer.gd" id="5_ttm65"]
 [ext_resource type="PackedScene" uid="uid://b45rogijccek3" path="res://Entities/Entities/PowerPlantEntity.tscn" id="6_en6u6"]
-[ext_resource type="Script" path="res://Systems/Mining/OreSpawner.gd" id="6_gnnh1"]
+[ext_resource type="Script" path="res://Systems/GroundEntitySpawner.gd" id="8_lmmv0"]
 [ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="10_cj28n"]
 
 [sub_resource type="TileSet" id="TileSet_njyke"]
@@ -45,14 +45,13 @@ position = Vector2(248, 120)
 
 [node name="EnemyPlacer" type="Node2D" parent="GameWorld"]
 script = ExtResource("5_ttm65")
-spawn_time = 0.2
-spawn_distance = 20
-max_concurent_enemies = 0
+spawn_distance = 100
+max_concurent_enemies = 1
 
 [node name="SpawnTimer" type="Timer" parent="GameWorld/EnemyPlacer"]
 
-[node name="OreSpawner" type="Node2D" parent="GameWorld"]
-script = ExtResource("6_gnnh1")
+[node name="GroundEntitySpawner" type="Node2D" parent="GameWorld"]
+script = ExtResource("8_lmmv0")
 
 [node name="Player" parent="GameWorld" instance=ExtResource("2_trfnq")]
 slide_on_ceiling = false

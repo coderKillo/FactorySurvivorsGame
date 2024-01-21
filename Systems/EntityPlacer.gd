@@ -9,6 +9,8 @@ var _ground: TileMap
 var _player: CharacterBody2D
 var _gui: GUI
 
+var _open_gui_entity: Entity = null
+
 @onready var _destruction_timer: DestructionTimer = $Timer
 
 ########## PUBLIC
@@ -41,23 +43,17 @@ func _unhandled_input(event: InputEvent):
 	_destruction_timer.update_input(event, _get_cell_under_mouse())
 
 	if event.is_action_pressed("left_click"):
-		if not _has_placable_blueprint() or not _can_placed_on_cell():
-			return
-
-		_place_entity(_get_cell_under_mouse())
+		if _has_placable_blueprint() and _can_placed_on_cell():
+			_place_entity(_get_cell_under_mouse())
+		else:
+			_show_entity_gui(_get_cell_under_mouse())
 
 	elif event.is_action_pressed("right_click"):
-		if _has_placable_blueprint():
-			return
-
-		_destruction_timer.start_destruction(_get_cell_under_mouse())
-
-	elif event.is_action_pressed("drop"):
-		if not _gui.blueprint:
-			return
-
-		remove_child(_gui.blueprint)
-		_gui.blueprint = null
+		if _gui.blueprint:
+			remove_child(_gui.blueprint)
+			_gui.blueprint = null
+		else:
+			_destruction_timer.start_destruction(_get_cell_under_mouse())
 
 	elif event.is_action_pressed("rotate_blueprint"):
 		if _has_placable_blueprint() and _gui.blueprint.rotateable:
@@ -94,9 +90,11 @@ func _place_entity(location: Vector2i):
 	var entity: Entity = Library.entites[entity_name].instantiate()
 	entity.global_position = to_global(map_to_local(location))
 	entity.global_rotation = _gui.blueprint.global_rotation
-	entity._setup(_gui.blueprint)
 
 	add_child(entity)
+
+	entity._setup(_gui.blueprint)
+	entity._setup_gui(_gui)
 
 	_tracker.place_entities(entity, location)
 
@@ -109,6 +107,17 @@ func _place_entity(location: Vector2i):
 		WireBlueprint.set_sprite_from_direction(
 			entity.sprites, _tracker.get_power_neighbors(_get_cell_under_mouse())
 		)
+
+
+func _show_entity_gui(location: Vector2i):
+	if _open_gui_entity != null:
+		_open_gui_entity._hide_gui()
+		_open_gui_entity = null
+
+	var entity: Entity = _tracker.get_entity_at(location)
+	if entity != null:
+		entity._show_gui()
+		_open_gui_entity = entity
 
 
 func _finish_destruction(location: Vector2i):

@@ -23,6 +23,17 @@ func get_entity_name(node: Node) -> String:
 	return filename
 
 
+func is_valid_item(item: BlueprintEntity, filter: String) -> bool:
+	if filter == "":
+		return true
+
+	var item_name = get_entity_name(item)
+	if item_name == "":
+		return false
+
+	return item_name in filter
+
+
 func _find_entities_in(path: String) -> void:
 	var dir = DirAccess.open(path)
 	if not dir:

@@ -6,12 +6,12 @@ extends CharacterBody2D
 @onready var _weapons: Array[Weapon] = [$Weapons/PickAxe, $Weapons/Blaster]
 @onready var _weapon_timer: Timer = $Weapons/Cooldown
 @onready var _drag_objects: DragObjects = $DragObjects
-@onready var _ore_collector: OreCollector = $OreCollector
+@onready var _collect_objects: CollectObjects = $CollectObjects
 @onready var _energy: Energy = $Energy
 
 
 func _ready():
-	_ore_collector.ore_collected.connect(_on_ore_collected)
+	_collect_objects.entity_collected.connect(_on_entity_collected)
 	_weapons[1].energy_used.connect(_on_weapon_energy_used)
 
 
@@ -54,9 +54,14 @@ func _unhandled_input(event):
 		_drag_objects.release()
 
 
-func _on_ore_collected(value):
-	var ore: BlueprintEntity = Library.blueprints.Ore.instantiate()
-	ore.stack_count = value
+func _on_entity_collected(entity: GroundEntity):
+	var entity_name := Library.get_entity_name(entity)
+
+	if not entity_name in Library.blueprints:
+		print("no blueprint found for entity:", entity_name)
+		return
+
+	var ore: BlueprintEntity = Library.blueprints[entity_name].instantiate()
 	Events.inventory_item_added.emit(ore)
 
 

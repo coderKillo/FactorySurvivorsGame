@@ -17,6 +17,7 @@ var _current_state: States = States.IDLE
 func _ready():
 	_health.death.connect(_on_death)
 	_animation.animation_looped.connect(_on_animation_looped)
+	_animation.animation_finished.connect(_on_animation_finished)
 
 
 func _process(_delta):
@@ -59,8 +60,7 @@ func _set_animation() -> void:
 		_face_target()
 
 	elif _current_state == States.DEATH:
-		if _animation.animation != "death":
-			_animation.play("death")
+		_animation.play("death")
 
 
 func _face_target():
@@ -77,6 +77,12 @@ func _on_animation_looped():
 		_attack()
 
 
+func _on_animation_finished():
+	if _animation.animation == "death":
+		Events.enemy_died.emit(self)
+		queue_free()
+
+
 func _attack():
 	if not _target_in_range():
 		return
@@ -91,16 +97,4 @@ func _target_in_range() -> bool:
 
 
 func _on_death():
-	Events.enemy_died.emit(self)
-
 	_current_state = States.DEATH
-
-	# remove from enemy layer
-	set_collision_layer_value(2, false)
-	set_collision_mask_value(2, false)
-	# add to draggable object
-	set_collision_layer_value(3, true)
-	set_collision_mask_value(3, false)
-
-	$CollisionShapeAlive.set_deferred("disabled", true)
-	$CollisionShapeCorpse.set_deferred("disabled", false)
