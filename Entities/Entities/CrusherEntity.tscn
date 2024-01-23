@@ -1,9 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://d23u3bg73f2he"]
+[gd_scene load_steps=18 format=3 uid="uid://d23u3bg73f2he"]
 
 [ext_resource type="Script" path="res://Entities/Entities/CrusherEntity.gd" id="1_0gscn"]
 [ext_resource type="Texture2D" uid="uid://dn317g7xjubkp" path="res://Shared/animations/crusher_idle.png" id="2_t0qjn"]
 [ext_resource type="Script" path="res://Systems/Power/PowerOnDemand.gd" id="3_ku1t5"]
+[ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="4_o7nak"]
 [ext_resource type="PackedScene" uid="uid://ttwt5lj1j33o" path="res://Systems/Work/WorkComponent.tscn" id="4_r32me"]
+[ext_resource type="Script" path="res://GUI/WorkerGuiComponent.gd" id="6_fwtb6"]
+[ext_resource type="PackedScene" uid="uid://tcvkyspk3vu" path="res://GUI/InventoryPanel.tscn" id="7_xmwyd"]
+[ext_resource type="Script" path="res://GUI/GUISprite.gd" id="8_ijn3o"]
+[ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="9_e1fk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktmyr"]
 size = Vector2(16, 16)
@@ -40,6 +45,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3xi3"]
 size = Vector2(12, 16)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ya1j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5r6g"]
+bg_color = Color(0, 0.717647, 0.364706, 1)
+
 [node name="CrusherEntity" type="StaticBody2D" groups=["power_receivers"]]
 collision_layer = 8
 collision_mask = 0
@@ -70,5 +80,52 @@ script = ExtResource("3_ku1t5")
 [node name="WorkComponent" parent="." node_paths=PackedStringArray("pickup_area", "output_pos") instance=ExtResource("4_r32me")]
 input_name = "EnemyCorps"
 output_name = "Ore"
+process_time = 2
+pickup_time = 1
 pickup_area = NodePath("../InputArea")
 output_pos = NodePath("../OutputPos")
+
+[node name="GUIComponent" type="MarginContainer" parent="." node_paths=PackedStringArray("worker")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.78
+offset_top = -29.08
+offset_right = 21.22
+offset_bottom = -9.08
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_o7nak")
+script = ExtResource("6_fwtb6")
+worker = NodePath("../WorkComponent")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIComponent"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="GUIComponent/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_4ya1j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v5r6g")
+value = 31.01
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIComponent/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="InputPanel" parent="GUIComponent/VBoxContainer/HBoxContainer" instance=ExtResource("7_xmwyd")]
+layout_mode = 2
+
+[node name="GUISprite" type="Control" parent="GUIComponent/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+script = ExtResource("8_ijn3o")
+texture = ExtResource("9_e1fk3")
+region_enabled = true
+region_rect = Rect2(32, 176, 16, 16)
+
+[node name="OutputPanel" parent="GUIComponent/VBoxContainer/HBoxContainer" instance=ExtResource("7_xmwyd")]
+layout_mode = 2

@@ -6,19 +6,28 @@ func _setup(_blueprint):
 	pass
 
 
-func _setup_gui(_gui):
+func _setup_gui(gui):
 	for child in get_children():
-		if child.has_method("setup_gui"):
-			child.setup_gui(_gui)
+		var gui_component := child as BaseGuiComponent
+		if gui_component == null:
+			continue
+
+		gui_component.setup(gui)
 
 
 func _show_gui():
 	for child in get_children():
-		if child.has_method("show_gui"):
-			child.show_gui()
+		var gui_component := child as BaseGuiComponent
+		if gui_component == null:
+			continue
+
+		gui_component.show()
 
 
 func _hide_gui():
 	for child in get_children():
-		if child.has_method("hide_gui"):
-			child.hide_gui()
+		var gui_component := child as BaseGuiComponent
+		if gui_component == null:
+			continue
+
+		gui_component.hide()
