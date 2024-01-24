@@ -7,10 +7,6 @@ extends Entity
 ]
 
 
-func _ready():
-	pass  # Replace with function body.
-
-
 func _on_power_input(amount, _delta, direction: Vector2):
 	if amount <= 0:
 		return

@@ -56,10 +56,12 @@ func _set_held_item(blueprint: BlueprintEntity):
 		held_item.stack_count_changed.connect(_on_held_item_stack_count_changed)
 
 	_update_label()
+	held_item_changed.emit(self, held_item)
 
 
 func _on_held_item_stack_count_changed(_count: int) -> void:
 	_update_label()
+	held_item_changed.emit(self, held_item)
 
 
 func _update_label() -> void:

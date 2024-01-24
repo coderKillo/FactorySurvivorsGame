@@ -1,9 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dl1vvohs3eypo"]
+[gd_scene load_steps=18 format=3 uid="uid://dl1vvohs3eypo"]
 
 [ext_resource type="Script" path="res://Entities/Entities/SmelterEntity.gd" id="1_pkhbk"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="2_iyxwc"]
 [ext_resource type="Script" path="res://Systems/Mining/HeatProvider.gd" id="3_4kk5f"]
 [ext_resource type="Texture2D" uid="uid://rpb5g8uoxfv4" path="res://Shared/animations/Smelter_Fire.png" id="4_gjms3"]
+[ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="5_c66rm"]
+[ext_resource type="Script" path="res://GUI/SmelterGuiComponent.gd" id="6_2o7og"]
+[ext_resource type="PackedScene" uid="uid://tcvkyspk3vu" path="res://GUI/InventoryPanel.tscn" id="7_vjsg8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cy755"]
 size = Vector2(16, 16)
@@ -54,7 +57,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wyd2s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyqv6"]
+bg_color = Color(0, 0.721569, 0.294118, 1)
+
 [node name="SmelterEntity" type="StaticBody2D" groups=["heat_provider"]]
+position = Vector2(0, 11)
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_pkhbk")
@@ -84,5 +93,44 @@ sprite_frames = SubResource("SpriteFrames_v2hys")
 autoplay = "default"
 frame = 1
 frame_progress = 0.314541
+
+[node name="GUIComponent" type="MarginContainer" parent="." node_paths=PackedStringArray("heat_provider")]
+visible = false
+offset_left = -17.0
+offset_top = -31.0
+offset_right = 18.0
+theme = ExtResource("5_c66rm")
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+script = ExtResource("6_2o7og")
+heat_provider = NodePath("../HeatProvider")
+
+[node name="PanelContainer" type="PanelContainer" parent="GUIComponent"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUIComponent/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIComponent/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="InventoryPanel" parent="GUIComponent/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("7_vjsg8")]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="GUIComponent/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_wyd2s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jyqv6")
+value = 27.09
+fill_mode = 3
+show_percentage = false
 
 [connection signal="body_entered" from="MaterialEnterArea" to="." method="_on_material_enter_area_body_entered"]

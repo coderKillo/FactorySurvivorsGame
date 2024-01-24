@@ -23,6 +23,28 @@ func get_entity_name(node: Node) -> String:
 	return filename
 
 
+func get_blueprint_from(entity: Entity) -> BlueprintEntity:
+	var entity_name = get_entity_name(entity)
+	if not entity_name in blueprints:
+		print("could not find blueprint to entity:", entity_name)
+		return null
+
+	var blueprint = blueprints[entity_name].instantiate()
+	blueprint.value = entity.value
+	return blueprints
+
+
+func get_entity_from(blueprint: BlueprintEntity) -> Entity:
+	var entity_name = get_entity_name(blueprint)
+	if not entity_name in entites:
+		print("could not find entity to blueprint:", entity_name)
+		return null
+
+	var entity = entites[entity_name].instantiate()
+	entity.value = blueprint.value
+	return entity
+
+
 func is_valid_item(item: BlueprintEntity, filter: String) -> bool:
 	if filter == "":
 		return true

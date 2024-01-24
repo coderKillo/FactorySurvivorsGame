@@ -5,8 +5,6 @@ const INPUT_SLOT = 0
 const OUTPUT_SLOT = 1
 
 signal update_progress(percent: float)
-signal add_inventory_item(slot: int)
-signal remove_inventory_item(slot: int)
 
 @export var input_name := ""
 @export var output_name := ""
@@ -15,8 +13,7 @@ signal remove_inventory_item(slot: int)
 @export var pickup_area: Area2D
 @export var output_pos: Marker2D
 
-# blueprint to ceep track of stack size
-var _blueprints: Array[BlueprintEntity] = []
+var _slots: Array[InventorySlot] = [InventorySlot.new(), InventorySlot.new()]
 
 @onready var _process_timer: Timer = $ProcessTimer
 @onready var _pickup_timer: Timer = $PickUpTimer
@@ -30,13 +27,6 @@ func _ready():
 	_pickup_timer.timeout.connect(_on_pickup_timer_timeout)
 	_pickup_timer.timeout.connect(_on_place_timer_timeout)
 	_pickup_timer.start(pickup_time)
-
-	_blueprints = [
-		Library.blueprints[input_name].instantiate(), Library.blueprints[output_name].instantiate()
-	]
-
-	_blueprints[INPUT_SLOT].stack_count = 0
-	_blueprints[OUTPUT_SLOT].stack_count = 0
 
 
 func _process(_delta):
@@ -57,7 +47,7 @@ func stop() -> void:
 
 
 func has_available_work() -> bool:
-	return _blueprints[INPUT_SLOT].stack_count > 0
+	return not _slots[INPUT_SLOT].empty()
 
 
 func _on_pickup_timer_timeout() -> void:
@@ -65,27 +55,27 @@ func _on_pickup_timer_timeout() -> void:
 	if entity == null:
 		return
 
-	if _blueprints[INPUT_SLOT].full():
+	if _slots[INPUT_SLOT].full():
 		return
 
-	_add_item(INPUT_SLOT)
+	_slots[INPUT_SLOT].stack += 1
 	entity.queue_free()
 
 
 func _on_place_timer_timeout() -> void:
-	if _blueprints[OUTPUT_SLOT].empty():
+	if _slots[OUTPUT_SLOT].empty():
 		return
 
-	_remove_item(OUTPUT_SLOT)
+	_slots[OUTPUT_SLOT].stack -= 1
 	Events.ground_entity_spawn.emit(output_name, output_pos.global_position)
 
 
 func _on_process_timer_timeout() -> void:
-	if _blueprints[INPUT_SLOT].empty() or _blueprints[OUTPUT_SLOT].full():
+	if _slots[INPUT_SLOT].empty() or _slots[OUTPUT_SLOT].full():
 		return
 
-	_remove_item(INPUT_SLOT)
-	_add_item(OUTPUT_SLOT)
+	_slots[INPUT_SLOT].stack -= 1
+	_slots[OUTPUT_SLOT].stack += 1
 
 
 func _get_valid_input_entity() -> Entity:
@@ -95,13 +85,3 @@ func _get_valid_input_entity() -> Entity:
 			return body
 
 	return null
-
-
-func _add_item(slot: int) -> void:
-	_blueprints[slot].stack_count += 1
-	add_inventory_item.emit(slot)
-
-
-func _remove_item(slot: int) -> void:
-	_blueprints[slot].stack_count -= 1
-	remove_inventory_item.emit(slot)

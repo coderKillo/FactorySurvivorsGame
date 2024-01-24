@@ -80,8 +80,6 @@ script = ExtResource("3_ku1t5")
 [node name="WorkComponent" parent="." node_paths=PackedStringArray("pickup_area", "output_pos") instance=ExtResource("4_r32me")]
 input_name = "EnemyCorps"
 output_name = "Ore"
-process_time = 2
-pickup_time = 1
 pickup_area = NodePath("../InputArea")
 output_pos = NodePath("../OutputPos")
 
@@ -90,21 +88,30 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -20.78
-offset_top = -29.08
-offset_right = 21.22
-offset_bottom = -9.08
+offset_left = -23.0
+offset_top = -34.0
+offset_right = 23.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_o7nak")
 script = ExtResource("6_fwtb6")
 worker = NodePath("../WorkComponent")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUIComponent"]
+[node name="PanelContainer" type="PanelContainer" parent="GUIComponent"]
 layout_mode = 2
-theme_override_constants/separation = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="GUIComponent/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUIComponent/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIComponent/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_4ya1j")
@@ -112,14 +119,14 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_v5r6g")
 value = 31.01
 show_percentage = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUIComponent/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = -3
 
-[node name="InputPanel" parent="GUIComponent/VBoxContainer/HBoxContainer" instance=ExtResource("7_xmwyd")]
+[node name="InputPanel" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("7_xmwyd")]
 layout_mode = 2
 
-[node name="GUISprite" type="Control" parent="GUIComponent/VBoxContainer/HBoxContainer"]
+[node name="GUISprite" type="Control" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 script = ExtResource("8_ijn3o")
@@ -127,5 +134,5 @@ texture = ExtResource("9_e1fk3")
 region_enabled = true
 region_rect = Rect2(32, 176, 16, 16)
 
-[node name="OutputPanel" parent="GUIComponent/VBoxContainer/HBoxContainer" instance=ExtResource("7_xmwyd")]
+[node name="OutputPanel" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("7_xmwyd")]
 layout_mode = 2

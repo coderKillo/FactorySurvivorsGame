@@ -1,6 +1,8 @@
 class_name Entity
 extends Node2D
 
+var value := 1
+
 
 func _setup(_blueprint):
 	pass
