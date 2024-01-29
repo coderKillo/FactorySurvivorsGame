@@ -8,6 +8,7 @@
 custom_minimum_size = Vector2(16, 16)
 offset_right = 16.0
 offset_bottom = 16.0
+pivot_offset = Vector2(0, 0.06)
 theme = ExtResource("1_at5p1")
 script = ExtResource("2_4at5a")
 

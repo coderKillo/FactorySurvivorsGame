@@ -51,10 +51,7 @@ func _unhandled_input(event: InputEvent):
 			_show_entity_gui(_get_cell_under_mouse())
 
 	elif event.is_action_pressed("right_click"):
-		if _gui.blueprint:
-			remove_child(_gui.blueprint)
-			_gui.blueprint = null
-		else:
+		if not _gui.blueprint:
 			_destruction_timer.start_destruction(_get_cell_under_mouse())
 
 	elif event.is_action_pressed("rotate_blueprint"):
@@ -134,12 +131,10 @@ func _update_mouse_position_on_grid():
 
 
 func _set_blueprint_color():
-	if _gui.mouse_in_gui:
-		_gui.blueprint.modulate = Color.WHITE
-	elif _can_placed_on_cell():
-		_gui.blueprint.modulate = Color.GREEN
+	if _can_placed_on_cell():
+		_gui.preview_sprite.modulate = Color.GREEN
 	else:
-		_gui.blueprint.modulate = Color.RED
+		_gui.preview_sprite.modulate = Color.RED
 
 
 ########## HELPER

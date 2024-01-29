@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=10 format=3 uid="uid://c3ljipsd1xli"]
 
-[ext_resource type="PackedScene" uid="uid://dksd7mouyfmbx" path="res://GUI/InventoryWindow.tscn" id="1_6clxo"]
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
 [ext_resource type="PackedScene" uid="uid://dxfuoin5a4kit" path="res://GUI/DragPreview.tscn" id="3_luiu2"]
-[ext_resource type="PackedScene" uid="uid://7dnwtdmpjjh8" path="res://GUI/CraftingWindow.tscn" id="4_rtvtw"]
 [ext_resource type="PackedScene" uid="uid://dckp5fvjnbxnj" path="res://GUI/Quickbar.tscn" id="5_heml8"]
 [ext_resource type="Script" path="res://GUI/ScoreUI.gd" id="6_6dn62"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="6_f4nhr"]
@@ -28,17 +26,6 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_my5u3")
 script = ExtResource("2_tddr5")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="CraftingWindow" parent="HBoxContainer" instance=ExtResource("4_rtvtw")]
-visible = false
-layout_mode = 2
-
-[node name="InventoryWindow" parent="HBoxContainer" instance=ExtResource("1_6clxo")]
-visible = false
-layout_mode = 2
 
 [node name="DragPreview" parent="." instance=ExtResource("3_luiu2")]
 layout_mode = 2

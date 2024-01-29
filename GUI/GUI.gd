@@ -20,41 +20,26 @@ var blueprint: BlueprintEntity:
 	get:
 		return _drag_preview.blueprint
 
-var mouse_in_gui := false
+var preview_sprite: Sprite2D:
+	get:
+		return _drag_preview._preview_sprite
 
-@onready var _inventory: InventoryWindow = $HBoxContainer/InventoryWindow
-@onready var _crafting: CraftingWindow = $HBoxContainer/CraftingWindow
-@onready var _inventory_container: Container = $HBoxContainer
 @onready var _quickbar: Quickbar = $MarginContainer/Quickbar
-@onready var _quickbar_container: Container = $MarginContainer
-@onready var _drag_preview = $DragPreview
+@onready var _drag_preview: DragPreview = $DragPreview
 
 
 func _ready():
-	_inventory.setup(self)
-	_crafting.setup(self)
 	_quickbar.setup(self)
 
 
 func _process(_delta):
-	mouse_in_gui = _inventory_container.get_global_rect().has_point(get_global_mouse_position())
-
-	_drag_preview.position_mode = (
-		DragPreview.PositionMode.NORMAL if mouse_in_gui else DragPreview.PositionMode.SNAP
-	)
+	_drag_preview.position_mode = (DragPreview.PositionMode.SNAP)
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("toggle_inventory"):
-		if _inventory.visible:
-			_close_inventory()
-		else:
-			_open_inventory()
-
-	else:
-		for i in QUICKBAR_ACTIONS.size():
-			if InputMap.event_is_action(event, QUICKBAR_ACTIONS[i]) and event.is_pressed():
-				_simulate_input(_quickbar.panels[i])
+	for i in QUICKBAR_ACTIONS.size():
+		if InputMap.event_is_action(event, QUICKBAR_ACTIONS[i]) and event.is_pressed():
+			_simulate_input(_quickbar.panels[i])
 
 
 func destroy_blueprint():
@@ -67,17 +52,3 @@ func _simulate_input(panel: InventoryPanel) -> void:
 	event.pressed = true
 
 	panel._gui_input(event)
-
-
-func _open_inventory() -> void:
-	_quickbar_container.remove_child(_quickbar)
-	_inventory.inventory_path.add_child(_quickbar)
-	_inventory.visible = true
-	_crafting.visible = true
-
-
-func _close_inventory() -> void:
-	_inventory.inventory_path.remove_child(_quickbar)
-	_quickbar_container.add_child(_quickbar)
-	_inventory.visible = false
-	_crafting.visible = false

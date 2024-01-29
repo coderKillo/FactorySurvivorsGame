@@ -23,23 +23,11 @@ func setup(gui: GUI):
 
 func _gui_input(event: InputEvent) -> void:
 	var left_click := event.is_action_pressed("left_click")
-	var right_click := event.is_action_pressed("right_click")
 
-	if not (left_click or right_click):
+	if not left_click:
 		return
 
-	var mouse_holds_item: bool = _gui.blueprint != null
-	var inventory_holds_item: bool = held_item != null
-
-	if mouse_holds_item and inventory_holds_item:
-		if left_click and Library.is_valid_item(_gui.blueprint, item_filter):
-			_swap_item()
-	elif mouse_holds_item and not inventory_holds_item:
-		if left_click and Library.is_valid_item(_gui.blueprint, item_filter):
-			_release_item()
-	elif not mouse_holds_item and inventory_holds_item:
-		if left_click:
-			_grep_item()
+	_gui._drag_preview.on_panel_clicked(self)
 
 
 func _set_held_item(blueprint: BlueprintEntity):
@@ -73,27 +61,3 @@ func _update_label() -> void:
 	else:
 		_lable.text = str(1)
 		_lable.hide()
-
-
-func _swap_item() -> void:
-	var temp1 = held_item
-	var temp2 = _gui.blueprint
-	# clear parents else add_child would fail
-	held_item = null
-	_gui.blueprint = null
-	held_item = temp2
-	_gui.blueprint = temp1
-	held_item.position = Vector2.ZERO
-
-
-func _release_item() -> void:
-	var temp = _gui.blueprint
-	_gui.blueprint = null  # first reset to remove the parent
-	held_item = temp
-	held_item.position = Vector2.ZERO
-
-
-func _grep_item() -> void:
-	var temp = held_item
-	held_item = null
-	_gui.blueprint = temp
