@@ -1,6 +1,8 @@
 class_name Quickbar
 extends InventoryBar
 
+const GLOBAL_COOLDOWN = 1
+
 
 func _make_panels():
 	for i in slot_count:
@@ -14,3 +16,11 @@ func _make_panels():
 
 		var index := wrapi(i + 1, 0, slot_count)
 		label.text = str(index)
+
+		inventory_panel.held_item_changed.connect(_on_panel_item_changed)
+
+
+func _on_panel_item_changed(_panel: InventoryPanel, _item: BlueprintEntity) -> void:
+	for child in get_children():
+		if child.has_method("start_cooldown"):
+			child.start_cooldown(GLOBAL_COOLDOWN)

@@ -30,3 +30,6 @@ step = 0.05
 fill_mode = 2
 texture_progress = ExtResource("4_dhq5j")
 texture_progress_offset = Vector2(0, -13)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
