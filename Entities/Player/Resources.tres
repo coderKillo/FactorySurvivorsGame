@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="CollectedResources" load_steps=2 format=3 uid="uid://c0jni5ubdefk4"]
+
+[ext_resource type="Script" path="res://Entities/Player/CollectedResources.gd" id="1_pody8"]
+
+[resource]
+script = ExtResource("1_pody8")

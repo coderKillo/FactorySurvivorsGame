@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var movement_speed = 300.0
+@export var resources: CollectedResources
 
 @onready var _animations: Array[AnimatedSprite2D] = [$Model/Body, $Model/Hands]
 @onready var _weapons: Array[Weapon] = [$Weapons/PickAxe, $Weapons/Blaster]
@@ -61,8 +62,7 @@ func _on_entity_collected(entity: GroundEntity):
 		print("no blueprint found for entity:", entity_name)
 		return
 
-	var ore: BlueprintEntity = Library.blueprints[entity_name].instantiate()
-	Events.inventory_item_added.emit(ore)
+	resources.add_item(entity_name)
 
 
 func _on_weapon_energy_used(amount):

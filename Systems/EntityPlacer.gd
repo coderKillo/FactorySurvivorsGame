@@ -9,8 +9,6 @@ var _ground: TileMap
 var _player: CharacterBody2D
 var _gui: GUI
 
-var _open_gui_entity: Entity = null
-
 @onready var _destruction_timer: DestructionTimer = $Timer
 
 ########## PUBLIC
@@ -109,14 +107,14 @@ func _place_entity(location: Vector2i):
 
 
 func _show_entity_gui(location: Vector2i):
-	if _open_gui_entity != null:
-		_open_gui_entity._hide_gui()
-		_open_gui_entity = null
+	if _gui.open_entity_ui != null:
+		_gui.open_entity_ui.hide()
+		_gui.open_entity_ui = null
 
 	var entity: Entity = _tracker.get_entity_at(location)
 	if entity != null:
 		entity._show_gui()
-		_open_gui_entity = entity
+		_gui.open_entity_ui = entity._get_ui_component()
 
 
 func _finish_destruction(location: Vector2i):

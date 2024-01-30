@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=11 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="6_f4nhr"]
 [ext_resource type="PackedScene" uid="uid://dbadmpq6k0uoo" path="res://GUI/GUISprite.tscn" id="6_t50jr"]
 [ext_resource type="Texture2D" uid="uid://dnolouw5gm8e8" path="res://Shared/PixelTheme/Images/Button1.png" id="6_x8ryg"]
+[ext_resource type="Script" path="res://GUI/ResourceUI.gd" id="9_1sgrj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7csh"]
 texture = ExtResource("6_x8ryg")
@@ -80,3 +81,28 @@ theme_override_font_sizes/font_size = 6
 text = "1"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="ResourceUI" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 268
+theme_override_constants/margin_top = -65
+theme_override_constants/margin_bottom = -200
+script = ExtResource("9_1sgrj")
+
+[node name="PanelContainer" type="PanelContainer" parent="ResourceUI"]
+self_modulate = Color(0.701961, 1, 0.611765, 1)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ResourceUI/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_bottom = -2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResourceUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = -6

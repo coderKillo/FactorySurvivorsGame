@@ -11,8 +11,8 @@ func _ready():
 	_timer.timeout.connect(_end_cooldown)
 
 	# test
-	_panel.held_item = Library.blueprints.Smelter.instantiate()
-	_panel.held_item.stack_count = 5
+	# _panel.held_item = Library.blueprints.Smelter.instantiate()
+	# _panel.held_item.stack_count = 5
 
 
 func _process(_delta):

@@ -14,6 +14,8 @@ const QUICKBAR_ACTIONS := [
 	"quickbar_0"
 ]
 
+signal open_entity_ui_changed(value)
+
 var blueprint: BlueprintEntity:
 	set(value):
 		_drag_preview.blueprint = value
@@ -24,12 +26,19 @@ var preview_sprite: Sprite2D:
 	get:
 		return _drag_preview._preview_sprite
 
+var open_entity_ui: BaseGuiComponent:
+	set(value):
+		open_entity_ui = value
+		open_entity_ui_changed.emit(value)
+
 @onready var _quickbar: Quickbar = $MarginContainer/Quickbar
 @onready var _drag_preview: DragPreview = $DragPreview
+@onready var _resource: ResourceUI = $ResourceUI
 
 
 func _ready():
 	_quickbar.setup(self)
+	_resource.setup(self)
 
 
 func _process(_delta):

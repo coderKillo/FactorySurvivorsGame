@@ -9,27 +9,27 @@ func _setup(_blueprint):
 
 
 func _setup_gui(gui):
-	for child in get_children():
-		var gui_component := child as BaseGuiComponent
-		if gui_component == null:
-			continue
-
+	var gui_component := _get_ui_component()
+	if gui_component != null:
 		gui_component.setup(gui)
 
 
 func _show_gui():
-	for child in get_children():
-		var gui_component := child as BaseGuiComponent
-		if gui_component == null:
-			continue
-
+	var gui_component := _get_ui_component()
+	if gui_component != null:
 		gui_component.show()
 
 
 func _hide_gui():
+	var gui_component := _get_ui_component()
+	if gui_component != null:
+		gui_component.hide()
+
+
+func _get_ui_component() -> BaseGuiComponent:
 	for child in get_children():
 		var gui_component := child as BaseGuiComponent
-		if gui_component == null:
-			continue
+		if gui_component != null:
+			return gui_component
 
-		gui_component.hide()
+	return null
