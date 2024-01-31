@@ -10,6 +10,10 @@ var networks = []
 const NETWORK_SOURCES = 0
 const NETWORK_RECEIVERS = 1
 
+var _total_power := 0
+var _current_power_level := 0
+var _total_power_level := 10000
+
 
 func _init():
 	Events.entity_placed.connect(_on_entity_placed)
@@ -53,6 +57,9 @@ func _on_entity_removed(_entity: Entity, cellv: Vector2):
 
 
 func _on_system_tick(delta):
+	var power_produced := 0
+	var power_used := 0
+
 	for network in networks:
 		var power_available = 0
 
@@ -64,7 +71,7 @@ func _on_system_tick(delta):
 
 			power_available += source.get_effective_power()
 
-		var total_power = power_available
+		var network_power = power_available
 
 		for pos in network[NETWORK_RECEIVERS]:
 			if not pos in power_receivers:
@@ -76,7 +83,9 @@ func _on_system_tick(delta):
 			receiver.received_power.emit(power_provided, delta)
 			power_available -= power_provided
 
-		var network_utilization = (1 - (power_available / total_power)) if total_power > 0 else 0
+		var network_utilization = (
+			(1 - (power_available / network_power)) if network_power > 0 else 0
+		)
 
 		for pos in network[NETWORK_SOURCES]:
 			if not pos in power_sources:
@@ -86,7 +95,17 @@ func _on_system_tick(delta):
 			source.utilization = network_utilization
 			source.power_updated.emit(source.get_effective_power(), delta)
 
-		Events.power_produced.emit(int(total_power))
+		_total_power += network_power
+		_current_power_level += network_power
+		power_produced += network_power
+		power_used += network_power - power_available
+
+	if _current_power_level >= _total_power_level:
+		_current_power_level -= _total_power_level
+		Events.leveled_up.emit()
+
+	Events.power_produced.emit(_total_power, power_produced, power_used)
+	Events.power_level_changed.emit(_current_power_level, _total_power_level)
 
 
 func _retrace_paths():

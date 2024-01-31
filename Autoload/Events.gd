@@ -16,6 +16,8 @@ signal mouse_grid_position(pos: Vector2)
 
 signal inventory_item_added(blueprint: BlueprintEntity)
 
-signal power_produced(amount: int)
+signal power_produced(total_produced: int, produced: int, used: int)
 
-signal score_update(value: int)
+signal power_level_changed(current_level: int, total_level: int)
+
+signal leveled_up

@@ -1,26 +1,16 @@
 class_name ScoreUI
 extends MarginContainer
 
-const SCORE_POWER_FACTOR = 1000.0
-
-var _power := 0
-var _score: int = 0:
-	set = _set_score
-
-@onready var _label: Label = $PanelContainer/MarginContainer/HBoxContainer/Label
+@onready
+var _total_power_label: Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Label
+@onready
+var _current_power_label: Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Label2
 
 
 func _ready():
 	Events.power_produced.connect(_on_power_produced)
 
-	_score = 0
 
-
-func _on_power_produced(amount):
-	_power += amount
-	_score = int(_power / SCORE_POWER_FACTOR)
-
-
-func _set_score(value):
-	_score = value
-	_label.text = str(value)
+func _on_power_produced(total_produced: int, produced: int, used: int):
+	_total_power_label.text = str(total_produced)
+	_current_power_label.text = str(used) + "/" + str(produced)

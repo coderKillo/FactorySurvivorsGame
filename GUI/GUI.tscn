@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=15 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dbadmpq6k0uoo" path="res://GUI/GUISprite.tscn" id="6_t50jr"]
 [ext_resource type="Texture2D" uid="uid://dnolouw5gm8e8" path="res://Shared/PixelTheme/Images/Button1.png" id="6_x8ryg"]
 [ext_resource type="Script" path="res://GUI/ResourceUI.gd" id="9_1sgrj"]
+[ext_resource type="Texture2D" uid="uid://bpcjuhcg1ny4a" path="res://Shared/PixelTheme/Images/Button3.png" id="9_8v4ua"]
+[ext_resource type="Script" path="res://GUI/LevelProgress.gd" id="9_iw5b8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7csh"]
 texture = ExtResource("6_x8ryg")
@@ -17,6 +19,21 @@ texture_margin_top = 2.0
 texture_margin_right = 2.0
 texture_margin_bottom = 5.0
 modulate_color = Color(0, 1, 0.913725, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sl25u"]
+texture = ExtResource("9_8v4ua")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8nw8"]
+bg_color = Color(0, 0.631373, 0.972549, 1)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="GUI" type="CenterContainer"]
 anchors_preset = 15
@@ -43,7 +60,7 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 260
-theme_override_constants/margin_bottom = 150
+theme_override_constants/margin_bottom = 146
 script = ExtResource("6_6dn62")
 
 [node name="PanelContainer" type="PanelContainer" parent="ScoreUI"]
@@ -67,20 +84,53 @@ theme_override_constants/separation = -1
 [node name="GUISprite" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("6_t50jr")]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 texture = ExtResource("6_f4nhr")
 region_enabled = true
 
-[node name="Label" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="Label" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/outline_size = 1
+theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 6
-text = "1"
+text = "10000
+"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 4
+text = "100/100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LevelProgress" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = -90
+script = ExtResource("9_iw5b8")
+
+[node name="ProgressBar" type="ProgressBar" parent="LevelProgress"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_sl25u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n8nw8")
+max_value = 1.0
+value = 1.0
+show_percentage = false
 
 [node name="ResourceUI" type="MarginContainer" parent="."]
 visible = false
