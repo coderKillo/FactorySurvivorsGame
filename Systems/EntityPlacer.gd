@@ -5,7 +5,6 @@ extends TileMap
 const GROUND_LAYER := 0
 
 var _tracker: EntityTracker
-var _ground: TileMap
 var _player: CharacterBody2D
 var _gui: GUI
 
@@ -14,9 +13,8 @@ var _gui: GUI
 ########## PUBLIC
 
 
-func setup(gui: GUI, tracker: EntityTracker, ground: TileMap, player: CharacterBody2D):
+func setup(gui: GUI, tracker: EntityTracker, player: CharacterBody2D):
 	_tracker = tracker
-	_ground = ground
 	_player = player
 	_gui = gui
 
@@ -147,7 +145,7 @@ func _is_cell_occupied() -> bool:
 
 
 func _is_ground() -> bool:
-	return _ground.get_cell_source_id(GROUND_LAYER, _get_cell_under_mouse()) == 0
+	return true
 
 
 func _is_close_to_player() -> bool:

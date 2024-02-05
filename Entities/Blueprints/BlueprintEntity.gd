@@ -23,6 +23,6 @@ func full() -> bool:
 	return stack_count >= stack_size
 
 
-func _set_stack_count(value):
-	stack_count = value
-	stack_count_changed.emit(value)
+func _set_stack_count(v):
+	stack_count = v
+	stack_count_changed.emit(v)
