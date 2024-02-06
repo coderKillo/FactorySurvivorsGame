@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 Events="*res://Autoload/Events.gd"
 Library="*res://Autoload/Library.gd"
+RecolorTable="*res://Autoload/RecolorTable.gd"
 
 [display]
 

@@ -1,7 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://s3fsm0e4bhcn"]
+[gd_scene load_steps=18 format=3 uid="uid://s3fsm0e4bhcn"]
 
+[ext_resource type="Shader" path="res://Shader/recolor_shader.gdshader" id="1_8yb2y"]
 [ext_resource type="Texture2D" uid="uid://c10h6eogqoslm" path="res://Shared/enemies/ModularMonster.png" id="1_61f2u"]
 [ext_resource type="Script" path="res://Entities/Enemies/EnemySpriteFrames.gd" id="2_823hv"]
+
+[sub_resource type="Gradient" id="Gradient_c5kvp"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3, 0.5, 0.7)
+colors = PackedColorArray(0.234375, 0.246094, 0.363281, 1, 0.363281, 0.636719, 0.714844, 1, 0.609375, 0.902344, 0.753906, 1, 0.957031, 0.996094, 0.910156, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oyhac"]
+gradient = SubResource("Gradient_c5kvp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ry6yr"]
+shader = ExtResource("1_8yb2y")
+shader_parameter/palette = SubResource("GradientTexture1D_oyhac")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixvc5"]
 atlas = ExtResource("1_61f2u")
@@ -93,5 +106,6 @@ animations = [{
 script = ExtResource("2_823hv")
 
 [node name="part_body1" type="AnimatedSprite2D"]
+material = SubResource("ShaderMaterial_ry6yr")
 sprite_frames = SubResource("SpriteFrames_g1u2y")
 animation = &"walk"

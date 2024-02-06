@@ -35,8 +35,7 @@ func build(enemy: Enemy):
 			continue
 
 		var part := _parts[part_name].instantiate() as AnimatedSprite2D
-		part.modulate = template.parts[part_name]
-
+		part.material = RecolorTable.create_recolor_material_from(template.parts[part_name])
 		enemy.model.add_part(part)
 
 

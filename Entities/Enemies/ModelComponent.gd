@@ -33,6 +33,7 @@ func get_death_sprite() -> Array[Sprite2D]:
 		var sprite = Sprite2D.new()
 		sprite.texture = part.sprite_frames.get_frame_texture(EnemySpriteFrames.DEATH, 2)
 		sprite.modulate = part.modulate
+		sprite.material = part.material
 		sprite.flip_h = part.flip_h
 		sprites.append(sprite)
 

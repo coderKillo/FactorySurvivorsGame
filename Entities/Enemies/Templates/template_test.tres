@@ -9,8 +9,8 @@ damage = 10
 speed = 30
 power_level = 1
 parts = {
-"body1": Color(0.4375, 0.613281, 0.996094, 1),
-"head2": Color(0.4375, 0.609375, 0.992188, 1),
-"tail3": Color(0.4375, 0.605469, 0.988281, 1),
-"wings1": Color(1, 0.439216, 0.439216, 1)
+"body1": "blue",
+"head2": "blue",
+"tail3": "blue",
+"wings1": "red"
 }
