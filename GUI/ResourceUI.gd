@@ -33,6 +33,7 @@ func _on_resource_collection_changed(collection: Dictionary):
 			var sprite: Sprite2D = blueprint.get_node_or_null("Sprite2D")
 			if sprite != null:
 				resource_item.sprite.texture = sprite.texture
+				resource_item.sprite.modulate = sprite.modulate
 				resource_item.sprite.region_enabled = sprite.region_enabled
 				resource_item.sprite.region_rect = sprite.region_rect
 

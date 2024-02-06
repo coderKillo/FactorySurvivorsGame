@@ -21,11 +21,12 @@ attack_range = 10
 script = ExtResource("3_r0se2")
 
 [node name="CollisonShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_0ynex")
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("4_5w144")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("5_irgwv")]
+offset_top = -9.0
+offset_bottom = -8.0
 _health = NodePath("../Health")

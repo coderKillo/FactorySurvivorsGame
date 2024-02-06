@@ -26,6 +26,19 @@ func play(anim_name: String) -> void:
 		part.play(anim_name)
 
 
+func get_death_sprite() -> Array[Sprite2D]:
+	var sprites: Array[Sprite2D] = []
+
+	for part in _parts:
+		var sprite = Sprite2D.new()
+		sprite.texture = part.sprite_frames.get_frame_texture(EnemySpriteFrames.DEATH, 2)
+		sprite.modulate = part.modulate
+		sprite.flip_h = part.flip_h
+		sprites.append(sprite)
+
+	return sprites
+
+
 func _on_animation_finished():
 	animation_finished.emit()
 

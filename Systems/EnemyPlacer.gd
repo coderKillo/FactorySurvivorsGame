@@ -33,12 +33,17 @@ func _on_spawn_timer_timeout():
 
 func _on_enemy_died(enemy):
 	_concurent_enemies -= 1
-	_spawn_enemy_corps(enemy.global_position)
+	_spawn_enemy_corps(enemy)
 
 
-func _spawn_enemy_corps(pos: Vector2) -> void:
+func _spawn_enemy_corps(enemy: Enemy) -> void:
 	var corps: Entity = Library.entites.EnemyCorps.instantiate()
-	corps.global_position = pos
+
+	corps.global_position = enemy.global_position
+
+	for sprite in enemy.model.get_death_sprite():
+		corps.add_child(sprite)
+
 	add_child(corps)
 
 
