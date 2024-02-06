@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyTemplate" load_steps=2 format=3 uid="uid://55vo6fslwhu8"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/EnemyTemplate.gd" id="1_212j0"]
+
+[resource]
+script = ExtResource("1_212j0")
+health = 20
+damage = 10
+speed = 30
+power_level = 1
+parts = {
+"wings1": Color(1, 0.439216, 0.439216, 1)
+}

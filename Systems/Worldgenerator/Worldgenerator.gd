@@ -8,15 +8,24 @@ enum Axis { AXIS_X, AXIS_Y }
 @export var quadrad_cell_size := 16
 @export var start_seed := "world_generator"
 
-var _sectors := {}
 var _current_sector := Vector2.ZERO
+@warning_ignore("unused_variable")
+@warning_ignore("unused_private_class_variable")
 var _rng := RandomNumberGenerator.new()
 var _target: Node2D
-
-@onready var _half_sector_size := sector_size / 2.0
+@warning_ignore("unused_variable")
+@warning_ignore("unused_private_class_variable")
+@onready
+var _half_sector_size := sector_size / 2.0
 @onready var _half_sector_count := int(sector_axis_count / 2.0)
-@onready var _sector_cell_count := int(sector_size / quadrad_cell_size)
-@onready var _total_sector_size := sector_size * sector_size
+@warning_ignore("unused_variable")
+@warning_ignore("unused_private_class_variable")
+@onready
+var _sector_cell_count := int(sector_size / float(quadrad_cell_size))
+@warning_ignore("unused_variable")
+@warning_ignore("unused_private_class_variable")
+@onready
+var _total_sector_size := sector_size * sector_size
 
 
 func setup(target: Node2D):

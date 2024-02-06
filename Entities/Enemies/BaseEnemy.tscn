@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmx658sv84bh3"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/Enemy.gd" id="1_3i6do"]
+[ext_resource type="Script" path="res://Entities/Enemies/ModelComponent.gd" id="3_r0se2"]
+[ext_resource type="Script" path="res://Systems/Health/Health.gd" id="4_5w144"]
+[ext_resource type="PackedScene" uid="uid://br6bd0htohj1r" path="res://Systems/Health/HealthBar.tscn" id="5_irgwv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ynex"]
+radius = 2.0
+height = 6.0
+
+[node name="BaseEnemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 10
+motion_mode = 1
+safe_margin = 1.0
+script = ExtResource("1_3i6do")
+attack_range = 10
+
+[node name="ModelComponent" type="Node2D" parent="."]
+script = ExtResource("3_r0se2")
+
+[node name="CollisonShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_0ynex")
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("4_5w144")
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("5_irgwv")]
+_health = NodePath("../Health")

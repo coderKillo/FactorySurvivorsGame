@@ -8,13 +8,14 @@ signal death
 
 var _points = 0
 
+
 func _ready():
 	_points = max_health
 
-func damage(amount : int):
+
+func damage(amount: int):
 	_points = max(0, _points - amount)
 	take_damage.emit(amount, _points)
 
 	if _points <= 0:
 		death.emit()
-

@@ -7,9 +7,9 @@ extends Node2D
 
 var _player: Node2D = null
 var _concurent_enemies = 0
+var _monster_builder := MonsterBuilder.new()
 
 @onready var _spawn_timer: Timer = $SpawnTimer
-@onready var _enemies = {"Cyclops": preload("res://Entities/Enemies/Cyclops.tscn")}
 
 
 func _ready():
@@ -52,11 +52,13 @@ func _spawn_enemy():
 	var angle = randi() % 360
 	var spawn_pos = _player.position + (Vector2.from_angle(deg_to_rad(angle)) * spawn_distance)
 
-	var enemy: Enemy = _enemies.Cyclops.instantiate()
+	var enemy: Enemy = _monster_builder.BaseEnemy.instantiate()
 	enemy.position = spawn_pos
 	enemy.target = _player
 
 	add_child(enemy)
+
+	_monster_builder.build(enemy)
 
 	_concurent_enemies += 1
 

@@ -2,7 +2,6 @@ extends Entity
 
 @onready var _power: PowerOnDemand = $PowerReceiver
 @onready var _worker: WorkComponent = $WorkComponent
-@onready var _input: Area2D = $InputArea
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 
 
