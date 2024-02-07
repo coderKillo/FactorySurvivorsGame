@@ -5,6 +5,7 @@ const SOURCE_ID = 0
 const LAYER = 0
 
 @export var alternate_tiles: Dictionary
+@export var enable_random_color: bool = false
 @export var modulate_color: Gradient
 
 @onready var _tilemap: TileMap = $TileMap
@@ -13,7 +14,8 @@ var _default_tile := Vector2i(5, 3)
 
 
 func _ready():
-	_tilemap.modulate = modulate_color.get_color(randi() % modulate_color.get_point_count())
+	if enable_random_color:
+		_tilemap.modulate = modulate_color.get_color(randi() % modulate_color.get_point_count())
 	generate()
 
 

@@ -11,13 +11,14 @@ func _fire():
 	await get_tree().create_timer(0.2).timeout
 
 	for body in _damage_zone.get_overlapping_bodies():
-		var health: Health = body.get_node_or_null("Health")
-		if health != null:
-			health.damage(damage)
-
-		var destruction: DestructionComponent = body.get_node_or_null("DestructionComponent")
+		var destruction := body.get_node_or_null("DestructionComponent") as DestructionComponent
 		if destruction != null and destruction.destruction_filter == type:
 			destruction.destruct()
+
+	for area in _damage_zone.get_overlapping_areas():
+		var hurt_box = area as HurtBoxComponent
+		if hurt_box != null:
+			hurt_box.take_damage(damage)
 
 
 func _update_weapon_direction():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=39 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Entities/Player/EnergyBar.gd" id="7_pixv8"]
 [ext_resource type="Script" path="res://Entities/Player/PickAxe.gd" id="8_2foof"]
 [ext_resource type="Texture2D" uid="uid://b7jpgv4aavsw3" path="res://Shared/player.png" id="8_3ndie"]
+[ext_resource type="Script" path="res://Entities/HurtBoxComponent.gd" id="13_4fvic"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
 radius = 2.0
@@ -165,6 +166,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqor6"]
+radius = 2.0
+height = 10.0
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(233, 138)
@@ -175,7 +180,7 @@ movement_speed = 100.0
 resources = ExtResource("2_p6xcu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dydcu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -290,3 +295,13 @@ animation = &"idle"
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_i3cpw")
 animation = &"walk"
+
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_mask = 0
+script = ExtResource("13_4fvic")
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_yqor6")
+debug_color = Color(0.992157, 0, 0.270588, 0.419608)

@@ -87,9 +87,9 @@ func _attack():
 	if not _target_in_range():
 		return
 
-	var target_health = target.get_node_or_null("Health") as Health
-	if target_health != null:
-		target_health.damage(damage)
+	var hurt_box = target.get_node_or_null("HurtBoxComponent") as HurtBoxComponent
+	if hurt_box != null:
+		hurt_box.take_damage(damage)
 
 
 func _target_in_range() -> bool:

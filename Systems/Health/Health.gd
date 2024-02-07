@@ -1,21 +1,28 @@
 class_name Health
 extends Node2D
 
-signal take_damage(amount, health)
+signal update_health(health)
 signal death
 
-@export var max_health = 30
+@export var max_health = 30:
+	set = _set_max_health
 
-var _points = 0
+var points = 0:
+	set = _set_health_points
 
 
 func _ready():
-	_points = max_health
+	points = max_health
 
 
-func damage(amount: int):
-	_points = max(0, _points - amount)
-	take_damage.emit(amount, _points)
+func _set_max_health(value: int):
+	max_health = value
+	points = value
 
-	if _points <= 0:
+
+func _set_health_points(value: int):
+	points = clampi(value, 0, max_health)
+	update_health.emit(points)
+
+	if points <= 0:
 		death.emit()

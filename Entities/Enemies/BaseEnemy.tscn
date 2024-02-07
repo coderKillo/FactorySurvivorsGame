@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmx658sv84bh3"]
+[gd_scene load_steps=10 format=3 uid="uid://dmx658sv84bh3"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Enemy.gd" id="1_3i6do"]
+[ext_resource type="Script" path="res://Entities/HurtBoxComponent.gd" id="3_a15t1"]
 [ext_resource type="Script" path="res://Entities/Enemies/ModelComponent.gd" id="3_r0se2"]
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="4_5w144"]
 [ext_resource type="PackedScene" uid="uid://br6bd0htohj1r" path="res://Systems/Health/HealthBar.tscn" id="5_irgwv"]
@@ -44,6 +45,10 @@ shader_parameter/deform = Vector2(2, 2)
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/modulate = null
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ptdpi"]
+radius = 4.0
+height = 14.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ynex"]
 radius = 2.0
 height = 6.0
@@ -58,15 +63,26 @@ attack_range = 10
 
 [node name="ModelComponent" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_kfjpc")
+position = Vector2(0, -5)
 script = ExtResource("3_r0se2")
 
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_a15t1")
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_ptdpi")
+debug_color = Color(0.92549, 0.196078, 0.478431, 0.419608)
+
 [node name="CollisonShape" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_0ynex")
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("4_5w144")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("_health") instance=ExtResource("5_irgwv")]
-offset_top = -9.0
-offset_bottom = -8.0
 _health = NodePath("../Health")
