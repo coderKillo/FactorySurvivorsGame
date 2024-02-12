@@ -223,6 +223,7 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Energy/Area2D"]
 shape = SubResource("CircleShape2D_sxvlr")
+debug_color = Color(0.443137, 0.45098, 1, 0.419608)
 
 [node name="EnergyBar" type="ProgressBar" parent="." node_paths=PackedStringArray("_energy")]
 offset_left = -5.0
