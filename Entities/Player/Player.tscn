@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=40 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Entities/Player/EnergyBar.gd" id="7_pixv8"]
 [ext_resource type="Script" path="res://Entities/Player/PickAxe.gd" id="8_2foof"]
 [ext_resource type="Texture2D" uid="uid://b7jpgv4aavsw3" path="res://Shared/player.png" id="8_3ndie"]
+[ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="9_dkwkk"]
 [ext_resource type="Script" path="res://Entities/HurtBoxComponent.gd" id="13_4fvic"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
@@ -237,6 +238,12 @@ value = 48.79
 show_percentage = false
 script = ExtResource("7_pixv8")
 _energy = NodePath("../Energy")
+
+[node name="Icon" type="Sprite2D" parent="EnergyBar"]
+position = Vector2(9, -4)
+texture = ExtResource("9_dkwkk")
+region_enabled = true
+region_rect = Rect2(112, 208, 16, 16)
 
 [node name="Weapons" type="Node2D" parent="."]
 script = ExtResource("6_pn85v")

@@ -2,8 +2,10 @@ class_name Energy
 extends Node2D
 
 signal update_energy(amount, max_value)
+signal charge_status_changed(is_charging)
 
 @export var max_energy := 100
+@export var energy_low_trashold := 20
 @export var charge_amount := 2
 
 @onready var energy := 0:
@@ -18,6 +20,14 @@ func _ready():
 	_area.body_entered.connect(_on_body_entered)
 	_area.body_exited.connect(_on_body_exited)
 	Events.system_tick.connect(_on_system_tick)
+
+
+func is_charging() -> bool:
+	return _source != null
+
+
+func charge_is_low() -> bool:
+	return energy <= energy_low_trashold
 
 
 func _set_energy(value):
@@ -38,6 +48,7 @@ func _on_body_entered(body: PhysicsBody2D):
 		return
 
 	_source.power_amount -= charge_amount
+	charge_status_changed.emit(true)
 
 
 func _on_body_exited(body: PhysicsBody2D):
@@ -48,10 +59,11 @@ func _on_body_exited(body: PhysicsBody2D):
 	if source == _source:
 		_source.power_amount += charge_amount
 		_source = null
+		charge_status_changed.emit(false)
 
 
 func _on_system_tick(_delta):
-	if _source == null:
+	if not is_charging():
 		return
 
 	energy = clamp(energy + charge_amount, 0, max_energy)
