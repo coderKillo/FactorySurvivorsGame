@@ -3,6 +3,9 @@ extends Node2D
 
 var value := 1
 
+# if set to true, the EntityTracker will remove this entity
+var queue_destruction := false
+
 
 func _setup(_blueprint):
 	pass

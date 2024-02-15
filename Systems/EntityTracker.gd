@@ -26,6 +26,17 @@ func remove_entity(cellv: Vector2):
 	entity.queue_free()
 
 
+func remove_queued_entity() -> void:
+	var entity_to_remove: Array[Vector2] = []
+	for location in entities:
+		var entity := entities[location] as Entity
+		if entity.queue_destruction:
+			entity_to_remove.append(location)
+
+	for location in entity_to_remove:
+		remove_entity(location)
+
+
 func is_cell_occupied(cellv: Vector2) -> bool:
 	return entities.has(cellv)
 

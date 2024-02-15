@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddmmmheu7hiqb"]
+
+[ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_qh3ac"]
+[ext_resource type="Texture2D" uid="uid://4liwofekyxn3" path="res://Shared/animations/drill_idle.png" id="2_7booe"]
+
+[node name="DrillBlueprint" type="Node2D"]
+script = ExtResource("1_qh3ac")
+cooldown = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("2_7booe")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)

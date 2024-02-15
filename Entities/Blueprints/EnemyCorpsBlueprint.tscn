@@ -7,7 +7,6 @@
 script = ExtResource("1_a81g3")
 placeable = false
 stack_size = 45
-craftable = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_6tbr8")

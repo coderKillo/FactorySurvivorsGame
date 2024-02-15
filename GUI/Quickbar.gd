@@ -19,6 +19,9 @@ func _make_panels():
 
 		inventory_panel.held_item_changed.connect(_on_panel_item_changed)
 
+	# test
+	panels[0].held_item = Library.blueprints.Drill.instantiate()
+
 
 func _on_panel_item_changed(_panel: InventoryPanel, _item: BlueprintEntity) -> void:
 	for child in get_children():

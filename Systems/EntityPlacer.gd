@@ -93,10 +93,8 @@ func _place_entity(location: Vector2i):
 
 	_tracker.place_entities(entity, location)
 
-	if _gui.blueprint.stack_count <= 1:
-		_gui.destroy_blueprint()
-	else:
-		_gui.blueprint.stack_count -= 1
+	# trigger item changed for cooldown
+	_gui.blueprint.stack_count += 0
 
 	if _gui.blueprint is WireBlueprint:
 		WireBlueprint.set_sprite_from_direction(

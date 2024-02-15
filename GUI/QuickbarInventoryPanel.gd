@@ -10,10 +10,6 @@ func _ready():
 	_panel.held_item_changed.connect(_on_held_item_changed)
 	_timer.timeout.connect(_end_cooldown)
 
-	# test
-	# _panel.held_item = Library.blueprints.Smelter.instantiate()
-	# _panel.held_item.stack_count = 5
-
 
 func _process(_delta):
 	if _timer.time_left > 0.0:
@@ -24,11 +20,14 @@ func _on_held_item_changed(__panel: InventoryPanel, item: BlueprintEntity):
 	if item == null:
 		return
 
-	start_cooldown(2)
+	start_cooldown(item.cooldown)
 
 
 func start_cooldown(time: int) -> void:
 	if _timer.time_left > 0.0:
+		return
+
+	if _panel.held_item == null:
 		return
 
 	_panel.held_item.placeable = false

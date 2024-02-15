@@ -26,7 +26,6 @@ func _on_update_energy(amount, max_amount):
 
 
 func _on_charged_status_changed(_state) -> void:
-	print(_state)
 	_update_icon()
 
 

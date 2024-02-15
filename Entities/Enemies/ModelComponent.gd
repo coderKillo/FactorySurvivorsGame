@@ -31,6 +31,7 @@ func get_death_sprite() -> Array[Sprite2D]:
 
 	for part in _parts:
 		var sprite = Sprite2D.new()
+		sprite.position = position
 		sprite.texture = part.sprite_frames.get_frame_texture(EnemySpriteFrames.DEATH, 2)
 		sprite.modulate = part.modulate
 		sprite.material = part.material

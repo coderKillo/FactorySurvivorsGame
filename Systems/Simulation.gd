@@ -27,3 +27,4 @@ func _ready():
 
 func _on_SimulationTimer_timeout() -> void:
 	Events.system_tick.emit(simulation_speed)
+	_tracker.remove_queued_entity()
