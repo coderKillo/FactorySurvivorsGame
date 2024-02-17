@@ -20,7 +20,7 @@ func _make_panels():
 		inventory_panel.held_item_changed.connect(_on_panel_item_changed)
 
 	# test
-	panels[0].held_item = Library.blueprints.Drill.instantiate()
+	panels[0].held_item = Library.blueprints.Turret.instantiate()
 
 
 func _on_panel_item_changed(_panel: InventoryPanel, _item: BlueprintEntity) -> void:

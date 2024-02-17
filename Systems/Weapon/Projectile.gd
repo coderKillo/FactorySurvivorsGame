@@ -4,19 +4,24 @@ extends Area2D
 @export var speed = 750
 @export var damage = 10
 @export var cost = 10
+@export var range = 500
 
-@onready var _sprite_animation: AnimatedSprite2D = $AnimatedSprite2D
-@onready var _animation: AnimationPlayer = $AnimationPlayer
+@onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _ready():
 	area_entered.connect(_on_area_entered)
 	body_entered.connect(_on_body_entered)
-	_sprite_animation.play("default")
+	_animation.play("default")
 
 
 func _physics_process(delta):
-	position += transform.x * speed * delta
+	var distance = transform.x * speed * delta
+	position += distance
+	range -= distance.length()
+
+	if range <= 0:
+		queue_free()
 
 
 func _on_body_entered(_body: PhysicsBody2D):
@@ -32,4 +37,10 @@ func _on_area_entered(area: Area2D):
 
 
 func _destroy_projectile():
-	_animation.play("Hit")
+	call_deferred("set_physics_process", false)
+	$CollisionShape2D.disabled = true
+
+	_animation.play("impact")
+	await _animation.animation_finished
+
+	queue_free()

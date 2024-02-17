@@ -9,7 +9,7 @@ extends Entity
 
 
 func _physics_process(_delta):
-	_power.set_active(_area.has_overlapping_bodies())
+	_power.set_active(_area.as_overlapping_bodies())
 
 
 func _process(_delta):
@@ -18,7 +18,7 @@ func _process(_delta):
 
 
 func _do_damage():
-	for body in _area.get_overlapping_bodies():
-		var health = body.get_node_or_null("Health") as Health
-		if health != null:
-			health.damage(damage)
+	for area in _area.get_overlapping_areas():
+		var hurt_box = area as HurtBoxComponent
+		if hurt_box != null:
+			hurt_box.take_damage(damage)
