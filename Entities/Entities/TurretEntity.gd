@@ -53,10 +53,7 @@ func _face_target():
 
 
 func _process(_delta):
-	# TODO: change
-	# for test its always active
-	# if _power.efficency >= 1.0:
-	if _area.has_overlapping_areas():
+	if _power.efficency >= 1.0:
 		_attack()
 
 

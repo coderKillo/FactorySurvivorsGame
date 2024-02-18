@@ -21,6 +21,7 @@ func _make_panels():
 
 	# test
 	panels[0].held_item = Library.blueprints.Turret.instantiate()
+	panels[1].held_item = Library.blueprints.Wire.instantiate()
 
 
 func _on_panel_item_changed(_panel: InventoryPanel, _item: BlueprintEntity) -> void:

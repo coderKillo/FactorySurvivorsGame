@@ -7,7 +7,7 @@ signal stack_count_changed(count: int)
 @export var rotateable := false
 @export var stack_size := 10
 @export var value := 10
-@export var cooldown := 2
+@export var cooldown := 2.0
 
 var stack_count := 1:
 	set = _set_stack_count

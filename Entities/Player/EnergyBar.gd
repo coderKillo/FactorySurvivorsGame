@@ -31,10 +31,10 @@ func _on_charged_status_changed(_state) -> void:
 
 func _update_icon() -> void:
 	if _energy.is_charging():
-		_icon.region_rect = Rect2(96, 208, 16, 16)
+		_icon.region_rect = Rect2(112, 208, 16, 16)
 		_icon.show()
 	elif _energy.charge_is_low():
-		_icon.region_rect = Rect2(112, 208, 16, 16)
+		_icon.region_rect = Rect2(128, 208, 16, 16)
 		_icon.show()
 	else:
 		_icon.hide()

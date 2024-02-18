@@ -243,7 +243,7 @@ _energy = NodePath("../Energy")
 position = Vector2(9, -4)
 texture = ExtResource("9_dkwkk")
 region_enabled = true
-region_rect = Rect2(112, 208, 16, 16)
+region_rect = Rect2(128, 208, 16, 16)
 
 [node name="Weapons" type="Node2D" parent="."]
 script = ExtResource("6_pn85v")

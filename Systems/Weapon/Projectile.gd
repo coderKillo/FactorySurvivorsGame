@@ -38,7 +38,7 @@ func _on_area_entered(area: Area2D):
 
 func _destroy_projectile():
 	call_deferred("set_physics_process", false)
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.call_deferred("disabled", true)
 
 	_animation.play("impact")
 	await _animation.animation_finished
