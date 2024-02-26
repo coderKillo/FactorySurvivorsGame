@@ -2,13 +2,16 @@ class_name Entity
 extends Node2D
 
 var value := 1
+var speed := 1.0
+var damage := 1
 
 # if set to true, the EntityTracker will remove this entity
 var queue_destruction := false
 
 
-func _setup(_blueprint):
-	pass
+func _setup(blueprint: BlueprintEntity):
+	speed = blueprint.speed
+	damage = int(blueprint.damage)
 
 
 func _setup_gui(gui):

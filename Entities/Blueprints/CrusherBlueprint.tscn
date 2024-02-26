@@ -6,6 +6,7 @@
 
 [node name="CrusherBlueprint" type="Node2D"]
 script = ExtResource("1_pixpi")
+entity_name = "Crusher"
 rotateable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

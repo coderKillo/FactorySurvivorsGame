@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerUpgrade" load_steps=2 format=3 uid="uid://bke7joisodfps"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/PlayerUpgrade.gd" id="1_5n6hv"]
+
+[resource]
+script = ExtResource("1_5n6hv")
+health = 0
+speed = 20.0
+title = "Movementspeed"
+type = "player"
+object = ""
+description = "Increase the player movement speed by {speed}"
+requirements = {}

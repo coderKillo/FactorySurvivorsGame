@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=19 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://GUI/ResourceUI.gd" id="9_1sgrj"]
 [ext_resource type="Texture2D" uid="uid://bpcjuhcg1ny4a" path="res://Shared/PixelTheme/Images/Button3.png" id="9_8v4ua"]
 [ext_resource type="Script" path="res://GUI/LevelProgress.gd" id="9_iw5b8"]
+[ext_resource type="PackedScene" uid="uid://c1wdx8c6sitp1" path="res://GUI/UpgradeSystemGUI.tscn" id="12_gs0l0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7csh"]
 texture = ExtResource("6_x8ryg")
@@ -34,6 +35,29 @@ border_width_top = 1
 border_width_right = 2
 border_width_bottom = 1
 border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="Gradient" id="Gradient_abr2b"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.106952, 0.237968, 0.374332, 0.47861, 0.604278, 0.735294, 0.863636, 1)
+colors = PackedColorArray(0, 1, 0.666667, 1, 1, 0.683333, 0, 1, 1, 0, 0.3, 1, 1, 0, 1.50196, 1, 0, 1, 0.116667, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0.716667, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_otcbt"]
+gradient = SubResource("Gradient_abr2b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ra5hc"]
+emission_shape = 3
+emission_box_extents = Vector3(80, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 99.67
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = -60.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 3.0
+color_initial_ramp = SubResource("GradientTexture1D_otcbt")
 
 [node name="GUI" type="CenterContainer"]
 anchors_preset = 15
@@ -132,6 +156,16 @@ max_value = 1.0
 value = 1.0
 show_percentage = false
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="LevelProgress"]
+process_mode = 3
+position = Vector2(160, -85.655)
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_ra5hc")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+
 [node name="ResourceUI" type="MarginContainer" parent="."]
 visible = false
 layout_mode = 2
@@ -156,3 +190,6 @@ theme_override_constants/margin_bottom = -2
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = -6
+
+[node name="UpgradeSystemGUI" parent="." instance=ExtResource("12_gs0l0")]
+layout_mode = 2

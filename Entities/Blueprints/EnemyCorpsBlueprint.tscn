@@ -5,6 +5,7 @@
 
 [node name="EnemyCorpsBlueprint" type="Node2D"]
 script = ExtResource("1_a81g3")
+entity_name = "EnemyCorps"
 placeable = false
 stack_size = 45
 

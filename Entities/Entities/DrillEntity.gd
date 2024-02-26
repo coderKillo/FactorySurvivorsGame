@@ -4,7 +4,6 @@ extends Entity
 const ANIMATION_TIME = 4.0
 const DESTRICTION_TIME = 12.0 / 19.0  # destction happen on 12th frame
 
-@export var speed := 4
 @export var max_bodies := 1
 
 @onready var _area: Area2D = $Area2D

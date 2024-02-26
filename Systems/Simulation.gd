@@ -2,13 +2,14 @@ extends Node
 
 @export var simulation_speed = 1.0 / 10.0
 
-var _tracker = EntityTracker.new()
+var _tracker := EntityTracker.new()
 @warning_ignore("unused_variable")
 @warning_ignore("unused_private_class_variable")
-var _power_system = PowerSystem.new()
+var _power_system := PowerSystem.new()
 @warning_ignore("unused_variable")
 @warning_ignore("unused_private_class_variable")
-var _mining_system = MiningSystem.new()
+var _mining_system := MiningSystem.new()
+var _upgrade_system := UpgradeSystem.new()
 
 @onready var _entity_placer = $GameWorld/EntityPlacer
 @onready var _enemy_placer = $GameWorld/EnemyPlacer
@@ -21,6 +22,7 @@ func _ready():
 	_entity_placer.setup(_gui, _tracker, _player)
 	_enemy_placer.setup(_player)
 	_world_generator.setup(_player)
+	_upgrade_system.setup(_player, _tracker, _gui)
 	$SimulationTimer.start(simulation_speed)
 	$SimulationTimer.timeout.connect(_on_SimulationTimer_timeout)
 

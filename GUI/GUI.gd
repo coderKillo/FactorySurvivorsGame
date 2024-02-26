@@ -34,6 +34,7 @@ var open_entity_ui: BaseGuiComponent:
 @onready var _quickbar: Quickbar = $MarginContainer/Quickbar
 @onready var _drag_preview: DragPreview = $DragPreview
 @onready var _resource: ResourceUI = $ResourceUI
+@onready var _upgrade_gui: UpgradeSystemUI = $UpgradeSystemGUI
 
 
 func _ready():
@@ -51,8 +52,20 @@ func _unhandled_input(event):
 			_simulate_input(_quickbar.panels[i])
 
 
+func get_quickbar_panels() -> Array[InventoryPanel]:
+	return _quickbar.panels
+
+
+func add_to_quickbar(entity: BlueprintEntity) -> void:
+	return _quickbar.add_entity(entity)
+
+
 func destroy_blueprint():
 	_drag_preview.destroy_blueprint()
+
+
+func display_upgrade(upgrades: Array[Upgrade], callback: Callable):
+	_upgrade_gui.display_options(upgrades, callback)
 
 
 func _simulate_input(panel: InventoryPanel) -> void:

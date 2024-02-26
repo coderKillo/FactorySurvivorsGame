@@ -1,8 +1,5 @@
 extends Entity
 
-@export var damage = 50
-@export var rate = 2
-
 @onready var _animation: AnimationPlayer = $AnimationPlayer
 @onready var _area: Area2D = $Area2D
 @onready var _power: PowerOnDemand = $PowerReceiver

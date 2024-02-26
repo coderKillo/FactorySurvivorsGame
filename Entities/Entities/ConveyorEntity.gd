@@ -1,7 +1,5 @@
 extends Entity
 
-@export var speed = 15
-
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _power: PowerReceiver = $PowerReceiver
 @onready var _area: Area2D = $Area2D

@@ -1,8 +1,6 @@
 class_name TurretEntity
 extends Entity
 
-@export var damage = 50
-@export var rate = 2
 @export var ProjectileScene = preload("res://Systems/Weapon/ProjectileBig.tscn")
 
 @onready var _area: Area2D = $Area2D
@@ -17,6 +15,7 @@ var _target: Node2D
 
 func _ready():
 	_animation.play("idle")
+	_animation.speed_scale = speed
 
 
 func _physics_process(_delta):

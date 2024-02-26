@@ -4,6 +4,15 @@ extends InventoryBar
 const GLOBAL_COOLDOWN = 1
 
 
+func add_entity(blueprint: BlueprintEntity) -> void:
+	for panel in panels:
+		if panel.held_item == null:
+			panel.held_item = blueprint
+			return
+
+	printerr("could not add entity '%s': quickbar is full!" % blueprint.name)
+
+
 func _make_panels():
 	for i in slot_count:
 		var panel := InventoryPanelScene.instantiate()
@@ -18,10 +27,6 @@ func _make_panels():
 		label.text = str(index)
 
 		inventory_panel.held_item_changed.connect(_on_panel_item_changed)
-
-	# test
-	panels[0].held_item = Library.blueprints.Turret.instantiate()
-	panels[1].held_item = Library.blueprints.Wire.instantiate()
 
 
 func _on_panel_item_changed(_panel: InventoryPanel, _item: BlueprintEntity) -> void:

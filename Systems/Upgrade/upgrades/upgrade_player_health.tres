@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerUpgrade" load_steps=2 format=3 uid="uid://dytjnubx8l11"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/PlayerUpgrade.gd" id="1_scbux"]
+
+[resource]
+script = ExtResource("1_scbux")
+health = 10
+speed = 0.0
+title = "Health"
+type = "player"
+object = ""
+description = "Increase the player max. health by {health}"
+requirements = {}

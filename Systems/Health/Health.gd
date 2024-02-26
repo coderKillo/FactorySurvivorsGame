@@ -16,8 +16,9 @@ func _ready():
 
 
 func _set_max_health(value: int):
+	var current_health_percent: float = value / float(max_health)
 	max_health = value
-	points = value
+	points = current_health_percent * max_health
 
 
 func _set_health_points(value: int):

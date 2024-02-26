@@ -1,7 +1,10 @@
+class_name Player
 extends CharacterBody2D
 
 @export var movement_speed = 300.0
 @export var resources: CollectedResources
+
+@onready var health: Health = $Health
 
 @onready var _animations: Array[AnimatedSprite2D] = [$Model/Body, $Model/Hands]
 @onready var _weapons: Array[Weapon] = [$Weapons/PickAxe, $Weapons/Blaster]

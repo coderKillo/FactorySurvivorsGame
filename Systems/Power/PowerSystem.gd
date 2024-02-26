@@ -12,7 +12,7 @@ const NETWORK_RECEIVERS = 1
 
 var _total_power := 0
 var _current_power_level := 0
-var _total_power_level := 10000
+var _total_power_level := 1000
 
 
 func _init():
