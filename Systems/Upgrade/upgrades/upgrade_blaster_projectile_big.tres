@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponUgrade" load_steps=3 format=3 uid="uid://b4arkok5lgmy3"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/WeaponUpgrade.gd" id="1_tice0"]
+[ext_resource type="PackedScene" uid="uid://dg82vhdc6wjrh" path="res://Systems/Weapon/ProjectileBig.tscn" id="1_u75k3"]
+
+[resource]
+script = ExtResource("1_tice0")
+damage = 0
+fire_rate = 0.0
+ProjectileScene = ExtResource("1_u75k3")
+title = "Blaster Big Shot"
+type = "weapon"
+object = "blaster"
+description = ""
+requirements = {}

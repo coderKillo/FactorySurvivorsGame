@@ -5,13 +5,13 @@ extends CharacterBody2D
 @export var resources: CollectedResources
 
 @onready var health: Health = $Health
+@onready var energy: Energy = $Energy
 
 @onready var _animations: Array[AnimatedSprite2D] = [$Model/Body, $Model/Hands]
 @onready var _weapons: Array[Weapon] = [$Weapons/PickAxe, $Weapons/Blaster]
 @onready var _weapon_timer: Timer = $Weapons/Cooldown
 @onready var _drag_objects: DragObjects = $DragObjects
 @onready var _collect_objects: CollectObjects = $CollectObjects
-@onready var _energy: Energy = $Energy
 
 
 func _ready():
@@ -49,7 +49,7 @@ func _physics_process(_delta):
 func _unhandled_input(event):
 	if event.is_action("left_click"):
 		_weapons[0].fire(event.is_pressed())
-	if event.is_action("right_click") and _energy.energy > 0:
+	if event.is_action("right_click") and energy.energy > 0:
 		_weapons[1].fire(event.is_pressed())
 
 	if event.is_action_pressed("grab"):
@@ -69,9 +69,9 @@ func _on_entity_collected(entity: GroundEntity):
 
 
 func _on_weapon_energy_used(amount):
-	_energy.energy -= amount
+	energy.energy -= amount
 
-	if _energy.energy <= 0:
+	if energy.energy <= 0:
 		_weapons[1].fire(false)
 
 

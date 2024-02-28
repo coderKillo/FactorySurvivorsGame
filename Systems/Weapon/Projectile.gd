@@ -41,6 +41,7 @@ func _destroy_projectile():
 	$CollisionShape2D.set_deferred("disabled", true)
 
 	_animation.play("impact")
+	global_rotation_degrees = 0
 	await _animation.animation_finished
 
 	queue_free()

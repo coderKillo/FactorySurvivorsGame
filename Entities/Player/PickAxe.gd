@@ -6,9 +6,10 @@ extends Weapon
 
 
 func _fire():
+	_animation.speed_scale = fire_rate
 	_animation.play("attack")
 
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.2 * fire_rate).timeout
 
 	for body in _damage_zone.get_overlapping_bodies():
 		var destruction := body.get_node_or_null("DestructionComponent") as DestructionComponent

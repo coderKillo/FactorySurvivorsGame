@@ -84,7 +84,7 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 260
-theme_override_constants/margin_bottom = 146
+theme_override_constants/margin_bottom = 143
 script = ExtResource("6_6dn62")
 
 [node name="PanelContainer" type="PanelContainer" parent="ScoreUI"]
@@ -144,11 +144,11 @@ vertical_alignment = 1
 
 [node name="LevelProgress" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_top = -90
+theme_override_constants/margin_top = -88
 script = ExtResource("9_iw5b8")
 
 [node name="ProgressBar" type="ProgressBar" parent="LevelProgress"]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxTexture_sl25u")
 theme_override_styles/fill = SubResource("StyleBoxFlat_n8nw8")
@@ -170,7 +170,7 @@ explosiveness = 1.0
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 268
-theme_override_constants/margin_top = -65
+theme_override_constants/margin_top = -60
 theme_override_constants/margin_bottom = -200
 script = ExtResource("9_1sgrj")
 

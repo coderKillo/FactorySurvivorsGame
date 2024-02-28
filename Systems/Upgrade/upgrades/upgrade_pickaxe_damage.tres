@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponUgrade" load_steps=2 format=3 uid="uid://blw2h2yi88pwn"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/WeaponUpgrade.gd" id="1_x5v5w"]
+
+[resource]
+script = ExtResource("1_x5v5w")
+damage = 2
+fire_rate = 0.0
+title = "Pickaxe Damage"
+type = "weapon"
+object = "pickaxe"
+description = ""
+requirements = {}

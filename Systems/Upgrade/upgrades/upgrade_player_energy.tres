@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlayerUpgrade" load_steps=2 format=3 uid="uid://6ufvnhk4aiag"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/PlayerUpgrade.gd" id="1_qunoc"]
+
+[resource]
+script = ExtResource("1_qunoc")
+health = 0
+energy = 10
+speed = 0.0
+title = "Energy"
+type = "player"
+object = ""
+description = "Increase the player max. energy by {energy}"
+requirements = {}

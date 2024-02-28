@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponUgrade" load_steps=2 format=3 uid="uid://boh58j6x65e4b"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/WeaponUpgrade.gd" id="1_js4tl"]
+
+[resource]
+script = ExtResource("1_js4tl")
+damage = 0
+fire_rate = 0.05
+title = "Pickaxe Attackspeed"
+type = "weapon"
+object = "pickaxe"
+description = ""
+requirements = {}

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponUgrade" load_steps=2 format=3 uid="uid://8vthe4lfdytn"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/WeaponUpgrade.gd" id="1_0riiv"]
+
+[resource]
+script = ExtResource("1_0riiv")
+damage = 0
+fire_rate = 0.0
+title = "Blaster Damage"
+type = "weapon"
+object = "blaster"
+description = ""
+requirements = {}
