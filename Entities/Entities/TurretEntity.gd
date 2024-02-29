@@ -1,6 +1,8 @@
 class_name TurretEntity
 extends Entity
 
+const ANIMATION_TIME = 1.0
+
 @export var ProjectileScene = preload("res://Systems/Weapon/ProjectileBig.tscn")
 
 @onready var _area: Area2D = $Area2D
@@ -15,7 +17,7 @@ var _target: Node2D
 
 func _ready():
 	_animation.play("idle")
-	_animation.speed_scale = speed
+	_animation.speed_scale = ANIMATION_TIME / speed
 
 
 func _physics_process(_delta):
@@ -52,6 +54,8 @@ func _face_target():
 
 
 func _process(_delta):
+	_animation.speed_scale = ANIMATION_TIME / speed
+
 	if _power.efficency >= 1.0:
 		_attack()
 

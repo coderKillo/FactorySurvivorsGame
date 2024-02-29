@@ -6,6 +6,9 @@ extends Entity
 
 
 func _process(_delta):
+	_worker.pickup_time = speed * 1.0
+	_worker.process_time = speed * 2.0
+
 	if _power.efficency >= 1.0:
 		_animation.play()
 		_worker.start()

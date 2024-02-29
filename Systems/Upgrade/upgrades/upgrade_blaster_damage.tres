@@ -9,5 +9,6 @@ fire_rate = 0.0
 title = "Blaster Damage"
 type = "weapon"
 object = "blaster"
-description = ""
+unique = false
+description = "Increases the damage of your {object} by {damage}"
 requirements = {}

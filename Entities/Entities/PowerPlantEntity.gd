@@ -10,6 +10,10 @@ func _ready():
 	_animation.play("idle")
 
 
+func _process(_delta):
+	_heat_receiver.required_heat = int(100 / float(value))
+
+
 func _on_heat_provided(amount):
 	_power_source.efficency = amount / _heat_receiver.required_heat
 

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://dkr7saq4vh4fs"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_fhpwo"]
+
+[resource]
+script = ExtResource("1_fhpwo")
+speed = 0.0
+damage = 0.0
+value = 0
+cooldown = 0.2
+is_new = false
+title = "Drill Cooldown"
+type = "entity"
+object = "Drill"
+unique = false
+description = "Reduce the cooldown of your {object} by {cooldown}"
+requirements = {
+"Drill": 1
+}

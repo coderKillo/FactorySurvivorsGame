@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://c21juib8oclr"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_hwtxg"]
+
+[resource]
+script = ExtResource("1_hwtxg")
+speed = 0.0
+damage = 0.0
+value = 0
+cooldown = 0.2
+is_new = false
+title = "SpikeTrap Cooldown"
+type = "entity"
+object = "SpikeTrap"
+unique = false
+description = "Reduce the cooldown of your {object} by {cooldown}"
+requirements = {
+"SpikeTrap": 1
+}

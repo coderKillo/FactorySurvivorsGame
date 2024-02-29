@@ -25,6 +25,7 @@ func setup(gui: GUI, tracker: EntityTracker, player: CharacterBody2D):
 		var cell_position = local_to_map(to_local(child.global_position))
 		child.global_position = to_global(map_to_local(cell_position))
 
+		child._setup(Library.get_blueprint_from(child))
 		child._setup_gui(_gui)
 
 		_tracker.place_entities(child, cell_position)

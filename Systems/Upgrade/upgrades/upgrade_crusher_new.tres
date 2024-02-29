@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://ce3bxu37br6dv"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_4eo2t"]
+
+[resource]
+script = ExtResource("1_4eo2t")
+speed = 0.0
+damage = 0.0
+value = 0
+cooldown = 0.0
+is_new = true
+title = "Crusher"
+type = "entity"
+object = "Crusher"
+unique = true
+description = "Add {object}"
+requirements = {
+"Drill": 3
+}

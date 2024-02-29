@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://c8ywc3nt3dr8"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_7uj4l"]
+
+[resource]
+script = ExtResource("1_7uj4l")
+speed = 0.0
+damage = 0.0
+value = 0
+cooldown = 0.2
+is_new = false
+title = "PowerPlant Cooldown"
+type = "entity"
+object = "PowerPlant"
+unique = false
+description = "Reduce the cooldown of your {object} by {cooldown}"
+requirements = {
+"PowerPlant": 1
+}

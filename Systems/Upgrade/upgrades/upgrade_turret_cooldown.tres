@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://bxskyridumww0"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_nas1r"]
+
+[resource]
+script = ExtResource("1_nas1r")
+speed = 0.0
+damage = 0.0
+value = 0
+cooldown = 0.2
+is_new = false
+title = "Turret Cooldown"
+type = "entity"
+object = "Turret"
+unique = false
+description = "Reduce the cooldown of your {object} by {cooldown}"
+requirements = {
+"Turret": 1
+}

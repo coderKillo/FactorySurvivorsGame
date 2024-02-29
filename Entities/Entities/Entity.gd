@@ -12,6 +12,7 @@ var queue_destruction := false
 func _setup(blueprint: BlueprintEntity):
 	speed = blueprint.speed
 	damage = int(blueprint.damage)
+	value = blueprint.value
 
 
 func _setup_gui(gui):

@@ -39,6 +39,7 @@ var open_entity_ui: BaseGuiComponent:
 
 func _ready():
 	_quickbar.setup(self)
+	_quickbar.add_entity(Library.blueprints["Wire"].instantiate())
 	_resource.setup(self)
 
 
@@ -52,7 +53,7 @@ func _unhandled_input(event):
 			_simulate_input(_quickbar.panels[i])
 
 
-func get_quickbar_panels() -> Array[InventoryPanel]:
+func get_quickbar_panels() -> Array:
 	return _quickbar.panels
 
 

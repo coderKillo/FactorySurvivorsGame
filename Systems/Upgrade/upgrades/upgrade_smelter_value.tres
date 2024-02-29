@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://dat11t1cyjndu"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_6vigx"]
+
+[resource]
+script = ExtResource("1_6vigx")
+speed = 0.0
+damage = 0.0
+value = 500
+cooldown = 0.0
+is_new = false
+title = "Smelter Value"
+type = "entity"
+object = "Smelter"
+unique = false
+description = "Increase the value of your {object} by {value}"
+requirements = {
+"Smelter": 1
+}

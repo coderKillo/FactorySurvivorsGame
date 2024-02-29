@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://d1kw70usb813n"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_tjv2q"]
+
+[resource]
+script = ExtResource("1_tjv2q")
+speed = 0.0
+damage = 0.0
+value = 0
+cooldown = 0.2
+is_new = false
+title = "Smelter Cooldown"
+type = "entity"
+object = "Smelter"
+unique = false
+description = "Reduce the cooldown of your {object} by {cooldown}"
+requirements = {
+"Smelter": 1
+}

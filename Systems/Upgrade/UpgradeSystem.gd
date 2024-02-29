@@ -40,8 +40,10 @@ func _load_upgrades():
 
 func _on_level_up() -> void:
 	var upgrade_options: Array[Upgrade] = []
-	for _i in range(UPGRADE_OPTIONS):
-		upgrade_options.append(_get_upgrade())
+	while len(upgrade_options) < UPGRADE_OPTIONS:
+		var upgrade = _get_upgrade()
+		if not upgrade in upgrade_options:
+			upgrade_options.append(upgrade)
 
 	_gui.display_upgrade(upgrade_options, _apply_upgrade)
 
@@ -49,6 +51,9 @@ func _on_level_up() -> void:
 func _apply_upgrade(upgrade: Upgrade) -> void:
 	_add_requriement(upgrade.type)
 	_add_requriement(upgrade.object)
+
+	if upgrade.unique:
+		_upgrades.erase(upgrade)
 
 	if upgrade.type == "player":
 		var player_upgrade := upgrade as PlayerUpgrade

@@ -9,5 +9,6 @@ fire_rate = 0.0
 title = "Pickaxe Damage"
 type = "weapon"
 object = "pickaxe"
-description = ""
+unique = false
+description = "Increases the damage of your {object} by {damage}"
 requirements = {}

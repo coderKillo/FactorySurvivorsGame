@@ -24,7 +24,7 @@ func _on_material_enter_area_body_entered(body: Node2D):
 func _on_system_tick(_delta):
 	if _heat_provider.amount <= 0 and not slot.empty():
 		slot.stack -= 1
-		_heat_provider.amount = 1000  # TODO: replace with config value
+		_heat_provider.amount = value
 
 	if _heat_provider.amount > 0:
 		_fire.show()

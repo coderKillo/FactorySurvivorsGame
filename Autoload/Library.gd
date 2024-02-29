@@ -30,8 +30,7 @@ func get_blueprint_from(entity: Entity) -> BlueprintEntity:
 		return null
 
 	var blueprint = blueprints[entity_name].instantiate()
-	blueprint.value = entity.value
-	return blueprints
+	return blueprint
 
 
 func get_entity_from(blueprint: BlueprintEntity) -> Entity:
@@ -41,7 +40,6 @@ func get_entity_from(blueprint: BlueprintEntity) -> Entity:
 		return null
 
 	var entity = entites[entity_name].instantiate()
-	entity.value = blueprint.value
 	return entity
 
 

@@ -11,5 +11,8 @@ ProjectileScene = ExtResource("1_u75k3")
 title = "Blaster Big Shot"
 type = "weapon"
 object = "blaster"
-description = ""
-requirements = {}
+unique = true
+description = "Change the projectile of your {object} to big shot"
+requirements = {
+"blaster": 3
+}

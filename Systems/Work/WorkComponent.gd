@@ -8,8 +8,8 @@ signal update_progress(percent: float)
 
 @export var input_name := ""
 @export var output_name := ""
-@export var process_time := 2
-@export var pickup_time := 1
+@export var process_time := 2.0
+@export var pickup_time := 1.0
 @export var pickup_area: Area2D
 @export var output_pos: Marker2D
 

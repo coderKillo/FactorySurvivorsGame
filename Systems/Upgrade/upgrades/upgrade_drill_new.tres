@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://bchyf4ykx4hcn"]
+
+[ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_62q30"]
+
+[resource]
+script = ExtResource("1_62q30")
+speed = 0.0
+damage = 0.0
+value = 0
+cooldown = 0.0
+is_new = true
+title = "Drill"
+type = "entity"
+object = "Drill"
+unique = true
+description = "Add {object}"
+requirements = {
+"pickaxe": 3
+}

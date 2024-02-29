@@ -55,7 +55,10 @@ func _create_panel(upgrade: Upgrade) -> UpgradePanel:
 
 
 func _set_title(panel: UpgradePanel, upgrade: Upgrade):
-	panel.title.text = upgrade.title + " " + _into_roman(_get_upgrade_count(upgrade))
+	if not upgrade.unique:
+		panel.title.text = upgrade.title + " " + _into_roman(_get_upgrade_count(upgrade))
+	else:
+		panel.title.text = upgrade.title
 
 
 func _set_icon(panel: UpgradePanel, upgrade: Upgrade):
@@ -88,7 +91,8 @@ func _on_mouse_clicked(upgrade: Upgrade, callback: Callable):
 
 	get_tree().paused = false
 
-	_upgrade_count[upgrade.upgrade_name()] += 1
+	if not upgrade.unique:
+		_upgrade_count[upgrade.upgrade_name()] += 1
 
 	for child in _panel_container.get_children():
 		child.queue_free()
