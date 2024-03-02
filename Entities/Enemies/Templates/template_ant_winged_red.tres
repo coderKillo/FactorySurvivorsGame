@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyTemplate" load_steps=2 format=3 uid="uid://c3ak28urh60n"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/EnemyTemplate.gd" id="1_aeuyb"]
+
+[resource]
+script = ExtResource("1_aeuyb")
+health = 30
+damage = 15
+speed = 20
+power_level = 1
+destruction_count = 4
+parts = {
+"head3": "red",
+"body2": "red",
+"wings2": "purple",
+"legs2": "red",
+"tail2": "red"
+}

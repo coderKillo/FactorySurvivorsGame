@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var damage = 2
 @export var speed = 20
 @export var attack_range = 8
+@export var destruction_count = 4
 @export var target: Node2D = null
 
 enum States { IDLE, MOVE, ATTACK, DEATH }

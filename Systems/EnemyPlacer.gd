@@ -1,12 +1,11 @@
 class_name EnemyPlacer
 extends Node2D
 
-@export var spawn_time = 1.0  # sek
-@export var spawn_distance = 10
-@export var max_concurent_enemies = 5
+@export var spawn_time := 1.0  # sek
+@export var spawn_distance := 10
+@export var group_size := Vector2i.ZERO
 
 var _player: Node2D = null
-var _concurent_enemies = 0
 var _monster_builder := MonsterBuilder.new()
 
 @onready var _spawn_timer: Timer = $SpawnTimer
@@ -32,7 +31,6 @@ func _on_spawn_timer_timeout():
 
 
 func _on_enemy_died(enemy):
-	_concurent_enemies -= 1
 	_spawn_enemy_corps(enemy)
 
 
@@ -40,6 +38,10 @@ func _spawn_enemy_corps(enemy: Enemy) -> void:
 	var corps: Entity = Library.entites.EnemyCorps.instantiate()
 
 	corps.global_position = enemy.global_position
+
+	var destruction_component: = corps.get_node_or_null("DestructionComponent") as DestructionComponent
+	if destruction_component != null:
+		destruction_component.pickup_count = enemy.destruction_count
 
 	for sprite in enemy.model.get_death_sprite():
 		corps.add_child(sprite)
@@ -51,20 +53,22 @@ func _spawn_enemy():
 	if _player == null:
 		return
 
-	if _concurent_enemies >= max_concurent_enemies:
-		return
+	var spawn_angle = randi() % 360
+	var template := _monster_builder.get_random_template()
 
-	var angle = randi() % 360
-	var spawn_pos = _player.position + (Vector2.from_angle(deg_to_rad(angle)) * spawn_distance)
+	for _i in range(randi_range(group_size.x, group_size.y)):
 
-	var enemy: Enemy = _monster_builder.BaseEnemy.instantiate()
-	enemy.position = spawn_pos
-	enemy.target = _player
+		await get_tree().create_timer(0.1).timeout
 
-	add_child(enemy)
+		var angle = randi_range(spawn_angle - 30, spawn_angle + 30)
+		var spawn_pos = _player.position + (Vector2.from_angle(deg_to_rad(angle)) * spawn_distance)
 
-	_monster_builder.build(enemy)
+		var enemy: Enemy = _monster_builder.BaseEnemy.instantiate()
+		enemy.position = spawn_pos
+		enemy.target = _player
 
-	_concurent_enemies += 1
+		add_child(enemy)
 
-	Events.enemy_spawn.emit(enemy)
+		_monster_builder.build(enemy, template)
+
+		Events.enemy_spawn.emit(enemy)

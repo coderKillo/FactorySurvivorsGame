@@ -14,13 +14,14 @@ func _init():
 	_parts = _load(PARTS_PATH, "part_")
 	_templates = _load(TEMPLATE_PATH, "template_")
 
+func get_random_template() -> EnemyTemplate:
+	return _templates.values().pick_random()
 
-func build(enemy: Enemy):
+
+func build(enemy: Enemy, template: EnemyTemplate):
 	if _templates.is_empty():
 		printerr("build enemy faild: no template found")
 		return
-
-	var template := _templates.values().pick_random() as EnemyTemplate
 
 	if not enemy.is_node_ready():
 		await enemy.ready
@@ -28,6 +29,7 @@ func build(enemy: Enemy):
 	enemy.health.max_health = template.health
 	enemy.speed = template.speed
 	enemy.damage = template.damage
+	enemy.destruction_count = template.destruction_count
 
 	for part_name in template.parts.keys():
 		if not part_name in _parts:
