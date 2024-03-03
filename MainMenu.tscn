@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://tkkuck6taoxv"]
+
+[ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_pqv7m"]
+[ext_resource type="Script" path="res://GUI/MainMenu.gd" id="2_ju8tt"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pqv7m")
+script = ExtResource("2_ju8tt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 120.0
+offset_right = 70.0
+offset_bottom = 166.0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Quit"

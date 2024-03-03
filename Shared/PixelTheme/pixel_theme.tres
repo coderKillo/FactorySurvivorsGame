@@ -1,10 +1,41 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://weaopiyujqgb"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://weaopiyujqgb"]
 
+[ext_resource type="Texture2D" uid="uid://dnolouw5gm8e8" path="res://Shared/PixelTheme/Images/Button1.png" id="1_17pwg"]
+[ext_resource type="Texture2D" uid="uid://bpcjuhcg1ny4a" path="res://Shared/PixelTheme/Images/Button3.png" id="1_67coa"]
 [ext_resource type="Texture2D" uid="uid://cfxunkeb3k15u" path="res://Shared/PixelTheme/Images/Toggle1.png" id="1_ee7pi"]
 [ext_resource type="FontFile" uid="uid://deh76fftbfc0b" path="res://Shared/PixelTheme/Fonts/pixellocale-v-1-4.ttf" id="2_sr6mv"]
 [ext_resource type="Texture2D" uid="uid://8p0i53cq7igq" path="res://Shared/PixelTheme/Images/Button2.png" id="2_uaym3"]
 [ext_resource type="Texture2D" uid="uid://iwl5fjucvohj" path="res://Shared/PixelTheme/Images/SliderGrabber1.png" id="3_3083o"]
 [ext_resource type="Texture2D" uid="uid://d0h63kell4d0w" path="res://Shared/PixelTheme/Images/SliderGrabber2.png" id="4_btg6y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_owmwt"]
+texture = ExtResource("1_67coa")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x8mui"]
+texture = ExtResource("1_17pwg")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 5.0
+modulate_color = Color(2, 2, 2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4yyip"]
+texture = ExtResource("1_17pwg")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_djgsa"]
+texture = ExtResource("2_uaym3")
+texture_margin_left = 2.0
+texture_margin_top = 5.0
+texture_margin_right = 2.0
+texture_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ua268"]
 texture = ExtResource("1_ee7pi")
@@ -53,6 +84,10 @@ modulate_color = Color(0.780392, 0.780392, 0.780392, 0.509804)
 
 [resource]
 default_font = ExtResource("2_sr6mv")
+Button/styles/focus = SubResource("StyleBoxTexture_owmwt")
+Button/styles/hover = SubResource("StyleBoxTexture_x8mui")
+Button/styles/normal = SubResource("StyleBoxTexture_4yyip")
+Button/styles/pressed = SubResource("StyleBoxTexture_djgsa")
 Panel/styles/panel = SubResource("StyleBoxTexture_ua268")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_4fglp")
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_durv5")
