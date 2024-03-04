@@ -1,7 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://tkkuck6taoxv"]
+[gd_scene load_steps=7 format=3 uid="uid://tkkuck6taoxv"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_pqv7m"]
 [ext_resource type="Script" path="res://GUI/MainMenu.gd" id="2_ju8tt"]
+[ext_resource type="Texture2D" uid="uid://t0igh638iget" path="res://Shared/background.png" id="3_mqw0b"]
+[ext_resource type="Texture2D" uid="uid://bt1jgb7h55q3t" path="res://Shared/logo.png" id="4_xgxwg"]
+[ext_resource type="Shader" path="res://VFX/monitor_effect.gdshader" id="5_ksoxp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gm6i"]
+shader = ExtResource("5_ksoxp")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.1
+shader_parameter/scanlines_width = 0.1
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 5.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.01
+shader_parameter/noise_opacity = 0.1
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.1
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.1
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,6 +39,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_pqv7m")
 script = ExtResource("2_ju8tt")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mqw0b")
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = -15.44
+offset_right = 160.0
+offset_bottom = 164.56
+grow_horizontal = 2
+texture = ExtResource("4_xgxwg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -31,3 +79,15 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Quit"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+scale = Vector2(1.01, 1.01)
+transform = Transform2D(1.01, 0, 0, 1.01, 0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_6gm6i")
+offset_left = -1.0
+offset_right = 319.0
+offset_bottom = 179.0
+mouse_filter = 2

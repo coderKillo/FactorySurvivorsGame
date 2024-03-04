@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=20 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bpcjuhcg1ny4a" path="res://Shared/PixelTheme/Images/Button3.png" id="9_8v4ua"]
 [ext_resource type="Script" path="res://GUI/LevelProgress.gd" id="9_iw5b8"]
 [ext_resource type="PackedScene" uid="uid://c1wdx8c6sitp1" path="res://GUI/UpgradeSystemGUI.tscn" id="12_gs0l0"]
+[ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="13_sfcl2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7csh"]
 texture = ExtResource("6_x8ryg")
@@ -193,3 +194,38 @@ theme_override_constants/separation = -6
 
 [node name="UpgradeSystemGUI" parent="." instance=ExtResource("12_gs0l0")]
 layout_mode = 2
+
+[node name="PauseMenu" type="MarginContainer" parent="."]
+process_mode = 3
+layout_mode = 2
+script = ExtResource("13_sfcl2")
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="Button" parent="PauseMenu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "Continue"
+
+[node name="Quit" type="Button" parent="PauseMenu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "Quit"
