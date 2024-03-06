@@ -88,6 +88,8 @@ func _attack():
 	if not _target_in_range():
 		return
 
+	SoundManager.play("enemy_attack")
+
 	var hurt_box = target.get_node_or_null("HurtBoxComponent") as HurtBoxComponent
 	if hurt_box != null:
 		hurt_box.take_damage(damage)

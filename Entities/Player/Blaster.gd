@@ -18,6 +18,8 @@ func _fire():
 
 	energy_used.emit(projectile.cost)
 
+	SoundManager.play("blaster_fire")
+
 	_on_cooldown = true
 	_cooldown_timer.start(fire_rate)
 

@@ -11,6 +11,8 @@ func _fire():
 
 	await get_tree().create_timer(0.2 * fire_rate).timeout
 
+	SoundManager.play("pickaxe_hit")
+
 	for body in _damage_zone.get_overlapping_bodies():
 		var destruction := body.get_node_or_null("DestructionComponent") as DestructionComponent
 		if destruction != null and destruction.destruction_filter == type:

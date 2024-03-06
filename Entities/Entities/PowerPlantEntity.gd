@@ -19,5 +19,6 @@ func _on_heat_provided(amount):
 
 	if _power_source.efficency > 0.0:
 		_animation.play("active")
+		SoundManager.play("smelter_active")
 	if _power_source.efficency == 0.0:
 		_animation.play("idle")

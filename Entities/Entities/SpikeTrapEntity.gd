@@ -15,6 +15,7 @@ func _process(_delta):
 
 
 func _do_damage():
+	SoundManager.play("trap_active")
 	for area in _area.get_overlapping_areas():
 		var hurt_box = area as HurtBoxComponent
 		if hurt_box != null:

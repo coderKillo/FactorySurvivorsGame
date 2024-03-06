@@ -5,6 +5,7 @@ extends Area2D
 @export var damage = 10
 @export var cost = 10
 @export var range = 500
+@export var impact_sound := "projectile_hit"
 
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -41,6 +42,8 @@ func _destroy_projectile():
 	$CollisionShape2D.set_deferred("disabled", true)
 
 	_animation.play("impact")
+	SoundManager.play(impact_sound)
+
 	global_rotation_degrees = 0
 	await _animation.animation_finished
 

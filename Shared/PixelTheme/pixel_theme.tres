@@ -14,6 +14,7 @@ texture_margin_left = 2.0
 texture_margin_top = 2.0
 texture_margin_right = 2.0
 texture_margin_bottom = 2.0
+modulate_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x8mui"]
 texture = ExtResource("1_17pwg")
@@ -33,7 +34,7 @@ texture_margin_bottom = 5.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_djgsa"]
 texture = ExtResource("2_uaym3")
 texture_margin_left = 2.0
-texture_margin_top = 5.0
+texture_margin_top = 4.0
 texture_margin_right = 2.0
 texture_margin_bottom = 3.0
 

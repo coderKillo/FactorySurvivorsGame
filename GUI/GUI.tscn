@@ -201,6 +201,7 @@ layout_mode = 2
 script = ExtResource("13_sfcl2")
 
 [node name="PanelContainer" type="PanelContainer" parent="PauseMenu"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PauseMenu/PanelContainer"]

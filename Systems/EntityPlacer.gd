@@ -42,8 +42,11 @@ func _unhandled_input(event: InputEvent):
 	_destruction_timer.update_input(event, _get_cell_under_mouse())
 
 	if event.is_action_pressed("left_click"):
-		if _has_placable_blueprint() and _can_placed_on_cell():
-			_place_entity(_get_cell_under_mouse())
+		if _has_placable_blueprint():
+			if _can_placed_on_cell():
+				_place_entity(_get_cell_under_mouse())
+			else:
+				SoundManager.play("entity_placed_failed")
 		else:
 			_show_entity_gui(_get_cell_under_mouse())
 
@@ -94,6 +97,8 @@ func _place_entity(location: Vector2i):
 
 	_tracker.place_entities(entity, location)
 
+	SoundManager.play("entity_placed")
+
 	# trigger item changed for cooldown
 	_gui.blueprint.stack_count += 0
 
@@ -115,6 +120,8 @@ func _show_entity_gui(location: Vector2i):
 
 
 func _finish_destruction(location: Vector2i):
+	SoundManager.play("entity_destroyed")
+
 	_tracker.remove_entity(location)
 
 

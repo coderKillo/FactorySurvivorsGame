@@ -84,3 +84,5 @@ func _fire():
 	projectile.damage = damage
 
 	_projectiles.add_child(projectile)
+
+	SoundManager.play("turret_fire")

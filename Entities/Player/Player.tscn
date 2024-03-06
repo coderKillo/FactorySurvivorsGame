@@ -343,6 +343,7 @@ animation = &"walk"
 collision_mask = 0
 script = ExtResource("13_4fvic")
 health = NodePath("../Health")
+hit_sound = "player_hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(0, -2)

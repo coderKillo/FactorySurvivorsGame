@@ -14,5 +14,7 @@ func _on_power_level_changed(current_level: int, total_level: int):
 
 
 func _on_level_up() -> void:
+	SoundManager.play("level_up")
+
 	_particle.restart()
 	_particle.emitting = true

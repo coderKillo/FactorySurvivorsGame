@@ -28,5 +28,6 @@ func _on_system_tick(_delta):
 
 	if _heat_provider.amount > 0:
 		_fire.show()
+		SoundManager.play("smelter_active")
 	else:
 		_fire.hide()

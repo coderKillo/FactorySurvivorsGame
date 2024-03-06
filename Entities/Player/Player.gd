@@ -65,6 +65,8 @@ func _on_entity_collected(entity: GroundEntity):
 		print("no blueprint found for entity:", entity_name)
 		return
 
+	SoundManager.play("player_collect")
+
 	resources.add_item(entity_name)
 
 

@@ -43,6 +43,8 @@ func destroy_blueprint() -> void:
 	_panel_reference = null
 	_preview_sprite.texture = null
 
+	SoundManager.play("drag_preview_disabled")
+
 
 func on_panel_clicked(panel: InventoryPanel):
 	var has_item = blueprint != null

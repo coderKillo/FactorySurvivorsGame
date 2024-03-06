@@ -11,7 +11,7 @@ power_level = 1
 destruction_count = 6
 parts = {
 "arms": "green",
-"crystal": "red",
+"crystal1": "red",
 "body1": "green",
 "head1": "green",
 "legs1": "green"
