@@ -107,7 +107,7 @@ frame_progress = 0.597912
 
 [node name="PowerSource" type="Node2D" parent="."]
 script = ExtResource("3_wmamp")
-power_amount = 50.0
+power_amount = 100.0
 
 [node name="HeatReceiver" type="Node2D" parent="."]
 script = ExtResource("4_aokwd")

@@ -5,6 +5,7 @@
 
 [node name="TurretBlueprint" type="Node2D"]
 script = ExtResource("1_qriha")
+damage = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_j6m2x")

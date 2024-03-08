@@ -18,6 +18,7 @@ func _on_material_enter_area_body_entered(body: Node2D):
 	if not entity:
 		return
 
+	entity.queue_free()
 	slot.stack += 1
 
 

@@ -1,7 +1,7 @@
 class_name Quickbar
 extends InventoryBar
 
-const GLOBAL_COOLDOWN = 1
+const GLOBAL_COOLDOWN := 0.5
 
 
 func add_entity(blueprint: BlueprintEntity) -> void:

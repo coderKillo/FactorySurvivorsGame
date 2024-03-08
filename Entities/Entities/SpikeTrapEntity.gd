@@ -6,7 +6,7 @@ extends Entity
 
 
 func _physics_process(_delta):
-	_power.set_active(_area.as_overlapping_bodies())
+	_power.set_active(_area.has_overlapping_bodies())
 
 
 func _process(_delta):
