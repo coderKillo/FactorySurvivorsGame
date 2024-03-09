@@ -41,11 +41,12 @@ position = Vector2(248, 120)
 
 [node name="EnemyPlacer" type="Node2D" parent="GameWorld"]
 script = ExtResource("5_ttm65")
-spawn_time = 10.0
 spawn_distance = 200
-group_size = Vector2i(2, 6)
+enemies_per_group = Vector2i(1, 3)
+groups_per_wave = Vector2i(2, 4)
 
 [node name="SpawnTimer" type="Timer" parent="GameWorld/EnemyPlacer"]
+one_shot = true
 
 [node name="GroundEntitySpawner" type="Node2D" parent="GameWorld"]
 script = ExtResource("8_lmmv0")

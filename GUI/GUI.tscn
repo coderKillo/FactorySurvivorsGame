@@ -1,15 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=18 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
 [ext_resource type="PackedScene" uid="uid://dxfuoin5a4kit" path="res://GUI/DragPreview.tscn" id="3_luiu2"]
+[ext_resource type="Script" path="res://GUI/Alarm.gd" id="4_mynwd"]
 [ext_resource type="PackedScene" uid="uid://dckp5fvjnbxnj" path="res://GUI/Quickbar.tscn" id="5_heml8"]
 [ext_resource type="Script" path="res://GUI/ScoreUI.gd" id="6_6dn62"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="6_f4nhr"]
 [ext_resource type="PackedScene" uid="uid://dbadmpq6k0uoo" path="res://GUI/GUISprite.tscn" id="6_t50jr"]
 [ext_resource type="Texture2D" uid="uid://dnolouw5gm8e8" path="res://Shared/PixelTheme/Images/Button1.png" id="6_x8ryg"]
 [ext_resource type="Script" path="res://GUI/ResourceUI.gd" id="9_1sgrj"]
-[ext_resource type="Texture2D" uid="uid://bpcjuhcg1ny4a" path="res://Shared/PixelTheme/Images/Button3.png" id="9_8v4ua"]
 [ext_resource type="Script" path="res://GUI/LevelProgress.gd" id="9_iw5b8"]
 [ext_resource type="PackedScene" uid="uid://c1wdx8c6sitp1" path="res://GUI/UpgradeSystemGUI.tscn" id="12_gs0l0"]
 [ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="13_sfcl2"]
@@ -21,21 +21,6 @@ texture_margin_top = 2.0
 texture_margin_right = 2.0
 texture_margin_bottom = 5.0
 modulate_color = Color(0, 1, 0.913725, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sl25u"]
-texture = ExtResource("9_8v4ua")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8nw8"]
-bg_color = Color(0, 0.631373, 0.972549, 1)
-border_width_left = 2
-border_width_top = 1
-border_width_right = 2
-border_width_bottom = 1
-border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="Gradient" id="Gradient_abr2b"]
 interpolation_mode = 1
@@ -72,6 +57,30 @@ script = ExtResource("2_tddr5")
 
 [node name="DragPreview" parent="." instance=ExtResource("3_luiu2")]
 layout_mode = 2
+
+[node name="Alarm" type="Control" parent="."]
+layout_mode = 2
+script = ExtResource("4_mynwd")
+
+[node name="ColorRect" type="ColorRect" parent="Alarm"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -81.0
+offset_right = 28.0
+offset_bottom = -71.0
+color = Color(0.521569, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Alarm/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 5
+text = "! ALARM !"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -147,15 +156,6 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/margin_top = -88
 script = ExtResource("9_iw5b8")
-
-[node name="ProgressBar" type="ProgressBar" parent="LevelProgress"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxTexture_sl25u")
-theme_override_styles/fill = SubResource("StyleBoxFlat_n8nw8")
-max_value = 1.0
-value = 1.0
-show_percentage = false
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="LevelProgress"]
 process_mode = 3

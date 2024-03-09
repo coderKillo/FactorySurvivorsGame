@@ -12,12 +12,12 @@ signal enemy_spawn(enemy: Enemy)
 
 signal enemy_died(enemy: Enemy)
 
+signal enemies_attack(attacking: bool)
+
 signal mouse_grid_position(pos: Vector2)
 
 signal inventory_item_added(blueprint: BlueprintEntity)
 
 signal power_produced(total_produced: int, produced: int, used: int)
-
-signal power_level_changed(current_level: int, total_level: int)
 
 signal leveled_up

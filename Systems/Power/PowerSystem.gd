@@ -11,8 +11,6 @@ const NETWORK_SOURCES = 0
 const NETWORK_RECEIVERS = 1
 
 var _total_power := 0
-var _current_power_level := 0
-var _total_power_level := 10000
 
 
 func _init():
@@ -96,16 +94,10 @@ func _on_system_tick(delta):
 			source.power_updated.emit(source.get_effective_power(), delta)
 
 		_total_power += network_power
-		_current_power_level += network_power
 		power_produced += network_power
 		power_used += network_power - power_available
 
-	if _current_power_level >= _total_power_level:
-		_current_power_level -= _total_power_level
-		Events.leveled_up.emit()
-
 	Events.power_produced.emit(_total_power, power_produced, power_used)
-	Events.power_level_changed.emit(_current_power_level, _total_power_level)
 
 
 func _retrace_paths():

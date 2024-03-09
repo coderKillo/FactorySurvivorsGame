@@ -20,10 +20,13 @@ func _on_held_item_changed(__panel: InventoryPanel, item: BlueprintEntity):
 	if item == null:
 		return
 
+	if not item.placeable:
+		return
+
 	start_cooldown(item.cooldown)
 
 
-func start_cooldown(time: int) -> void:
+func start_cooldown(time: float) -> void:
 	if _timer.time_left > 0.0:
 		return
 
