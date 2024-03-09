@@ -22,9 +22,9 @@ var blueprint: BlueprintEntity:
 	get:
 		return _drag_preview.blueprint
 
-var preview_sprite: Sprite2D:
+var preview: Sprite2D:
 	get:
-		return _drag_preview._preview_sprite
+		return _drag_preview._preview
 
 var open_entity_ui: BaseGuiComponent:
 	set(value):
@@ -40,6 +40,7 @@ var open_entity_ui: BaseGuiComponent:
 func _ready():
 	_quickbar.setup(self)
 	_quickbar.add_entity(Library.blueprints["Wire"].instantiate())
+	_quickbar.add_entity(Library.blueprints["Conveyor"].instantiate())
 	_resource.setup(self)
 
 

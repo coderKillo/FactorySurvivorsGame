@@ -55,7 +55,7 @@ height = 6.0
 
 [node name="BaseEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
-collision_mask = 10
+collision_mask = 131082
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_3i6do")

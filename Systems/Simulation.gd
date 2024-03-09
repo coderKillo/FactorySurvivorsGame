@@ -15,7 +15,7 @@ var _upgrade_system := UpgradeSystem.new()
 @onready var _enemy_placer = $GameWorld/EnemyPlacer
 @onready var _player = $GameWorld/Player
 @onready var _world_generator: WorldGenerator = $GameWorld/WorldGenerator
-@onready var _gui = $CanvasLayer/GUI
+@onready var _gui: GUI = $CanvasLayer/GUI
 
 
 func _ready():

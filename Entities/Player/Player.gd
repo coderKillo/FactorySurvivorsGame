@@ -47,15 +47,17 @@ func _physics_process(_delta):
 
 
 func _unhandled_input(event):
-	if event.is_action("left_click"):
-		_weapons[0].fire(event.is_pressed())
-	if event.is_action("right_click") and energy.energy > 0:
-		_weapons[1].fire(event.is_pressed())
-
 	if event.is_action_pressed("grab"):
 		_drag_objects.grab()
 	if event.is_action_released("grab"):
 		_drag_objects.release()
+
+
+func fire(slot: int, pressed: bool) -> void:
+	if slot == 1 and energy.energy <= 0:
+		return
+
+	_weapons[slot].fire(pressed)
 
 
 func _on_entity_collected(entity: GroundEntity):

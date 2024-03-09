@@ -58,6 +58,7 @@ movement_speed = 50.0
 [node name="SimulationTimer" type="Timer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("10_cj28n")]
 

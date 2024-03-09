@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="godot-2d-builder Starter"
+config/name="Melt them All"
 run/main_scene="res://Simulation.tscn"
 config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
@@ -163,6 +163,7 @@ pause={
 2d_physics/layer_11="Ore"
 2d_physics/layer_12="Smelter"
 2d_physics/layer_17="Floor"
+2d_physics/layer_18="Hole"
 
 [rendering]
 

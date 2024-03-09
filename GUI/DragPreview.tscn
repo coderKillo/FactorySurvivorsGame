@@ -11,13 +11,13 @@ mouse_filter = 2
 theme = ExtResource("1_bcp5e")
 script = ExtResource("1_67rgg")
 
-[node name="Label" type="Label" parent="."]
-z_index = 1
-layout_mode = 0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 6
 
-[node name="PreviewSprite" type="Sprite2D" parent="."]
+[node name="Preview" type="Node2D" parent="CanvasLayer"]

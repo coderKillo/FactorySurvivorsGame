@@ -230,3 +230,5 @@ text = "Continue"
 layout_mode = 2
 theme_override_font_sizes/font_size = 5
 text = "Quit"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

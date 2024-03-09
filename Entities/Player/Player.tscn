@@ -199,7 +199,7 @@ height = 10.0
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(233, 138)
-collision_mask = 2056
+collision_mask = 133128
 motion_mode = 1
 script = ExtResource("1_h72yr")
 movement_speed = 100.0

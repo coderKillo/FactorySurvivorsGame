@@ -5,7 +5,7 @@ extends TileMap
 const GROUND_LAYER := 0
 
 var _tracker: EntityTracker
-var _player: CharacterBody2D
+var _player: Player
 var _gui: GUI
 
 @onready var _destruction_timer: DestructionTimer = $Timer
@@ -13,7 +13,7 @@ var _gui: GUI
 ########## PUBLIC
 
 
-func setup(gui: GUI, tracker: EntityTracker, player: CharacterBody2D):
+func setup(gui: GUI, tracker: EntityTracker, player: Player):
 	_tracker = tracker
 	_player = player
 	_gui = gui
@@ -47,26 +47,29 @@ func _unhandled_input(event: InputEvent):
 				_place_entity(_get_cell_under_mouse())
 			else:
 				SoundManager.play("entity_placed_failed")
-		else:
+		elif _is_cell_occupied():
 			_show_entity_gui(_get_cell_under_mouse())
+		else:
+			_player.fire(0, true)
+
+	elif event.is_action_released("left_click"):
+		_player.fire(0, false)
 
 	elif event.is_action_pressed("right_click"):
-		if not _gui.blueprint:
+		if _gui.blueprint:
+			_gui.destroy_blueprint()
+		elif _is_cell_occupied():
 			_destruction_timer.start_destruction(_get_cell_under_mouse())
+		else:
+			_player.fire(1, true)
 
-	elif event.is_action_pressed("rotate_blueprint"):
-		if _has_placable_blueprint() and _gui.blueprint.rotateable:
-			_gui.blueprint.global_rotation_degrees += 90
+	elif event.is_action_released("right_click"):
+		_player.fire(1, false)
 
 
 func _process(_delta):
 	_update_blueprint()
 	_update_mouse_position_on_grid()
-
-	if _has_placable_blueprint():
-		_player.set_process_unhandled_input(false)
-	else:
-		_player.set_process_unhandled_input(true)
 
 
 ########## PRIVATE
@@ -88,7 +91,7 @@ func _place_entity(location: Vector2i):
 	var entity_name = Library.get_entity_name(_gui.blueprint)
 	var entity: Entity = Library.entites[entity_name].instantiate()
 	entity.global_position = to_global(map_to_local(location))
-	entity.global_rotation = _gui.blueprint.global_rotation
+	entity.global_rotation = _gui.preview.global_rotation
 
 	add_child(entity)
 
@@ -108,7 +111,7 @@ func _place_entity(location: Vector2i):
 		)
 
 
-func _show_entity_gui(location: Vector2i):
+func _show_entity_gui(location: Vector2i) -> void:
 	if _gui.open_entity_ui != null:
 		_gui.open_entity_ui.hide()
 		_gui.open_entity_ui = null
@@ -134,9 +137,9 @@ func _update_mouse_position_on_grid():
 
 func _set_blueprint_color():
 	if _can_placed_on_cell():
-		_gui.preview_sprite.modulate = Color.GREEN
+		_gui.preview.modulate = Color.GREEN
 	else:
-		_gui.preview_sprite.modulate = Color.RED
+		_gui.preview.modulate = Color.RED
 
 
 ########## HELPER

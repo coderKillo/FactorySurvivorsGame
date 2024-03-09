@@ -151,12 +151,16 @@ func _retrace_paths():
 					if neighbor in power_sources:
 						var power: PowerSource = power_sources[neighbor]
 						var wire: WireEntity = power_movers[cell]
-						power.power_updated.connect(wire._on_power_input.bind(direction))
+						var callable := wire._on_power_input.bind(direction)
+						if not power.power_updated.is_connected(callable):
+							power.power_updated.connect(callable)
 
 					elif neighbor in power_receivers:
 						var receiver: PowerReceiver = power_receivers[neighbor]
 						var wire: WireEntity = power_movers[cell]
-						receiver.received_power.connect(wire._on_power_output.bind(direction))
+						var callable := wire._on_power_output.bind(direction)
+						if not receiver.received_power.is_connected(callable):
+							receiver.received_power.connect(callable)
 
 					if neighbor in cell_travelled:
 						continue

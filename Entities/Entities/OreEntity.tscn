@@ -23,6 +23,7 @@ height = 3.48145
 [node name="Ore" type="AnimatableBody2D" groups=["ore"]]
 collision_layer = 4
 collision_mask = 4
+sync_to_physics = false
 script = ExtResource("1_p7227")
 is_collectable = true
 
