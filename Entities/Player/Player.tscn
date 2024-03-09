@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=41 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
@@ -48,8 +48,6 @@ shader_parameter/vignette_opacity = 0.0
 radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4b2o"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_sxvlr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwdvn"]
 bg_color = Color(0.078125, 0.0273438, 0.183594, 1)
@@ -253,13 +251,7 @@ _health = NodePath("../Health")
 [node name="Energy" type="Node2D" parent="."]
 script = ExtResource("6_ogtao")
 
-[node name="Area2D" type="Area2D" parent="Energy"]
-position = Vector2(0, -3)
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Energy/Area2D"]
-shape = SubResource("CircleShape2D_sxvlr")
-debug_color = Color(0.443137, 0.45098, 1, 0.419608)
+[node name="Timer" type="Timer" parent="Energy"]
 
 [node name="EnergyBar" type="ProgressBar" parent="." node_paths=PackedStringArray("_energy")]
 offset_left = -5.0

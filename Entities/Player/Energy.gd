@@ -7,23 +7,26 @@ signal charge_status_changed(is_charging)
 @export var max_energy := 100
 @export var energy_low_trashold := 20
 @export var charge_amount := 2
+@export var charge_delay := 1
 
 @onready var energy := 0:
 	set = _set_energy
-@onready var _area: Area2D = $Area2D
+@onready var _timer: Timer = $Timer
 
-var _source: PowerSource = null
+var _is_charging: bool = false:
+	set(value):
+		_is_charging = value
+		charge_status_changed.emit(value)
 
 
 func _ready():
 	energy = max_energy
-	_area.body_entered.connect(_on_body_entered)
-	_area.body_exited.connect(_on_body_exited)
 	Events.system_tick.connect(_on_system_tick)
+	_timer.timeout.connect(_on_charing_timer_timeout)
 
 
 func is_charging() -> bool:
-	return _source != null
+	return _is_charging
 
 
 func charge_is_low() -> bool:
@@ -31,35 +34,20 @@ func charge_is_low() -> bool:
 
 
 func _set_energy(value):
+	if value < energy:
+		_start_charging_timer()
+
 	energy = value
 	update_energy.emit(energy, max_energy)
 
 
-func _on_body_entered(body: PhysicsBody2D):
-	if not body.is_in_group(Types.POWER_SOURCES):
-		return
-
-	if _source != null:
-		return
-
-	_source = body.get_node_or_null("PowerSource")
-	if _source.power_amount < charge_amount:
-		_source = null
-		return
-
-	_source.power_amount -= charge_amount
-	charge_status_changed.emit(true)
+func _start_charging_timer() -> void:
+	_is_charging = false
+	_timer.start(charge_delay)
 
 
-func _on_body_exited(body: PhysicsBody2D):
-	if not body.is_in_group(Types.POWER_SOURCES):
-		return
-
-	var source = body.get_node_or_null("PowerSource")
-	if source == _source:
-		_source.power_amount += charge_amount
-		_source = null
-		charge_status_changed.emit(false)
+func _on_charing_timer_timeout() -> void:
+	_is_charging = true
 
 
 func _on_system_tick(_delta):
