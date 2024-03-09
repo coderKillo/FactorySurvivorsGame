@@ -102,6 +102,10 @@ func _place_entity(location: Vector2i):
 
 	SoundManager.play("entity_placed")
 
+	if _player.energy.energy < entity.energy_cost:
+		return
+	_player.energy.energy -= entity.energy_cost
+
 	# trigger item changed for cooldown
 	_gui.blueprint.stack_count += 0
 

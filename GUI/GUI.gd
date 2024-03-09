@@ -40,7 +40,7 @@ var open_entity_ui: BaseGuiComponent:
 func _ready():
 	_quickbar.setup(self)
 	_quickbar.add_entity(Library.blueprints["Wire"].instantiate())
-	_quickbar.add_entity(Library.blueprints["Conveyor"].instantiate())
+	_quickbar.add_entity(Library.blueprints["Drill"].instantiate())
 	_resource.setup(self)
 
 
