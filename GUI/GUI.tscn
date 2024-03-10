@@ -59,24 +59,26 @@ script = ExtResource("2_tddr5")
 layout_mode = 2
 
 [node name="Alarm" type="Control" parent="."]
+visible = false
 layout_mode = 2
 script = ExtResource("4_mynwd")
 
-[node name="ColorRect" type="ColorRect" parent="Alarm"]
+[node name="PanelContainer" type="PanelContainer" parent="Alarm"]
+self_modulate = Color(3, 0, 0, 1)
 layout_mode = 0
-offset_left = -12.0
-offset_top = -81.0
-offset_right = 28.0
-offset_bottom = -71.0
-color = Color(0.521569, 0, 0, 1)
+offset_top = -83.0
+offset_right = 38.0
+offset_bottom = -67.0
 
-[node name="Label" type="Label" parent="Alarm/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="Alarm/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = -5
+
+[node name="Label" type="Label" parent="Alarm/PanelContainer/MarginContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 5
 text = "! ALARM !"
 horizontal_alignment = 1
