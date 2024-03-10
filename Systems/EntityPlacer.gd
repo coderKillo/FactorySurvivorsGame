@@ -50,21 +50,16 @@ func _unhandled_input(event: InputEvent):
 		elif _is_cell_occupied():
 			_show_entity_gui(_get_cell_under_mouse())
 		else:
-			_player.fire(0, true)
+			_player.fire(1, true)
 
 	elif event.is_action_released("left_click"):
-		_player.fire(0, false)
+		_player.fire(1, false)
 
 	elif event.is_action_pressed("right_click"):
 		if _gui.blueprint:
 			_gui.destroy_blueprint()
 		elif _is_cell_occupied():
 			_destruction_timer.start_destruction(_get_cell_under_mouse())
-		else:
-			_player.fire(1, true)
-
-	elif event.is_action_released("right_click"):
-		_player.fire(1, false)
 
 
 func _process(_delta):

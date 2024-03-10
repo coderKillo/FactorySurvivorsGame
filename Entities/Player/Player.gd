@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var _weapon_timer: Timer = $Weapons/Cooldown
 @onready var _drag_objects: DragObjects = $DragObjects
 @onready var _collect_objects: CollectObjects = $CollectObjects
+@onready var _auto_attack_area: Area2D = $AutoattackArea
 
 
 func _ready():
@@ -27,6 +28,8 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
+	fire(0, _auto_attack_area.has_overlapping_bodies())
+
 	var input_direction = (
 		Vector2(
 			Input.get_action_strength("right") - Input.get_action_strength("left"),

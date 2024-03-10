@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=42 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
@@ -43,6 +43,9 @@ shader_parameter/warp_amount = 0.1
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjfey"]
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vvagi"]
 radius = 23.0
@@ -220,6 +223,15 @@ offset_left = -1.0
 offset_right = 319.0
 offset_bottom = 179.0
 mouse_filter = 2
+
+[node name="AutoattackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoattackArea"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_rjfey")
+debug_color = Color(0, 0.65098, 0.0941176, 0.419608)
 
 [node name="CollectObjects" type="Area2D" parent="."]
 collision_mask = 4
