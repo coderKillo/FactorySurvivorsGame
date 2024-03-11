@@ -3,6 +3,7 @@ extends Node2D
 
 signal animation_finished
 signal animation_looped
+signal frame_changed
 
 var animation: String = "":
 	get = _get_animation
@@ -16,6 +17,7 @@ func add_part(anim: AnimatedSprite2D) -> void:
 	if _parts.is_empty():
 		anim.animation_finished.connect(_on_animation_finished)
 		anim.animation_looped.connect(_on_animation_looped)
+		anim.frame_changed.connect(_on_frame_changed)
 
 	_parts.append(anim)
 	add_child(anim)
@@ -47,6 +49,10 @@ func _on_animation_finished():
 
 func _on_animation_looped():
 	animation_looped.emit()
+
+
+func _on_frame_changed():
+	frame_changed.emit()
 
 
 func _set_flip_h(value):

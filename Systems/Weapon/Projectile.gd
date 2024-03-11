@@ -4,7 +4,7 @@ extends Area2D
 @export var speed = 750
 @export var damage = 10
 @export var cost = 10
-@export var range = 500
+@export var max_range = 500
 @export var impact_sound := "projectile_hit"
 
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
@@ -19,9 +19,9 @@ func _ready():
 func _physics_process(delta):
 	var distance = transform.x * speed * delta
 	position += distance
-	range -= distance.length()
+	max_range -= distance.length()
 
-	if range <= 0:
+	if max_range <= 0:
 		queue_free()
 
 

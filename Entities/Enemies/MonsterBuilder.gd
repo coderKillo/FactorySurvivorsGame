@@ -29,7 +29,7 @@ func build(enemy: Enemy, template: EnemyTemplate):
 
 	enemy.health.max_health = template.health
 	enemy.speed = template.speed
-	enemy.damage = template.damage
+	enemy.weapon.damage = template.damage
 	enemy.destruction_count = template.destruction_count
 	enemy.color = template.ore_color
 

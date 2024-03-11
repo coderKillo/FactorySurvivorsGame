@@ -95,3 +95,5 @@ script = ExtResource("2_ymegd")
 [node name="part_arms" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_mqvax")
 animation = &"death"
+frame = 2
+frame_progress = 1.0
