@@ -54,6 +54,7 @@ func _spawn_enemy_corps(enemy: Enemy) -> void:
 	)
 	if destruction_component != null:
 		destruction_component.pickup_count = enemy.destruction_count
+		destruction_component.ore_color = enemy.color
 
 	for sprite in enemy.model.get_death_sprite():
 		corps.add_child(sprite)

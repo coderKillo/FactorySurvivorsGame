@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0r5xlwro4w5f"]
+[gd_scene load_steps=10 format=3 uid="uid://d0r5xlwro4w5f"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_1xx4e"]
 [ext_resource type="Script" path="res://GUI/ResourceItem.gd" id="1_i1v35"]
 [ext_resource type="Script" path="res://GUI/GUISprite.gd" id="1_o7pgx"]
 [ext_resource type="Texture2D" uid="uid://dnf3l1wlxp5jd" path="res://Shared/ore.png" id="2_kvj08"]
 [ext_resource type="Texture2D" uid="uid://cvvir3k0pghab" path="res://Shared/PixelTheme/Images/Arrow.png" id="3_5tuhb"]
-[ext_resource type="Shader" path="res://Shader/recolor_shader.gdshader" id="4_2psfd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f0uar"]
 atlas = ExtResource("3_5tuhb")
@@ -22,17 +21,6 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0er8u"]
 atlas = ExtResource("3_5tuhb")
 region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="Gradient" id="Gradient_u5dtr"]
-offsets = PackedFloat32Array(0, 0.33, 0.67, 1)
-colors = PackedColorArray(0.286275, 0.121569, 0.317647, 1, 0.858824, 0.301961, 0.25098, 1, 0.960784, 0.54902, 0.25098, 1, 0.972549, 0.764706, 0.639216, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bd46b"]
-gradient = SubResource("Gradient_u5dtr")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uk1eu"]
-shader = ExtResource("4_2psfd")
-shader_parameter/palette = SubResource("GradientTexture1D_bd46b")
 
 [node name="ResourceItem" type="MarginContainer"]
 size_flags_vertical = 0
@@ -57,7 +45,6 @@ texture_hover = SubResource("AtlasTexture_g24wd")
 texture_disabled = SubResource("AtlasTexture_0er8u")
 
 [node name="GUISprite" type="Control" parent="HBoxContainer"]
-material = SubResource("ShaderMaterial_uk1eu")
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 4

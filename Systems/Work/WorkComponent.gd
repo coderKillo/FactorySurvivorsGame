@@ -67,7 +67,7 @@ func _on_place_timer_timeout() -> void:
 		return
 
 	_slots[OUTPUT_SLOT].stack -= 1
-	Events.ground_entity_spawn.emit(output_name, output_pos.global_position)
+	Events.ground_entity_spawn.emit(output_name, output_pos.global_position, "red")
 
 
 func _on_process_timer_timeout() -> void:

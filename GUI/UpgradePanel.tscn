@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://qitvr822qew8" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Banner_01a.png" id="4_ybsko"]
 [ext_resource type="Texture2D" uid="uid://cec4pcb672bmk" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Frame_Inward_02a.png" id="5_eixir"]
 [ext_resource type="Shader" path="res://Shader/rainbow.gdshader" id="7_aw2wp"]
+[ext_resource type="Texture2D" uid="uid://6r7kohtdjxh3" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Textfield_02a.png" id="7_bklqg"]
 
 [sub_resource type="Shader" id="Shader_3y3h2"]
 code = "shader_type canvas_item;
@@ -37,9 +38,13 @@ vec4 swap_color(vec4 color){
 	return color;
 }
 
+varying flat vec4 modulate;
+void vertex() {
+	modulate = COLOR;
+}
 
 void fragment() {
-	COLOR = swap_color(texture(TEXTURE, UV));
+	COLOR = swap_color(texture(TEXTURE, UV)) * modulate;
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hbq26"]
@@ -93,11 +98,8 @@ expand_margin_right = 3.0
 expand_margin_bottom = 3.0
 region_rect = Rect2(28, 27, 41, 42)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fbgn6"]
-load_path = "res://.godot/imported/UI_Hologram_Textfield_02a.png-742d966043de023ee92e29bf54b04756.ctex"
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4v1tj"]
-texture = SubResource("CompressedTexture2D_fbgn6")
+texture = ExtResource("7_bklqg")
 texture_margin_left = 6.0
 texture_margin_top = 6.0
 texture_margin_right = 5.0

@@ -8,6 +8,11 @@ uniform float precision: hint_range(0., 1.) = 0.1;
 
 const float frequancy = 6.0;
 
+varying flat vec4 modulate;
+void vertex() {
+	modulate = COLOR;
+}
+
 void fragment() {
 	float hue = UV.x * cos(radians(angle)) - UV.y * sin(radians(angle));
 	float time = TIME * speed;
@@ -20,10 +25,10 @@ void fragment() {
 	
 	vec4 color = texture(TEXTURE, UV);
 	if (distance(color, color_filter) <= precision){
-		COLOR = mix(color, vec4(rainbow, color.a), strength);
+		COLOR = mix(color, vec4(rainbow, color.a), strength) * modulate;
 	}
 	else
 	{
-		COLOR = color;
+		COLOR = color * modulate;
 	}
 }

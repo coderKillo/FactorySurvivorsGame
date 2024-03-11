@@ -9,10 +9,11 @@ damage = 10
 speed = 20
 power_level = 1
 destruction_count = 6
+ore_color = "green"
 parts = {
 "arms": "green",
-"crystal1": "red",
 "body1": "green",
+"crystal1": "red",
 "head1": "green",
 "legs1": "green"
 }

@@ -7,6 +7,8 @@ extends CharacterBody2D
 @export var destruction_count = 4
 @export var target: Node2D = null
 
+var color := ""
+
 enum States { IDLE, MOVE, ATTACK, DEATH }
 
 var _current_state: States = States.IDLE

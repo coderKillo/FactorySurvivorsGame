@@ -8,10 +8,12 @@ extends Node2D
 # number of entities to create when destructing this object
 @export var pickup_count: int = 4
 
+var ore_color := "red"
+
 
 func destruct() -> void:
 	var random_offset = Vector2(randi_range(-10, 10), randi_range(-10, 10))
-	Events.ground_entity_spawn.emit(destruction_entity, global_position + random_offset)
+	Events.ground_entity_spawn.emit(destruction_entity, global_position + random_offset, ore_color)
 
 	pickup_count -= 1
 	if pickup_count <= 0:

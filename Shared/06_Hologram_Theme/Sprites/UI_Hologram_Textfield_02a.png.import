@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c40jwgrv7iiqq"
-path="res://.godot/imported/UI_Hologram_Textfield_03a.png-69c40cb2674a9ef6aba78d2362764b9b.ctex"
+uid="uid://6r7kohtdjxh3"
+path="res://.godot/imported/UI_Hologram_Textfield_02a.png-742d966043de023ee92e29bf54b04756.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Textfield_03a.png"
-dest_files=["res://.godot/imported/UI_Hologram_Textfield_03a.png-69c40cb2674a9ef6aba78d2362764b9b.ctex"]
+source_file="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Textfield_02a.png"
+dest_files=["res://.godot/imported/UI_Hologram_Textfield_02a.png-742d966043de023ee92e29bf54b04756.ctex"]
 
 [params]
 

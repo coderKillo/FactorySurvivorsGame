@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=19 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
@@ -8,19 +8,19 @@
 [ext_resource type="Script" path="res://GUI/ScoreUI.gd" id="6_6dn62"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="6_f4nhr"]
 [ext_resource type="PackedScene" uid="uid://dbadmpq6k0uoo" path="res://GUI/GUISprite.tscn" id="6_t50jr"]
-[ext_resource type="Texture2D" uid="uid://dnolouw5gm8e8" path="res://Shared/PixelTheme/Images/Button1.png" id="6_x8ryg"]
+[ext_resource type="Texture2D" uid="uid://dxl6qucg6mgy1" path="res://Shared/06_Hologram_Theme/Sprites/Spritesheet_UI_Hologram.png" id="7_jc05y"]
 [ext_resource type="Script" path="res://GUI/ResourceUI.gd" id="9_1sgrj"]
 [ext_resource type="Script" path="res://GUI/LevelProgress.gd" id="9_iw5b8"]
 [ext_resource type="PackedScene" uid="uid://c1wdx8c6sitp1" path="res://GUI/UpgradeSystemGUI.tscn" id="12_gs0l0"]
 [ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="13_sfcl2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7csh"]
-texture = ExtResource("6_x8ryg")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 5.0
-modulate_color = Color(0, 1, 0.913725, 1)
+texture = ExtResource("7_jc05y")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(672, 231, 64, 19)
 
 [sub_resource type="Gradient" id="Gradient_abr2b"]
 interpolation_mode = 1
@@ -44,6 +44,18 @@ orbit_velocity_max = 0.0
 scale_min = 2.0
 scale_max = 3.0
 color_initial_ramp = SubResource("GradientTexture1D_otcbt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3itfp"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+texture = ExtResource("7_jc05y")
+texture_margin_left = 6.0
+texture_margin_top = 13.0
+texture_margin_right = 7.0
+texture_margin_bottom = 13.0
+region_rect = Rect2(672, 231, 65, 19)
 
 [node name="GUI" type="CenterContainer"]
 anchors_preset = 15
@@ -95,7 +107,7 @@ layout_mode = 2
 [node name="ScoreUI" type="MarginContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 260
+theme_override_constants/margin_left = 246
 theme_override_constants/margin_bottom = 143
 script = ExtResource("6_6dn62")
 
@@ -108,9 +120,9 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_r7csh")
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = -3
-theme_override_constants/margin_top = -2
+theme_override_constants/margin_top = -5
 theme_override_constants/margin_right = 1
-theme_override_constants/margin_bottom = -4
+theme_override_constants/margin_bottom = -5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -173,21 +185,19 @@ explosiveness = 1.0
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 268
-theme_override_constants/margin_top = -60
+theme_override_constants/margin_top = -58
 theme_override_constants/margin_bottom = -200
 script = ExtResource("9_1sgrj")
 
 [node name="PanelContainer" type="PanelContainer" parent="ResourceUI"]
-self_modulate = Color(0.701961, 1, 0.611765, 1)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3itfp")
 
 [node name="MarginContainer" type="MarginContainer" parent="ResourceUI/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/margin_left = -4
-theme_override_constants/margin_bottom = -2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ResourceUI/PanelContainer/MarginContainer"]
 layout_mode = 2

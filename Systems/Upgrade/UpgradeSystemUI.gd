@@ -79,7 +79,6 @@ func _set_description(panel: UpgradePanel, upgrade: Upgrade):
 
 
 func _set_quality(panel: UpgradePanel, upgrade: Upgrade):
-	print(upgrade.quality)
 	if upgrade.quality == Types.UpgradeQuality.COMMON:
 		panel.recolor("green")
 	if upgrade.quality == Types.UpgradeQuality.RARE:

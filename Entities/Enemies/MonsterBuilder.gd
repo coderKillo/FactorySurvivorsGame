@@ -14,6 +14,7 @@ func _init():
 	_parts = _load(PARTS_PATH, "part_")
 	_templates = _load(TEMPLATE_PATH, "template_")
 
+
 func get_random_template() -> EnemyTemplate:
 	return _templates.values().pick_random()
 
@@ -30,6 +31,7 @@ func build(enemy: Enemy, template: EnemyTemplate):
 	enemy.speed = template.speed
 	enemy.damage = template.damage
 	enemy.destruction_count = template.destruction_count
+	enemy.color = template.ore_color
 
 	for part_name in template.parts.keys():
 		if not part_name in _parts:

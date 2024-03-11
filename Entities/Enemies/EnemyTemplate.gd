@@ -6,4 +6,5 @@ extends Resource
 @export var speed: int
 @export var power_level: int
 @export var destruction_count: int
+@export var ore_color: String
 @export var parts: Dictionary
