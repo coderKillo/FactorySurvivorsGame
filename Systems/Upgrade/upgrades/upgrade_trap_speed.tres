@@ -13,6 +13,7 @@ title = "SpikeTrap Speed"
 type = "entity"
 object = "SpikeTrap"
 unique = false
+quality = 1
 description = "Increase the production speed of your {object} by {speed}"
 requirements = {
 "SpikeTrap": 1

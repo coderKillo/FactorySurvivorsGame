@@ -5,6 +5,7 @@ extends Resource
 @export var type: String
 @export var object: String
 @export var unique := false
+@export var quality := Types.UpgradeQuality.COMMON
 
 @export_multiline var description: String
 

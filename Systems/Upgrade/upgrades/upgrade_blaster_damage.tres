@@ -10,5 +10,6 @@ title = "Blaster Damage"
 type = "weapon"
 object = "blaster"
 unique = false
+quality = 1
 description = "Increases the damage of your {object} by {damage}"
 requirements = {}

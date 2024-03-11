@@ -10,5 +10,6 @@ title = "Blaster Attackspeed"
 type = "weapon"
 object = "blaster"
 unique = false
+quality = 1
 description = "Increases the speed of your {object} by {fire_rate}"
 requirements = {}

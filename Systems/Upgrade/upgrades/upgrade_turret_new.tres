@@ -13,5 +13,8 @@ title = "Turret"
 type = "entity"
 object = "Turret"
 unique = true
+quality = 3
 description = "Add {object}"
-requirements = {"SpikeTrap": 3}
+requirements = {
+"SpikeTrap": 3
+}

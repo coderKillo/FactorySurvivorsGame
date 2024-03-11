@@ -13,6 +13,7 @@ title = "SpikeTrap Cooldown"
 type = "entity"
 object = "SpikeTrap"
 unique = false
+quality = 2
 description = "Reduce the cooldown of your {object} by {cooldown}"
 requirements = {
 "SpikeTrap": 1

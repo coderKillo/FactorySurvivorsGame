@@ -12,6 +12,7 @@ title = "Blaster Big Shot"
 type = "weapon"
 object = "blaster"
 unique = true
+quality = 3
 description = "Change the projectile of your {object} to big shot"
 requirements = {
 "blaster": 3

@@ -13,6 +13,7 @@ title = "Conveyor"
 type = "entity"
 object = "Conveyor"
 unique = true
+quality = 3
 description = "Add {object}"
 requirements = {
 "entity": 5

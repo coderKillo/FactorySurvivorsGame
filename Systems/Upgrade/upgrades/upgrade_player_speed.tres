@@ -5,9 +5,12 @@
 [resource]
 script = ExtResource("1_5n6hv")
 health = 0
+energy = 0
 speed = 20.0
 title = "Movementspeed"
 type = "player"
 object = ""
+unique = false
+quality = 0
 description = "Increase the player movement speed by {speed}"
 requirements = {}

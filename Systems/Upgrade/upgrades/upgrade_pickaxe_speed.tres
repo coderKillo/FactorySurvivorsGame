@@ -10,5 +10,6 @@ title = "Pickaxe Attackspeed"
 type = "weapon"
 object = "pickaxe"
 unique = false
+quality = 1
 description = "Increases the speed of your {object} by {fire_rate}"
 requirements = {}

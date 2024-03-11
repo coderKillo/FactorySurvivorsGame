@@ -13,6 +13,7 @@ title = "Turret Cooldown"
 type = "entity"
 object = "Turret"
 unique = false
+quality = 2
 description = "Reduce the cooldown of your {object} by {cooldown}"
 requirements = {
 "Turret": 1

@@ -13,6 +13,7 @@ title = "SpikeTrap"
 type = "entity"
 object = "SpikeTrap"
 unique = true
+quality = 3
 description = "Add {object}"
 requirements = {
 "blaster": 3

@@ -13,5 +13,8 @@ title = "Turret Speed"
 type = "entity"
 object = "Turret"
 unique = false
+quality = 1
 description = "Increase the production speed of your {object} by {speed}"
-requirements = {"Turret": 1}
+requirements = {
+"Turret": 1
+}

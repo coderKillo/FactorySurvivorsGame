@@ -20,6 +20,7 @@ func setup(player: Player, entity_tracker: EntityTracker, gui: GUI):
 	_load_upgrades()
 
 	Events.leveled_up.connect(_on_level_up)
+	_on_level_up()
 
 
 func _load_upgrades():

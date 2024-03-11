@@ -13,6 +13,7 @@ title = "SpikeTrap Damage"
 type = "entity"
 object = "SpikeTrap"
 unique = false
+quality = 1
 description = "Increase the damage of your {object} by {damage}"
 requirements = {
 "SpikeTrap": 1

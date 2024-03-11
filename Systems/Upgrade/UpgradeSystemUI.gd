@@ -50,6 +50,7 @@ func _create_panel(upgrade: Upgrade) -> UpgradePanel:
 	_set_description(panel, upgrade)
 	_set_icon(panel, upgrade)
 	_set_title(panel, upgrade)
+	_set_quality(panel, upgrade)
 
 	return panel
 
@@ -75,6 +76,18 @@ func _set_description(panel: UpgradePanel, upgrade: Upgrade):
 			properties.append([property["name"], upgrade.get(property["name"])])
 
 	panel.text.text = upgrade.description.format(properties)
+
+
+func _set_quality(panel: UpgradePanel, upgrade: Upgrade):
+	print(upgrade.quality)
+	if upgrade.quality == Types.UpgradeQuality.COMMON:
+		panel.recolor("green")
+	if upgrade.quality == Types.UpgradeQuality.RARE:
+		pass
+	if upgrade.quality == Types.UpgradeQuality.EPIC:
+		panel.recolor("purple")
+	if upgrade.quality == Types.UpgradeQuality.UNIQUE:
+		panel.make_shiny()
 
 
 func _on_mouse_enter(panel: UpgradePanel):

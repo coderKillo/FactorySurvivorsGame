@@ -3,6 +3,8 @@ extends RefCounted
 
 enum Direction { RIGHT = 1, DOWN = 2, LEFT = 4, UP = 8 }
 
+enum UpgradeQuality { COMMON, RARE, EPIC, UNIQUE }
+
 const NEIGHBORS = {
 	Direction.RIGHT: Vector2i.RIGHT,
 	Direction.DOWN: Vector2i.DOWN,

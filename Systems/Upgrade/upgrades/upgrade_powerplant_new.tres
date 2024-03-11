@@ -13,6 +13,7 @@ title = "PowerPlant"
 type = "entity"
 object = "PowerPlant"
 unique = true
+quality = 3
 description = "Add {object}"
 requirements = {
 "entity": 5

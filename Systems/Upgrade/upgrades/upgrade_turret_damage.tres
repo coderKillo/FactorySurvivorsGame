@@ -13,5 +13,8 @@ title = "Turret Damage"
 type = "entity"
 object = "Turret"
 unique = false
+quality = 1
 description = "Increase the damage of your {object} by {damage}"
-requirements = {"Turret": 1}
+requirements = {
+"Turret": 1
+}

@@ -13,6 +13,7 @@ title = "Drill"
 type = "entity"
 object = "Drill"
 unique = true
+quality = 3
 description = "Add {object}"
 requirements = {
 "pickaxe": 3

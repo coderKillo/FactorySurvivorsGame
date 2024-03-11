@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://las0bkgusgch"]
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://c7f0fgme5awc6"]
 
 [ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_pb3m4"]
 
@@ -13,6 +13,7 @@ title = "Smelter"
 type = "entity"
 object = "Smelter"
 unique = true
+quality = 3
 description = "Add {object}"
 requirements = {
 "entity": 8
