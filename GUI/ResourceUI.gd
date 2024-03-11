@@ -44,11 +44,8 @@ func _on_resource_collection_changed(collection: Dictionary):
 
 func _on_open_entity_ui_changed(value):
 	if value != null:
-		for item in _resource_items.values():
-			item.button.disabled = false
-	else:
-		for item in _resource_items.values():
-			item.button.disabled = true
+		for key in _resource_items.keys():
+			_on_item_pressed(key)
 
 
 func _on_item_pressed(item_name: String):
