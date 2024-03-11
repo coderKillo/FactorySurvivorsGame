@@ -21,6 +21,8 @@ func setup(player: Player, entity_tracker: EntityTracker, gui: GUI):
 
 	Events.leveled_up.connect(_on_level_up)
 
+	_on_level_up()
+
 
 func _load_upgrades():
 	var dir = DirAccess.open(UPGRADE_PATH)
@@ -59,6 +61,8 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 		var player_upgrade := upgrade as PlayerUpgrade
 		player_upgrade.upgrade(_player)
 
+		Events.spawn_effect.emit("upgrade_explosion", _player.global_position)
+
 	elif upgrade.type == "weapon":
 		var weapon_upgrade := upgrade as WeaponUgrade
 		if weapon_upgrade.object == "pickaxe":
@@ -73,6 +77,8 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 				)
 			)
 
+		Events.spawn_effect.emit("upgrade_explosion", _player.global_position)
+
 	elif upgrade.type == "entity":
 		var entity_upgrade := upgrade as EntityUpgrade
 
@@ -84,6 +90,7 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 			var entity := _entity_tracker.entities[location] as Entity
 			if Library.get_entity_name(entity) == entity_upgrade.object:
 				entity_upgrade.upgrade_entity(entity)
+				Events.spawn_effect.emit("upgrade_explosion", entity.global_position)
 
 		for panel in _gui.get_quickbar_panels():
 			if panel.held_item == null:

@@ -21,3 +21,5 @@ signal inventory_item_added(blueprint: BlueprintEntity)
 signal power_produced(total_produced: int, produced: int, used: int)
 
 signal leveled_up
+
+signal spawn_effect(name: String, position: Vector2)

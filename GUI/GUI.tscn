@@ -32,7 +32,7 @@ gradient = SubResource("Gradient_abr2b")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ra5hc"]
 emission_shape = 3
-emission_box_extents = Vector3(80, 1, 1)
+emission_box_extents = Vector3(79.285, 1, 1)
 particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 99.67
@@ -168,7 +168,9 @@ vertical_alignment = 1
 
 [node name="LevelProgress" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_top = -88
+theme_override_constants/margin_left = 180
+theme_override_constants/margin_top = -90
+theme_override_constants/margin_right = 180
 script = ExtResource("9_iw5b8")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="LevelProgress"]
