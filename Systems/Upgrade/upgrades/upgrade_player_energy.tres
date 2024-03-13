@@ -1,14 +1,22 @@
-[gd_resource type="Resource" script_class="PlayerUpgrade" load_steps=2 format=3 uid="uid://6ufvnhk4aiag"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://6ufvnhk4aiag"]
 
-[ext_resource type="Script" path="res://Systems/Upgrade/PlayerUpgrade.gd" id="1_qunoc"]
+[ext_resource type="Script" path="res://Systems/Upgrade/Upgrade.gd" id="1_v7ier"]
+[ext_resource type="Script" path="res://Systems/Upgrade/UpgradeValue.gd" id="2_gnj0u"]
+
+[sub_resource type="Resource" id="Resource_74n42"]
+script = ExtResource("2_gnj0u")
+path = ":energy:max_energy"
+operation = 0
+type = 2
+upgrade_value = 10
 
 [resource]
-script = ExtResource("1_qunoc")
-health = 0
-energy = 10
-speed = 0.0
+script = ExtResource("1_v7ier")
 title = "Energy"
 type = "player"
 object = ""
-description = "Increase the player max. energy by {energy}"
+unique = false
+quality = 0
+description = "Increase the player max. energy by {upgrade_value}"
 requirements = {}
+upgrades = Array[ExtResource("2_gnj0u")]([SubResource("Resource_74n42")])

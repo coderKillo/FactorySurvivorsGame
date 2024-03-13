@@ -1,16 +1,22 @@
-[gd_resource type="Resource" script_class="PlayerUpgrade" load_steps=2 format=3 uid="uid://bke7joisodfps"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://bke7joisodfps"]
 
-[ext_resource type="Script" path="res://Systems/Upgrade/PlayerUpgrade.gd" id="1_5n6hv"]
+[ext_resource type="Script" path="res://Systems/Upgrade/Upgrade.gd" id="1_6lfgs"]
+[ext_resource type="Script" path="res://Systems/Upgrade/UpgradeValue.gd" id="2_81knr"]
+
+[sub_resource type="Resource" id="Resource_sdtyb"]
+script = ExtResource("2_81knr")
+path = ":movement_speed"
+operation = 0
+type = 2
+upgrade_value = 20
 
 [resource]
-script = ExtResource("1_5n6hv")
-health = 0
-energy = 0
-speed = 20.0
+script = ExtResource("1_6lfgs")
 title = "Movementspeed"
 type = "player"
 object = ""
 unique = false
 quality = 0
-description = "Increase the player movement speed by {speed}"
+description = "Increase the player movement speed by {upgrade_value}"
 requirements = {}
+upgrades = Array[ExtResource("2_81knr")]([SubResource("Resource_sdtyb")])

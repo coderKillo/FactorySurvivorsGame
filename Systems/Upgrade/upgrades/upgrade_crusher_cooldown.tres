@@ -1,19 +1,24 @@
-[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://6hqrqpclnjpj"]
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=4 format=3 uid="uid://6hqrqpclnjpj"]
 
 [ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_no4d8"]
+[ext_resource type="Script" path="res://Systems/Upgrade/UpgradeValue.gd" id="2_c67jc"]
+
+[sub_resource type="Resource" id="Resource_rr48i"]
+script = ExtResource("2_c67jc")
+path = ":data:cooldown"
+operation = 1
+type = 3
+upgrade_value = 0.2
 
 [resource]
 script = ExtResource("1_no4d8")
-speed = 0.0
-damage = 0.0
-value = 0
-cooldown = 0.2
-is_new = false
 title = "Crusher Cooldown"
 type = "entity"
 object = "Crusher"
 unique = false
-description = "Reduce the cooldown of your {object} by {cooldown}"
+quality = 0
+description = "Reduce the cooldown of your {object} by 0.2"
 requirements = {
 "Crusher": 1
 }
+upgrades = Array[ExtResource("2_c67jc")]([SubResource("Resource_rr48i")])

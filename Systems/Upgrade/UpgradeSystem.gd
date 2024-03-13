@@ -21,8 +21,6 @@ func setup(player: Player, entity_tracker: EntityTracker, gui: GUI):
 
 	Events.leveled_up.connect(_on_level_up)
 
-	_on_level_up()
-
 
 func _load_upgrades():
 	var dir = DirAccess.open(UPGRADE_PATH)
@@ -44,8 +42,9 @@ func _on_level_up() -> void:
 	var upgrade_options: Array[Upgrade] = []
 	while len(upgrade_options) < UPGRADE_OPTIONS:
 		var upgrade = _get_upgrade()
-		if not upgrade in upgrade_options:
-			upgrade_options.append(upgrade)
+		if upgrade in upgrade_options:
+			continue
+		upgrade_options.append(upgrade)
 
 	_gui.display_upgrade(upgrade_options, _apply_upgrade)
 
@@ -58,45 +57,40 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 		_upgrades.erase(upgrade)
 
 	if upgrade.type == "player":
-		var player_upgrade := upgrade as PlayerUpgrade
-		player_upgrade.upgrade(_player)
+		upgrade.upgrade(_player)
 
 		Events.spawn_effect.emit("upgrade_explosion", _player.global_position)
 
 	elif upgrade.type == "weapon":
-		var weapon_upgrade := upgrade as WeaponUgrade
-		if weapon_upgrade.object == "pickaxe":
-			weapon_upgrade.upgrade(_player._weapons[0])
-		elif weapon_upgrade.object == "blaster":
-			weapon_upgrade.upgrade(_player._weapons[1])
+		if upgrade.object == "pickaxe":
+			upgrade.upgrade(_player._weapons[0])
+		elif upgrade.object == "blaster":
+			upgrade.upgrade(_player._weapons[1])
 		else:
 			printerr(
-				(
-					"invalid object '%s' in upgrade: %s"
-					% [weapon_upgrade.object, weapon_upgrade.upgrade_name()]
-				)
+				"invalid object '%s' in upgrade: %s" % [upgrade.object, upgrade.upgrade_name()]
 			)
 
 		Events.spawn_effect.emit("upgrade_explosion", _player.global_position)
 
 	elif upgrade.type == "entity":
-		var entity_upgrade := upgrade as EntityUpgrade
-
-		if entity_upgrade.is_new:
-			_gui.add_to_quickbar(Library.blueprints[entity_upgrade.object].instantiate())
+		if upgrade.unique:
+			_gui.add_to_quickbar(Library.blueprints[upgrade.object].instantiate())
 			return
 
 		for location in _entity_tracker.entities.keys():
 			var entity := _entity_tracker.entities[location] as Entity
-			if Library.get_entity_name(entity) == entity_upgrade.object:
-				entity_upgrade.upgrade_entity(entity)
+			if Library.get_entity_name(entity) == upgrade.object:
+				upgrade.upgrade(entity)
 				Events.spawn_effect.emit("upgrade_explosion", entity.global_position)
 
 		for panel in _gui.get_quickbar_panels():
 			if panel.held_item == null:
 				continue
-			if Library.get_entity_name(panel.held_item) == entity_upgrade.object:
-				entity_upgrade.upgrade_blueprint(panel.held_item)
+			print(Library.get_entity_name(panel.held_item))
+			print(upgrade.object)
+			if Library.get_entity_name(panel.held_item) == upgrade.object:
+				upgrade.upgrade(panel.held_item)
 
 	else:
 		printerr("invalid type '%s' in upgrade: %s" % [upgrade.type, upgrade.upgrade_name()])

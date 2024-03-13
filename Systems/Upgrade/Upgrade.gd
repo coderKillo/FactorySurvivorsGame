@@ -1,3 +1,4 @@
+@tool
 class_name Upgrade
 extends Resource
 
@@ -11,6 +12,19 @@ extends Resource
 
 @export var requirements: Dictionary
 
+@export var upgrades: Array[UpgradeValue]:
+	set(value):
+		upgrades.resize(value.size())
+		upgrades = value
+		for i in upgrades.size():
+			if not upgrades[i]:
+				upgrades[i] = UpgradeValue.new()
+
 
 func upgrade_name() -> String:
 	return resource_path.substr(resource_path.rfind("/") + 1)
+
+
+func upgrade(node: Node):
+	for u in upgrades:
+		u.apply(node)
