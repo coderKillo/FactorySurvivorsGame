@@ -17,7 +17,7 @@ var _target: Node2D
 
 func _ready():
 	_animation.play("idle")
-	_animation.speed_scale = ANIMATION_TIME / speed
+	_animation.speed_scale = ANIMATION_TIME / self.data.speed
 
 
 func _physics_process(_delta):
@@ -54,7 +54,7 @@ func _face_target():
 
 
 func _process(_delta):
-	_animation.speed_scale = ANIMATION_TIME / speed
+	_animation.speed_scale = ANIMATION_TIME / self.data.speed
 
 	if _power.efficency >= 1.0:
 		_attack()
@@ -81,7 +81,7 @@ func _attack():
 func _fire():
 	var projectile: Projectile = ProjectileScene.instantiate()
 	projectile.transform = _shoot_position.transform
-	projectile.damage = damage
+	projectile.damage = self.data.damage
 
 	_projectiles.add_child(projectile)
 

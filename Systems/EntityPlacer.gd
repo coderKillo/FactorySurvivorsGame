@@ -88,18 +88,18 @@ func _place_entity(location: Vector2i):
 	entity.global_position = to_global(map_to_local(location))
 	entity.global_rotation = _gui.preview.global_rotation
 
-	add_child(entity)
-
 	entity._setup(_gui.blueprint)
 	entity._setup_gui(_gui)
+
+	add_child(entity)
 
 	_tracker.place_entities(entity, location)
 
 	SoundManager.play("entity_placed")
 
-	if _player.energy.energy < entity.energy_cost:
+	if _player.energy.energy < entity.data.energy_cost:
 		return
-	_player.energy.energy -= entity.energy_cost
+	_player.energy.energy -= entity.data.energy_cost
 
 	# trigger item changed for cooldown
 	_gui.blueprint.stack_count += 0

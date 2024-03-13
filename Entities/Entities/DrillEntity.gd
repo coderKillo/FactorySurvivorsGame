@@ -37,7 +37,7 @@ func _get_destriction_components() -> void:
 
 
 func _set_animation_speed() -> void:
-	_animation.speed_scale = ANIMATION_TIME / speed
+	_animation.speed_scale = ANIMATION_TIME / self.data.speed
 
 
 func _on_animation_finished() -> void:
@@ -58,7 +58,7 @@ func _start_destruction() -> void:
 	_animation.global_position = destruction_component.global_position
 	_animation.play("work")
 
-	var timer = get_tree().create_timer(DESTRICTION_TIME * ANIMATION_TIME / speed)
+	var timer = get_tree().create_timer(DESTRICTION_TIME * ANIMATION_TIME / self.data.speed)
 	await timer.timeout
 
 	if destruction_component != null:

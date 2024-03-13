@@ -11,7 +11,7 @@ func _ready():
 
 
 func _process(_delta):
-	_heat_receiver.required_heat = int(100 / float(value))
+	_heat_receiver.required_heat = int(100 / float(self.data.value))
 
 
 func _on_heat_provided(amount):

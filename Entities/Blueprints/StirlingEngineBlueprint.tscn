@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgy3cbxpgcbyq"]
+[gd_scene load_steps=5 format=3 uid="uid://dgy3cbxpgcbyq"]
 
 [ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_satmf"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="2_3jppi"]
+[ext_resource type="Script" path="res://Entities/Entities/EntityData.gd" id="2_t1xdb"]
+
+[sub_resource type="Resource" id="Resource_iosgu"]
+script = ExtResource("2_t1xdb")
+cooldown = 2.0
+energy_cost = 0
+speed = 1.0
+damage = 1.0
+stack_size = 10
+value = 10
 
 [node name="StirlingEngineBlueprint" type="Node2D"]
 script = ExtResource("1_satmf")
+data = SubResource("Resource_iosgu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3jppi")

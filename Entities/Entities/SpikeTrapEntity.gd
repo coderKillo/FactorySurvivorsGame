@@ -19,4 +19,4 @@ func _do_damage():
 	for area in _area.get_overlapping_areas():
 		var hurt_box = area as HurtBoxComponent
 		if hurt_box != null:
-			hurt_box.take_damage(damage)
+			hurt_box.take_damage(self.data.damage)

@@ -23,7 +23,7 @@ func _on_held_item_changed(__panel: InventoryPanel, item: BlueprintEntity):
 	if not item.placeable:
 		return
 
-	start_cooldown(item.cooldown)
+	start_cooldown(item.data.cooldown)
 
 
 func start_cooldown(time: float) -> void:

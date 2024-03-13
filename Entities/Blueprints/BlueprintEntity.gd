@@ -6,13 +6,8 @@ signal stack_count_changed(count: int)
 @export var entity_name: String = ""
 @export var placeable := true
 @export var rotateable := false
-@export var stack_size := 10
-@export var value := 10
-@export var cooldown := 2.0
-@export var energy_cost := 0
 
-@export var speed := 1.0
-@export var damage := 1.0
+@export var data := EntityData.new()
 
 var stack_count := 1:
 	set = _set_stack_count
@@ -23,7 +18,7 @@ func empty() -> bool:
 
 
 func full() -> bool:
-	return stack_count >= stack_size
+	return stack_count >= data.stack_size
 
 
 func _set_stack_count(v):

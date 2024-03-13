@@ -1,13 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgtf2yv4jf0mf"]
+[gd_scene load_steps=6 format=3 uid="uid://cgtf2yv4jf0mf"]
 
 [ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_pixpi"]
+[ext_resource type="Script" path="res://Entities/Entities/EntityData.gd" id="2_6fwo0"]
 [ext_resource type="Texture2D" uid="uid://dn317g7xjubkp" path="res://Shared/animations/crusher_idle.png" id="2_madb3"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="3_tu3te"]
+
+[sub_resource type="Resource" id="Resource_gax02"]
+script = ExtResource("2_6fwo0")
+cooldown = 2.0
+energy_cost = 0
+speed = 1.0
+damage = 1.0
+stack_size = 10
+value = 10
 
 [node name="CrusherBlueprint" type="Node2D"]
 script = ExtResource("1_pixpi")
 entity_name = "Crusher"
 rotateable = true
+data = SubResource("Resource_gax02")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_madb3")
