@@ -16,7 +16,7 @@ func _fire():
 	projectile.transform = _shoot_position.global_transform
 	projectile.top_level = true
 	projectile.damage = damage
-	projectile.size = Vector2(projectile_scale, projectile_scale)
+	projectile.scale = Vector2(projectile_scale, projectile_scale)
 
 	projectile_container.add_child(projectile)
 

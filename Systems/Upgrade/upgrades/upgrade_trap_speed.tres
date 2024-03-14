@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=2 format=3 uid="uid://c7t7uh8g61r80"]
+[gd_resource type="Resource" script_class="EntityUpgrade" load_steps=4 format=3 uid="uid://c7t7uh8g61r80"]
 
 [ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_m3pbl"]
+[ext_resource type="Script" path="res://Systems/Upgrade/UpgradeValue.gd" id="2_bobn4"]
+
+[sub_resource type="Resource" id="Resource_x3xe1"]
+script = ExtResource("2_bobn4")
+path = ":data:speed"
+operation = 0
+type = 3
+upgrade_value = 0.1
 
 [resource]
 script = ExtResource("1_m3pbl")
-speed = 0.1
-damage = 0.0
-value = 0
-cooldown = 0.0
-is_new = false
 title = "SpikeTrap Speed"
 type = "entity"
 object = "SpikeTrap"
@@ -18,3 +21,4 @@ description = "Increase the production speed of your {object} by {speed}"
 requirements = {
 "SpikeTrap": 1
 }
+upgrades = Array[ExtResource("2_bobn4")]([SubResource("Resource_x3xe1")])

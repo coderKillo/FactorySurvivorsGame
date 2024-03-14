@@ -20,3 +20,11 @@ func _do_damage():
 		var hurt_box = area as HurtBoxComponent
 		if hurt_box != null:
 			hurt_box.take_damage(self.data.damage)
+
+			if hurt_box.owner.has_node_and_resource(":speed"):
+				_apply_slow(hurt_box.owner)
+
+
+func _apply_slow(body: Node) -> void:
+	body.speed -= self.data.amount
+	body.speed = max(0, body.speed)
