@@ -12,11 +12,11 @@ upgrade_value = 1
 
 [resource]
 script = ExtResource("1_fjog2")
-title = "Drill Cooldown"
+title = "Drill Duration"
 type = "entity"
 object = "Drill"
 unique = false
-quality = 0
+quality = 2
 description = "Reduce the cooldown of your {object} by {cooldown}"
 requirements = {
 "Drill": 3
