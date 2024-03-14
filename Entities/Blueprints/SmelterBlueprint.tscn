@@ -12,6 +12,7 @@ speed = 1.0
 damage = 1.0
 stack_size = 10
 value = 1000
+amount = 1
 
 [node name="SmelterBlueprint" type="Node2D"]
 script = ExtResource("1_reuh6")

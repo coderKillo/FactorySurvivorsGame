@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Systems/Upgrade/EntityUpgrade.gd" id="1_nas1r"]
 [ext_resource type="Script" path="res://Systems/Upgrade/UpgradeValue.gd" id="2_mc05r"]
 
-[sub_resource type="Resource" id="Resource_eeric"]
+[sub_resource type="Resource" id="Resource_3kugn"]
 script = ExtResource("2_mc05r")
 path = ":data:cooldown"
 operation = 1
@@ -21,4 +21,4 @@ description = "Reduce the cooldown of your {object} by {cooldown}"
 requirements = {
 "Turret": 1
 }
-upgrades = Array[ExtResource("2_mc05r")]([SubResource("Resource_eeric")])
+upgrades = Array[ExtResource("2_mc05r")]([SubResource("Resource_3kugn")])

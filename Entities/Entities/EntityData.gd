@@ -7,3 +7,4 @@ extends Resource
 @export var damage := 1.0
 @export var stack_size := 10
 @export var value := 10
+@export var amount := 1

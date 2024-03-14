@@ -167,7 +167,8 @@ region_rect = Rect2(80, 0, 16, 16)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7vlh6")
 animation = &"work"
-frame_progress = 0.896246
+frame = 19
+frame_progress = 1.0
 offset = Vector2(0, -5)
 
 [node name="Area2D" type="Area2D" parent="."]
