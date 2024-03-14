@@ -3,20 +3,20 @@
 [ext_resource type="Script" path="res://Systems/Upgrade/Upgrade.gd" id="1_rk0vy"]
 [ext_resource type="Script" path="res://Systems/Upgrade/UpgradeValue.gd" id="2_wts60"]
 
-[sub_resource type="Resource" id="Resource_ad2s3"]
+[sub_resource type="Resource" id="Resource_02kf5"]
 script = ExtResource("2_wts60")
-path = ":fire_rate"
-operation = 1
-type = 3
-upgrade_value = 0.02
+path = ":cost_reduction"
+operation = 0
+type = 2
+upgrade_value = 2
 
 [resource]
 script = ExtResource("1_rk0vy")
-title = "Blaster Attackspeed"
+title = "Blaster Cost"
 type = "weapon"
 object = "blaster"
 unique = false
 quality = 1
 description = "Increases the speed of your {object} by 0.02"
 requirements = {}
-upgrades = Array[ExtResource("2_wts60")]([SubResource("Resource_ad2s3")])
+upgrades = Array[ExtResource("2_wts60")]([SubResource("Resource_02kf5")])

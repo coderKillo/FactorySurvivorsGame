@@ -1,25 +1,24 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=5 format=3 uid="uid://b4arkok5lgmy3"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=4 format=3 uid="uid://b4arkok5lgmy3"]
 
 [ext_resource type="Script" path="res://Systems/Upgrade/Upgrade.gd" id="1_boncf"]
-[ext_resource type="PackedScene" uid="uid://dg82vhdc6wjrh" path="res://Systems/Weapon/ProjectileBig.tscn" id="1_u75k3"]
 [ext_resource type="Script" path="res://Systems/Upgrade/UpgradeValue.gd" id="2_iaiqd"]
 
-[sub_resource type="Resource" id="Resource_kttrx"]
+[sub_resource type="Resource" id="Resource_q3n6t"]
 script = ExtResource("2_iaiqd")
-path = ":ProjectileScene"
-operation = 4
-type = 24
-upgrade_value = ExtResource("1_u75k3")
+path = ":projectile_scale"
+operation = 0
+type = 3
+upgrade_value = 0.2
 
 [resource]
 script = ExtResource("1_boncf")
-title = "Blaster Big Shot"
+title = "Blaster Shot Size"
 type = "weapon"
 object = "blaster"
-unique = true
-quality = 3
+unique = false
+quality = 2
 description = "Change the projectile of your {object} to big shot"
 requirements = {
-"blaster": 1
+"blaster": 2
 }
-upgrades = Array[ExtResource("2_iaiqd")]([SubResource("Resource_kttrx")])
+upgrades = Array[ExtResource("2_iaiqd")]([SubResource("Resource_q3n6t")])

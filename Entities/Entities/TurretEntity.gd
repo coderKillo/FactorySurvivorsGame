@@ -30,17 +30,13 @@ func _physics_process(_delta):
 		_target = _area.get_overlapping_areas().pick_random()
 
 	_face_target()
-	_aim_projectiles_at_target()
-
-
-func _aim_projectiles_at_target():
-	for projectile in _projectiles.get_children():
-		projectile.look_at(_target.global_position)
 
 
 func _face_target():
 	var direction = global_position.direction_to(_target.global_position)
 	var x = _shoot_position.position.x
+
+	_shoot_position.look_at(_target.global_position)
 
 	if direction.x > 0:
 		_animation.flip_h = false
@@ -79,10 +75,18 @@ func _attack():
 
 
 func _fire():
-	var projectile: Projectile = ProjectileScene.instantiate()
-	projectile.transform = _shoot_position.transform
-	projectile.damage = self.data.damage
+	var base_spread := 15
+	# 1:0 2:-7.5 3:-15 3:-22,5 ...
+	var spread := -((self.data.amount - 1) / 2.0) * base_spread
 
-	_projectiles.add_child(projectile)
+	for _i in self.data.amount:
+		var projectile: Projectile = ProjectileScene.instantiate()
+		projectile.transform = _shoot_position.transform
+		projectile.damage = self.data.damage
+
+		projectile.rotation_degrees += spread
+		spread += base_spread
+
+		_projectiles.add_child(projectile)
 
 	SoundManager.play("turret_fire")

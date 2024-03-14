@@ -5,10 +5,16 @@ extends Weapon
 @onready var _damage_effect: Sprite2D = $Sprite2D
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 
+var max_hit := 2
+var weapon_size := 1.0
+
 
 func _fire():
 	_animation.speed_scale = fire_rate
 	_animation.play("attack")
+
+	scale.x = weapon_size
+	scale.y = weapon_size
 
 	await get_tree().create_timer(0.2 * fire_rate).timeout
 
@@ -16,15 +22,25 @@ func _fire():
 
 	SoundManager.play("pickaxe_hit")
 
+	var hit = 0
+
 	for body in _damage_zone.get_overlapping_bodies():
 		var destruction := body.get_node_or_null("DestructionComponent") as DestructionComponent
 		if destruction != null and destruction.destruction_filter == type:
 			destruction.destruct()
+			hit += 1
+
+		if hit >= max_hit:
+			return
 
 	for area in _damage_zone.get_overlapping_areas():
 		var hurt_box = area as HurtBoxComponent
 		if hurt_box != null:
 			hurt_box.take_damage(damage)
+			hit += 1
+
+		if hit >= max_hit:
+			return
 
 
 func _create_slash_effect() -> void:

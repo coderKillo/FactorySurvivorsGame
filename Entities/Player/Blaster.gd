@@ -7,16 +7,20 @@ extends Weapon
 @onready var _shoot_position: Marker2D = $Marker2D
 @onready var _sprite: Sprite2D = $Sprite2D
 
+var projectile_scale := 1.0  # add update
+var cost_reduction := 0
+
 
 func _fire():
 	var projectile: Projectile = ProjectileScene.instantiate()
 	projectile.transform = _shoot_position.global_transform
 	projectile.top_level = true
 	projectile.damage = damage
+	projectile.size = Vector2(projectile_scale, projectile_scale)
 
 	projectile_container.add_child(projectile)
 
-	energy_used.emit(projectile.cost)
+	energy_used.emit(projectile.cost - cost_reduction)
 
 	SoundManager.play("blaster_fire")
 

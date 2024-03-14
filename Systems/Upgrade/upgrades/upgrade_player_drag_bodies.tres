@@ -8,7 +8,7 @@ script = ExtResource("2_6l1lh")
 path = "DragObjects:max_bodies"
 operation = 0
 type = 2
-upgrade_value = 10
+upgrade_value = 1
 
 [resource]
 script = ExtResource("1_1i3gg")
@@ -16,7 +16,7 @@ title = "Strength"
 type = "player"
 object = ""
 unique = false
-quality = 0
+quality = 2
 description = "Increase the number of corpse you can drag by 1"
 requirements = {}
 upgrades = Array[ExtResource("2_6l1lh")]([SubResource("Resource_g3dkk")])
