@@ -42,6 +42,8 @@ func _unhandled_input(event: InputEvent):
 	_destruction_timer.update_input(event, _get_cell_under_mouse())
 
 	if event.is_action_pressed("left_click"):
+		_closw_entity_gui()
+
 		if _has_placable_blueprint():
 			if _can_placed_on_cell():
 				_place_entity(_get_cell_under_mouse())
@@ -111,14 +113,16 @@ func _place_entity(location: Vector2i):
 
 
 func _show_entity_gui(location: Vector2i) -> void:
-	if _gui.open_entity_ui != null:
-		_gui.open_entity_ui.hide()
-		_gui.open_entity_ui = null
-
 	var entity: Entity = _tracker.get_entity_at(location)
 	if entity != null:
 		entity._show_gui()
 		_gui.open_entity_ui = entity._get_ui_component()
+
+
+func _closw_entity_gui() -> void:
+	if _gui.open_entity_ui != null:
+		_gui.open_entity_ui.hide()
+		_gui.open_entity_ui = null
 
 
 func _finish_destruction(location: Vector2i):
