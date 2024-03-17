@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_8420f"]
 script = ExtResource("2_hm6si")
-cooldown = 2.0
+cooldown = 10.0
 energy_cost = 0
 speed = 1.0
 damage = 15

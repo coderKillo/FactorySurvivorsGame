@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_nsmae"]
 script = ExtResource("2_6ihso")
-cooldown = 2.0
+cooldown = 3.0
 energy_cost = 40
 speed = 1.0
 damage = 1

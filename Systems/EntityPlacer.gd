@@ -71,10 +71,10 @@ func _process(_delta):
 
 
 func _update_blueprint():
+	_set_blueprint_color()
+
 	if not _has_placable_blueprint():
 		return
-
-	_set_blueprint_color()
 
 	if _gui.blueprint is WireBlueprint:
 		WireBlueprint.set_sprite_from_direction(
@@ -135,7 +135,10 @@ func _update_mouse_position_on_grid():
 
 
 func _set_blueprint_color():
-	if _can_placed_on_cell():
+	if _gui.blueprint == null:
+		return
+
+	if _can_placed_on_cell() and _has_placable_blueprint():
 		_gui.preview.modulate = Color.GREEN
 	else:
 		_gui.preview.modulate = Color.RED

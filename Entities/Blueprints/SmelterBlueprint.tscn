@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_kws4c"]
 script = ExtResource("2_pwumq")
-cooldown = 2.0
+cooldown = 60.0
 energy_cost = 0
 speed = 1.0
 damage = 1

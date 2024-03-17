@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_ntqxl"]
 script = ExtResource("2_atmbe")
-cooldown = 2.0
+cooldown = 4.0
 energy_cost = 0
 speed = 15.0
 damage = 1
