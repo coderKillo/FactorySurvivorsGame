@@ -43,6 +43,16 @@ func get_death_sprite() -> Array[Sprite2D]:
 	return sprites
 
 
+func hit(time: float) -> void:
+	for part in _parts:
+		part.use_parent_material = true
+
+	await get_tree().create_timer(time).timeout
+
+	for part in _parts:
+		part.use_parent_material = false
+
+
 func _on_animation_finished():
 	animation_finished.emit()
 

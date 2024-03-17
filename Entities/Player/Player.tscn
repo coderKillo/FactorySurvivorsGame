@@ -1,8 +1,9 @@
-[gd_scene load_steps=42 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=45 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
 [ext_resource type="Resource" uid="uid://c0jni5ubdefk4" path="res://Entities/Player/Resources.tres" id="2_p6xcu"]
+[ext_resource type="Script" path="res://Entities/Player/PlayerCamera.gd" id="3_5q30c"]
 [ext_resource type="Shader" path="res://VFX/monitor_effect.gdshader" id="3_27dss"]
 [ext_resource type="Script" path="res://Entities/Player/DragObjects.gd" id="5_7xnov"]
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="6_bhgi1"]
@@ -15,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://b7jpgv4aavsw3" path="res://Shared/player.png" id="8_3ndie"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="9_dkwkk"]
 [ext_resource type="Script" path="res://Entities/HurtBoxComponent.gd" id="13_4fvic"]
+[ext_resource type="Shader" path="res://Shader/hitshader.gdshader" id="16_e4tol"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
 radius = 2.0
@@ -96,6 +98,11 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2ngo"]
 size = Vector2(7, 13)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7tipw"]
+shader = ExtResource("16_e4tol")
+shader_parameter/hit_color = Color(1, 1, 1, 1)
+shader_parameter/hit = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3b5fn"]
 atlas = ExtResource("8_3ndie")
@@ -213,6 +220,10 @@ shape = SubResource("CapsuleShape2D_dydcu")
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
+script = ExtResource("3_5q30c")
+amplitude = 2.0
+duration = 0.1
+damp_easing = 0.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 layer = 5
@@ -223,6 +234,8 @@ offset_left = -1.0
 offset_right = 319.0
 offset_bottom = 179.0
 mouse_filter = 2
+
+[node name="Timer" type="Timer" parent="Camera2D"]
 
 [node name="AutoattackArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -338,13 +351,16 @@ one_shot = true
 [node name="Projectiles" type="Node2D" parent="Weapons"]
 
 [node name="Model" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_7tipw")
 
 [node name="Body" type="AnimatedSprite2D" parent="Model"]
+use_parent_material = true
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_20hi3")
 animation = &"idle"
 
 [node name="Hands" type="AnimatedSprite2D" parent="Model"]
+use_parent_material = true
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_i3cpw")
 animation = &"walk"

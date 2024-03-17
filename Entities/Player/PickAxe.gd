@@ -25,22 +25,22 @@ func _fire():
 	var hit = 0
 
 	for body in _damage_zone.get_overlapping_bodies():
+		if hit >= max_hit:
+			break
+
 		var destruction := body.get_node_or_null("DestructionComponent") as DestructionComponent
 		if destruction != null and destruction.destruction_filter == type:
 			destruction.destruct()
 			hit += 1
 
-		if hit >= max_hit:
-			return
-
 	for area in _damage_zone.get_overlapping_areas():
+		if hit >= max_hit:
+			break
+
 		var hurt_box = area as HurtBoxComponent
 		if hurt_box != null:
-			hurt_box.take_damage(damage)
+			hurt_box.take_damage(damage, global_position)
 			hit += 1
-
-		if hit >= max_hit:
-			return
 
 
 func _create_slash_effect() -> void:

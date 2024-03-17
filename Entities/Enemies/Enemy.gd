@@ -16,9 +16,13 @@ var _current_state: States = States.IDLE
 @onready var health: Health = $Health
 @onready var weapon: EnemyWeapon = $Weapon
 
+@onready var _hurt_box: HurtBoxComponent = $HurtBoxComponent
+
 
 func _ready():
 	health.death.connect(_on_death)
+	_hurt_box.hit.connect(_on_hit)
+	_hurt_box.push_back.connect(_on_hit_push_back)
 
 
 func _process(_delta):
@@ -43,7 +47,7 @@ func _physics_process(_delta):
 	if _current_state == States.MOVE:
 		direction = position.direction_to(target.position)
 
-	velocity = direction * speed
+	velocity = lerp(velocity, direction * speed, 0.5)
 
 	move_and_slide()
 
@@ -102,3 +106,11 @@ func _target_in_range() -> bool:
 
 func _on_death():
 	_current_state = States.DEATH
+
+
+func _on_hit(_damage: int) -> void:
+	model.hit(0.2)
+
+
+func _on_hit_push_back(direction: Vector2) -> void:
+	velocity = direction * 100

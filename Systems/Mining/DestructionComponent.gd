@@ -15,6 +15,12 @@ func destruct() -> void:
 	var random_offset = Vector2(randi_range(-10, 10), randi_range(-10, 10))
 	Events.ground_entity_spawn.emit(destruction_entity, global_position + random_offset, ore_color)
 
+	Events.frame_freeze.emit()
+	Events.spawn_effect.emit("destruction", global_position)
+
 	pickup_count -= 1
 	if pickup_count <= 0:
 		owner.queue_free()
+		Events.camera_shake.emit(2)
+	else:
+		Events.camera_shake.emit(0.5)

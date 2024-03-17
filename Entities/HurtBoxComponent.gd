@@ -1,6 +1,9 @@
 class_name HurtBoxComponent
 extends Area2D
 
+signal hit(damage: int)
+signal push_back(direction: Vector2)
+
 @export var health: Health
 @export var hit_sound := ""
 
@@ -11,11 +14,24 @@ func _ready() -> void:
 	assert(health, "missing health component")
 
 
-func take_damage(damage: int):
+func take_damage(damage: int, source_position: Vector2):
 	if not can_take_damage:
 		return
 
 	if hit_sound != "":
 		SoundManager.play(hit_sound)
+
+	var hit_direction = global_position.direction_to(source_position).normalized()
+
+	Events.frame_freeze.emit()
+	Events.camera_shake.emit(1.0)
+	Events.spawn_effect_rotated.emit(
+		"hit_effect", global_position, rad_to_deg(hit_direction.angle())
+	)
+
+	DamageNumbers.display(damage, global_position)
+
+	hit.emit(damage)
+	push_back.emit(-hit_direction)
 
 	health.points -= damage

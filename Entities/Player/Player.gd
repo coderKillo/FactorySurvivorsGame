@@ -42,7 +42,8 @@ func _physics_process(_delta):
 
 	var speed = movement_speed
 	# reduce speed the more bodies are grabed with a maximum of 10
-	speed /= min(10, _drag_objects.bodies_grabed() + 1)
+	if _drag_objects.bodies_grabed() > 0:
+		speed /= 2
 
 	velocity = input_direction * speed
 

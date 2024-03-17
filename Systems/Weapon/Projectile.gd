@@ -32,7 +32,7 @@ func _on_body_entered(_body: PhysicsBody2D):
 func _on_area_entered(area: Area2D):
 	var hurt_box = area as HurtBoxComponent
 	if hurt_box != null:
-		hurt_box.take_damage(damage)
+		hurt_box.take_damage(damage, global_position)
 
 	_destroy_projectile()
 

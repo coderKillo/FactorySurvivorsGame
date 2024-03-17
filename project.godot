@@ -21,6 +21,7 @@ Events="*res://Autoload/Events.gd"
 Library="*res://Autoload/Library.gd"
 RecolorTable="*res://Autoload/RecolorTable.gd"
 SoundManager="*res://Sound/SoundManager.tscn"
+DamageNumbers="*res://Autoload/DamageNumbers.gd"
 
 [display]
 

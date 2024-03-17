@@ -16,7 +16,7 @@ func _add_blueprint_to_panel(blueprint_name: String, panel: InventoryPanel) -> b
 		panel.held_item = blueprint
 		return true
 
-	elif panel.held_item.stack_count < panel.held_item.stack_size:
+	elif panel.held_item.stack_count < panel.held_item.data.stack_size:
 		panel.held_item.stack_count += 1
 		blueprint.queue_free()
 		return true

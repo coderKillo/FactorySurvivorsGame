@@ -23,3 +23,9 @@ signal power_produced(total_produced: int, produced: int, used: int)
 signal leveled_up
 
 signal spawn_effect(name: String, position: Vector2)
+
+signal spawn_effect_rotated(name: String, position: Vector2, degree: float)
+
+signal frame_freeze
+
+signal camera_shake(amount: float)
