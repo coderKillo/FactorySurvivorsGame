@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b45rogijccek3"]
+[gd_scene load_steps=19 format=3 uid="uid://dvv3k8f26s3ro"]
 
 [ext_resource type="Script" path="res://Entities/Entities/PowerPlantEntity.gd" id="1_bjnb1"]
 [ext_resource type="Texture2D" uid="uid://bu0nssebqfb4e" path="res://Shared/animations/powerplant-tall_idle.png" id="2_r07na"]

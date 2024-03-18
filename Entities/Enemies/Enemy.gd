@@ -17,12 +17,15 @@ var _current_state: States = States.IDLE
 @onready var weapon: EnemyWeapon = $Weapon
 
 @onready var _hurt_box: HurtBoxComponent = $HurtBoxComponent
+@onready var _navigation: NavigationAgent2D = $NavigationAgent2D
+@onready var _navigation_timer: Timer = $NavigationAgent2D/Timer
 
 
 func _ready():
 	health.death.connect(_on_death)
 	_hurt_box.hit.connect(_on_hit)
 	_hurt_box.push_back.connect(_on_hit_push_back)
+	_navigation_timer.timeout.connect(_on_navi_remake_path)
 
 
 func _process(_delta):
@@ -45,7 +48,7 @@ func _physics_process(_delta):
 	var direction = Vector2.ZERO
 
 	if _current_state == States.MOVE:
-		direction = position.direction_to(target.position)
+		direction = to_local(_navigation.get_next_path_position()).normalized()
 
 	velocity = lerp(velocity, direction * speed, 0.5)
 
@@ -110,6 +113,10 @@ func _on_death():
 
 func _on_hit(_damage: int) -> void:
 	model.hit(0.2)
+
+
+func _on_navi_remake_path() -> void:
+	_navigation.target_position = target.global_position
 
 
 func _on_hit_push_back(direction: Vector2) -> void:

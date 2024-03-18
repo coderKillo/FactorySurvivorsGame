@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Entities/DestructionTimer.gd" id="4_h002n"]
 [ext_resource type="PackedScene" uid="uid://dl1vvohs3eypo" path="res://Entities/Entities/SmelterEntity.tscn" id="5_bv3hl"]
 [ext_resource type="Script" path="res://Systems/EnemyPlacer.gd" id="5_ttm65"]
-[ext_resource type="PackedScene" uid="uid://b45rogijccek3" path="res://Entities/Entities/PowerPlantEntity.tscn" id="6_en6u6"]
+[ext_resource type="PackedScene" uid="uid://dvv3k8f26s3ro" path="res://Entities/Entities/PowerPlantEntity.tscn" id="6_en6u6"]
 [ext_resource type="Script" path="res://Systems/GroundEntitySpawner.gd" id="8_lmmv0"]
 [ext_resource type="Script" path="res://VFX/VfxManager.gd" id="9_23opm"]
 [ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="10_cj28n"]

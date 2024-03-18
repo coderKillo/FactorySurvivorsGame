@@ -62,3 +62,10 @@ script = ExtResource("6_kujet")
 [node name="ShootPosition" type="Marker2D" parent="Weapon"]
 position = Vector2(-8, 0)
 gizmo_extents = 5.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
+[node name="Timer" type="Timer" parent="NavigationAgent2D"]
+wait_time = 0.5
+autostart = true

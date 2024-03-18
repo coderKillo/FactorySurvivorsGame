@@ -9,6 +9,7 @@ const LAYER = 0
 @export var modulate_color: Gradient
 
 @onready var _tilemap: TileMap = $TileMap
+@onready var _nav_map: NavMap = $NavMap
 
 var _default_tile := Vector2i(5, 3)
 
@@ -30,6 +31,7 @@ func _generate_sector(x: int, y: int) -> void:
 			_tilemap.set_cell(
 				LAYER, Vector2i(x_cell, y_cell) + cell_offset, SOURCE_ID, _default_tile
 			)
+			_nav_map.set_cell(Vector2i(x_cell, y_cell) + cell_offset, "on")
 
 	# highlights
 	for source_id in alternate_tiles:
