@@ -2,9 +2,9 @@ class_name EntityUpgrade
 extends Upgrade
 
 
-func upgrade_entity(entity: Entity):
+func upgrade_entity(_entity: Entity):
 	pass
 
 
-func upgrade_blueprint(blueprint: BlueprintEntity):
+func upgrade_blueprint(_blueprint: BlueprintEntity):
 	pass
