@@ -8,8 +8,14 @@ var _player: Player
 var _entity_tracker: EntityTracker
 var _gui: GUI
 
-var _upgrades: Array[Upgrade] = []
 var _current_requirements: Dictionary = {}
+
+# DECKS
+var _unused_deck: Array[Upgrade] = []
+var _used_deck: Array[Upgrade] = []
+var _locked_deck: Array[Upgrade] = []
+var _unlock_queue: Array[Upgrade] = []
+var _hand: Array[Upgrade] = []
 
 
 func setup(player: Player, entity_tracker: EntityTracker, gui: GUI):
@@ -33,28 +39,60 @@ func _load_upgrades():
 	var filename := dir.get_next()
 	while filename != "":
 		if filename.begins_with("upgrade_"):
-			_upgrades.append(load(dir.get_current_dir() + "/" + filename))
+			var upgrade := load(dir.get_current_dir() + "/" + filename) as Upgrade
+
+			if upgrade.requirements.is_empty():
+				_unused_deck.append(upgrade)
+			else:
+				_locked_deck.append(upgrade)
 
 		filename = dir.get_next()
 
 
 func _on_level_up() -> void:
-	var upgrade_options: Array[Upgrade] = []
-	while len(upgrade_options) < UPGRADE_OPTIONS:
-		var upgrade = _get_upgrade()
-		if upgrade in upgrade_options:
-			continue
-		upgrade_options.append(upgrade)
+	for upgrade in _locked_deck.duplicate():
+		if _requirements_fulfilled(upgrade):
+			_locked_deck.erase(upgrade)
+			_unlock_queue.append(upgrade)
 
-	_gui.display_upgrade(upgrade_options, _apply_upgrade)
+	_hand.clear()
+	_used_deck.shuffle()
+	_unused_deck.shuffle()
+
+	# 1. Card
+	if not _unused_deck.is_empty():
+		_hand.append(_unused_deck.pop_back())
+	else:
+		_hand.append(_used_deck.pop_back())
+
+	# 2. Card
+	if not _unused_deck.is_empty():
+		_hand.append(_unused_deck.pop_back())
+	else:
+		_hand.append(_used_deck.pop_back())
+
+	# 3. Card
+	if not _unlock_queue.is_empty():
+		_hand.append(_unlock_queue.pop_back())
+	elif not _used_deck.is_empty():
+		_hand.append(_used_deck.pop_back())
+	else:
+		_hand.append(_unused_deck.pop_back())
+
+	_hand.shuffle()
+	_gui.display_upgrade(_hand, _apply_upgrade)
 
 
 func _apply_upgrade(upgrade: Upgrade) -> void:
+	_hand.erase(upgrade)
+	if not upgrade.unique:
+		_used_deck.append(upgrade)
+
+	_unused_deck.append_array(_hand)
+	_hand.clear()
+
 	_add_requriement(upgrade.type)
 	_add_requriement(upgrade.object)
-
-	if upgrade.unique:
-		_upgrades.erase(upgrade)
 
 	if upgrade.type == "player":
 		upgrade.upgrade(_player)
@@ -100,15 +138,6 @@ func _add_requriement(type: String) -> void:
 	if not _current_requirements.has(type):
 		_current_requirements[type] = 0
 	_current_requirements[type] += 1
-
-
-func _get_upgrade() -> Upgrade:
-	var valid_upgrades = []
-	for upgrade in _upgrades:
-		if _requirements_fulfilled(upgrade):
-			valid_upgrades.append(upgrade)
-
-	return valid_upgrades.pick_random()
 
 
 func _requirements_fulfilled(upgrade: Upgrade) -> bool:
