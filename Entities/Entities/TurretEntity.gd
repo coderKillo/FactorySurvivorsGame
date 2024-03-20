@@ -6,22 +6,24 @@ const ANIMATION_TIME = 1.0
 @export var ProjectileScene = preload("res://Systems/Weapon/ProjectileBig.tscn")
 
 @onready var _area: Area2D = $Area2D
-@onready var _power: PowerOnDemand = $PowerReceiver
+@onready var _power: PowerReceiver = $PowerReceiver
 @onready var _shoot_position: Marker2D = $Marker2D
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _projectiles: Node2D = $Projectiles
 
-var _is_attacking = false
+var _is_attacking := false
+var _active := false
 var _target: Node2D
 
 
 func _ready():
 	_animation.play("idle")
 	_animation.speed_scale = ANIMATION_TIME / self.data.speed
+	_power.received_power.connect(_on_received_power)
 
 
 func _physics_process(_delta):
-	_power.set_active(_area.has_overlapping_areas())
+	_active = _area.has_overlapping_areas()
 
 	if not _area.has_overlapping_areas():
 		return
@@ -51,8 +53,11 @@ func _face_target():
 
 func _process(_delta):
 	_animation.speed_scale = ANIMATION_TIME / self.data.speed
+	_power.power_required = self.data.energy_cost
 
-	if _power.efficency >= 1.0:
+
+func _on_received_power(amount, _delta):
+	if amount >= _power.power_required and _active:
 		_attack()
 
 

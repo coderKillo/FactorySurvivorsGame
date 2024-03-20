@@ -1,8 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://cxgai8gqi237l"]
+[gd_scene load_steps=22 format=3 uid="uid://cxgai8gqi237l"]
 
 [ext_resource type="Script" path="res://Entities/Entities/ConveyorEntity.gd" id="1_1aslv"]
 [ext_resource type="Texture2D" uid="uid://cn5j2fqgalneh" path="res://Shared/animations/conveyor-green_idle.png" id="1_flwq5"]
-[ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_5ch1f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_motvr"]
 atlas = ExtResource("1_flwq5")
@@ -139,7 +138,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chgpv"]
 size = Vector2(16, 16)
 
-[node name="ConveyorEntity" type="Node2D" groups=["power_receivers"]]
+[node name="ConveyorEntity" type="Node2D"]
 script = ExtResource("1_1aslv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -147,10 +146,6 @@ z_index = -1
 rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_y2mn6")
 animation = &"active"
-
-[node name="PowerReceiver" type="Node2D" parent="."]
-script = ExtResource("3_5ch1f")
-power_required = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 65536

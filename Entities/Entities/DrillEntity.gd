@@ -67,7 +67,7 @@ func _destruct(animation: AnimatedSprite2D) -> void:
 			await get_tree().create_timer(destruction_time).timeout
 
 			if destruction_component != null:
-				destruction_component.destruct()
+				destruction_component.destruct(self.data.damage)
 
 			await animation.animation_finished
 

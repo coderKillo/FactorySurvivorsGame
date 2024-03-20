@@ -11,7 +11,7 @@ energy_cost = 0
 speed = 1.0
 damage = 1
 stack_size = 999
-value = 10
+value = 200
 amount = 1
 
 [node name="OreBlueprint" type="Node2D"]

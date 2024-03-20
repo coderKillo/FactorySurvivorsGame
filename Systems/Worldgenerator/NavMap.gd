@@ -26,7 +26,7 @@ func _on_entity_placed(entity: Entity, cellv: Vector2):
 	if Library.get_entity_name(entity) == "Wire":
 		return
 
-	set_cell(cellv, "off")
+	set_cell(Vector2i(cellv), "off")
 
 	if cellv not in _blocked_cells:
 		_blocked_cells.append(cellv)
@@ -38,4 +38,4 @@ func _on_entity_removed(entity: Entity, cellv: Vector2):
 
 	_blocked_cells.erase(cellv)
 
-	set_cell(cellv, "on")
+	set_cell(Vector2i(cellv), "on")

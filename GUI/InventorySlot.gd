@@ -4,6 +4,9 @@ extends RefCounted
 var stack := 0:
 	set = _set_stack
 
+var data: EntityData:
+	get = _get_data
+
 var _panel: InventoryPanel = null
 
 
@@ -43,6 +46,13 @@ func _set_stack(value):
 
 	if is_bound():
 		_update_panel_stack()
+
+
+func _get_data() -> EntityData:
+	if _panel == null or _panel.held_item == null:
+		return EntityData.new()
+	else:
+		return _panel.held_item.data
 
 
 func _update_panel_stack() -> void:

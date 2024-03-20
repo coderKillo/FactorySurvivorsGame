@@ -2,15 +2,25 @@ extends Entity
 
 @onready var _animation: AnimationPlayer = $AnimationPlayer
 @onready var _area: Area2D = $Area2D
-@onready var _power: PowerOnDemand = $PowerReceiver
+@onready var _power: PowerReceiver = $PowerReceiver
+
+var _active := false
+
+
+func _ready():
+	_power.received_power.connect(_on_received_power)
 
 
 func _physics_process(_delta):
-	_power.set_active(_area.has_overlapping_bodies())
+	_active = _area.has_overlapping_bodies()
 
 
 func _process(_delta):
-	if _power.efficency >= 1.0:
+	_power.power_required = self.data.energy_cost
+
+
+func _on_received_power(amount, _delta):
+	if amount >= _power.power_required and _active:
 		_animation.play("active")
 
 

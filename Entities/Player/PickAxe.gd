@@ -5,7 +5,7 @@ extends Weapon
 @onready var _damage_effect: Sprite2D = $Sprite2D
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 
-var max_hit := 2
+var max_hit := 1
 var weapon_size := 1.0
 
 
@@ -30,7 +30,7 @@ func _fire():
 
 		var destruction := body.get_node_or_null("DestructionComponent") as DestructionComponent
 		if destruction != null and destruction.destruction_filter == type:
-			destruction.destruct()
+			destruction.destruct(damage)
 			hit += 1
 
 	for area in _damage_zone.get_overlapping_areas():

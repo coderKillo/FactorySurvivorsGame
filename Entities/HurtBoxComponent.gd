@@ -18,6 +18,8 @@ func take_damage(damage: int, source_position: Vector2):
 	if not can_take_damage:
 		return
 
+	damage = randi_range(int(damage * 0.8), damage)
+
 	if hit_sound != "":
 		SoundManager.play(hit_sound)
 

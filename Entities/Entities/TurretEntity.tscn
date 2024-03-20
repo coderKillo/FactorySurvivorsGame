@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Entities/Entities/TurretEntity.gd" id="1_msr5f"]
 [ext_resource type="Texture2D" uid="uid://doupr71mtl7tr" path="res://Shared/turret.png" id="2_h1qt4"]
-[ext_resource type="Script" path="res://Systems/Power/PowerOnDemand.gd" id="3_s2nwg"]
+[ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_se41v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hlv50"]
 atlas = ExtResource("2_h1qt4")
@@ -97,7 +97,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_hhsga")
 
 [node name="PowerReceiver" type="Node2D" parent="."]
-script = ExtResource("3_s2nwg")
+script = ExtResource("3_se41v")
 
 [node name="Projectiles" type="Node2D" parent="."]
 

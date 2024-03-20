@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Entities/Entities/SpikeTrapEntity.gd" id="1_aoaj2"]
 [ext_resource type="Texture2D" uid="uid://bcf61g50a400p" path="res://Shared/spike_trap.png" id="1_nlp3l"]
-[ext_resource type="Script" path="res://Systems/Power/PowerOnDemand.gd" id="3_d5rdg"]
+[ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_7xfvg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3edno"]
 atlas = ExtResource("1_nlp3l")
@@ -104,7 +104,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_ociln")
 
 [node name="PowerReceiver" type="Node2D" parent="."]
-script = ExtResource("3_d5rdg")
+script = ExtResource("3_7xfvg")
 power_required = 5.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -30,7 +30,6 @@ func build(enemy: Enemy, template: EnemyTemplate):
 	enemy.health.max_health = template.health
 	enemy.speed = template.speed
 	enemy.weapon.damage = template.damage
-	enemy.destruction_count = template.destruction_count
 	enemy.color = template.ore_color
 
 	for part_name in template.parts.keys():
