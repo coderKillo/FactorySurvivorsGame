@@ -17,7 +17,7 @@ func _physics_process(delta):
 
 		if distance < collect_distance:
 			entity_collected.emit(entity)
-			body.queue_free()
+			entity.queue_free()
 			continue
 
 		body.global_position = body.global_position.move_toward(

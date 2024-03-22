@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=21 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
@@ -11,8 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://dxl6qucg6mgy1" path="res://Shared/06_Hologram_Theme/Sprites/Spritesheet_UI_Hologram.png" id="7_jc05y"]
 [ext_resource type="Script" path="res://GUI/ResourceUI.gd" id="9_1sgrj"]
 [ext_resource type="Script" path="res://GUI/LevelProgress.gd" id="9_iw5b8"]
+[ext_resource type="Texture2D" uid="uid://byjs3ldo24clf" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_05a.png" id="12_aotg0"]
 [ext_resource type="PackedScene" uid="uid://c1wdx8c6sitp1" path="res://GUI/UpgradeSystemGUI.tscn" id="12_gs0l0"]
+[ext_resource type="Texture2D" uid="uid://ioy7cspf8a7p" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_Filler_03a red.png" id="13_hgp22"]
 [ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="13_sfcl2"]
+[ext_resource type="Texture2D" uid="uid://bpbcnanmtiemb" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_Filler_03a.png" id="14_cy8vg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7csh"]
 texture = ExtResource("7_jc05y")
@@ -44,18 +47,6 @@ orbit_velocity_max = 0.0
 scale_min = 2.0
 scale_max = 3.0
 color_initial_ramp = SubResource("GradientTexture1D_otcbt")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3itfp"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-texture = ExtResource("7_jc05y")
-texture_margin_left = 6.0
-texture_margin_top = 13.0
-texture_margin_right = 7.0
-texture_margin_bottom = 13.0
-region_rect = Rect2(672, 231, 65, 19)
 
 [node name="GUI" type="CenterContainer"]
 anchors_preset = 15
@@ -184,27 +175,32 @@ one_shot = true
 explosiveness = 1.0
 
 [node name="ResourceUI" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 268
+theme_override_constants/margin_left = 270
 theme_override_constants/margin_top = -58
 theme_override_constants/margin_bottom = -200
 script = ExtResource("9_1sgrj")
 
-[node name="PanelContainer" type="PanelContainer" parent="ResourceUI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ResourceUI"]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxTexture_3itfp")
+theme_override_constants/separation = -16
 
-[node name="MarginContainer" type="MarginContainer" parent="ResourceUI/PanelContainer"]
+[node name="MoltenBar" type="TextureProgressBar" parent="ResourceUI/HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
+page = 1.79
+value = 76.0
+rounded = true
+fill_mode = 3
+texture_under = ExtResource("12_aotg0")
+texture_progress = ExtResource("13_hgp22")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ResourceUI/PanelContainer/MarginContainer"]
+[node name="LoadBar" type="TextureProgressBar" parent="ResourceUI/HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = -6
+page = 1.79
+value = 89.0
+fill_mode = 3
+texture_under = ExtResource("12_aotg0")
+texture_progress = ExtResource("14_cy8vg")
 
 [node name="UpgradeSystemGUI" parent="." instance=ExtResource("12_gs0l0")]
 layout_mode = 2

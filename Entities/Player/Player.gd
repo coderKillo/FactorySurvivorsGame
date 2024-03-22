@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
+const MID_LOAD_TRESHOLD = 0.5
+const HIGH_LOAD_TRESHOLD = 0.8
+
 @export var movement_speed = 300.0
 @export var resources: CollectedResources
 
@@ -14,9 +17,12 @@ extends CharacterBody2D
 @onready var _collect_objects: CollectObjects = $CollectObjects
 @onready var _auto_attack_area: Area2D = $AutoattackArea
 
+var load_treshold_slow := 15
+
 
 func _ready():
 	_collect_objects.entity_collected.connect(_on_entity_collected)
+	resources.changed.connect(_on_resources_changed)
 	_weapons[1].energy_used.connect(_on_weapon_energy_used)
 
 
@@ -41,7 +47,12 @@ func _physics_process(_delta):
 	_set_animation(input_direction)
 
 	var speed = movement_speed
-	# reduce speed the more bodies are grabed with a maximum of 10
+
+	var current_load := resources.ore_amount / float(resources.ore_limit)
+	if current_load > MID_LOAD_TRESHOLD:
+		speed -= load_treshold_slow
+	if current_load > HIGH_LOAD_TRESHOLD:
+		speed -= load_treshold_slow
 	if _drag_objects.bodies_grabed() > 0:
 		speed /= 2
 
@@ -73,7 +84,11 @@ func _on_entity_collected(entity: GroundEntity):
 
 	SoundManager.play("player_collect")
 
-	resources.add_item(entity_name)
+	resources.ore_amount += entity.data.value
+
+
+func _on_resources_changed() -> void:
+	_collect_objects.set_physics_process(resources.ore_amount <= resources.ore_limit)
 
 
 func _on_weapon_energy_used(amount):

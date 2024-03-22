@@ -1,22 +1,22 @@
 class_name CollectedResources
 extends Resource
 
-signal collection_changed(collection)
+@export var ore_amount := 0:
+	set(value):
+		ore_amount = value
+		changed.emit()
 
-var collection: Dictionary = {}
+@export var ore_limit := 100:
+	set(value):
+		ore_limit = value
+		changed.emit()
 
+@export var molt_amount := 0:
+	set(value):
+		molt_amount = value
+		changed.emit()
 
-func add_item(name: String) -> void:
-	if name not in collection:
-		collection[name] = Library.blueprints[name].instantiate()
-		collection[name].stack_count = 0
-	collection[name].stack_count += 1
-	collection_changed.emit(collection)
-
-
-func remove_item(name: String) -> bool:
-	if name not in collection:
-		return false
-	collection[name].stack_count -= 1
-	collection_changed.emit(collection)
-	return true
+@export var molt_limit := 100:
+	set(value):
+		molt_limit = value
+		changed.emit()
