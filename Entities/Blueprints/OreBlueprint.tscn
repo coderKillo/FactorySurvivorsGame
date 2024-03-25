@@ -13,6 +13,8 @@ damage = 1
 stack_size = 999
 value = 200
 amount = 1
+upgrade_1 = false
+upgrade_2 = false
 
 [node name="OreBlueprint" type="Node2D"]
 script = ExtResource("1_o45xq")

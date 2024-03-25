@@ -143,9 +143,9 @@ func _set_blueprint_color():
 		return
 
 	if _can_placed_on_cell() and _has_placable_blueprint():
-		_gui.preview.modulate = Color.GREEN
+		_gui.preview.material.set_shader_parameter("blend_color", Color(0, 1, 1, 0.7))
 	else:
-		_gui.preview.modulate = Color.RED
+		_gui.preview.material.set_shader_parameter("blend_color", Color(1, 0, 0, 0.7))
 
 
 ########## HELPER

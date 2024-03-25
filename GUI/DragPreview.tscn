@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxfuoin5a4kit"]
+[gd_scene load_steps=5 format=3 uid="uid://dxfuoin5a4kit"]
 
 [ext_resource type="Script" path="res://GUI/DragPreview.gd" id="1_67rgg"]
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_bcp5e"]
+[ext_resource type="Shader" path="res://Shader/hologram2.gdshader" id="3_6tg64"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0f1xi"]
+shader = ExtResource("3_6tg64")
+shader_parameter/phase_trashold = 0.51
+shader_parameter/phase_factor = 0.2
+shader_parameter/blend_color = Color(0, 1, 1, 0.686275)
 
 [node name="DragPreview" type="Control"]
 top_level = true
@@ -21,3 +28,4 @@ theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 6
 
 [node name="Preview" type="Node2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_0f1xi")

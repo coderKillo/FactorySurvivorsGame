@@ -13,12 +13,16 @@ damage = 10
 stack_size = 10
 value = 10
 amount = 1
+upgrade_1 = false
+upgrade_2 = false
 
 [node name="TurretBlueprint" type="Node2D"]
+use_parent_material = true
 script = ExtResource("1_qriha")
 data = SubResource("Resource_1hke6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 texture = ExtResource("2_j6m2x")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)

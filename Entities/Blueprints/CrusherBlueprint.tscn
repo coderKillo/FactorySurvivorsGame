@@ -14,14 +14,18 @@ damage = 1
 stack_size = 10
 value = 10
 amount = 1
+upgrade_1 = false
+upgrade_2 = false
 
 [node name="CrusherBlueprint" type="Node2D"]
+use_parent_material = true
 script = ExtResource("1_pixpi")
 entity_name = "Crusher"
 rotateable = true
 data = SubResource("Resource_gax02")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 texture = ExtResource("2_madb3")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)

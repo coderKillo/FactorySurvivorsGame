@@ -17,10 +17,12 @@ upgrade_1 = false
 upgrade_2 = false
 
 [node name="SmelterBlueprint" type="Node2D"]
+use_parent_material = true
 script = ExtResource("1_reuh6")
 data = SubResource("Resource_kws4c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
 texture = ExtResource("2_u2r2a")
 region_enabled = true
 region_rect = Rect2(144, 0, 16, 16)
