@@ -7,4 +7,4 @@ script = ExtResource("1_pody8")
 ore_amount = 0
 ore_limit = 2000
 molt_amount = 0
-molt_limit = 100
+molt_limit = 2000

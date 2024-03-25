@@ -112,7 +112,7 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 		Events.spawn_effect.emit("upgrade_explosion", _player.global_position)
 
 	elif upgrade.type == "entity":
-		if upgrade.unique:
+		if upgrade.title.begins_with("New:"):
 			_gui.add_to_quickbar(Library.blueprints[upgrade.object].instantiate())
 			return
 

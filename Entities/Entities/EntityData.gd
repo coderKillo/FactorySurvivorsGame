@@ -8,3 +8,5 @@ extends Resource
 @export var stack_size := 10
 @export var value := 10
 @export var amount := 1
+@export var upgrade_1 := false
+@export var upgrade_2 := false

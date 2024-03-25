@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=24 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
 [ext_resource type="PackedScene" uid="uid://dxfuoin5a4kit" path="res://GUI/DragPreview.tscn" id="3_luiu2"]
 [ext_resource type="Script" path="res://GUI/Alarm.gd" id="4_mynwd"]
 [ext_resource type="PackedScene" uid="uid://dckp5fvjnbxnj" path="res://GUI/Quickbar.tscn" id="5_heml8"]
+[ext_resource type="Shader" path="res://Shader/hologram.gdshader" id="6_5iwyi"]
 [ext_resource type="Script" path="res://GUI/ScoreUI.gd" id="6_6dn62"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="6_f4nhr"]
 [ext_resource type="PackedScene" uid="uid://dbadmpq6k0uoo" path="res://GUI/GUISprite.tscn" id="6_t50jr"]
@@ -16,6 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://ioy7cspf8a7p" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_Filler_03a red.png" id="13_hgp22"]
 [ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="13_sfcl2"]
 [ext_resource type="Texture2D" uid="uid://bpbcnanmtiemb" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_Filler_03a.png" id="14_cy8vg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_csb1a"]
+shader = ExtResource("6_5iwyi")
+shader_parameter/phase_color = Color(0.164063, 0.394531, 0.679688, 1)
+shader_parameter/phase_factor = 0.27
+shader_parameter/blend_color = Color(0, 0.243137, 0.541176, 0.901961)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7csh"]
 texture = ExtResource("7_jc05y")
@@ -47,6 +54,12 @@ orbit_velocity_max = 0.0
 scale_min = 2.0
 scale_max = 3.0
 color_initial_ramp = SubResource("GradientTexture1D_otcbt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dgmk"]
+shader = ExtResource("6_5iwyi")
+shader_parameter/phase_color = Color(0.00390625, 0, 0.359375, 1)
+shader_parameter/phase_factor = 0.23
+shader_parameter/blend_color = Color(0, 0.243137, 0.541176, 0.901961)
 
 [node name="GUI" type="CenterContainer"]
 anchors_preset = 15
@@ -96,6 +109,7 @@ theme_override_constants/margin_top = 140
 layout_mode = 2
 
 [node name="ScoreUI" type="MarginContainer" parent="."]
+material = SubResource("ShaderMaterial_csb1a")
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 246
@@ -103,11 +117,13 @@ theme_override_constants/margin_bottom = 143
 script = ExtResource("6_6dn62")
 
 [node name="PanelContainer" type="PanelContainer" parent="ScoreUI"]
+use_parent_material = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_r7csh")
 
 [node name="MarginContainer" type="MarginContainer" parent="ScoreUI/PanelContainer"]
+use_parent_material = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = -3
@@ -116,11 +132,13 @@ theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = -5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer"]
+use_parent_material = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = -1
 
 [node name="GUISprite" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("6_t50jr")]
+use_parent_material = true
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -130,10 +148,12 @@ texture = ExtResource("6_f4nhr")
 region_enabled = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = -4
 
 [node name="Label" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+use_parent_material = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -147,6 +167,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+use_parent_material = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -175,6 +196,7 @@ one_shot = true
 explosiveness = 1.0
 
 [node name="ResourceUI" type="MarginContainer" parent="."]
+material = SubResource("ShaderMaterial_0dgmk")
 layout_mode = 2
 theme_override_constants/margin_left = 270
 theme_override_constants/margin_top = -58
@@ -182,10 +204,12 @@ theme_override_constants/margin_bottom = -200
 script = ExtResource("9_1sgrj")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ResourceUI"]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = -16
 
 [node name="MoltenBar" type="TextureProgressBar" parent="ResourceUI/HBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 page = 1.79
 value = 76.0
@@ -195,6 +219,7 @@ texture_under = ExtResource("12_aotg0")
 texture_progress = ExtResource("13_hgp22")
 
 [node name="LoadBar" type="TextureProgressBar" parent="ResourceUI/HBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 page = 1.79
 value = 89.0

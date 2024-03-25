@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=53 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
@@ -9,11 +9,13 @@
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="6_bhgi1"]
 [ext_resource type="Script" path="res://Entities/Player/Energy.gd" id="6_ogtao"]
 [ext_resource type="Script" path="res://Entities/Player/WeaponList.gd" id="6_pn85v"]
+[ext_resource type="Script" path="res://Entities/Player/BuildingSelector.gd" id="7_4fi52"]
 [ext_resource type="PackedScene" uid="uid://br6bd0htohj1r" path="res://Systems/Health/HealthBar.tscn" id="7_5k7j5"]
 [ext_resource type="Script" path="res://Entities/Player/Blaster.gd" id="7_bipw4"]
 [ext_resource type="Script" path="res://Entities/Player/EnergyBar.gd" id="7_pixv8"]
 [ext_resource type="Script" path="res://Entities/Player/PickAxe.gd" id="8_2foof"]
 [ext_resource type="Texture2D" uid="uid://b7jpgv4aavsw3" path="res://Shared/player.png" id="8_3ndie"]
+[ext_resource type="Texture2D" uid="uid://dq5ss32licqa5" path="res://Shared/06_Hologram_Theme/Sprites/Spritesheet_Animation_UI_Hologram_Select_02a.png" id="8_dwlyw"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="9_dkwkk"]
 [ext_resource type="Script" path="res://Entities/HurtBoxComponent.gd" id="13_4fvic"]
 [ext_resource type="Shader" path="res://Shader/hitshader.gdshader" id="16_e4tol"]
@@ -53,6 +55,45 @@ radius = 18.0
 radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4b2o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx5gj"]
+size = Vector2(24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3o7q"]
+atlas = ExtResource("8_dwlyw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcwxw"]
+atlas = ExtResource("8_dwlyw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66w3l"]
+atlas = ExtResource("8_dwlyw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5w5q"]
+atlas = ExtResource("8_dwlyw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yrner"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3o7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcwxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66w3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5w5q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwdvn"]
 bg_color = Color(0.078125, 0.0273438, 0.183594, 1)
@@ -265,6 +306,24 @@ script = ExtResource("5_7xnov")
 visible = false
 shape = SubResource("CircleShape2D_s4b2o")
 debug_color = Color(0, 0.643137, 0.301961, 0.419608)
+
+[node name="BuildingSelector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 131080
+script = ExtResource("7_4fi52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingSelector"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_gx5gj")
+debug_color = Color(0.792157, 0.427451, 0, 0.419608)
+
+[node name="Marker" type="AnimatedSprite2D" parent="BuildingSelector"]
+visible = false
+z_index = 3
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_yrner")
+autoplay = "default"
+frame_progress = 0.362945
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("6_bhgi1")

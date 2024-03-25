@@ -1,10 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://dvv3k8f26s3ro"]
+[gd_scene load_steps=30 format=3 uid="uid://dvv3k8f26s3ro"]
 
 [ext_resource type="Script" path="res://Entities/Entities/PowerPlantEntity.gd" id="1_bjnb1"]
 [ext_resource type="Texture2D" uid="uid://bu0nssebqfb4e" path="res://Shared/animations/powerplant-tall_idle.png" id="2_r07na"]
 [ext_resource type="Script" path="res://Systems/Power/PowerSource.gd" id="3_wmamp"]
 [ext_resource type="Script" path="res://Systems/Mining/HeatReceiver.gd" id="4_aokwd"]
 [ext_resource type="Script" path="res://Systems/Power/UtilizationBar.gd" id="5_h3hei"]
+[ext_resource type="Script" path="res://Entities/Bucket.gd" id="6_b2cx5"]
+[ext_resource type="Shader" path="res://Shader/hologram.gdshader" id="7_kmtl0"]
+[ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="8_m8ghg"]
+[ext_resource type="Script" path="res://GUI/BaseGuiComponent.gd" id="9_nolyr"]
+[ext_resource type="Texture2D" uid="uid://bmlf0pw8gnmr5" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Frame_Horizontal_01a.png" id="10_enqnv"]
+[ext_resource type="Texture2D" uid="uid://bkdsny8dny2ln" path="res://Shared/icon_molt.png" id="11_x17yp"]
+[ext_resource type="Texture2D" uid="uid://bh8jgs6q1b1jk" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_02a.png" id="12_glhdc"]
+[ext_resource type="Texture2D" uid="uid://d4ihbn0asm036" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_Filler_03aA.png" id="13_ojqgx"]
+[ext_resource type="Script" path="res://GUI/BucketUI.gd" id="14_3774a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8q2t"]
 size = Vector2(16, 16)
@@ -91,6 +100,19 @@ bg_color = Color(0.40625, 0.433594, 0.597656, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts6tt"]
 bg_color = Color(0, 0.709804, 0.247059, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5hhb"]
+shader = ExtResource("7_kmtl0")
+shader_parameter/phase_color = Color(0.00390625, 0, 0.359375, 1)
+shader_parameter/phase_factor = 0.34
+shader_parameter/blend_color = Color(0, 0.243137, 0.541176, 0.901961)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_80dii"]
+texture = ExtResource("10_enqnv")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
 [node name="PowerPlantEntity" type="StaticBody2D" groups=["heat_receiver", "power_sources"]]
 collision_layer = 8
 collision_mask = 11
@@ -124,3 +146,69 @@ value = 1.0
 show_percentage = false
 script = ExtResource("5_h3hei")
 power_source = NodePath("../PowerSource")
+
+[node name="MoltBucket" type="Node2D" parent="."]
+script = ExtResource("6_b2cx5")
+_limit = 5000
+_content = 0
+
+[node name="GUIComponent" type="MarginContainer" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_q5hhb")
+offset_left = -3.0
+offset_top = -27.0
+offset_right = 52.0
+offset_bottom = -3.0
+theme = ExtResource("8_m8ghg")
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+script = ExtResource("9_nolyr")
+
+[node name="PanelContainer" type="PanelContainer" parent="GUIComponent"]
+use_parent_material = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_80dii")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUIComponent/PanelContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_top = -8
+theme_override_constants/margin_bottom = -10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIComponent/PanelContainer/MarginContainer"]
+use_parent_material = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIComponent/PanelContainer/MarginContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_constants/separation = -19
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIComponent/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUIComponent/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_constants/margin_top = 7
+
+[node name="TextureRect" type="TextureRect" parent="GUIComponent/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("11_x17yp")
+stretch_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="GUIComponent/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_bucket")]
+use_parent_material = true
+layout_mode = 2
+value = 54.0
+texture_under = ExtResource("12_glhdc")
+texture_progress = ExtResource("13_ojqgx")
+tint_progress = Color(1, 0.462745, 0, 1)
+script = ExtResource("14_3774a")
+_bucket = NodePath("../../../../../../../MoltBucket")

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_o177g")
-title = "Conveyor"
+title = "New: Conveyor"
 type = "entity"
 object = "Conveyor"
 unique = true
