@@ -4,6 +4,8 @@ extends VBoxContainer
 @onready var _progress_bar: TextureProgressBar = $CooldownProgress
 @onready var _timer: Timer = $CooldownTimer
 
+var _initialized := false
+
 
 func _ready():
 	_progress_bar.value = 0.0
@@ -18,6 +20,10 @@ func _process(_delta):
 
 func _on_held_item_changed(__panel: InventoryPanel, item: BlueprintEntity):
 	if item == null:
+		return
+
+	if not _initialized:
+		_initialized = true
 		return
 
 	if not item.placeable:

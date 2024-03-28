@@ -40,6 +40,8 @@ var open_entity_ui: BaseGuiComponent:
 func _ready():
 	_quickbar.setup(self)
 	_quickbar.add_entity(Library.blueprints["Wire"].instantiate())
+	_quickbar.add_entity(Library.blueprints["Smelter"].instantiate())
+	_quickbar.add_entity(Library.blueprints["PowerPlant"].instantiate())
 	_resource.setup(self)
 
 

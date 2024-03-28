@@ -9,6 +9,7 @@ var _player: Player
 var _gui: GUI
 
 @onready var _destruction_timer: DestructionTimer = $Timer
+@onready var DropPodScene: PackedScene = preload("res://Entities/DropPod.tscn")
 
 ########## PUBLIC
 
@@ -92,6 +93,12 @@ func _place_entity(location: Vector2i):
 
 	entity._setup(_gui.blueprint)
 	entity._setup_gui(_gui)
+
+	if not _gui.blueprint is WireBlueprint:
+		var drop_pod := DropPodScene.instantiate() as DropPod
+		drop_pod.global_position = to_global(map_to_local(location))
+		add_child(drop_pod)
+		await drop_pod.opened
 
 	add_child(entity)
 

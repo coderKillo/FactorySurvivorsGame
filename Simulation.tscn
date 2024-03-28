@@ -1,13 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bn036liop3mqv"]
+[gd_scene load_steps=12 format=3 uid="uid://bn036liop3mqv"]
 
 [ext_resource type="Script" path="res://Systems/Simulation.gd" id="1_j5ers"]
 [ext_resource type="PackedScene" uid="uid://caan0o3hcqc0o" path="res://Systems/Worldgenerator/WorldGenerator.tscn" id="2_lgle3"]
 [ext_resource type="PackedScene" uid="uid://bukmtg3hk4xkj" path="res://Entities/Player/Player.tscn" id="2_trfnq"]
 [ext_resource type="Script" path="res://Systems/EntityPlacer.gd" id="3_sbt4h"]
 [ext_resource type="Script" path="res://Entities/DestructionTimer.gd" id="4_h002n"]
-[ext_resource type="PackedScene" uid="uid://dl1vvohs3eypo" path="res://Entities/Entities/SmelterEntity.tscn" id="5_bv3hl"]
 [ext_resource type="Script" path="res://Systems/EnemyPlacer.gd" id="5_ttm65"]
-[ext_resource type="PackedScene" uid="uid://dvv3k8f26s3ro" path="res://Entities/Entities/PowerPlantEntity.tscn" id="6_en6u6"]
 [ext_resource type="Script" path="res://Systems/GroundEntitySpawner.gd" id="8_lmmv0"]
 [ext_resource type="Script" path="res://VFX/VfxManager.gd" id="9_23opm"]
 [ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="10_cj28n"]
@@ -33,12 +31,6 @@ script = ExtResource("3_sbt4h")
 
 [node name="Timer" type="Timer" parent="GameWorld/EntityPlacer"]
 script = ExtResource("4_h002n")
-
-[node name="SmelterEntity" parent="GameWorld/EntityPlacer" instance=ExtResource("5_bv3hl")]
-position = Vector2(248, 136)
-
-[node name="PowerPlantEntity" parent="GameWorld/EntityPlacer" instance=ExtResource("6_en6u6")]
-position = Vector2(248, 120)
 
 [node name="EnemyPlacer" type="Node2D" parent="GameWorld"]
 script = ExtResource("5_ttm65")
