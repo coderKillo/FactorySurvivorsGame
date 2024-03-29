@@ -1,11 +1,27 @@
 class_name DestructionTimer
 extends Timer
 
+signal finish_destruction(cellv: Vector2i)
+
 @export var destruction_time: float = 0.5
+
+@onready var _progress_bar: ProgressBar = $ProgressBar
 
 var _current_destruction_location: Vector2i
 
-signal finish_destruction(cellv: Vector2i)
+
+func _ready():
+	_progress_bar.max_value = destruction_time
+	_progress_bar.hide()
+
+
+func _process(_delta):
+	if time_left > 0:
+		_progress_bar.show()
+		_progress_bar.value = time_left
+		_progress_bar.global_position = _progress_bar.get_global_mouse_position()
+	else:
+		_progress_bar.hide()
 
 
 func start_destruction(location: Vector2i):

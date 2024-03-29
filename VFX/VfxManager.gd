@@ -4,6 +4,8 @@ var _effects = {
 	"upgrade_explosion": preload("res://VFX/upgrade_explosion.tscn"),
 	"destruction": preload("res://VFX/destruction.tscn"),
 	"hit_effect": preload("res://VFX/hit_effect.tscn"),
+	"smoke_explosive": preload("res://VFX/smoke_explosive.tscn"),
+	"shatter": preload("res://VFX/shatter.tscn"),
 }
 
 

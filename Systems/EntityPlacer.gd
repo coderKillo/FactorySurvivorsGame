@@ -135,6 +135,9 @@ func _closw_entity_gui() -> void:
 func _finish_destruction(location: Vector2i):
 	SoundManager.play("entity_destroyed")
 
+	Events.spawn_effect.emit("destruction", to_global(map_to_local(location)))
+	Events.spawn_effect.emit("smoke_explosive", to_global(map_to_local(location)))
+
 	_tracker.remove_entity(location)
 
 
