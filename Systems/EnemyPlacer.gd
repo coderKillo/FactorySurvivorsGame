@@ -3,19 +3,21 @@ extends Node2D
 
 @export var time_between_waves := 15.0  # sek
 @export var time_between_enemies := 0.1
-@export var time_between_groups := 1.0
 @export var spawn_distance := 10
-@export var enemies_per_group := Vector2i.ZERO
-@export var groups_per_wave := Vector2i.ZERO
+@export var start_credits := 100
+@export var credits_per_level := 50
 
 var _player: Node2D = null
 var _monster_builder := MonsterBuilder.new()
 var _current_enemy_count := 0
+var _current_credits := 0
 
 @onready var _spawn_timer: Timer = $SpawnTimer
 
 
 func _ready():
+	_current_credits = start_credits
+
 	randomize()
 	_spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	Events.enemy_died.connect(_on_enemy_died)
@@ -39,8 +41,11 @@ func _on_enemy_died(enemy):
 
 	_current_enemy_count -= 1
 	if _current_enemy_count <= 0:
+		_current_credits += credits_per_level
+
 		Events.enemies_attack.emit(false)
 		Events.leveled_up.emit()
+
 		_spawn_timer.start(time_between_waves)
 
 
@@ -63,33 +68,25 @@ func _spawn_enemy_corps(enemy: Enemy) -> void:
 
 
 func _spawn_wave():
-	Events.enemies_attack.emit(true)
-
-	for _i in range(randi_range(groups_per_wave.x, groups_per_wave.y)):
-		await get_tree().create_timer(time_between_groups).timeout
-		_spawn_enemy_group()
-
-
-func _spawn_enemy_group():
 	if _player == null:
+		printerr("no player found")
 		return
 
-	var spawn_angle = randi() % 360
-	var template := _monster_builder.get_random_template()
+	Events.enemies_attack.emit(true)
 
-	for _i in range(randi_range(enemies_per_group.x, enemies_per_group.y)):
+	var spawn_angle = randi() % 360
+	var enemies = _monster_builder.create_monster_wave(_current_credits)
+
+	for enemy in enemies:
 		await get_tree().create_timer(time_between_enemies).timeout
 
 		var angle = randi_range(spawn_angle - 30, spawn_angle + 30)
 		var spawn_pos = _player.position + (Vector2.from_angle(deg_to_rad(angle)) * spawn_distance)
 
-		var enemy: Enemy = _monster_builder.BaseEnemy.instantiate()
 		enemy.position = spawn_pos
 		enemy.target = _player
 
 		add_child(enemy)
-
-		_monster_builder.build(enemy, template)
 
 		_current_enemy_count += 1
 		Events.enemy_spawn.emit(enemy)

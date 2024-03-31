@@ -6,6 +6,9 @@ extends CharacterBody2D
 @export var target: Node2D = null
 
 var color := ""
+var max_health := 20
+var damage := 10
+var parts := []
 
 enum States { IDLE, MOVE, ATTACK, DEATH }
 
@@ -21,6 +24,11 @@ var _current_state: States = States.IDLE
 
 
 func _ready():
+	health.max_health = max_health
+	weapon.damage = damage
+	for part in parts:
+		model.add_part(part)
+
 	health.death.connect(_on_death)
 	_hurt_box.hit.connect(_on_hit)
 	_hurt_box.push_back.connect(_on_hit_push_back)
