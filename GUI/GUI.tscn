@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=25 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ioy7cspf8a7p" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_Filler_03a red.png" id="13_hgp22"]
 [ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="13_sfcl2"]
 [ext_resource type="Texture2D" uid="uid://bpbcnanmtiemb" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_Filler_03a.png" id="14_cy8vg"]
+[ext_resource type="PackedScene" uid="uid://s77jcnwyfctw" path="res://GUI/DeathScreen.tscn" id="18_jvfaf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_csb1a"]
 shader = ExtResource("6_5iwyi")
@@ -265,5 +266,8 @@ text = "Continue"
 layout_mode = 2
 theme_override_font_sizes/font_size = 5
 text = "Quit"
+
+[node name="DeathScreen" parent="." instance=ExtResource("18_jvfaf")]
+layout_mode = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

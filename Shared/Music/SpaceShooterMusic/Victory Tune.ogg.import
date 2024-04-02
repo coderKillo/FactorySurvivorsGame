@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d1385p81okf70"
+path="res://.godot/imported/Victory Tune.ogg-07eb4532e279e563ac0a25b4e7468bcf.oggvorbisstr"
+
+[deps]
+
+source_file="res://Shared/Music/SpaceShooterMusic/Victory Tune.ogg"
+dest_files=["res://.godot/imported/Victory Tune.ogg-07eb4532e279e563ac0a25b4e7468bcf.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

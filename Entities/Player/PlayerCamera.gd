@@ -12,6 +12,7 @@ extends Camera2D
 
 func _ready():
 	Events.camera_shake.connect(_on_camera_shake)
+	Events.player_died.connect(_on_player_death)
 	_timer.timeout.connect(_on_timer_timeout)
 	_timer.wait_time = duration
 
@@ -46,3 +47,13 @@ func _set_shake(value: bool) -> void:
 func _set_duration(value: float) -> void:
 	duration = value
 	_timer.wait_time = value
+
+
+func _on_player_death() -> void:
+	offset = Vector2.ZERO
+	position_smoothing_enabled = false
+
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+
+	tween.tween_property(self, "zoom", Vector2(2.0, 2.0), 1.0)

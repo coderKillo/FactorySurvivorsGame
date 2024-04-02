@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://h0p07vwbvsue"
+path="res://.godot/imported/Brave Pilots (Menu Screen).ogg-dee28659b54bb52703b6b445a7e5fb4f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Shared/Music/SpaceShooterMusic/Brave Pilots (Menu Screen).ogg"
+dest_files=["res://.godot/imported/Brave Pilots (Menu Screen).ogg-dee28659b54bb52703b6b445a7e5fb4f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

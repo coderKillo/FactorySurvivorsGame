@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://blt8ohtynm8t0"
+path="res://.godot/imported/Without Fear.ogg-67b2d2b06b2b6155a029f1550c0b4626.oggvorbisstr"
+
+[deps]
+
+source_file="res://Shared/Music/SpaceShooterMusic/Without Fear.ogg"
+dest_files=["res://.godot/imported/Without Fear.ogg-67b2d2b06b2b6155a029f1550c0b4626.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

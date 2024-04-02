@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bfchsmp3mstle"
+path="res://.godot/imported/SkyFire (Title Screen).ogg-8ed02694cf07571f50277f7c37858eed.oggvorbisstr"
+
+[deps]
+
+source_file="res://Shared/Music/SpaceShooterMusic/SkyFire (Title Screen).ogg"
+dest_files=["res://.godot/imported/SkyFire (Title Screen).ogg-8ed02694cf07571f50277f7c37858eed.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

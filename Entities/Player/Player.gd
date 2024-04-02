@@ -26,6 +26,11 @@ func _ready():
 	resources.changed.connect(_on_resources_changed)
 	_weapons[1].energy_used.connect(_on_weapon_energy_used)
 	Events.system_tick.connect(_on_system_tick)
+	health.death.connect(_on_death)
+
+	# TESTING:
+	await get_tree().create_timer(2.0).timeout
+	health.death.emit()
 
 
 func _process(_delta):
@@ -125,6 +130,12 @@ func _on_system_tick(delta: float) -> void:
 		var amount = clamp(resources.molt_amount, 0, amount_per_tick)
 		resources.molt_amount -= molt_bucket.put(amount)
 		pass
+
+
+func _on_death() -> void:
+	Events.player_died.emit()
+
+	hide()
 
 
 func _set_animation(direction: Vector2):

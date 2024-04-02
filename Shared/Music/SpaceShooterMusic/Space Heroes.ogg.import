@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dk60jus21w2cj"
+path="res://.godot/imported/Space Heroes.ogg-04f68d1968253cd925b45cee106c556b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Shared/Music/SpaceShooterMusic/Space Heroes.ogg"
+dest_files=["res://.godot/imported/Space Heroes.ogg-04f68d1968253cd925b45cee106c556b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
