@@ -10,7 +10,7 @@ func _ready():
 
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://Simulation.tscn")
+	get_tree().change_scene_to_file("res://PlanetSelection.tscn")
 
 
 func _on_quit_pressed() -> void:

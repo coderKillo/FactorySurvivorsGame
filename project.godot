@@ -22,6 +22,7 @@ Library="*res://Autoload/Library.gd"
 RecolorTable="*res://Autoload/RecolorTable.gd"
 SoundManager="*res://Sound/SoundManager.tscn"
 DamageNumbers="*res://Autoload/DamageNumbers.gd"
+PlanetData="*res://Autoload/PlanetData.gd"
 
 [display]
 
