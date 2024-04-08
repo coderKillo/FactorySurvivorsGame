@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bn036liop3mqv"]
+[gd_scene load_steps=18 format=3 uid="uid://bn036liop3mqv"]
 
 [ext_resource type="Script" path="res://Systems/Simulation.gd" id="1_j5ers"]
 [ext_resource type="PackedScene" uid="uid://caan0o3hcqc0o" path="res://Systems/Worldgenerator/WorldGenerator.tscn" id="2_lgle3"]
 [ext_resource type="PackedScene" uid="uid://bukmtg3hk4xkj" path="res://Entities/Player/Player.tscn" id="2_trfnq"]
+[ext_resource type="Shader" path="res://Shader/recolor_shader.gdshader" id="3_6wbvq"]
 [ext_resource type="Script" path="res://Systems/EntityPlacer.gd" id="3_sbt4h"]
 [ext_resource type="Script" path="res://Entities/DestructionTimer.gd" id="4_h002n"]
 [ext_resource type="Script" path="res://Systems/EnemyPlacer.gd" id="5_ttm65"]
@@ -10,6 +11,18 @@
 [ext_resource type="Script" path="res://VFX/VfxManager.gd" id="9_23opm"]
 [ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="10_cj28n"]
 [ext_resource type="AudioStream" uid="uid://ctcf73xxbwgki" path="res://Shared/Music/exploratig_the_cosmos_1_sub_38_bit.ogg" id="11_5j556"]
+
+[sub_resource type="Gradient" id="Gradient_usn34"]
+offsets = PackedFloat32Array(0.2, 0.4, 0.6, 0.8)
+colors = PackedColorArray(0.285156, 0.121094, 0.316406, 1, 0.859375, 0.300781, 0.25, 1, 0.960938, 0.550781, 0.25, 1, 0.972656, 0.765625, 0.640625, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iwika"]
+gradient = SubResource("Gradient_usn34")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_chun3"]
+shader = ExtResource("3_6wbvq")
+shader_parameter/desaturation = 0.75
+shader_parameter/palette = SubResource("GradientTexture1D_iwika")
 
 [sub_resource type="TileSet" id="TileSet_njyke"]
 
@@ -26,6 +39,7 @@ script = ExtResource("1_j5ers")
 y_sort_enabled = true
 
 [node name="WorldGenerator" parent="GameWorld" instance=ExtResource("2_lgle3")]
+material = SubResource("ShaderMaterial_chun3")
 
 [node name="EntityPlacer" type="TileMap" parent="GameWorld"]
 y_sort_enabled = true
@@ -61,6 +75,7 @@ one_shot = true
 script = ExtResource("8_lmmv0")
 
 [node name="Player" parent="GameWorld" instance=ExtResource("2_trfnq")]
+position = Vector2(-2, 1)
 slide_on_ceiling = false
 safe_margin = 1.0
 

@@ -19,6 +19,10 @@ func _init():
 	Events.system_tick.connect(_on_system_tick)
 
 
+func total_power() -> int:
+	return _total_power
+
+
 func _on_entity_placed(entity: Entity, cellv: Vector2):
 	var retrace = false
 

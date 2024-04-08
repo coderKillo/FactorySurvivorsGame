@@ -6,7 +6,7 @@
 
 [sub_resource type="Gradient" id="Gradient_4n07w"]
 offsets = PackedFloat32Array(0, 0.197959, 0.371429, 0.540816, 0.746939, 0.918367)
-colors = PackedColorArray(0.75, 0.51, 0.51, 1, 0.76, 0.626493, 0.5016, 1, 0.78, 0.72709, 0.4914, 1, 0.495, 0.75, 0.50775, 1, 0.6232, 0.82, 0.81344, 1, 0.79705, 0.513, 0.95, 1)
+colors = PackedColorArray(0.75, 0.51, 0.51, 1, 0.76, 0.626493, 0.5016, 1, 0.78, 0.72709, 0.4914, 1, 0.495, 0.75, 0.50775, 1, 0.533, 0.82, 0.810433, 1, 0.79705, 0.513, 0.95, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1slwn"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -299,6 +299,7 @@ alternate_tiles = {
 modulate_color = SubResource("Gradient_4n07w")
 
 [node name="TileMap" type="TileMap" parent="."]
+use_parent_material = true
 tile_set = SubResource("TileSet_oqr8q")
 format = 2
 layer_0/z_index = -5

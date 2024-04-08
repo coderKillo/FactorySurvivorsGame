@@ -370,6 +370,7 @@ type = "blaster"
 position = Vector2(7, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Weapons/Blaster"]
+z_index = 1
 position = Vector2(1, 0)
 texture = ExtResource("8_3ndie")
 flip_h = true
@@ -390,6 +391,7 @@ region_enabled = true
 region_rect = Rect2(64, 48, 16, 16)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Weapons/PickAxe"]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_6x2cf")
 animation = &"attack"
 frame = 1
@@ -412,6 +414,14 @@ one_shot = true
 [node name="Model" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_7tipw")
 
+[node name="Shadow" type="AnimatedSprite2D" parent="Model"]
+modulate = Color(0, 0, 0, 0.278431)
+position = Vector2(-2, 3)
+scale = Vector2(1, -0.5)
+skew = 0.773181
+sprite_frames = SubResource("SpriteFrames_20hi3")
+animation = &"idle"
+
 [node name="Body" type="AnimatedSprite2D" parent="Model"]
 use_parent_material = true
 position = Vector2(0, -4)
@@ -419,6 +429,7 @@ sprite_frames = SubResource("SpriteFrames_20hi3")
 animation = &"idle"
 
 [node name="Hands" type="AnimatedSprite2D" parent="Model"]
+z_index = 1
 use_parent_material = true
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_i3cpw")

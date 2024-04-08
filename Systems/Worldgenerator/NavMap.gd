@@ -16,7 +16,7 @@ func _ready():
 
 
 func set_cell(cellv: Vector2i, value: String) -> void:
-	if cellv in _blocked_cells:
+	if Vector2(cellv) in _blocked_cells:
 		return
 
 	_tilemap.set_cell(NAV_LAYER, cellv, SOURCE_ID, _tiles[value])

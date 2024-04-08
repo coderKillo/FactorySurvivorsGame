@@ -28,10 +28,6 @@ func _ready():
 	Events.system_tick.connect(_on_system_tick)
 	health.death.connect(_on_death)
 
-	# TESTING:
-	await get_tree().create_timer(2.0).timeout
-	health.death.emit()
-
 
 func _process(_delta):
 	if _weapon_timer.time_left > 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://s77jcnwyfctw"]
+[gd_scene load_steps=36 format=3 uid="uid://s77jcnwyfctw"]
 
 [ext_resource type="Script" path="res://GUI/DeathScreen.gd" id="1_wwlhg"]
 [ext_resource type="Texture2D" uid="uid://ie6g3tqomdw2" path="res://Shared/player_death.png" id="2_kkdnq"]
@@ -8,7 +8,6 @@
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="6_blt6l"]
 [ext_resource type="AudioStream" uid="uid://cflgrnvwvvrq5" path="res://Shared/sfx/wobbledown.wav" id="7_gntyw"]
 [ext_resource type="AudioStream" uid="uid://3cpxhypmuhbw" path="res://Shared/sfx/wobbledown2.wav" id="7_vp82y"]
-[ext_resource type="Script" path="res://VFX/CustomTextPopupEffect.gd" id="7_yonxv"]
 [ext_resource type="AudioStream" uid="uid://d1385p81okf70" path="res://Shared/Music/SpaceShooterMusic/Victory Tune.ogg" id="8_xn7tb"]
 [ext_resource type="AudioStream" uid="uid://3ldrmjeba5np" path="res://Shared/sfx/wobbleup2.wav" id="9_lanhk"]
 [ext_resource type="AudioStream" uid="uid://qi5n5f8whyhu" path="res://Shared/sfx/hit1.wav" id="11_l6kdu"]
@@ -155,9 +154,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_bfgj1"]
-script = ExtResource("7_yonxv")
 
 [sub_resource type="Animation" id="Animation_bpuaj"]
 length = 0.001
@@ -573,7 +569,6 @@ text = "[p align=center]MISSION ACCOMPLISHED!
 no casualties"
 fit_content = true
 autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_bfgj1")]
 visible_characters_behavior = 1
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
@@ -589,7 +584,6 @@ bbcode_enabled = true
 text = "[p align=center]Extracted Resources: 100000"
 fit_content = true
 autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_bfgj1")]
 visible_characters_behavior = 1
 
 [node name="RetryButton" type="Button" parent="MarginContainer/VBoxContainer"]

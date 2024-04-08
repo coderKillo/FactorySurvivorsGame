@@ -18,6 +18,7 @@ gradient = SubResource("Gradient_6iyji")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_samg2"]
 shader = ExtResource("4_6krtm")
+shader_parameter/desaturation = 0.0
 shader_parameter/palette = SubResource("GradientTexture1D_lhmgx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gm6i"]
@@ -152,10 +153,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -90.0
-offset_right = 90.0
-offset_bottom = 90.0
+offset_left = 70.0
+offset_right = 250.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
