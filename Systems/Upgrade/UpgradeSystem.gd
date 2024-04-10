@@ -41,6 +41,10 @@ func _load_upgrades():
 		if filename.begins_with("upgrade_"):
 			var upgrade := load(dir.get_current_dir() + "/" + filename) as Upgrade
 
+			if upgrade == null:
+				printerr("fail to load: " + filename)
+				continue
+
 			if upgrade.requirements.is_empty():
 				_unused_deck.append(upgrade)
 			else:
