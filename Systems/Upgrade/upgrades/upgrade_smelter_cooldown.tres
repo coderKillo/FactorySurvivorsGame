@@ -8,7 +8,7 @@ script = ExtResource("2_8b1ll")
 path = ":data:cooldown"
 operation = 1
 type = 3
-upgrade_value = 5.0
+upgrade_value = 10.0
 
 [resource]
 script = ExtResource("1_tjv2q")
@@ -17,8 +17,8 @@ type = "entity"
 object = "Smelter"
 unique = false
 quality = 0
-description = "Reduce the cooldown of your {object} by {cooldown}"
+description = "Reduce the cooldown of your smelter by 10s."
 requirements = {
-"Smelter": 1
+"energy": 10
 }
 upgrades = Array[ExtResource("2_8b1ll")]([SubResource("Resource_flef8")])

@@ -1,5 +1,7 @@
 extends Entity
 
+const ANIMATION_TIME = 1.0
+
 @onready var _animation: AnimationPlayer = $AnimationPlayer
 @onready var _area: Area2D = $Area2D
 @onready var _power: PowerReceiver = $PowerReceiver
@@ -9,6 +11,7 @@ var _active := false
 
 func _ready():
 	_power.received_power.connect(_on_received_power)
+	_animation.speed_scale = ANIMATION_TIME / self.data.speed
 
 
 func _physics_process(_delta):
@@ -17,6 +20,7 @@ func _physics_process(_delta):
 
 func _process(_delta):
 	_power.power_required = self.data.energy_cost
+	_animation.speed_scale = ANIMATION_TIME / self.data.speed
 
 
 func _on_received_power(amount, _delta):

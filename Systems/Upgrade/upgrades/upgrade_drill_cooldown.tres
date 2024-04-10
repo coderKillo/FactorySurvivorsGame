@@ -8,7 +8,7 @@ script = ExtResource("2_kqxy6")
 path = ":data:cooldown"
 operation = 1
 type = 3
-upgrade_value = 0.5
+upgrade_value = 1.0
 
 [resource]
 script = ExtResource("1_fhpwo")
@@ -17,8 +17,9 @@ type = "entity"
 object = "Drill"
 unique = false
 quality = 0
-description = "Reduce the cooldown of your {object} by {cooldown}"
+description = "Reduce the cooldown of your drill by 1s."
 requirements = {
-"Drill": 1
+"Drill": 3,
+"mining": 10
 }
 upgrades = Array[ExtResource("2_kqxy6")]([SubResource("Resource_ya20j")])

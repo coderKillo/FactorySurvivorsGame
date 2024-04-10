@@ -17,8 +17,8 @@ type = "entity"
 object = "Wire"
 unique = false
 quality = 2
-description = "Reduce the cooldown of your {object} by {cooldown}"
+description = "Reduce the cooldown of your wire by 0.1s"
 requirements = {
-"Wire": 1
+"energy": 12
 }
 upgrades = Array[ExtResource("2_74agf")]([SubResource("Resource_uaukx")])

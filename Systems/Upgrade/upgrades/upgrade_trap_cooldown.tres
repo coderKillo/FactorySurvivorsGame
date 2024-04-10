@@ -8,17 +8,18 @@ script = ExtResource("2_ty17y")
 path = ":data:cooldown"
 operation = 1
 type = 3
-upgrade_value = 0.5
+upgrade_value = 2.0
 
 [resource]
 script = ExtResource("1_hwtxg")
-title = "SpikeTrap Cooldown"
+title = "Spike Trap Cooldown"
 type = "entity"
 object = "SpikeTrap"
 unique = false
 quality = 2
-description = "Reduce the cooldown of your {object} by {cooldown}"
+description = "Reduce the cooldown of your spike trap by 2s."
 requirements = {
-"SpikeTrap": 1
+"SpikeTrap": 1,
+"damage": 7
 }
 upgrades = Array[ExtResource("2_ty17y")]([SubResource("Resource_xbr8b")])

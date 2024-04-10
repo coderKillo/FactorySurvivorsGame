@@ -8,17 +8,17 @@ script = ExtResource("2_s617w")
 path = ":data:value"
 operation = 0
 type = 2
-upgrade_value = 1
+upgrade_value = 2
 
 [resource]
 script = ExtResource("1_dm2w2")
-title = "Power Plant Heat Reduction"
+title = "Power Plant Energy Production"
 type = "entity"
 object = "PowerPlant"
 unique = false
 quality = 0
-description = "Reduce the heat require by your {object} by {value}"
+description = "Increase the energy production of your power plants by 40%."
 requirements = {
-"PowerPlant": 1
+"energy": 7
 }
 upgrades = Array[ExtResource("2_s617w")]([SubResource("Resource_ai57f")])

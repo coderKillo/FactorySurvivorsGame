@@ -8,7 +8,7 @@ script = ExtResource("2_74s0r")
 path = ":fire_rate"
 operation = 1
 type = 3
-upgrade_value = 0.05
+upgrade_value = 0.2
 
 [resource]
 script = ExtResource("1_ovf7y")
@@ -17,6 +17,6 @@ type = "weapon"
 object = "pickaxe"
 unique = false
 quality = 1
-description = "Increases the speed of your {object} by {upgrade_value}"
+description = "Increase the attack speed of your pickaxe by 20%."
 requirements = {}
 upgrades = Array[ExtResource("2_74s0r")]([SubResource("Resource_f473n")])

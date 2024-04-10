@@ -9,8 +9,8 @@ type = "entity"
 object = "Conveyor"
 unique = true
 quality = 3
-description = "Add {object}"
+description = "Unlocks conveyor belt to transport materials"
 requirements = {
-"entity": 5
+"energy": 3
 }
 upgrades = Array[Resource("res://Systems/Upgrade/UpgradeValue.gd")]([])

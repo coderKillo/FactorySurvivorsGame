@@ -9,8 +9,8 @@ type = "entity"
 object = "Drill"
 unique = true
 quality = 3
-description = "Add {object}"
+description = "Unlocks a drill, a mobile tool to extract minerals from monster corpses. Disappears after work is done."
 requirements = {
-"pickaxe": 3
+"mining": 3
 }
 upgrades = Array[Resource("res://Systems/Upgrade/UpgradeValue.gd")]([])

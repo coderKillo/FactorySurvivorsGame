@@ -8,7 +8,7 @@ script = ExtResource("2_fqo07")
 path = ":data:speed"
 operation = 0
 type = 3
-upgrade_value = 0.1
+upgrade_value = 0.2
 
 [resource]
 script = ExtResource("1_fevho")
@@ -17,8 +17,9 @@ type = "entity"
 object = "Turret"
 unique = false
 quality = 1
-description = "Increase the production speed of your {object} by {speed}"
+description = "Increase the attack speed of your turret by 20%."
 requirements = {
 "Turret": 1
+"damage": 12
 }
 upgrades = Array[ExtResource("2_fqo07")]([SubResource("Resource_gw8fw")])

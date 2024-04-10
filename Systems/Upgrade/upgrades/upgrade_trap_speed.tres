@@ -8,17 +8,18 @@ script = ExtResource("2_bobn4")
 path = ":data:speed"
 operation = 0
 type = 3
-upgrade_value = 0.1
+upgrade_value = 0.2
 
 [resource]
 script = ExtResource("1_m3pbl")
-title = "SpikeTrap Speed"
+title = "Spike Trap Speed"
 type = "entity"
 object = "SpikeTrap"
 unique = false
 quality = 1
-description = "Increase the production speed of your {object} by {speed}"
+description = "Increase the attack speed of your spike trap by 20%."
 requirements = {
-"SpikeTrap": 1
+"SpikeTrap": 1,
+"damage": 7
 }
 upgrades = Array[ExtResource("2_bobn4")]([SubResource("Resource_x3xe1")])

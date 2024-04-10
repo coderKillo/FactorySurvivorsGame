@@ -9,8 +9,8 @@ type = "entity"
 object = "Crusher"
 unique = true
 quality = 3
-description = "Add {object}"
+description = "Unlocks a crusher, a static building  that extracts minerals from monster corpses."
 requirements = {
-"Drill": 3
+"mining": 10
 }
 upgrades = Array[Resource("res://Systems/Upgrade/UpgradeValue.gd")]([])

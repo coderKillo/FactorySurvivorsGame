@@ -18,5 +18,8 @@ object = ""
 unique = false
 quality = 2
 description = "Increase the number of corpse you can drag by 1"
-requirements = {}
+requirements = {
+"player": 2, 
+"energy": 3
+}
 upgrades = Array[ExtResource("2_6l1lh")]([SubResource("Resource_g3dkk")])

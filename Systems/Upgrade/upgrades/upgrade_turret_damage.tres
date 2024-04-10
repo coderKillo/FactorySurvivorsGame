@@ -7,8 +7,8 @@
 script = ExtResource("2_6yn1p")
 path = ":data:damage"
 operation = 0
-type = 3
-upgrade_value = 0.1
+type = 2
+upgrade_value = 5.0
 
 [resource]
 script = ExtResource("1_ffqek")
@@ -17,8 +17,9 @@ type = "entity"
 object = "Turret"
 unique = false
 quality = 1
-description = "Increase the damage of your {object} by {damage}"
+description = "Increase the damage of your turret by 5."
 requirements = {
 "Turret": 1
+"damage": 12
 }
 upgrades = Array[ExtResource("2_6yn1p")]([SubResource("Resource_y8qcw")])

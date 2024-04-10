@@ -5,18 +5,21 @@
 
 [sub_resource type="Resource" id="Resource_8ghi5"]
 script = ExtResource("2_0clc2")
-path = ":damage"
+path = ":projectile_scale"
 operation = 0
-type = 2
-upgrade_value = 2
+type = 3
+upgrade_value = 0.2
 
 [resource]
 script = ExtResource("1_r0q6q")
-title = "Blaster Damage"
+title = "Blaster Shot Size"
 type = "weapon"
 object = "blaster"
 unique = false
 quality = 1
-description = "Increases the damage of your {object} by {upgrade_value}"
-requirements = {}
+description = "Increase the projectile size of your blaster by 20%."
+requirements = {
+"blaster": 3,
+"damage": 12
+}
 upgrades = Array[ExtResource("2_0clc2")]([SubResource("Resource_8ghi5")])

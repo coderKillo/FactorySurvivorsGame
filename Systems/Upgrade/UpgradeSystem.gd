@@ -93,6 +93,7 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 
 	_add_requriement(upgrade.type)
 	_add_requriement(upgrade.object)
+	_add_tree_requriement(upgrade.type, upgrade.object)
 
 	if upgrade.type == "player":
 		upgrade.upgrade(_player)
@@ -132,6 +133,22 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 
 	else:
 		printerr("invalid type '%s' in upgrade: %s" % [upgrade.type, upgrade.upgrade_name()])
+
+
+# add requirements depend on a virtual skill tree
+func _add_tree_requriement(type: String, object: String):
+	if (
+		type == "player"
+		or object == "PowerPlant"
+		or object == "Conveyor"
+		or object == "Smelter"
+		or object == "Wire"
+	):
+		_add_requriement("energy")
+	if object == "pickaxe" or object == "Drill" or object == "Crusher":
+		_add_requriement("mining")
+	if object == "blaster" or object == "SpikeTrap" or object == "Turret":
+		_add_requriement("damage")
 
 
 func _add_requriement(type: String) -> void:

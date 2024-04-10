@@ -19,6 +19,7 @@ unique = true
 quality = 3
 description = "Molt is transferd automatic to close Power Plants."
 requirements = {
-"entity": 8
+"Smelter": 5,
+"energy": 15
 }
 upgrades = Array[ExtResource("2_dftl8")]([SubResource("Resource_snir1")])

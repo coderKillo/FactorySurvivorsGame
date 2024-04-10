@@ -8,17 +8,18 @@ script = ExtResource("2_5xhw8")
 path = ":data:amount"
 operation = 0
 type = 2
-upgrade_value = 5
+upgrade_value = 10
 
 [resource]
 script = ExtResource("1_ucook")
-title = "SpikeTrap Slow"
+title = "Spike Trap Slow"
 type = "entity"
 object = "SpikeTrap"
 unique = false
 quality = 2
-description = "Increase the damage of your {object} by {damage}"
+description = "Your spike traps reduce the enemy movementspeed by 10."
 requirements = {
-"SpikeTrap": 3
+"SpikeTrap": 3,
+"damage": 10
 }
 upgrades = Array[ExtResource("2_5xhw8")]([SubResource("Resource_qsffl")])

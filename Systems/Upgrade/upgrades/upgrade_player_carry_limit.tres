@@ -24,6 +24,6 @@ type = "player"
 object = ""
 unique = false
 quality = 0
-description = "Increase the player carry limit by 500."
+description = "Increase your carry limit by 500."
 requirements = {}
 upgrades = Array[ExtResource("2_e3gvq")]([SubResource("Resource_ec8qp"), SubResource("Resource_fffve")])

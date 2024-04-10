@@ -12,13 +12,13 @@ upgrade_value = 5.0
 
 [resource]
 script = ExtResource("1_7uj4l")
-title = "PowerPlant Cooldown"
+title = "Power Plant Cooldown"
 type = "entity"
 object = "PowerPlant"
 unique = false
 quality = 0
-description = "Reduce the cooldown of your {object} by {cooldown}"
+description = "Reduce the cooldown of your power plant by 5s."
 requirements = {
-"PowerPlant": 1
+"energy": 10
 }
 upgrades = Array[ExtResource("2_g2bfe")]([SubResource("Resource_ugers")])

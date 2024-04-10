@@ -17,8 +17,9 @@ type = "entity"
 object = "Drill"
 unique = false
 quality = 2
-description = "Reduce the cooldown of your {object} by {cooldown}"
+description = "Increase the bodies your drill processed by 1."
 requirements = {
-"Drill": 3
+"Drill": 5,
+"mining": 12
 }
 upgrades = Array[ExtResource("2_un8k1")]([SubResource("Resource_ya20j")])

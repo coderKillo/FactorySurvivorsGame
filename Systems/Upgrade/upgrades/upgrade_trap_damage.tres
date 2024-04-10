@@ -12,13 +12,14 @@ upgrade_value = 5
 
 [resource]
 script = ExtResource("1_5v0mr")
-title = "SpikeTrap Damage"
+title = "Spike Trap Damage"
 type = "entity"
 object = "SpikeTrap"
 unique = false
 quality = 1
-description = "Increase the damage of your {object} by {damage}"
+description = "Increase the damage of your spike trap by 5."
 requirements = {
-"SpikeTrap": 1
+"SpikeTrap": 2,
+"damage": 7
 }
 upgrades = Array[ExtResource("2_3qd24")]([SubResource("Resource_0bwgo")])

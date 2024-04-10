@@ -5,20 +5,18 @@
 
 [sub_resource type="Resource" id="Resource_x8txe"]
 script = ExtResource("2_xiq0u")
-path = ":weapon_size"
+path = ":max_hit"
 operation = 0
-type = 3
-upgrade_value = 0.2
+type = 2
+upgrade_value = 1
 
 [resource]
 script = ExtResource("1_rpxdx")
-title = "Pickaxe Size"
+title = "Pickaxe Hits"
 type = "weapon"
 object = "pickaxe"
 unique = false
 quality = 2
-description = "Increases the damage of your {object} by {upgrade_value}"
-requirements = {
-"pickaxe": 5
-}
+description = "Increases the targets hit by your pickaxe by 1."
+requirements = {}
 upgrades = Array[ExtResource("2_xiq0u")]([SubResource("Resource_x8txe")])

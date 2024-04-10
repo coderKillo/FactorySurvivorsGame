@@ -8,7 +8,7 @@ script = ExtResource("2_mc05r")
 path = ":data:cooldown"
 operation = 1
 type = 3
-upgrade_value = 1.0
+upgrade_value = 5.0
 
 [resource]
 script = ExtResource("1_nas1r")
@@ -17,8 +17,9 @@ type = "entity"
 object = "Turret"
 unique = false
 quality = 2
-description = "Reduce the cooldown of your {object} by {cooldown}"
+description = "Reduce the cooldown of your turret by 5s."
 requirements = {
 "Turret": 1
+"damage": 12
 }
 upgrades = Array[ExtResource("2_mc05r")]([SubResource("Resource_3kugn")])

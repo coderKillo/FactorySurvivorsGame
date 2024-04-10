@@ -8,17 +8,17 @@ script = ExtResource("2_0hdf8")
 path = ":data:value"
 operation = 0
 type = 2
-upgrade_value = 500
+upgrade_value = 5
 
 [resource]
 script = ExtResource("1_6vigx")
-title = "Smelter Value"
+title = "Smelter Heat Production"
 type = "entity"
 object = "Smelter"
 unique = false
 quality = 0
-description = "Increase the value of your {object} by {value}"
+description = "Increase the heat production of smelter plants by 50%."
 requirements = {
-"Smelter": 1
+"energy": 7
 }
 upgrades = Array[ExtResource("2_0hdf8")]([SubResource("Resource_58ghg")])

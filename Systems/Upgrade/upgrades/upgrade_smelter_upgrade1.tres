@@ -19,6 +19,7 @@ unique = true
 quality = 3
 description = "Smelter only heat up if the molt is full."
 requirements = {
-"entity": 8
+"Smelter": 3,
+"energy": 12
 }
 upgrades = Array[ExtResource("2_edurt")]([SubResource("Resource_jn3c1")])

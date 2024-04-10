@@ -8,7 +8,7 @@ script = ExtResource("2_tgndq")
 path = ":damage"
 operation = 0
 type = 2
-upgrade_value = 2
+upgrade_value = 7
 
 [resource]
 script = ExtResource("1_ipept")
@@ -17,6 +17,6 @@ type = "weapon"
 object = "blaster"
 unique = false
 quality = 1
-description = "Increases the damage of your {object} by {upgrade_value}"
+description = "Increases the damage of your blaster by 7."
 requirements = {}
 upgrades = Array[ExtResource("2_tgndq")]([SubResource("Resource_8ghi5")])

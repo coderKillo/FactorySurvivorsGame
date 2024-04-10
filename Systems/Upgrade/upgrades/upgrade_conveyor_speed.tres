@@ -17,8 +17,9 @@ type = "entity"
 object = "Conveyor"
 unique = false
 quality = 0
-description = "Increase the production speed of your {object} by 5"
+description = "Increase the transport speed of conveyor by 33%."
 requirements = {
-"Conveyor": 1
+"Conveyor": 1,
+"energy": 7
 }
 upgrades = Array[ExtResource("2_ojjf2")]([SubResource("Resource_g8uoo")])

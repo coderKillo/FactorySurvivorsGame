@@ -17,8 +17,9 @@ type = "entity"
 object = "Turret"
 unique = false
 quality = 2
-description = "Increase the damage of your {object} by {damage}"
+description = "Your turret fire 1 additional projectile."
 requirements = {
-"Turret": 3
+"Turret": 5,
+"damage": 15
 }
 upgrades = Array[ExtResource("2_jysot")]([SubResource("Resource_jaxqg")])

@@ -17,6 +17,6 @@ type = "player"
 object = ""
 unique = false
 quality = 0
-description = "Increase the player max. energy by {upgrade_value}"
+description = "Increase your max. energy by 10."
 requirements = {}
 upgrades = Array[ExtResource("2_gnj0u")]([SubResource("Resource_74n42")])
