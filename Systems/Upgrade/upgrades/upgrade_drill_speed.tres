@@ -19,7 +19,7 @@ unique = false
 quality = 0
 description = "Increase the production speed of your drills by 20%."
 requirements = {
-"Drill": 1
+"Drill": 1,
 "mining": 7
 }
 upgrades = Array[ExtResource("2_uoedh")]([SubResource("Resource_p566y")])

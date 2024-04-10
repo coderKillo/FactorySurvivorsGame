@@ -43,9 +43,7 @@ func _load_upgrades():
 
 			if upgrade == null:
 				printerr("fail to load: " + filename)
-				continue
-
-			if upgrade.requirements.is_empty():
+			elif upgrade.requirements.is_empty():
 				_unused_deck.append(upgrade)
 			else:
 				_locked_deck.append(upgrade)
