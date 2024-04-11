@@ -3,7 +3,7 @@ extends Node2D
 
 signal energy_used(amount)
 
-@export var fire_rate := 0.3
+@export var fire_rate := 0.3  # per sec
 @export var damage := 10
 @export var type := ""
 
@@ -30,7 +30,7 @@ func _process(_delta):
 
 		_fire()
 
-		_cooldown_timer.start(fire_rate)
+		_cooldown_timer.start(1.0 / fire_rate)
 
 	elif not _firing and not _on_cooldown:
 		hide()

@@ -59,7 +59,7 @@ func _destruct(animation: AnimatedSprite2D) -> void:
 
 	while not _components.is_empty():
 		var destruction_component = _components.pop_front()
-		while destruction_component != null and destruction_component.pickup_count > 0:
+		while destruction_component != null and not destruction_component.empty():
 			animation.global_position = destruction_component.global_position
 			animation.play("work")
 

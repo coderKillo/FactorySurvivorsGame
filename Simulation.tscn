@@ -67,6 +67,8 @@ show_percentage = false
 script = ExtResource("5_ttm65")
 time_between_waves = 10.0
 spawn_distance = 200
+start_credits = 20
+credits_per_level = 10
 
 [node name="SpawnTimer" type="Timer" parent="GameWorld/EnemyPlacer"]
 one_shot = true

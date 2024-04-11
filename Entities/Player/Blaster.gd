@@ -24,9 +24,6 @@ func _fire():
 
 	SoundManager.play("blaster_fire")
 
-	_on_cooldown = true
-	_cooldown_timer.start(fire_rate)
-
 
 func _update_weapon_direction():
 	_sprite.flip_v = not is_right

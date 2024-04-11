@@ -32,6 +32,10 @@ func destruct(damage: int) -> void:
 		Events.camera_shake.emit(0.5)
 
 
+func empty() -> bool:
+	return health < DAMAGE_TRESHOLD
+
+
 func _spawn_ore() -> void:
 	var random_offset = Vector2(randi_range(-10, 10), randi_range(-10, 10))
 	Events.ground_entity_spawn.emit(destruction_entity, global_position + random_offset, ore_color)

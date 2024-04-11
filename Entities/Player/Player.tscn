@@ -364,6 +364,7 @@ visible = false
 position = Vector2(0, -3)
 script = ExtResource("7_bipw4")
 projectile_container = NodePath("../Projectiles")
+fire_rate = 3.0
 type = "blaster"
 
 [node name="Marker2D" type="Marker2D" parent="Weapons/Blaster"]

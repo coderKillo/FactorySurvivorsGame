@@ -16,7 +16,7 @@ func _fire():
 	scale.x = weapon_size
 	scale.y = weapon_size
 
-	await get_tree().create_timer(0.2 * fire_rate).timeout
+	await get_tree().create_timer(0.2 / fire_rate).timeout
 
 	_create_slash_effect()
 
@@ -48,7 +48,7 @@ func _create_slash_effect() -> void:
 
 	tween.tween_callback(_damage_effect.show)
 	tween.tween_property(
-		_damage_effect, "global_position", _damage_effect.global_position, 0.3 * fire_rate
+		_damage_effect, "global_position", _damage_effect.global_position, 0.3 / fire_rate
 	)
 	tween.tween_property(_damage_effect, "position", Vector2.ZERO, 0.01)
 	tween.tween_callback(_damage_effect.hide)

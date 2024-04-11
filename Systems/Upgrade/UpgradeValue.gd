@@ -47,7 +47,7 @@ func apply(source: Node) -> void:
 
 		Operation.SUBTRACT:
 			object.set_indexed(
-				property_path, max(0, object.get_indexed(property_path) - upgrade_value)
+				property_path, max(upgrade_value, object.get_indexed(property_path) - upgrade_value)
 			)
 
 		Operation.MULTIPLY:

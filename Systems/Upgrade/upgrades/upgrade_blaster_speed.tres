@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_ad2s3"]
 script = ExtResource("2_wts60")
 path = ":fire_rate"
-operation = 1
+operation = 0
 type = 3
 upgrade_value = 0.06
 
