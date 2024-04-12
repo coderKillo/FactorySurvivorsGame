@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=18 format=3 uid="uid://weaopiyujqgb"]
+[gd_resource type="Theme" load_steps=24 format=3 uid="uid://weaopiyujqgb"]
 
 [ext_resource type="Texture2D" uid="uid://dnolouw5gm8e8" path="res://Shared/PixelTheme/Images/Button1.png" id="1_17pwg"]
 [ext_resource type="Texture2D" uid="uid://bpcjuhcg1ny4a" path="res://Shared/PixelTheme/Images/Button3.png" id="1_67coa"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://deh76fftbfc0b" path="res://Shared/PixelTheme/Fonts/pixellocale-v-1-4.ttf" id="2_sr6mv"]
 [ext_resource type="Texture2D" uid="uid://8p0i53cq7igq" path="res://Shared/PixelTheme/Images/Button2.png" id="2_uaym3"]
 [ext_resource type="Texture2D" uid="uid://iwl5fjucvohj" path="res://Shared/PixelTheme/Images/SliderGrabber1.png" id="3_3083o"]
+[ext_resource type="Texture2D" uid="uid://dxl6qucg6mgy1" path="res://Shared/06_Hologram_Theme/Sprites/Spritesheet_UI_Hologram.png" id="4_1qmdx"]
 [ext_resource type="Texture2D" uid="uid://d0h63kell4d0w" path="res://Shared/PixelTheme/Images/SliderGrabber2.png" id="4_btg6y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_owmwt"]
@@ -37,6 +38,43 @@ texture_margin_left = 2.0
 texture_margin_top = 4.0
 texture_margin_right = 2.0
 texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qukn"]
+atlas = ExtResource("4_1qmdx")
+region = Rect2(557, 236, 5, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu7j5"]
+atlas = ExtResource("4_1qmdx")
+region = Rect2(557, 236, 5, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mky7w"]
+texture = ExtResource("4_1qmdx")
+texture_margin_top = 0.270261
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+region_rect = Rect2(545, 204, 3, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iup2e"]
+texture = ExtResource("4_1qmdx")
+texture_margin_top = 0.270261
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+region_rect = Rect2(545, 204, 3, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8nghr"]
+texture = ExtResource("4_1qmdx")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+expand_margin_left = 3.0
+expand_margin_top = 5.0
+expand_margin_right = 3.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(544, 168, 32, 14)
+draw_center = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ua268"]
 texture = ExtResource("1_ee7pi")
@@ -89,6 +127,12 @@ Button/styles/focus = SubResource("StyleBoxTexture_owmwt")
 Button/styles/hover = SubResource("StyleBoxTexture_x8mui")
 Button/styles/normal = SubResource("StyleBoxTexture_4yyip")
 Button/styles/pressed = SubResource("StyleBoxTexture_djgsa")
+HSlider/constants/center_grabber = 1
+HSlider/icons/grabber = SubResource("AtlasTexture_6qukn")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_xu7j5")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_mky7w")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_iup2e")
+HSlider/styles/slider = SubResource("StyleBoxTexture_8nghr")
 Panel/styles/panel = SubResource("StyleBoxTexture_ua268")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_4fglp")
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_durv5")
