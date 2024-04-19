@@ -1,43 +1,63 @@
-[gd_resource type="Theme" load_steps=24 format=3 uid="uid://weaopiyujqgb"]
+[gd_resource type="Theme" load_steps=26 format=3 uid="uid://weaopiyujqgb"]
 
-[ext_resource type="Texture2D" uid="uid://dnolouw5gm8e8" path="res://Shared/PixelTheme/Images/Button1.png" id="1_17pwg"]
-[ext_resource type="Texture2D" uid="uid://bpcjuhcg1ny4a" path="res://Shared/PixelTheme/Images/Button3.png" id="1_67coa"]
+[ext_resource type="Texture2D" uid="uid://dt5p86y1ruev3" path="res://Shared/06_Hologram_Theme/Sprites/Button/UI_Hologram_Button_Small_Release_01a2.png" id="1_1ilkw"]
+[ext_resource type="Texture2D" uid="uid://ctq4umypb41b4" path="res://Shared/06_Hologram_Theme/Sprites/Button/UI_Hologram_Button_Small_Press_01a2.png" id="1_2qhjf"]
 [ext_resource type="Texture2D" uid="uid://cfxunkeb3k15u" path="res://Shared/PixelTheme/Images/Toggle1.png" id="1_ee7pi"]
+[ext_resource type="Texture2D" uid="uid://c8xr78jg3qorx" path="res://Shared/06_Hologram_Theme/Sprites/Button/UI_Hologram_Button_Small_Release_01a3.png" id="2_6sa8u"]
 [ext_resource type="FontFile" uid="uid://deh76fftbfc0b" path="res://Shared/PixelTheme/Fonts/pixellocale-v-1-4.ttf" id="2_sr6mv"]
 [ext_resource type="Texture2D" uid="uid://8p0i53cq7igq" path="res://Shared/PixelTheme/Images/Button2.png" id="2_uaym3"]
 [ext_resource type="Texture2D" uid="uid://iwl5fjucvohj" path="res://Shared/PixelTheme/Images/SliderGrabber1.png" id="3_3083o"]
+[ext_resource type="Texture2D" uid="uid://cftqg6kdsm3ni" path="res://Shared/06_Hologram_Theme/Sprites/Button/UI_Hologram_Button_Small_Press_01a4.png" id="3_rhefr"]
 [ext_resource type="Texture2D" uid="uid://dxl6qucg6mgy1" path="res://Shared/06_Hologram_Theme/Sprites/Spritesheet_UI_Hologram.png" id="4_1qmdx"]
 [ext_resource type="Texture2D" uid="uid://d0h63kell4d0w" path="res://Shared/PixelTheme/Images/SliderGrabber2.png" id="4_btg6y"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_owmwt"]
-texture = ExtResource("1_67coa")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
-modulate_color = Color(1, 1, 1, 0)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tau3d"]
+content_margin_left = 0.0
+content_margin_top = 2.0
+content_margin_right = 0.0
+content_margin_bottom = 2.0
+texture = ExtResource("1_2qhjf")
+texture_margin_left = 9.0
+texture_margin_top = 8.0
+texture_margin_right = 9.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(0, 7, 32, 19)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x8mui"]
-texture = ExtResource("1_17pwg")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 5.0
-modulate_color = Color(2, 2, 2, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ojsqf"]
+content_margin_left = 0.0
+content_margin_top = 2.0
+content_margin_right = 0.0
+content_margin_bottom = 2.0
+texture = ExtResource("2_6sa8u")
+texture_margin_left = 9.0
+texture_margin_top = 6.0
+texture_margin_right = 9.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 7, 32, 19)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4yyip"]
-texture = ExtResource("1_17pwg")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 5.0
+content_margin_left = 0.0
+content_margin_top = 2.0
+content_margin_right = 0.0
+content_margin_bottom = 2.0
+texture = ExtResource("3_rhefr")
+texture_margin_left = 7.0
+texture_margin_top = 6.0
+texture_margin_right = 7.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 7, 32, 19)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_djgsa"]
-texture = ExtResource("2_uaym3")
-texture_margin_left = 2.0
-texture_margin_top = 4.0
-texture_margin_right = 2.0
-texture_margin_bottom = 3.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m1tq5"]
+content_margin_left = 0.0
+content_margin_top = 2.0
+content_margin_right = 0.0
+content_margin_bottom = 2.0
+texture = ExtResource("1_1ilkw")
+texture_margin_left = 9.0
+texture_margin_top = 8.0
+texture_margin_right = 9.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(0, 7, 32, 19)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6qukn"]
 atlas = ExtResource("4_1qmdx")
@@ -123,10 +143,10 @@ modulate_color = Color(0.780392, 0.780392, 0.780392, 0.509804)
 
 [resource]
 default_font = ExtResource("2_sr6mv")
-Button/styles/focus = SubResource("StyleBoxTexture_owmwt")
-Button/styles/hover = SubResource("StyleBoxTexture_x8mui")
+Button/styles/focus = SubResource("StyleBoxTexture_tau3d")
+Button/styles/hover = SubResource("StyleBoxTexture_ojsqf")
 Button/styles/normal = SubResource("StyleBoxTexture_4yyip")
-Button/styles/pressed = SubResource("StyleBoxTexture_djgsa")
+Button/styles/pressed = SubResource("StyleBoxTexture_m1tq5")
 HSlider/constants/center_grabber = 1
 HSlider/icons/grabber = SubResource("AtlasTexture_6qukn")
 HSlider/icons/grabber_highlight = SubResource("AtlasTexture_xu7j5")

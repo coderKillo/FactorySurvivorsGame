@@ -128,8 +128,6 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 		for panel in _gui.get_quickbar_panels():
 			if panel.held_item == null:
 				continue
-			print(Library.get_entity_name(panel.held_item))
-			print(upgrade.object)
 			if Library.get_entity_name(panel.held_item) == upgrade.object:
 				upgrade.upgrade(panel.held_item)
 

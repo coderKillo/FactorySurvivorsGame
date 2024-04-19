@@ -31,11 +31,11 @@ func _ready():
 
 func _process(_delta):
 	if not _process_timer.is_stopped():
-		update_progress.emit(process_time / _process_timer.time_left)
+		update_progress.emit((process_time - _process_timer.time_left) / process_time)
 
 
 func start() -> void:
-	if !_process_timer.is_stopped():
+	if !_process_timer.is_stopped() or not has_available_work():
 		return
 	_process_timer.start(process_time)
 	update_progress.emit(0.0)

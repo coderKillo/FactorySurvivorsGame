@@ -1,14 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://d23u3bg73f2he"]
+[gd_scene load_steps=25 format=3 uid="uid://d23u3bg73f2he"]
 
 [ext_resource type="Script" path="res://Entities/Entities/CrusherEntity.gd" id="1_0gscn"]
 [ext_resource type="Texture2D" uid="uid://dn317g7xjubkp" path="res://Shared/animations/crusher_idle.png" id="2_t0qjn"]
 [ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_1e5yo"]
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="4_o7nak"]
 [ext_resource type="PackedScene" uid="uid://ttwt5lj1j33o" path="res://Systems/Work/WorkComponent.tscn" id="4_r32me"]
+[ext_resource type="Shader" path="res://Shader/hologram.gdshader" id="5_tbxg8"]
 [ext_resource type="Script" path="res://GUI/WorkerGuiComponent.gd" id="6_fwtb6"]
+[ext_resource type="Texture2D" uid="uid://bh8jgs6q1b1jk" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_02a.png" id="7_n4fc6"]
 [ext_resource type="PackedScene" uid="uid://tcvkyspk3vu" path="res://GUI/InventoryPanel.tscn" id="7_xmwyd"]
 [ext_resource type="Script" path="res://GUI/GUISprite.gd" id="8_ijn3o"]
-[ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="9_e1fk3"]
+[ext_resource type="Texture2D" uid="uid://bmlf0pw8gnmr5" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Frame_Horizontal_01a.png" id="8_tuclx"]
+[ext_resource type="Texture2D" uid="uid://qitvr822qew8" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Banner_01a.png" id="10_xnqus"]
+[ext_resource type="Texture2D" uid="uid://bj5y4uy45ogjd" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Arrow_Small_01a - Kopie.png" id="11_5u7lr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktmyr"]
 size = Vector2(16, 16)
@@ -45,10 +49,31 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3xi3"]
 size = Vector2(12, 16)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ya1j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oce1i"]
+shader = ExtResource("5_tbxg8")
+shader_parameter/phase_color = Color(0, 0, 0.35, 1)
+shader_parameter/phase_factor = 0.34
+shader_parameter/blend_color = Color(0, 0.24, 0.54, 0.9)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v5r6g"]
-bg_color = Color(0, 0.717647, 0.364706, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qpjiu"]
+texture = ExtResource("8_tuclx")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rappo"]
+atlas = ExtResource("7_n4fc6")
+region = Rect2(3, 9, 27, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehl3n"]
+atlas = ExtResource("7_n4fc6")
+region = Rect2(3, 9, 27, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbr14"]
+atlas = ExtResource("10_xnqus")
+region = Rect2(17, 9, 64, 6)
+margin = Rect2(1, 0, 5, 0)
 
 [node name="CrusherEntity" type="StaticBody2D" groups=["power_receivers"]]
 collision_layer = 8
@@ -85,12 +110,13 @@ output_pos = NodePath("../OutputPos")
 
 [node name="GUIComponent" type="MarginContainer" parent="." node_paths=PackedStringArray("worker")]
 visible = false
+material = SubResource("ShaderMaterial_oce1i")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = -34.0
-offset_right = 23.0
+offset_left = 4.0
+offset_top = -38.0
+offset_right = 58.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -99,40 +125,61 @@ script = ExtResource("6_fwtb6")
 worker = NodePath("../WorkComponent")
 
 [node name="PanelContainer" type="PanelContainer" parent="GUIComponent"]
+use_parent_material = true
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qpjiu")
 
 [node name="MarginContainer" type="MarginContainer" parent="GUIComponent/PanelContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUIComponent/PanelContainer/MarginContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ProgressBar" type="TextureProgressBar" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer"]
+use_parent_material = true
 custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxEmpty_4ya1j")
-theme_override_styles/fill = SubResource("StyleBoxFlat_v5r6g")
-value = 31.01
-show_percentage = false
+max_value = 1.0
+step = 0.05
+value = 1.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = SubResource("AtlasTexture_rappo")
+texture_over = SubResource("AtlasTexture_ehl3n")
+texture_progress = SubResource("AtlasTexture_qbr14")
+texture_progress_offset = Vector2(1, 0)
+tint_progress = Color(0, 2, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer"]
+use_parent_material = true
 layout_mode = 2
-theme_override_constants/separation = -3
+theme_override_constants/separation = 1
 
 [node name="InputPanel" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("7_xmwyd")]
+use_parent_material = true
 layout_mode = 2
 
 [node name="GUISprite" type="Control" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
+use_parent_material = true
+custom_minimum_size = Vector2(10, 11)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("8_ijn3o")
-texture = ExtResource("9_e1fk3")
+texture = ExtResource("11_5u7lr")
 region_enabled = true
-region_rect = Rect2(32, 176, 16, 16)
+region_rect = Rect2(11, 11, 10, 11)
 
 [node name="OutputPanel" parent="GUIComponent/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("7_xmwyd")]
+use_parent_material = true
 layout_mode = 2

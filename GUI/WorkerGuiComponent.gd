@@ -2,7 +2,8 @@ extends BaseGuiComponent
 
 @export var worker: WorkComponent
 
-@onready var _progress_bar: ProgressBar = $PanelContainer/MarginContainer/VBoxContainer/ProgressBar
+@onready
+var _progress_bar: TextureProgressBar = $PanelContainer/MarginContainer/VBoxContainer/ProgressBar
 
 
 func _ready():

@@ -587,7 +587,6 @@ autowrap_mode = 0
 visible_characters_behavior = 1
 
 [node name="RetryButton" type="Button" parent="MarginContainer/VBoxContainer"]
-modulate = Color(0.925781, 0.597656, 0, 1)
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -596,7 +595,6 @@ theme_override_font_sizes/font_size = 5
 text = "Retry"
 
 [node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer"]
-modulate = Color(0.769531, 0.488281, 0, 1)
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
