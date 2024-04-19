@@ -68,6 +68,8 @@ func _find_entities_in(path: String) -> void:
 		if dir.current_is_dir():
 			_find_entities_in(dirname + "/" + filename)
 		else:
+			if filename.ends_with(".remap"):
+				filename = filename.trim_suffix(".remap")
 			if filename.ends_with(BLUEPRINT):
 				var entity_name = filename.replace(BLUEPRINT, "")
 				blueprints[entity_name] = load(dirname + "/" + filename)

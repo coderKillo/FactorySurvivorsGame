@@ -174,6 +174,8 @@ func _load_parts() -> void:
 	var filename := dir.get_next()
 	while filename != "":
 		if filename.begins_with("part_"):
+			if filename.ends_with(".remap"):
+				filename = filename.trim_suffix(".remap")
 			var key = filename.replace("part_", "").replace(".tscn", "")
 			_parts[key] = load(dir.get_current_dir() + "/" + filename)
 
