@@ -123,6 +123,9 @@ func _on_hit(_damage: int) -> void:
 
 
 func _on_navi_remake_path() -> void:
+	if target == null:
+		return
+
 	_navigation.target_position = target.global_position
 
 

@@ -246,6 +246,7 @@ layout_mode = 2
 script = ExtResource("13_sfcl2")
 
 [node name="PanelContainer" type="PanelContainer" parent="PauseMenu"]
+z_index = 5
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bdtgd")
 

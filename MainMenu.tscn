@@ -165,16 +165,22 @@ script = ExtResource("7_oo2nh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 120.0
-offset_right = 70.0
-offset_bottom = 166.0
+offset_left = 13.0
+offset_top = 110.0
+offset_right = 73.0
+offset_bottom = 169.0
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Start"
+
+[node name="TutorialButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Tutorial"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(60, 0)

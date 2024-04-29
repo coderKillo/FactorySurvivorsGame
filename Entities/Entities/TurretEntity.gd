@@ -18,7 +18,6 @@ var _target: Node2D
 
 func _ready():
 	_animation.play("idle")
-	_animation.speed_scale = ANIMATION_TIME / self.data.speed
 	_power.received_power.connect(_on_received_power)
 
 
