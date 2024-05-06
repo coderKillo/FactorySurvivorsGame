@@ -1,6 +1,7 @@
 extends TileMap
 
 @export var maximum_work_distance: int = 2
+@export var preview_material: Material
 
 const GROUND_LAYER := 0
 
@@ -10,6 +11,8 @@ var _gui: GUI
 
 @onready var _destruction_timer: DestructionTimer = $Timer
 @onready var DropPodScene: PackedScene = preload("res://Entities/DropPod.tscn")
+
+var _entity_placer_queue := {}
 
 ########## PUBLIC
 
@@ -37,6 +40,7 @@ func setup(gui: GUI, tracker: EntityTracker, player: Player):
 
 func _ready():
 	_destruction_timer.finish_destruction.connect(_finish_destruction)
+	Events.slot_cooldown_finished.connect(_on_quickslot_cooldown_finished)
 
 
 func _unhandled_input(event: InputEvent):
@@ -47,7 +51,7 @@ func _unhandled_input(event: InputEvent):
 
 		if _has_placable_blueprint():
 			if _can_placed_on_cell():
-				_place_entity(_get_cell_under_mouse())
+				_request_entity(_get_cell_under_mouse())
 			else:
 				SoundManager.play("entity_placed_failed")
 		elif _is_cell_occupied():
@@ -80,7 +84,23 @@ func _update_blueprint():
 		return
 
 
-func _place_entity(location: Vector2i):
+func _on_quickslot_cooldown_finished(entity_name: String):
+	if not _entity_placer_queue.has(entity_name):
+		return
+
+	if _entity_placer_queue[entity_name].is_empty():
+		return
+
+	var queue_entry = _entity_placer_queue[entity_name].pop_front()
+	var entity := queue_entry["entity"] as Entity
+	var blueprint := queue_entry["blueprint"] as BlueprintEntity
+	var preview := queue_entry["preview"] as Node
+
+	preview.queue_free()
+	_place_entity(entity, blueprint)
+
+
+func _request_entity(location: Vector2i):
 	var entity_name = Library.get_entity_name(_gui.blueprint)
 	var entity: Entity = Library.entites[entity_name].instantiate()
 	entity.global_position = to_global(map_to_local(location))
@@ -89,23 +109,53 @@ func _place_entity(location: Vector2i):
 	entity._setup(_gui.blueprint)
 	entity._setup_gui(_gui)
 
-	var drop_pod := DropPodScene.instantiate() as DropPod
-	drop_pod.global_position = to_global(map_to_local(location))
-	add_child(drop_pod)
-	await drop_pod.opened
-
-	add_child(entity)
-
-	_tracker.place_entities(entity, location)
-
-	SoundManager.play("entity_placed")
-
 	if _player.energy.energy < entity.data.energy_cost:
 		return
 	_player.energy.energy -= entity.data.energy_cost
 
+	_tracker.place_entities(entity, location)
+
+	if _gui.blueprint and _gui.blueprint.on_cooldown:
+		var preview := _create_preview(entity.position)
+
+		_make_placer_queue_entry(entity_name, entity, _gui.blueprint, preview)
+
+	else:
+		_place_entity(entity, _gui.blueprint)
+
+
+func _place_entity(entity: Entity, blueprint: BlueprintEntity):
+	var drop_pod := DropPodScene.instantiate() as DropPod
+	drop_pod.global_position = entity.position
+	add_child(drop_pod)
+
+	await drop_pod.opened
+
+	add_child(entity)
+
+	SoundManager.play("entity_placed")
+
 	# trigger item changed for cooldown
-	_gui.blueprint.stack_count += 0
+	blueprint.stack_count += 0
+
+
+func _create_preview(pos: Vector2) -> Node2D:
+	var preview := _gui.preview.duplicate() as Node2D
+	preview.global_position = pos
+	preview.material = preview_material
+	add_child(preview)
+
+	return preview
+
+
+func _make_placer_queue_entry(
+	entity_name: String, entity: Entity, blueprint: BlueprintEntity, preview: Node2D
+) -> void:
+	if not _entity_placer_queue.has(entity_name):
+		_entity_placer_queue[entity_name] = []
+
+	var queue_entry = {"entity": entity, "blueprint": blueprint, "preview": preview}
+	_entity_placer_queue[entity_name].append(queue_entry)
 
 
 func _show_entity_gui(location: Vector2i) -> void:

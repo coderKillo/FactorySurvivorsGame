@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bn036liop3mqv"]
+[gd_scene load_steps=20 format=3 uid="uid://bn036liop3mqv"]
 
 [ext_resource type="Script" path="res://Systems/Simulation.gd" id="1_j5ers"]
 [ext_resource type="PackedScene" uid="uid://caan0o3hcqc0o" path="res://Systems/Worldgenerator/WorldGenerator.tscn" id="2_lgle3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Systems/EntityPlacer.gd" id="3_sbt4h"]
 [ext_resource type="Script" path="res://Entities/DestructionTimer.gd" id="4_h002n"]
 [ext_resource type="Script" path="res://Systems/EnemyPlacer.gd" id="5_ttm65"]
+[ext_resource type="Shader" path="res://Shader/hologram2.gdshader" id="5_yfihi"]
 [ext_resource type="Script" path="res://Systems/GroundEntitySpawner.gd" id="8_lmmv0"]
 [ext_resource type="Script" path="res://VFX/VfxManager.gd" id="9_23opm"]
 [ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="10_cj28n"]
@@ -25,6 +26,12 @@ shader_parameter/desaturation = 0.75
 shader_parameter/palette = SubResource("GradientTexture1D_iwika")
 
 [sub_resource type="TileSet" id="TileSet_njyke"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0f1xi"]
+shader = ExtResource("5_yfihi")
+shader_parameter/phase_trashold = 0.51
+shader_parameter/phase_factor = 0.2
+shader_parameter/blend_color = Color(0, 1, 1, 0.686275)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kb3f5"]
 bg_color = Color(0, 0, 0, 1)
@@ -48,6 +55,7 @@ format = 2
 layer_0/name = "Entities"
 layer_0/y_sort_enabled = true
 script = ExtResource("3_sbt4h")
+preview_material = SubResource("ShaderMaterial_0f1xi")
 
 [node name="Timer" type="Timer" parent="GameWorld/EntityPlacer"]
 one_shot = true

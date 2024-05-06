@@ -63,7 +63,6 @@ func on_panel_clicked(panel: InventoryPanel):
 			_preview.add_child(child.duplicate())
 
 	elif has_item and not has_panel_item and is_valid_item:
-		_swap_panel_item(_panel_reference, panel)
 		destroy_blueprint()
 
 
@@ -90,13 +89,3 @@ func _update_label() -> void:
 	else:
 		_label.text = str(1)
 		_label.hide()
-
-
-func _swap_panel_item(panel1, panel2):
-	var temp1 = panel1.held_item
-	var temp2 = panel2.held_item
-	# clear parents else add_child would fail
-	panel1.held_item = null
-	panel2.held_item = null
-	panel1.held_item = temp2
-	panel2.held_item = temp1

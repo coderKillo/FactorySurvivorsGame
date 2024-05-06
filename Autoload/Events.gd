@@ -31,3 +31,5 @@ signal spawn_effect_rotated(name: String, position: Vector2, degree: float)
 signal frame_freeze
 
 signal camera_shake(amount: float)
+
+signal slot_cooldown_finished(entity_name: String)

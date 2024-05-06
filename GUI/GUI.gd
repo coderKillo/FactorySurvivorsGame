@@ -22,7 +22,7 @@ var blueprint: BlueprintEntity:
 	get:
 		return _drag_preview.blueprint
 
-var preview: Sprite2D:
+var preview: Node:
 	get:
 		return _drag_preview._preview
 
@@ -41,6 +41,7 @@ func _ready():
 	_quickbar.setup(self)
 	_quickbar.add_entity(Library.blueprints["Smelter"].instantiate())
 	_quickbar.add_entity(Library.blueprints["PowerPlant"].instantiate())
+	_quickbar.add_entity(Library.blueprints["Conveyor"].instantiate())
 	_resource.setup(self)
 
 

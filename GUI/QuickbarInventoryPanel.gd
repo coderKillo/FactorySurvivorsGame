@@ -39,9 +39,13 @@ func start_cooldown(time: float) -> void:
 	if _panel.held_item == null:
 		return
 
-	_panel.held_item.placeable = false
+	_panel.held_item.on_cooldown = true
 	_timer.start(time)
 
 
 func _end_cooldown() -> void:
-	_panel.held_item.placeable = true
+	if _panel.held_item == null:
+		return
+
+	_panel.held_item.on_cooldown = false
+	Events.slot_cooldown_finished.emit(Library.get_entity_name(_panel.held_item))

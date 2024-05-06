@@ -6,6 +6,7 @@ signal stack_count_changed(count: int)
 @export var entity_name: String = ""
 @export var placeable := true
 @export var rotateable := false
+@export var on_cooldown := false
 
 @export var data := EntityData.new()
 
