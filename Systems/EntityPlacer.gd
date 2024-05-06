@@ -79,11 +79,6 @@ func _update_blueprint():
 	if not _has_placable_blueprint():
 		return
 
-	if _gui.blueprint is WireBlueprint:
-		WireBlueprint.set_sprite_from_direction(
-			_gui.blueprint.sprites, _tracker.get_power_neighbors(_get_cell_under_mouse())
-		)
-
 
 func _place_entity(location: Vector2i):
 	var entity_name = Library.get_entity_name(_gui.blueprint)
@@ -94,11 +89,10 @@ func _place_entity(location: Vector2i):
 	entity._setup(_gui.blueprint)
 	entity._setup_gui(_gui)
 
-	if not _gui.blueprint is WireBlueprint:
-		var drop_pod := DropPodScene.instantiate() as DropPod
-		drop_pod.global_position = to_global(map_to_local(location))
-		add_child(drop_pod)
-		await drop_pod.opened
+	var drop_pod := DropPodScene.instantiate() as DropPod
+	drop_pod.global_position = to_global(map_to_local(location))
+	add_child(drop_pod)
+	await drop_pod.opened
 
 	add_child(entity)
 
@@ -112,11 +106,6 @@ func _place_entity(location: Vector2i):
 
 	# trigger item changed for cooldown
 	_gui.blueprint.stack_count += 0
-
-	if _gui.blueprint is WireBlueprint:
-		WireBlueprint.set_sprite_from_direction(
-			entity.sprites, _tracker.get_power_neighbors(_get_cell_under_mouse())
-		)
 
 
 func _show_entity_gui(location: Vector2i) -> void:

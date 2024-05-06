@@ -35,6 +35,5 @@ func _on_power_plant_molt_bucked_changed(bucket: Bucket):
 		_tutorial_stages.tutorial_event.emit(TutorialStages.TutorialEvents.POWER_PLANT_LOADED)
 
 
-func _on_turret_received_power(amount, _delta):
-	if amount > 0:
-		_tutorial_stages.tutorial_event.emit(TutorialStages.TutorialEvents.TURRET_CONNECTED)
+func _on_turret_received_power(_amount, _delta):
+	pass

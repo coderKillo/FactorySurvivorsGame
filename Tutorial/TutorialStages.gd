@@ -15,7 +15,6 @@ enum Stages {
 	LOAD_ORE,
 	GET_MELT,
 	LOAD_MELT,
-	CONNECT_TURRET,
 	FINISH
 }
 
@@ -30,7 +29,6 @@ enum TutorialEvents {
 	SMELTER_LOADED,
 	MELT_COLLECTED,
 	POWER_PLANT_LOADED,
-	TURRET_CONNECTED,
 	NONE
 }
 
@@ -120,15 +118,13 @@ func _get_current_stage_text() -> String:
 		Stages.GET_ORE:
 			return "Enemy down! Now get to work, spaceman! Extract that ore like your life depends on it!\n[i](Pickaxe will be used automatically when standing close to an enemy)[/i]"
 		Stages.BUILD_SMELTER:
-			return "Spaceman, time to get crafty! Build those furnaces, and make 'em sturdy! Efficiency is key!\n[i](Press [2] to select the funace and place it with [left click])[/i]"
+			return "Spaceman, time to get crafty! Build those furnaces, and make 'em sturdy! Efficiency is key!\n[i](Press [1] to select the funace and place it with [left click])[/i]"
 		Stages.LOAD_ORE:
 			return "Ore's ready, spaceman! Don't dilly-dally! Get it into those furnaces, pronto!\n[i](Standing close to the funace will fill it with ore you collected)[/i]"
 		Stages.GET_MELT:
 			return "Furnaces are hot, spaceman! Extract that molten ore, but watch your hands!\n[i](Standing close to the funace will also fill the molten ore in your tank)[/i]"
 		Stages.LOAD_MELT:
 			return "Move it, spaceman! Power's waiting! Pour that molten ore into the plant, and keep it steady!\n[i](Standing close to the power plant will fill it with molten ore to produce energy)[/i]"
-		Stages.CONNECT_TURRET:
-			return "Final step, spaceman! Make the connection! Power up that turret and let it rain destruction on our enemies!\n[i](Press [1] and [left click] to place wires. Connect the power plant with the turret)[/i]"
 		Stages.FINISH:
 			return "Congratulation, spaceman! Get out there and get it done, because in space, it's them or us. Move out, spaceman!\n[i](Press [Esc] and click 'Quit' to exit the tutorial[/i]"
 

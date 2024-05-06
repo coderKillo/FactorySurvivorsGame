@@ -22,20 +22,14 @@ func set_cell(cellv: Vector2i, value: String) -> void:
 	_tilemap.set_cell(NAV_LAYER, cellv, SOURCE_ID, _tiles[value])
 
 
-func _on_entity_placed(entity: Entity, cellv: Vector2):
-	if Library.get_entity_name(entity) == "Wire":
-		return
-
+func _on_entity_placed(_entity: Entity, cellv: Vector2):
 	set_cell(Vector2i(cellv), "off")
 
 	if cellv not in _blocked_cells:
 		_blocked_cells.append(cellv)
 
 
-func _on_entity_removed(entity: Entity, cellv: Vector2):
-	if Library.get_entity_name(entity) == "Wire":
-		return
-
+func _on_entity_removed(_entity: Entity, cellv: Vector2):
 	_blocked_cells.erase(cellv)
 
 	set_cell(Vector2i(cellv), "on")
