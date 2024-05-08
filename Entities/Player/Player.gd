@@ -56,8 +56,6 @@ func _physics_process(_delta):
 		speed -= load_treshold_slow
 	if current_load > HIGH_LOAD_TRESHOLD:
 		speed -= load_treshold_slow
-	if _drag_objects.bodies_grabed() > 0:
-		speed /= 2
 
 	velocity = input_direction * speed
 
