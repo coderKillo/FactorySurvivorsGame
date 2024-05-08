@@ -31,6 +31,8 @@ window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://Shared/crosshair-export.png"
+mouse_cursor/custom_image_hotspot=Vector2(32, 32)
 
 [input]
 

@@ -98,6 +98,8 @@ script = ExtResource("9_23opm")
 layer = 2
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("10_cj28n")]
+offset_left = -20.0
+offset_right = 20.0
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_5j556")
