@@ -13,6 +13,26 @@ func add_entity(blueprint: BlueprintEntity) -> void:
 	printerr("could not add entity '%s': quickbar is full!" % blueprint.name)
 
 
+func select_panel(index: int) -> void:
+	var event = InputEventMouseButton.new()
+	event.button_index = MOUSE_BUTTON_LEFT
+	event.pressed = true
+
+	panels[index]._gui_input(event)
+
+	_deselect_all()
+	_select(index)
+
+
+func _deselect_all():
+	for panel in panels:
+		panel.select_frame.hide()
+
+
+func _select(index):
+	panels[index].select_frame.show()
+
+
 func _make_panels():
 	for i in slot_count:
 		var panel := InventoryPanelScene.instantiate()

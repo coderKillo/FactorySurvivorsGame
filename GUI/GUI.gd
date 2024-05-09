@@ -36,6 +36,8 @@ var open_entity_ui: BaseGuiComponent:
 @onready var _resource: ResourceUI = $ResourceUI
 @onready var _upgrade_gui: UpgradeSystemUI = $UpgradeSystemGUI
 
+var _current_quickbar_index := 0
+
 
 func _ready():
 	_quickbar.setup(self)
@@ -49,10 +51,26 @@ func _process(_delta):
 	_drag_preview.position_mode = (DragPreview.PositionMode.SNAP)
 
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent):
 	for i in QUICKBAR_ACTIONS.size():
 		if InputMap.event_is_action(event, QUICKBAR_ACTIONS[i]) and event.is_pressed():
-			_simulate_input(_quickbar.panels[i])
+			_current_quickbar_index = i
+
+			_quickbar.select_panel(_current_quickbar_index)
+
+	if event.is_action_pressed("quickbar_next"):
+		_current_quickbar_index += 1
+		if _current_quickbar_index >= QUICKBAR_ACTIONS.size():
+			_current_quickbar_index -= QUICKBAR_ACTIONS.size()
+
+		_quickbar.select_panel(_current_quickbar_index)
+
+	if event.is_action_pressed("quickbar_previous"):
+		_current_quickbar_index -= 1
+		if _current_quickbar_index < 0:
+			_current_quickbar_index += QUICKBAR_ACTIONS.size()
+
+		_quickbar.select_panel(_current_quickbar_index)
 
 
 func get_quickbar_panels() -> Array:
@@ -69,11 +87,3 @@ func destroy_blueprint():
 
 func display_upgrade(upgrades: Array[Upgrade], callback: Callable):
 	_upgrade_gui.display_options(upgrades, callback)
-
-
-func _simulate_input(panel: InventoryPanel) -> void:
-	var event = InputEventMouseButton.new()
-	event.button_index = MOUSE_BUTTON_LEFT
-	event.pressed = true
-
-	panel._gui_input(event)

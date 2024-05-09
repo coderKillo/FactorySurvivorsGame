@@ -9,6 +9,8 @@ signal held_item_changed(panel, item)
 var held_item: BlueprintEntity:
 	set = _set_held_item
 
+@onready var select_frame: TextureRect = $SelectFrame
+
 @onready var _lable: Label = $Label
 @onready var _mask: Node2D = $Mask
 
