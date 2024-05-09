@@ -364,7 +364,7 @@ visible = false
 position = Vector2(0, -3)
 script = ExtResource("7_bipw4")
 projectile_container = NodePath("../Projectiles")
-fire_rate = 3.0
+fire_rate = 2.0
 type = "blaster"
 
 [node name="Marker2D" type="Marker2D" parent="Weapons/Blaster"]
@@ -408,6 +408,9 @@ position = Vector2(4.5, 0.5)
 shape = SubResource("RectangleShape2D_d2ngo")
 
 [node name="Cooldown" type="Timer" parent="Weapons"]
+one_shot = true
+
+[node name="CooldownMelee" type="Timer" parent="Weapons"]
 one_shot = true
 
 [node name="Projectiles" type="Node2D" parent="Weapons"]
