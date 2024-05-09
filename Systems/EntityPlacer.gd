@@ -65,7 +65,9 @@ func _unhandled_input(event: InputEvent):
 	elif event.is_action_pressed("right_click"):
 		if _gui.blueprint:
 			_gui.destroy_blueprint()
-		elif _is_cell_occupied():
+
+	elif event.is_action_pressed("deconstruct"):
+		if _is_cell_occupied():
 			_destruction_timer.start_destruction(_get_cell_under_mouse())
 
 
