@@ -1,6 +1,6 @@
 extends TileMap
 
-@export var maximum_work_distance: int = 2
+@export var maximum_work_distance: int = 3
 @export var preview_material: Material
 
 const GROUND_LAYER := 0
