@@ -1,8 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://22h2hmh3x6it"]
 
-[ext_resource type="Script" path="res://Entities/Entities/SpikeTrapEntity.gd" id="1_aoaj2"]
+[ext_resource type="Script" path="res://Entities/Entities/TrapEntity.gd" id="1_2trx2"]
 [ext_resource type="Texture2D" uid="uid://bcf61g50a400p" path="res://Shared/spike_trap.png" id="1_nlp3l"]
 [ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_7xfvg"]
+[ext_resource type="Script" path="res://Entities/Entities/TrapEffects/SlowTrapEffect.gd" id="4_o5i0y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3edno"]
 atlas = ExtResource("1_nlp3l")
@@ -16,13 +17,17 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("1_nlp3l")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwlno"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u2ah"]
 atlas = ExtResource("1_nlp3l")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cd2a1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sspuf"]
 atlas = ExtResource("1_nlp3l")
 region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx3p6"]
+atlas = ExtResource("1_nlp3l")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1gacr"]
 animations = [{
@@ -35,66 +40,37 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wn66f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wwlno")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cd2a1")
 }],
 "loop": false,
-"name": &"default",
+"name": &"activate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u2ah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sspuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx3p6")
+}],
+"loop": false,
+"name": &"reload",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ociln"]
 size = Vector2(17, 16.9375)
 
-[sub_resource type="Animation" id="Animation_jgxjr"]
-resource_name = "active"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"", 1.0, false],
-"method": &"play"
-}, {
-"args": [],
-"method": &"stop"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_do_damage"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lebmq"]
-_data = {
-"active": SubResource("Animation_jgxjr")
-}
-
 [node name="SpikeTrapEntity" type="Node2D" groups=["power_receivers"]]
-script = ExtResource("1_aoaj2")
+script = ExtResource("1_2trx2")
+_sound_effect = "trap_active"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
 sprite_frames = SubResource("SpriteFrames_1gacr")
+animation = &"reload"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 65536
@@ -107,7 +83,7 @@ shape = SubResource("RectangleShape2D_ociln")
 script = ExtResource("3_7xfvg")
 power_required = 5.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_lebmq")
-}
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="Slow" type="Node2D" parent="Effects"]
+script = ExtResource("4_o5i0y")

@@ -8,11 +8,17 @@ var _effects = {
 	"shatter": preload("res://VFX/shatter.tscn"),
 }
 
+var _freeze_timer: Timer
+
 
 func _ready():
 	Events.spawn_effect.connect(_on_spawn_effect)
 	Events.spawn_effect_rotated.connect(_on_spawn_effect_rotated)
 	Events.frame_freeze.connect(_on_frame_freeze)
+
+	_freeze_timer = Timer.new()
+	_freeze_timer.one_shot = true
+	add_child(_freeze_timer)
 
 
 func _on_spawn_effect(effect_name: String, effect_position: Vector2):
@@ -36,4 +42,15 @@ func _on_spawn_effect_rotated(effect_name: String, effect_position: Vector2, deg
 
 
 func _on_frame_freeze() -> void:
-	OS.delay_msec(33)  # 30 fps
+	if _freeze_timer.time_left > 0.0:
+		return
+
+	var freeze_duration := 0.1
+	var freeze_time_scale := 0.05
+
+	Engine.time_scale = freeze_time_scale
+
+	_freeze_timer.start(freeze_time_scale * freeze_duration)
+	await _freeze_timer.timeout
+
+	Engine.time_scale = 1.0

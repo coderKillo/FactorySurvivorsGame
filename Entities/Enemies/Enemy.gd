@@ -49,8 +49,9 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
+	# execute physics only once on death (to apply pushback)
 	if _current_state == States.DEATH:
-		return
+		set_physics_process(false)
 
 	var direction = Vector2.ZERO
 
@@ -130,4 +131,4 @@ func _on_navi_remake_path() -> void:
 
 
 func _on_hit_push_back(direction: Vector2) -> void:
-	velocity = direction * 100
+	velocity = direction * 200

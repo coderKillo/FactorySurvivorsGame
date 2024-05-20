@@ -4,13 +4,14 @@
 
 [resource]
 script = ExtResource("1_7ous7")
-title = "New: Spike Trap"
+title = "New: Explosion Trap"
 type = "entity"
-object = "SpikeTrap"
+object = "ExplosionTrap"
 unique = true
 quality = 3
-description = "Unlock a spike trap, that deals 15 damage."
+description = "Unlock a explosion trap, that deals 25 damage."
 requirements = {
-"damage": 3
+"SpikeTrap": 3,
+"damage": 10
 }
 upgrades = Array[Resource("res://Systems/Upgrade/UpgradeValue.gd")]([])

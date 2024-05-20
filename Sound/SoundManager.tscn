@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dod0571rbs1wd"]
+[gd_scene load_steps=18 format=3 uid="uid://dod0571rbs1wd"]
 
 [ext_resource type="Script" path="res://Sound/SoundManager.gd" id="1_kwr75"]
 [ext_resource type="Script" path="res://Sound/SoundQueue.gd" id="2_2r1yp"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://ubjav66ueqrj" path="res://Shared/sfx/bubbles.wav" id="9_nw0j4"]
 [ext_resource type="AudioStream" uid="uid://3x8xydkx7h3j" path="res://Shared/sfx/FF_punch.wav" id="10_qgyau"]
 [ext_resource type="AudioStream" uid="uid://can6h2i3mfwmo" path="res://Shared/sfx/punch.wav" id="11_xg1tx"]
+[ext_resource type="AudioStream" uid="uid://d2xchmushn7yq" path="res://Shared/sfx/explodify3.wav" id="12_sb0gr"]
 [ext_resource type="AudioStream" uid="uid://1rqfxgku658p" path="res://Shared/sfx/ouch.wav" id="12_y4yt7"]
 [ext_resource type="AudioStream" uid="uid://dvng6h381ddfd" path="res://Shared/sfx/bonus.wav" id="13_am2gb"]
 [ext_resource type="AudioStream" uid="uid://51staymgm3vo" path="res://Shared/sfx/tinywarble.wav" id="14_pflum"]
@@ -109,6 +110,17 @@ count = 5
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="trap_active/SoundQueue"]
 stream = ExtResource("11_xg1tx")
+
+[node name="explosive" type="Node2D" parent="."]
+script = ExtResource("2_u15rl")
+
+[node name="SoundQueue" type="Node2D" parent="explosive"]
+script = ExtResource("2_2r1yp")
+count = 5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="explosive/SoundQueue"]
+stream = ExtResource("12_sb0gr")
+pitch_scale = 0.65
 
 [node name="player_hit" type="Node2D" parent="."]
 script = ExtResource("2_u15rl")
