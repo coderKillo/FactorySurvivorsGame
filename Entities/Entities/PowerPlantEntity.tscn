@@ -1,10 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://dvv3k8f26s3ro"]
+[gd_scene load_steps=29 format=3 uid="uid://dvv3k8f26s3ro"]
 
 [ext_resource type="Script" path="res://Entities/Entities/PowerPlantEntity.gd" id="1_bjnb1"]
 [ext_resource type="Texture2D" uid="uid://bu0nssebqfb4e" path="res://Shared/animations/powerplant-tall_idle.png" id="2_r07na"]
 [ext_resource type="Script" path="res://Systems/Power/PowerSource.gd" id="3_wmamp"]
 [ext_resource type="Script" path="res://Systems/Mining/HeatReceiver.gd" id="4_aokwd"]
-[ext_resource type="Script" path="res://Systems/Power/UtilizationBar.gd" id="5_h3hei"]
 [ext_resource type="Script" path="res://Entities/Bucket.gd" id="6_b2cx5"]
 [ext_resource type="Shader" path="res://Shader/hologram.gdshader" id="7_kmtl0"]
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="8_m8ghg"]
@@ -134,7 +133,7 @@ power_amount = 100.0
 [node name="HeatReceiver" type="Node2D" parent="."]
 script = ExtResource("4_aokwd")
 
-[node name="UtilizationBar" type="ProgressBar" parent="." node_paths=PackedStringArray("power_source")]
+[node name="MoltBucketBar" type="ProgressBar" parent="." node_paths=PackedStringArray("_bucket")]
 offset_left = -5.0
 offset_top = 2.0
 offset_right = 5.0
@@ -144,12 +143,12 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ts6tt")
 max_value = 1.0
 value = 1.0
 show_percentage = false
-script = ExtResource("5_h3hei")
-power_source = NodePath("../PowerSource")
+script = ExtResource("14_3774a")
+_bucket = NodePath("../MoltBucket")
 
 [node name="MoltBucket" type="Node2D" parent="."]
 script = ExtResource("6_b2cx5")
-_limit = 5000
+_limit = 1000
 _content = 0
 
 [node name="GUIComponent" type="MarginContainer" parent="."]

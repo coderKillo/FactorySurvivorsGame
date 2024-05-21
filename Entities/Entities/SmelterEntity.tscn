@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dl1vvohs3eypo"]
+[gd_scene load_steps=30 format=3 uid="uid://dl1vvohs3eypo"]
 
 [ext_resource type="Script" path="res://Entities/Entities/SmelterEntity.gd" id="1_pkhbk"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="2_iyxwc"]
@@ -80,6 +80,12 @@ texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xa7v"]
+bg_color = Color(0.105469, 0.121094, 0.128906, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r31av"]
+bg_color = Color(0, 0.639216, 0.00392157, 1)
+
 [node name="SmelterEntity" type="StaticBody2D" groups=["heat_provider"]]
 position = Vector2(0, 11)
 collision_layer = 131072
@@ -93,9 +99,11 @@ region_enabled = true
 region_rect = Rect2(144, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_cy755")
 
 [node name="MaterialEnterArea" type="Area2D" parent="."]
+visible = false
 scale = Vector2(1.48, 1.48)
 collision_layer = 0
 collision_mask = 4
@@ -220,9 +228,37 @@ script = ExtResource("8_co2h4")
 _limit = 2000
 _content = 0
 
+[node name="HeatBucketBar" type="ProgressBar" parent="." node_paths=PackedStringArray("_bucket")]
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 12.0
+offset_bottom = 4.0
+rotation = -1.57079
+theme_override_styles/background = SubResource("StyleBoxFlat_5xa7v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_r31av")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+script = ExtResource("10_mclgl")
+_bucket = NodePath("../HeatBucket")
+
+[node name="MoltBucketBar" type="ProgressBar" parent="." node_paths=PackedStringArray("_bucket")]
+offset_left = -7.0
+offset_top = 3.0
+offset_right = -1.0
+offset_bottom = 4.0
+rotation = -1.57079
+theme_override_styles/background = SubResource("StyleBoxFlat_5xa7v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_r31av")
+max_value = 1.0
+value = 0.54
+show_percentage = false
+script = ExtResource("10_mclgl")
+_bucket = NodePath("../MoltBucket")
+
 [node name="MoltBucket" type="Node2D" parent="."]
 script = ExtResource("8_co2h4")
-_limit = 2000
+_limit = 1000
 _content = 0
 
 [node name="HeatBucket" type="Node2D" parent="."]

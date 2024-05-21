@@ -1,4 +1,4 @@
-extends TextureProgressBar
+extends Range
 
 @export var _bucket: Bucket
 

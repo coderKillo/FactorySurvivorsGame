@@ -12,6 +12,8 @@ var _freeze_timer: Timer
 
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	Events.spawn_effect.connect(_on_spawn_effect)
 	Events.spawn_effect_rotated.connect(_on_spawn_effect_rotated)
 	Events.frame_freeze.connect(_on_frame_freeze)
