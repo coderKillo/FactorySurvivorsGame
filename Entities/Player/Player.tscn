@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=55 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
@@ -145,6 +145,14 @@ shader = ExtResource("16_e4tol")
 shader_parameter/hit_color = Color(1, 1, 1, 1)
 shader_parameter/hit = false
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jdgs"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwpqn"]
+atlas = ExtResource("8_3ndie")
+region = Rect2(80, 32, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3b5fn"]
 atlas = ExtResource("8_3ndie")
 region = Rect2(0, 0, 16, 16)
@@ -167,6 +175,17 @@ region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_20hi3"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jdgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwpqn")
+}],
+"loop": true,
+"name": &"boost",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3b5fn")
@@ -215,6 +234,17 @@ region = Rect2(64, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i3cpw"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8e60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb07c")
+}],
+"loop": true,
+"name": &"boost",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i8e60")
@@ -424,20 +454,20 @@ position = Vector2(-2, 3)
 scale = Vector2(1, -0.5)
 skew = 0.773181
 sprite_frames = SubResource("SpriteFrames_20hi3")
-animation = &"idle"
+animation = &"boost"
 
 [node name="Body" type="AnimatedSprite2D" parent="Model"]
 use_parent_material = true
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_20hi3")
-animation = &"idle"
+animation = &"boost"
 
 [node name="Hands" type="AnimatedSprite2D" parent="Model"]
 z_index = 1
 use_parent_material = true
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_i3cpw")
-animation = &"walk"
+animation = &"boost"
 
 [node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_mask = 0

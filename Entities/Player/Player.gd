@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const MID_LOAD_TRESHOLD = 0.5
 const HIGH_LOAD_TRESHOLD = 0.8
+const BOOST = 3.0
+const BOOST_COST_PER_SEC = 10.0
 
 @export var movement_speed = 300.0
 @export var resources: CollectedResources
@@ -20,6 +22,8 @@ const HIGH_LOAD_TRESHOLD = 0.8
 
 var load_treshold_slow := 15
 
+var _boost_active := false
+
 
 func _ready():
 	_collect_objects.entity_collected.connect(_on_entity_collected)
@@ -36,7 +40,7 @@ func _process(_delta):
 		_animations[1].show()
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	fire(0, _auto_attack_area.has_overlapping_bodies())
 
 	var input_direction = (
@@ -51,6 +55,10 @@ func _physics_process(_delta):
 
 	var speed = movement_speed
 
+	if _is_boosting():
+		energy.energy -= BOOST_COST_PER_SEC * delta
+		speed *= BOOST
+
 	var current_load := resources.ore_amount / float(resources.ore_limit)
 	if current_load > MID_LOAD_TRESHOLD:
 		speed -= load_treshold_slow
@@ -63,6 +71,11 @@ func _physics_process(_delta):
 
 
 func _unhandled_input(event):
+	if event.is_action_pressed("boost"):
+		_boost_active = true
+	if event.is_action_released("boost"):
+		_boost_active = false
+
 	if event.is_action_pressed("grab"):
 		_drag_objects.grab()
 	if event.is_action_released("grab"):
@@ -132,9 +145,15 @@ func _on_death() -> void:
 	hide()
 
 
+func _is_boosting() -> bool:
+	return _boost_active and energy.energy > 0.0
+
+
 func _set_animation(direction: Vector2):
 	for animation in _animations:
-		if direction:
+		if _is_boosting():
+			animation.play("boost")
+		elif direction:
 			animation.play("walk")
 		else:
 			animation.play("idle")
