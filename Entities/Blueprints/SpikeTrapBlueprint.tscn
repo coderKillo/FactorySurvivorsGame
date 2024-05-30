@@ -1,25 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dupy4txv5lvvd"]
+[gd_scene load_steps=3 format=3 uid="uid://dupy4txv5lvvd"]
 
 [ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_7p62s"]
 [ext_resource type="Texture2D" uid="uid://bcf61g50a400p" path="res://Shared/spike_trap.png" id="2_gdmfk"]
-[ext_resource type="Script" path="res://Entities/Entities/EntityData.gd" id="2_hm6si"]
-
-[sub_resource type="Resource" id="Resource_8420f"]
-script = ExtResource("2_hm6si")
-cooldown = 10.0
-energy_cost = 2
-speed = 1.0
-damage = 15
-stack_size = 10
-value = 10
-amount = 0
-upgrade_1 = false
-upgrade_2 = false
 
 [node name="SpikeTrapBlueprint" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_7p62s")
-data = SubResource("Resource_8420f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

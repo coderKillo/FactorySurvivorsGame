@@ -33,3 +33,5 @@ signal frame_freeze
 signal camera_shake(amount: float)
 
 signal slot_cooldown_finished(entity_name: String)
+
+signal upgrade_data_changed

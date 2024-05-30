@@ -23,6 +23,7 @@ RecolorTable="*res://Autoload/RecolorTable.gd"
 SoundManager="*res://Sound/SoundManager.tscn"
 DamageNumbers="*res://Autoload/DamageNumbers.gd"
 PlanetData="*res://Autoload/PlanetData.gd"
+UpgradeData="*res://Systems/Upgrade/UpgradeData.gd"
 
 [display]
 

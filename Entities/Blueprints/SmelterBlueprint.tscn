@@ -1,25 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8qww4muyt1ex"]
+[gd_scene load_steps=3 format=3 uid="uid://b8qww4muyt1ex"]
 
 [ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_reuh6"]
-[ext_resource type="Script" path="res://Entities/Entities/EntityData.gd" id="2_pwumq"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="2_u2r2a"]
-
-[sub_resource type="Resource" id="Resource_kws4c"]
-script = ExtResource("2_pwumq")
-cooldown = 60.0
-energy_cost = 0
-speed = 1.0
-damage = 1
-stack_size = 10
-value = 10
-amount = 10
-upgrade_1 = false
-upgrade_2 = false
 
 [node name="SmelterBlueprint" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_reuh6")
-data = SubResource("Resource_kws4c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

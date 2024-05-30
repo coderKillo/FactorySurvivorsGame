@@ -1,26 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://b88pv3svhvowe"]
+[gd_scene load_steps=3 format=3 uid="uid://b88pv3svhvowe"]
 
 [ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_o45xq"]
 [ext_resource type="Texture2D" uid="uid://dnf3l1wlxp5jd" path="res://Shared/ore.png" id="1_yjwgl"]
-[ext_resource type="Script" path="res://Entities/Entities/EntityData.gd" id="2_so64r"]
-
-[sub_resource type="Resource" id="Resource_0tm68"]
-script = ExtResource("2_so64r")
-cooldown = 2.0
-energy_cost = 0
-speed = 1.0
-damage = 1
-stack_size = 999
-value = 200
-amount = 1
-upgrade_1 = false
-upgrade_2 = false
 
 [node name="OreBlueprint" type="Node2D"]
 script = ExtResource("1_o45xq")
 entity_name = "Ore"
 placeable = false
-data = SubResource("Resource_0tm68")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_yjwgl")

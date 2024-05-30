@@ -5,14 +5,14 @@
 
 [sub_resource type="Resource" id="Resource_ec8qp"]
 script = ExtResource("2_e3gvq")
-path = ":resources:ore_limit"
+path = ":ore_limit"
 operation = 0
 type = 2
 upgrade_value = 500
 
 [sub_resource type="Resource" id="Resource_fffve"]
 script = ExtResource("2_e3gvq")
-path = ":resources:molt_limit"
+path = ":molt_limit"
 operation = 0
 type = 2
 upgrade_value = 500

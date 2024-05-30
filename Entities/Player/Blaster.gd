@@ -1,26 +1,26 @@
 class_name Blaster
 extends Weapon
 
-@export var ProjectileScene = preload("res://Systems/Weapon/Projectile.tscn")
 @export var projectile_container: Node2D
 
 @onready var _shoot_position: Marker2D = $Marker2D
 @onready var _sprite: Sprite2D = $Sprite2D
 
-var projectile_scale := 1.0  # add update
-var cost_reduction := 0
-
 
 func _fire():
-	var projectile: Projectile = ProjectileScene.instantiate()
+	fire_rate = UpgradeData.blaster_data.fire_rate
+
+	var projectile: Projectile = UpgradeData.blaster_data.ProjectileScene.instantiate()
 	projectile.transform = _shoot_position.global_transform
 	projectile.top_level = true
-	projectile.damage = damage
-	projectile.scale = Vector2(projectile_scale, projectile_scale)
+	projectile.damage = UpgradeData.blaster_data.damage
+	projectile.scale = Vector2(
+		UpgradeData.blaster_data.projectile_scale, UpgradeData.blaster_data.projectile_scale
+	)
 
 	projectile_container.add_child(projectile)
 
-	energy_used.emit(projectile.cost - cost_reduction)
+	energy_used.emit(projectile.cost - UpgradeData.blaster_data.cost_reduction)
 
 	SoundManager.play("blaster_fire")
 

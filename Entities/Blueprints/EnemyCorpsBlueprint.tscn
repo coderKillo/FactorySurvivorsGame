@@ -1,26 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg2o7kxucoxhs"]
+[gd_scene load_steps=3 format=3 uid="uid://dg2o7kxucoxhs"]
 
 [ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_a81g3"]
-[ext_resource type="Script" path="res://Entities/Entities/EntityData.gd" id="2_3r5sg"]
 [ext_resource type="Texture2D" uid="uid://chq7q31o3w5sf" path="res://Shared/enemies/icon.png" id="2_6tbr8"]
-
-[sub_resource type="Resource" id="Resource_qxldd"]
-script = ExtResource("2_3r5sg")
-cooldown = 2.0
-energy_cost = 0
-speed = 1.0
-damage = 1
-stack_size = 999
-value = 10
-amount = 1
-upgrade_1 = false
-upgrade_2 = false
 
 [node name="EnemyCorpsBlueprint" type="Node2D"]
 script = ExtResource("1_a81g3")
 entity_name = "EnemyCorps"
 placeable = false
-data = SubResource("Resource_qxldd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_6tbr8")

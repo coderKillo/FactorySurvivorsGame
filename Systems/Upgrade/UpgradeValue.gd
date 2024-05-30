@@ -24,22 +24,8 @@ func _get_property_list():
 	return [{name = "upgrade_value", type = type}]
 
 
-func apply(source: Node) -> void:
-	var r = source.get_node_and_resource(path)
-
-	var node := r[0] as Node
-	var resource := r[1] as Resource
-	var property_path := r[2] as NodePath
-	var object: Object
-
-	if property_path.is_empty() and resource:
-		var subnames = NodePath(path).get_concatenated_subnames()
-		property_path = NodePath(subnames).get_as_property_path()
-
-	if resource:
-		object = resource
-	else:
-		object = node
+func apply(object: Object) -> void:
+	var property_path := path as NodePath
 
 	match operation:
 		Operation.ADD:

@@ -1,26 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://6ala2r7qqeyb"]
+[gd_scene load_steps=3 format=3 uid="uid://6ala2r7qqeyb"]
 
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="1_0gja0"]
 [ext_resource type="Script" path="res://Entities/Blueprints/WireBlueprint.gd" id="1_jj572"]
-[ext_resource type="Script" path="res://Entities/Entities/EntityData.gd" id="2_2eclk"]
-
-[sub_resource type="Resource" id="Resource_873nn"]
-script = ExtResource("2_2eclk")
-cooldown = 0.5
-energy_cost = 0
-speed = 1.0
-damage = 1
-stack_size = 10
-value = 10
-amount = 1
-upgrade_1 = false
-upgrade_2 = false
 
 [node name="WireBlueprint" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_jj572")
 rotateable = true
-data = SubResource("Resource_873nn")
 
 [node name="SpriteUp" type="Sprite2D" parent="."]
 visible = false

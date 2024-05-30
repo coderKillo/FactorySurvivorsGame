@@ -30,7 +30,10 @@ func _ready():
 	resources.changed.connect(_on_resources_changed)
 	_weapons[1].energy_used.connect(_on_weapon_energy_used)
 	Events.system_tick.connect(_on_system_tick)
+	Events.upgrade_data_changed.connect(_on_upgrade_data_changed)
 	health.death.connect(_on_death)
+
+	_on_upgrade_data_changed()
 
 
 func _process(_delta):
@@ -137,6 +140,13 @@ func _on_system_tick(delta: float) -> void:
 		var amount = clamp(resources.molt_amount, 0, amount_per_tick)
 		resources.molt_amount -= molt_bucket.put(amount)
 		pass
+
+
+func _on_upgrade_data_changed() -> void:
+	health.max_health = UpgradeData.player_data.max_health
+	energy.max_energy = UpgradeData.player_data.max_energy
+	resources.ore_limit = UpgradeData.player_data.ore_limit
+	resources.molt_limit = UpgradeData.player_data.molt_limit
 
 
 func _on_death() -> void:

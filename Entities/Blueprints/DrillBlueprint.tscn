@@ -1,26 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddmmmheu7hiqb"]
+[gd_scene load_steps=3 format=3 uid="uid://ddmmmheu7hiqb"]
 
 [ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_qh3ac"]
-[ext_resource type="Script" path="res://Entities/Entities/EntityData.gd" id="2_6ihso"]
 [ext_resource type="Texture2D" uid="uid://4liwofekyxn3" path="res://Shared/animations/drill_idle.png" id="2_7booe"]
-
-[sub_resource type="Resource" id="Resource_nsmae"]
-script = ExtResource("2_6ihso")
-cooldown = 3.0
-energy_cost = 40
-speed = 1.0
-damage = 10
-stack_size = 10
-value = 1
-amount = 1
-upgrade_1 = false
-upgrade_2 = false
 
 [node name="DrillBlueprint" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_qh3ac")
 entity_name = "Drill"
-data = SubResource("Resource_nsmae")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

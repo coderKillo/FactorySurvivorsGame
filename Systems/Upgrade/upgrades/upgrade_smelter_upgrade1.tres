@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_jn3c1"]
 script = ExtResource("2_edurt")
-path = ":data:upgrade_1"
+path = ":upgrade_1"
 operation = 4
 type = 1
 upgrade_value = true

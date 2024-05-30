@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_rwuer"]
 script = ExtResource("2_xhyac")
-path = ":data:damage"
+path = ":damage"
 operation = 0
 type = 3
 upgrade_value = 5.0

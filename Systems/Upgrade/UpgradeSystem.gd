@@ -100,15 +100,15 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 	_add_tree_requriement(upgrade.type, upgrade.object)
 
 	if upgrade.type == "player":
-		upgrade.upgrade(_player)
+		upgrade.upgrade(UpgradeData.player_data)
 
 		Events.spawn_effect.emit("upgrade_explosion", _player.global_position)
 
 	elif upgrade.type == "weapon":
 		if upgrade.object == "pickaxe":
-			upgrade.upgrade(_player._weapons[0])
+			upgrade.upgrade(UpgradeData.pickaxe_data)
 		elif upgrade.object == "blaster":
-			upgrade.upgrade(_player._weapons[1])
+			upgrade.upgrade(UpgradeData.blaster_data)
 		else:
 			printerr(
 				"invalid object '%s' in upgrade: %s" % [upgrade.object, upgrade.upgrade_name()]
@@ -121,20 +121,19 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 			_gui.add_to_quickbar(Library.blueprints[upgrade.object].instantiate())
 			return
 
+		var entity_name := upgrade.object
+
 		for location in _entity_tracker.entities.keys():
 			var entity := _entity_tracker.entities[location] as Entity
-			if Library.get_entity_name(entity) == upgrade.object:
-				upgrade.upgrade(entity)
+			if Library.get_entity_name(entity) == entity_name:
 				Events.spawn_effect.emit("upgrade_explosion", entity.global_position)
 
-		for panel in _gui.get_quickbar_panels():
-			if panel.held_item == null:
-				continue
-			if Library.get_entity_name(panel.held_item) == upgrade.object:
-				upgrade.upgrade(panel.held_item)
+		upgrade.upgrade(UpgradeData.entites_data[entity_name])
 
 	else:
 		printerr("invalid type '%s' in upgrade: %s" % [upgrade.type, upgrade.upgrade_name()])
+
+	Events.upgrade_data_changed.emit()
 
 
 # add requirements depend on a virtual skill tree
@@ -147,9 +146,9 @@ func _add_tree_requriement(type: String, object: String):
 		or object == "Wire"
 	):
 		_add_requriement("energy")
-	if object == "pickaxe" or object == "Drill" or object == "Crusher":
+	if object in ["pickaxe", "Drill", "Crusher"]:
 		_add_requriement("mining")
-	if object == "blaster" or object == "SpikeTrap" or object == "Turret":
+	if object in ["blaster", "SpikeTrap", "Turret", "ExplosiveTrap"]:
 		_add_requriement("damage")
 
 

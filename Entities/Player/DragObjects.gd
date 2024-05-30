@@ -2,7 +2,6 @@ class_name DragObjects
 extends Area2D
 
 @export var max_distance = 9
-@export var max_bodies = 1
 
 var _grab = false
 
@@ -46,7 +45,7 @@ func get_bodies() -> Array:
 
 	for body in get_overlapping_bodies():
 		bodies.append(body)
-		if len(bodies) >= max_bodies:
+		if len(bodies) >= UpgradeData.player_data.max_bodies:
 			break
 
 	return bodies

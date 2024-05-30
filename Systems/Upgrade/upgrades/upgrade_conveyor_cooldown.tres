@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_g3uyw"]
 script = ExtResource("2_n4gmv")
-path = ":data:cooldown"
+path = ":cooldown"
 operation = 1
 type = 3
 upgrade_value = 1.0

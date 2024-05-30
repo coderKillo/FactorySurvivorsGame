@@ -25,6 +25,6 @@ func upgrade_name() -> String:
 	return resource_path.substr(resource_path.rfind("/") + 1)
 
 
-func upgrade(node: Node):
+func upgrade(obj: Object):
 	for u in upgrades:
-		u.apply(node)
+		u.apply(obj)

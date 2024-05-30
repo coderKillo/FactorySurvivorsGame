@@ -8,7 +8,8 @@ var queue_destruction := false
 
 
 func _setup(blueprint: BlueprintEntity):
-	data = blueprint.data
+	var entity_name := Library.get_entity_name(blueprint)
+	data = UpgradeData.entites_data[entity_name]
 
 
 func _setup_gui(gui):

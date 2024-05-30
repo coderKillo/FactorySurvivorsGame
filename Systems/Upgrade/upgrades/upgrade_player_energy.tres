@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_74n42"]
 script = ExtResource("2_gnj0u")
-path = ":energy:max_energy"
+path = ":max_energy"
 operation = 0
 type = 2
 upgrade_value = 10

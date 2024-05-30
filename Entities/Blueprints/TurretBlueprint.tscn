@@ -1,25 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm6tri4vhjm16"]
+[gd_scene load_steps=3 format=3 uid="uid://cm6tri4vhjm16"]
 
 [ext_resource type="Script" path="res://Entities/Blueprints/BlueprintEntity.gd" id="1_qriha"]
 [ext_resource type="Texture2D" uid="uid://doupr71mtl7tr" path="res://Shared/turret.png" id="2_j6m2x"]
-[ext_resource type="Script" path="res://Entities/Entities/EntityData.gd" id="2_kvvxj"]
-
-[sub_resource type="Resource" id="Resource_1hke6"]
-script = ExtResource("2_kvvxj")
-cooldown = 20.0
-energy_cost = 4
-speed = 1.0
-damage = 10
-stack_size = 10
-value = 10
-amount = 1
-upgrade_1 = false
-upgrade_2 = false
 
 [node name="TurretBlueprint" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_qriha")
-data = SubResource("Resource_1hke6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
