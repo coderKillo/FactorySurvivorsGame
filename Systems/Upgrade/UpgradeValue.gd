@@ -25,22 +25,28 @@ func _get_property_list():
 
 
 func apply(object: Object) -> void:
-	var property_path := path as NodePath
+	object.set_indexed(path, get_new_value(object.get_indexed(path)))
 
+
+func is_assign() -> bool:
+	return operation == Operation.ASSIGN
+
+
+func get_new_value(old_value: Variant) -> Variant:
 	match operation:
 		Operation.ADD:
-			object.set_indexed(property_path, object.get_indexed(property_path) + upgrade_value)
+			return old_value + upgrade_value
 
 		Operation.SUBTRACT:
-			object.set_indexed(
-				property_path, max(upgrade_value, object.get_indexed(property_path) - upgrade_value)
-			)
+			return max(upgrade_value, old_value - upgrade_value)
 
 		Operation.MULTIPLY:
-			object.set_indexed(property_path, object.get_indexed(property_path) * upgrade_value)
+			return old_value * upgrade_value
 
 		Operation.DIVIDE:
-			object.set_indexed(property_path, object.get_indexed(property_path) * upgrade_value)
+			return old_value / upgrade_value
 
 		Operation.ASSIGN:
-			object.set_indexed(property_path, upgrade_value)
+			return upgrade_value
+
+	return null

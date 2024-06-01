@@ -174,3 +174,17 @@ var entites_data := {
 		}
 	),
 }
+
+
+func get_update_object(type: String, object: String) -> Object:
+	if type == "player":
+		return player_data
+	elif type == "weapon" and object == "pickaxe":
+		return pickaxe_data
+	elif type == "weapon" and object == "blaster":
+		return blaster_data
+	elif type == "entity" and entites_data.has(object):
+		return entites_data[object]
+
+	printerr("invalid type '%s' and object %s" % [type, object])
+	return null

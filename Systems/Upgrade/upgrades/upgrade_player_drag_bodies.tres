@@ -17,7 +17,7 @@ type = "player"
 object = ""
 unique = false
 quality = 2
-description = "Increase the number of corpse you can drag by 1"
+description = "Increase the number of corpse you can drag."
 requirements = {
 "energy": 3,
 "player": 2

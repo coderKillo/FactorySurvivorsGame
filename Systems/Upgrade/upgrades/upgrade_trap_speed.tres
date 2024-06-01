@@ -17,7 +17,7 @@ type = "entity"
 object = "SpikeTrap"
 unique = false
 quality = 1
-description = "Increase the attack speed of your spike trap by 20%."
+description = "Increase the attack speed of your spike trap."
 requirements = {
 "SpikeTrap": 1,
 "damage": 7

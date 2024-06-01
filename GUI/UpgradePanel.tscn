@@ -185,5 +185,6 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/line_separation = -4
 theme_override_font_sizes/normal_font_size = 5
-text = "Update the Player speed by 200"
+bbcode_enabled = true
+text = "Update the Player speed. [indent] 10 -> 20 [/indent] [indent] 10 -> [color=green]20 [/color][/indent]"
 fit_content = true

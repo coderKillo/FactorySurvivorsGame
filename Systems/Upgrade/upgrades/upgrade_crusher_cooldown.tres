@@ -17,7 +17,7 @@ type = "entity"
 object = "Crusher"
 unique = false
 quality = 0
-description = "Reduce the cooldown of your crusher by 5s."
+description = "Reduce the cooldown of your crusher."
 requirements = {
 "Crusher": 1,
 "mining": 15

@@ -17,7 +17,7 @@ type = "weapon"
 object = "blaster"
 unique = false
 quality = 1
-description = "Increase the projectile size of your blaster by 20%."
+description = "Increase the projectile size of your blaster."
 requirements = {
 "blaster": 3,
 "damage": 12

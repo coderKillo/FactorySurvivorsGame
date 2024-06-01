@@ -77,6 +77,16 @@ func _set_description(panel: UpgradePanel, upgrade: Upgrade):
 
 	panel.text.text = upgrade.description.format(properties)
 
+	var original_data := UpgradeData.get_update_object(upgrade.type, upgrade.object)
+
+	for upgrade_value in upgrade.upgrades:
+		if upgrade_value.is_assign():
+			continue
+
+		var old_value = original_data.get_indexed(upgrade_value.path)
+		var new_value = upgrade_value.get_new_value(old_value)
+		panel.text.text += "[indent]%s -> [color=green]%s[/color][/indent]" % [old_value, new_value]
+
 
 func _set_quality(panel: UpgradePanel, upgrade: Upgrade):
 	if upgrade.quality == Types.UpgradeQuality.COMMON:

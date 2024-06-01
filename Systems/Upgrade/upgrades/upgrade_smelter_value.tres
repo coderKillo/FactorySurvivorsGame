@@ -17,7 +17,7 @@ type = "entity"
 object = "Smelter"
 unique = false
 quality = 0
-description = "Increase the heat production of smelter plants by 50%."
+description = "Increase the heat production of smelter plants."
 requirements = {
 "energy": 7
 }

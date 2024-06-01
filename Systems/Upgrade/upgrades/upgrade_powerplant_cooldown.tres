@@ -17,7 +17,7 @@ type = "entity"
 object = "PowerPlant"
 unique = false
 quality = 0
-description = "Reduce the cooldown of your power plant by 5s."
+description = "Reduce the cooldown of your power plant."
 requirements = {
 "energy": 10
 }

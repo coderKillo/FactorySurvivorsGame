@@ -17,7 +17,7 @@ type = "entity"
 object = "PowerPlant"
 unique = false
 quality = 0
-description = "Increase the energy production of your power plants by 40%."
+description = "Increase the energy production of your power plants."
 requirements = {
 "energy": 7
 }

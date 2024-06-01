@@ -17,7 +17,7 @@ type = "entity"
 object = "Drill"
 unique = false
 quality = 2
-description = "Increase the amount of drills that spawn by 1."
+description = "Increase the amount of drills that spawn."
 requirements = {
 "Drill": 5,
 "mining": 12

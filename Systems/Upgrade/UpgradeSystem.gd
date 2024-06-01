@@ -99,41 +99,27 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 	_add_requriement(upgrade.object)
 	_add_tree_requriement(upgrade.type, upgrade.object)
 
-	if upgrade.type == "player":
-		upgrade.upgrade(UpgradeData.player_data)
+	_add_explosion_effect(upgrade)
 
-		Events.spawn_effect.emit("upgrade_explosion", _player.global_position)
+	if upgrade.type == "entity" and upgrade.title.begins_with("New:"):
+		_gui.add_to_quickbar(Library.blueprints[upgrade.object].instantiate())
+		return
 
-	elif upgrade.type == "weapon":
-		if upgrade.object == "pickaxe":
-			upgrade.upgrade(UpgradeData.pickaxe_data)
-		elif upgrade.object == "blaster":
-			upgrade.upgrade(UpgradeData.blaster_data)
-		else:
-			printerr(
-				"invalid object '%s' in upgrade: %s" % [upgrade.object, upgrade.upgrade_name()]
-			)
+	var object := UpgradeData.get_update_object(upgrade.type, upgrade.object)
 
+	Events.upgrade_data_changed.emit()
+
+
+func _add_explosion_effect(upgrade: Upgrade) -> void:
+	if upgrade.type == "player" or upgrade.type == "weapon":
 		Events.spawn_effect.emit("upgrade_explosion", _player.global_position)
 
 	elif upgrade.type == "entity":
-		if upgrade.title.begins_with("New:"):
-			_gui.add_to_quickbar(Library.blueprints[upgrade.object].instantiate())
-			return
-
 		var entity_name := upgrade.object
-
 		for location in _entity_tracker.entities.keys():
 			var entity := _entity_tracker.entities[location] as Entity
 			if Library.get_entity_name(entity) == entity_name:
 				Events.spawn_effect.emit("upgrade_explosion", entity.global_position)
-
-		upgrade.upgrade(UpgradeData.entites_data[entity_name])
-
-	else:
-		printerr("invalid type '%s' in upgrade: %s" % [upgrade.type, upgrade.upgrade_name()])
-
-	Events.upgrade_data_changed.emit()
 
 
 # add requirements depend on a virtual skill tree

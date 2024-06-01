@@ -17,7 +17,7 @@ type = "entity"
 object = "Turret"
 unique = false
 quality = 2
-description = "Your turret fire 1 additional projectile."
+description = "Your turret fire additional projectiles."
 requirements = {
 "Turret": 5,
 "damage": 15

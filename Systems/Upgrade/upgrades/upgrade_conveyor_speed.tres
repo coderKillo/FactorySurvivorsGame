@@ -17,7 +17,7 @@ type = "entity"
 object = "Conveyor"
 unique = false
 quality = 0
-description = "Increase the transport speed of conveyor by 33%."
+description = "Increase the transport speed of conveyor."
 requirements = {
 "Conveyor": 1,
 "energy": 7

@@ -17,7 +17,7 @@ type = "entity"
 object = "Turret"
 unique = false
 quality = 1
-description = "Increase the attack speed of your turret by 20%."
+description = "Increase the attack speed of your turret."
 requirements = {
 "Turret": 1,
 "damage": 12

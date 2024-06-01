@@ -17,7 +17,7 @@ type = "entity"
 object = "SpikeTrap"
 unique = false
 quality = 2
-description = "Reduce the cooldown of your spike trap by 2s."
+description = "Reduce the cooldown of your spike trap."
 requirements = {
 "SpikeTrap": 1,
 "damage": 7

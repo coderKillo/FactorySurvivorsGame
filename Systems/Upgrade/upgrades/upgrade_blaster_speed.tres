@@ -17,6 +17,6 @@ type = "weapon"
 object = "blaster"
 unique = false
 quality = 1
-description = "Increases the fire rate of your blaster by 20%"
+description = "Increases the fire rate of your blaster."
 requirements = {}
 upgrades = Array[ExtResource("2_wts60")]([SubResource("Resource_ad2s3")])

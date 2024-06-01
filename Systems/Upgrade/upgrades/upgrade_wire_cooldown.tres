@@ -17,7 +17,7 @@ type = "entity"
 object = "Wire"
 unique = false
 quality = 2
-description = "Reduce the cooldown of your wire by 0.1s"
+description = "Reduce the cooldown of your wire."
 requirements = {
 "energy": 12
 }

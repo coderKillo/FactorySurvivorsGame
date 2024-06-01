@@ -17,7 +17,7 @@ type = "entity"
 object = "Drill"
 unique = false
 quality = 0
-description = "Increase the production speed of your drills by 20%."
+description = "Increase the production speed of your drills."
 requirements = {
 "Drill": 1,
 "mining": 7

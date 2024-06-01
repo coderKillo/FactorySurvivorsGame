@@ -17,7 +17,7 @@ type = "entity"
 object = "Conveyor"
 unique = false
 quality = 0
-description = "Reduce the cooldown of your conveyor by 1s."
+description = "Reduce the cooldown of your conveyor."
 requirements = {
 "Conveyor": 1,
 "energy": 7

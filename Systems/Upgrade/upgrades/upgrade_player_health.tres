@@ -17,6 +17,6 @@ type = "player"
 object = ""
 unique = false
 quality = 0
-description = "Increase your max. health by {upgrade_value}"
+description = "Increase your max. health."
 requirements = {}
 upgrades = Array[ExtResource("2_l438i")]([SubResource("Resource_ec8qp")])

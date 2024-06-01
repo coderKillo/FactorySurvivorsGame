@@ -17,7 +17,7 @@ type = "weapon"
 object = "pickaxe"
 unique = false
 quality = 1
-description = "Increases the size of your pickaxe by 50%"
+description = "Increases the size of your pickaxe"
 requirements = {
 "mining": 7,
 "pickaxe": 3

@@ -17,7 +17,7 @@ type = "entity"
 object = "Drill"
 unique = false
 quality = 0
-description = "Reduce the cooldown of your drill by 1s."
+description = "Reduce the cooldown of your drill."
 requirements = {
 "Drill": 3,
 "mining": 10

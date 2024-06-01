@@ -17,6 +17,6 @@ type = "weapon"
 object = "pickaxe"
 unique = false
 quality = 1
-description = "Increases the damage of your pickaxe by 8."
+description = "Increases the damage of your pickaxe."
 requirements = {}
 upgrades = Array[ExtResource("2_gfr7d")]([SubResource("Resource_rxtia")])

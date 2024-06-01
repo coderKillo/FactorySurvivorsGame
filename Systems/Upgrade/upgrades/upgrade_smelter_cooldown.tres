@@ -17,7 +17,7 @@ type = "entity"
 object = "Smelter"
 unique = false
 quality = 0
-description = "Reduce the cooldown of your smelter by 10s."
+description = "Reduce the cooldown of your smelter."
 requirements = {
 "energy": 10
 }

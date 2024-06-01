@@ -17,6 +17,6 @@ type = "weapon"
 object = "blaster"
 unique = false
 quality = 1
-description = "Increases the damage of your blaster by 7."
+description = "Increases the damage of your blaster."
 requirements = {}
 upgrades = Array[ExtResource("2_tgndq")]([SubResource("Resource_8ghi5")])

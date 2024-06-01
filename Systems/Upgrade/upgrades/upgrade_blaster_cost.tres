@@ -17,6 +17,6 @@ type = "weapon"
 object = "blaster"
 unique = false
 quality = 1
-description = "Reduce the energy your blaster needs by 2."
+description = "Reduce the energy your blaster needs."
 requirements = {}
 upgrades = Array[ExtResource("2_lmjc8")]([SubResource("Resource_02kf5")])
