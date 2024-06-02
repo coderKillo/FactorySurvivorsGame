@@ -36,9 +36,7 @@ func _process(_delta):
 
 
 func _on_received_power(amount, _delta):
-	# if amount >= _power.power_required and _active:
-	# TODO: remove, only for testing
-	if _active:
+	if amount >= _power.power_required and _active:
 		_activate()
 
 

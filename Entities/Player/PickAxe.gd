@@ -29,7 +29,7 @@ func _fire():
 
 		var destruction := body.get_node_or_null("DestructionComponent") as DestructionComponent
 		if destruction != null and destruction.destruction_filter == type:
-			destruction.destruct(damage)
+			destruction.destruct(UpgradeData.pickaxe_data.damage)
 			hit += 1
 
 	for area in _damage_zone.get_overlapping_areas():

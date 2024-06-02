@@ -19,6 +19,7 @@ const BOOST_COST_PER_SEC = 10.0
 @onready var _collect_objects: CollectObjects = $CollectObjects
 @onready var _selector: BuildingSelector = $BuildingSelector
 @onready var _auto_attack_area: Area2D = $AutoattackArea
+@onready var _bomb_placer: BombPlacer = $BombPlacer
 
 var load_treshold_slow := 15
 
@@ -90,6 +91,14 @@ func fire(slot: int, pressed: bool) -> void:
 		return
 
 	_weapons[slot].fire(pressed)
+
+
+func place_bomb() -> void:
+	if energy.energy <= _bomb_placer.energy_cost:
+		return
+
+	_on_weapon_energy_used(_bomb_placer.energy_cost)
+	_bomb_placer.place()
 
 
 func _on_entity_collected(entity: GroundEntity):

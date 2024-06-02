@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=56 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="9_dkwkk"]
 [ext_resource type="Script" path="res://Entities/HurtBoxComponent.gd" id="13_4fvic"]
 [ext_resource type="Shader" path="res://Shader/hitshader.gdshader" id="16_e4tol"]
+[ext_resource type="Script" path="res://Entities/Player/BombPlacer.gd" id="18_h2tdl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
 radius = 2.0
@@ -444,6 +445,9 @@ one_shot = true
 one_shot = true
 
 [node name="Projectiles" type="Node2D" parent="Weapons"]
+
+[node name="BombPlacer" type="Node2D" parent="."]
+script = ExtResource("18_h2tdl")
 
 [node name="Model" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_7tipw")
