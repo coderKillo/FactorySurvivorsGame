@@ -12,7 +12,7 @@ func _physics_process(delta):
 		var distance = global_position.distance_to(body.global_position)
 		var entity := body as GroundEntity
 
-		if not entity.is_collectable:
+		if entity == null or not entity.is_collectable:
 			continue
 
 		if distance < collect_distance:

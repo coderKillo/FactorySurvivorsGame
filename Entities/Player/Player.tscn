@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
-[ext_resource type="Resource" uid="uid://c0jni5ubdefk4" path="res://Entities/Player/Resources.tres" id="2_p6xcu"]
 [ext_resource type="Script" path="res://Entities/Player/PlayerCamera.gd" id="3_5q30c"]
 [ext_resource type="Shader" path="res://VFX/monitor_effect.gdshader" id="3_27dss"]
 [ext_resource type="Script" path="res://Entities/Player/DragObjects.gd" id="5_7xnov"]
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="6_bhgi1"]
 [ext_resource type="Script" path="res://Entities/Player/Energy.gd" id="6_ogtao"]
 [ext_resource type="Script" path="res://Entities/Player/WeaponList.gd" id="6_pn85v"]
+[ext_resource type="Script" path="res://Entities/Player/ChargeBar.gd" id="6_yceki"]
 [ext_resource type="Script" path="res://Entities/Player/BuildingSelector.gd" id="7_4fi52"]
 [ext_resource type="PackedScene" uid="uid://br6bd0htohj1r" path="res://Systems/Health/HealthBar.tscn" id="7_5k7j5"]
 [ext_resource type="Script" path="res://Entities/Player/Blaster.gd" id="7_bipw4"]
@@ -57,6 +57,12 @@ radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4b2o"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwdvn"]
+bg_color = Color(0.078125, 0.0273438, 0.183594, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap7fx"]
+bg_color = Color(0.308594, 0.640625, 0.71875, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gx5gj"]
 size = Vector2(24, 24)
 
@@ -95,12 +101,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwdvn"]
-bg_color = Color(0.078125, 0.0273438, 0.183594, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap7fx"]
-bg_color = Color(0.308594, 0.640625, 0.71875, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66wbc"]
 atlas = ExtResource("8_3ndie")
@@ -283,7 +283,6 @@ collision_mask = 133128
 motion_mode = 1
 script = ExtResource("1_h72yr")
 movement_speed = 50.0
-resources = ExtResource("2_p6xcu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -319,6 +318,7 @@ shape = SubResource("CircleShape2D_rjfey")
 debug_color = Color(0, 0.65098, 0.0941176, 0.419608)
 
 [node name="CollectObjects" type="Area2D" parent="."]
+process_mode = 4
 collision_mask = 4
 script = ExtResource("2_4cwld")
 
@@ -338,7 +338,21 @@ visible = false
 shape = SubResource("CircleShape2D_s4b2o")
 debug_color = Color(0, 0.643137, 0.301961, 0.419608)
 
+[node name="ChargeBar" type="ProgressBar" parent="." node_paths=PackedStringArray("_drag_objects")]
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 5.0
+offset_bottom = -9.0
+theme_override_font_sizes/font_size = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_xwdvn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ap7fx")
+value = 48.79
+show_percentage = false
+script = ExtResource("6_yceki")
+_drag_objects = NodePath("../DragObjects")
+
 [node name="BuildingSelector" type="Area2D" parent="."]
+process_mode = 4
 collision_layer = 0
 collision_mask = 131080
 script = ExtResource("7_4fi52")

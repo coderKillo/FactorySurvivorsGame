@@ -206,6 +206,8 @@ one_shot = true
 explosiveness = 1.0
 
 [node name="ResourceUI" type="MarginContainer" parent="."]
+process_mode = 4
+visible = false
 material = SubResource("ShaderMaterial_0dgmk")
 layout_mode = 2
 theme_override_constants/margin_left = 270

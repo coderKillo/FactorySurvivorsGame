@@ -61,6 +61,7 @@ func on_panel_clicked(panel: InventoryPanel):
 
 		for child in blueprint.get_children():
 			_preview.add_child(child.duplicate())
+			_preview.global_rotation_degrees = 0
 
 	elif has_item and not has_panel_item and is_valid_item:
 		destroy_blueprint()

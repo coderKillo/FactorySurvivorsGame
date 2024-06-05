@@ -65,8 +65,9 @@ func _unhandled_input(event: InputEvent):
 	elif event.is_action_pressed("right_click"):
 		if _gui.blueprint:
 			_gui.destroy_blueprint()
-		else:
-			_player.place_bomb()
+
+	elif event.is_action_pressed("place_bomb"):
+		_player.place_bomb()
 
 	elif event.is_action_pressed("deconstruct"):
 		if _is_cell_occupied():
