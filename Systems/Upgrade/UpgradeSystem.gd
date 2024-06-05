@@ -106,6 +106,7 @@ func _apply_upgrade(upgrade: Upgrade) -> void:
 		return
 
 	var object := UpgradeData.get_update_object(upgrade.type, upgrade.object)
+	upgrade.upgrade(object)
 
 	Events.upgrade_data_changed.emit()
 
