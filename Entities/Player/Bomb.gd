@@ -6,27 +6,31 @@ var delay = 3  # in sec
 @onready var _hit_area: Area2D = $Area2D
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 
+var _is_charged := false
+var _is_exploded := false
+
 
 func _ready():
 	_charge()
 
 
 func _physics_process(_delta):
+	if not _is_charged or _is_exploded:
+		return
+
 	_explode()
 
 
 func _charge() -> void:
-	set_physics_process(false)
-
 	_animation.play("charge")
 
 	await _animation.animation_finished
 
-	set_physics_process(true)
+	_is_charged = true
 
 
 func _explode() -> void:
-	set_physics_process(false)
+	_is_exploded = true
 
 	_damage()
 

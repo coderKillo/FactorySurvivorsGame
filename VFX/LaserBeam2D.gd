@@ -16,7 +16,6 @@ func _ready():
 	_beam.scale.y = 0
 	_muzzle.scale.y = 0
 	_particle.emitting = false
-	set_physics_process(false)
 
 
 func _unhandled_input(event):
@@ -31,6 +30,9 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
+	if not is_casting:
+		return
+
 	target_position = Vector2.RIGHT * max_length
 	_cast_beam()
 
@@ -43,8 +45,6 @@ func _set_is_casting(value):
 		_appear()
 	else:
 		_disappear()
-
-	set_physics_process(is_casting)
 
 
 func _appear():

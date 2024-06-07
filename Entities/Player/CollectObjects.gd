@@ -6,8 +6,13 @@ signal entity_collected(ground: GroundEntity)
 @export var collect_distance = 1
 @export var collect_gravity = 100
 
+var active := true
+
 
 func _physics_process(delta):
+	if not active:
+		return
+
 	for body in get_overlapping_bodies():
 		var distance = global_position.distance_to(body.global_position)
 		var entity := body as GroundEntity

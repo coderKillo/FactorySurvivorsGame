@@ -9,6 +9,8 @@ extends Area2D
 
 @onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
 
+var _is_destroyed := false
+
 
 func _ready():
 	area_entered.connect(_on_area_entered)
@@ -17,6 +19,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	if _is_destroyed:
+		return
+
 	var distance = transform.x * speed * delta
 	position += distance
 	max_range -= distance.length()
@@ -38,7 +43,7 @@ func _on_area_entered(area: Area2D):
 
 
 func _destroy_projectile():
-	call_deferred("set_physics_process", false)
+	_is_destroyed = true
 	$CollisionShape2D.set_deferred("disabled", true)
 
 	_animation.play("impact")

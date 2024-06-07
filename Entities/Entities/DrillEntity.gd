@@ -9,21 +9,24 @@ const DESTRICTION_TIME = 12.0 / 19.0  # destction happen on 12th frame
 
 var _components: Array[DestructionComponent]
 var _worker := 0
+var _is_ready := false
 
 
 func _ready():
-	set_process(false)
 	_set_animation_speed()
 
 	# wait till physics is ready
-	var timer = get_tree().create_timer(0.5)
+	var timer = get_tree().create_timer(0.3)
 	await timer.timeout
 
 	_get_destriction_components()
-	set_process(true)
+	_is_ready = true
 
 
 func _process(_delta):
+	if not _is_ready:
+		return
+
 	if _worker <= 0:
 		_destroy()
 

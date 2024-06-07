@@ -33,7 +33,7 @@ func _on_entity_collected(entity: GroundEntity):
 
 
 func _on_resources_changed() -> void:
-	_collect_objects.set_physics_process(resources.ore_amount <= resources.ore_limit)
+	_collect_objects.active = (resources.ore_amount <= resources.ore_limit)
 
 	if resources.ore_amount > resources.molt_amount:
 		_set_load_sprite(float(resources.ore_amount) / resources.ore_limit)

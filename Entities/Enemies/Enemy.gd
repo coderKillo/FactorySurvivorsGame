@@ -22,6 +22,10 @@ var _current_state: States = States.IDLE
 @onready var _navigation: NavigationAgent2D = $NavigationAgent2D
 @onready var _navigation_timer: Timer = $NavigationAgent2D/Timer
 
+var _is_attacking := false
+var _is_death := false
+var _is_pyhsics_called_after_death := false
+
 
 func _ready():
 	health.max_health = max_health
@@ -36,6 +40,9 @@ func _ready():
 
 
 func _process(_delta):
+	if _is_attacking or _is_death:
+		return
+
 	if _current_state == States.DEATH:
 		pass
 	elif target == null:
@@ -49,9 +56,12 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
+	if _is_pyhsics_called_after_death:
+		return
+
 	# execute physics only once on death (to apply pushback)
 	if _current_state == States.DEATH:
-		set_physics_process(false)
+		_is_pyhsics_called_after_death = true
 
 	var direction = Vector2.ZERO
 
@@ -75,7 +85,7 @@ func _handle_states() -> void:
 	elif _current_state == States.ATTACK:
 		_face_target()
 
-		set_process(false)
+		_is_attacking = true
 
 		model.play(EnemySpriteFrames.ATTACK)
 		await model.frame_changed
@@ -85,10 +95,10 @@ func _handle_states() -> void:
 
 		await model.animation_looped
 
-		set_process(true)
+		_is_attacking = false
 
 	elif _current_state == States.DEATH:
-		set_process(false)
+		_is_death = true
 
 		model.play(EnemySpriteFrames.DEATH)
 		await model.animation_finished
