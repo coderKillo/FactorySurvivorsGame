@@ -78,6 +78,7 @@ func _unhandled_input(event: InputEvent):
 func _process(_delta):
 	_update_blueprint()
 	_update_mouse_position_on_grid()
+	_update_player_position_on_grid()
 
 
 ########## PRIVATE
@@ -203,6 +204,14 @@ func _update_mouse_position_on_grid():
 	var canves_pos = get_canvas_transform() * global_pos
 
 	Events.mouse_grid_position.emit(canves_pos)
+
+
+func _update_player_position_on_grid():
+	var cell_player = local_to_map(to_local(_player.global_position))
+	var global_pos = to_global(map_to_local(cell_player))
+	var canves_pos = get_canvas_transform() * global_pos
+
+	Events.player_grid_position.emit(canves_pos)
 
 
 func _set_blueprint_color():

@@ -40,6 +40,7 @@ func _set_build_mode(active:bool)->void:
 	_gui.set_quickbar_visible(active)
 	_gui.destroy_blueprint()
 	_gui.pause_quickbar_cooldowns(active)
+	_gui.set_build_mode_icon(active)
 
 	_pause_scene(_player, active)
 	_pause_scene(_enemy_placer, active)

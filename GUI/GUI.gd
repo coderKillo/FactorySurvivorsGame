@@ -35,6 +35,7 @@ var open_entity_ui: BaseGuiComponent:
 @onready var _drag_preview: DragPreview = $DragPreview
 @onready var _resource: ResourceUI = $ResourceUI
 @onready var _upgrade_gui: UpgradeSystemUI = $UpgradeSystemGUI
+@onready var _build_mode_ui: BuildModeUI = $BuildModeUI
 
 var _current_quickbar_index := 0
 
@@ -76,6 +77,10 @@ func _unhandled_input(event: InputEvent):
 
 func get_quickbar_panels() -> Array:
 	return _quickbar.panels
+
+
+func set_build_mode_icon(pause: bool) -> void:
+	_build_mode_ui.set_pause_icon(pause)
 
 
 func set_quickbar_visible(value: bool) -> void:

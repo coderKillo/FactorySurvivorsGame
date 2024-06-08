@@ -16,6 +16,8 @@ signal enemies_attack(attacking: bool)
 
 signal mouse_grid_position(pos: Vector2)
 
+signal player_grid_position(pos: Vector2)
+
 signal inventory_item_added(blueprint: BlueprintEntity)
 
 signal power_produced(total_produced: int, produced: int, used: int)
