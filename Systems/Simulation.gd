@@ -16,18 +16,22 @@ var _upgrade_system := UpgradeSystem.new()
 @onready var _player = $GameWorld/Player
 @onready var _world_generator: WorldGenerator = $GameWorld/WorldGenerator
 @onready var _gui: GUI = $CanvasLayer/GUI
+@onready var _build_mode_manager: BuildModeManager = $BuildModeManager
 
 
 func _ready():
 	var planet_data = PlanetData.current_planet()
 	_set_world_color(planet_data.color)
 
+	var simulation_timer = $SimulationTimer
+
 	_entity_placer.setup(_gui, _tracker, _player)
 	_enemy_placer.setup(_player)
 	_world_generator.setup(_player)
 	_upgrade_system.setup(_player, _tracker, _gui)
-	$SimulationTimer.start(simulation_speed)
-	$SimulationTimer.timeout.connect(_on_SimulationTimer_timeout)
+	_build_mode_manager.setup(_player, _gui, _enemy_placer, _tracker, simulation_timer)
+	simulation_timer.start(simulation_speed)
+	simulation_timer.timeout.connect(_on_SimulationTimer_timeout)
 	Events.player_died.connect(_on_player_death)
 
 

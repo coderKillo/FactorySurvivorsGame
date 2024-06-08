@@ -41,6 +41,7 @@ func setup(gui: GUI, tracker: EntityTracker, player: Player):
 func _ready():
 	_destruction_timer.finish_destruction.connect(_finish_destruction)
 	Events.slot_cooldown_finished.connect(_on_quickslot_cooldown_finished)
+	Events.system_tick.connect(_on_system_tick)
 
 
 func _unhandled_input(event: InputEvent):
@@ -89,20 +90,20 @@ func _update_blueprint():
 		return
 
 
+func _on_system_tick(_delta):
+	_update_placer_queue()
+
+
 func _on_quickslot_cooldown_finished(entity_name: String):
-	if not _entity_placer_queue.has(entity_name):
-		return
+	_process_placer_queue(entity_name)
 
-	if _entity_placer_queue[entity_name].is_empty():
-		return
 
-	var queue_entry = _entity_placer_queue[entity_name].pop_front()
-	var entity := queue_entry["entity"] as Entity
-	var blueprint := queue_entry["blueprint"] as BlueprintEntity
-	var preview := queue_entry["preview"] as Node
-
-	preview.queue_free()
-	_place_entity(entity, blueprint)
+func _update_placer_queue() -> void:
+	for panel in _gui.get_quickbar_panels():
+		if panel.held_item == null:
+			continue
+		if not panel.held_item.on_cooldown:
+			_process_placer_queue(Library.get_entity_name(panel.held_item))
 
 
 func _request_entity(location: Vector2i):
@@ -120,16 +121,14 @@ func _request_entity(location: Vector2i):
 
 	_tracker.place_entities(entity, location)
 
-	if _gui.blueprint and _gui.blueprint.on_cooldown:
-		var preview := _create_preview(entity.position)
-
-		_make_placer_queue_entry(entity_name, entity, _gui.blueprint, preview)
-
-	else:
-		_place_entity(entity, _gui.blueprint)
+	var preview := _create_preview(entity.position)
+	_make_placer_queue_entry(entity_name, entity, _gui.blueprint, preview)
 
 
 func _place_entity(entity: Entity, blueprint: BlueprintEntity):
+	# trigger item changed for cooldown
+	blueprint.stack_count += 0
+
 	var drop_pod := DropPodScene.instantiate() as DropPod
 	drop_pod.global_position = entity.position
 	add_child(drop_pod)
@@ -139,9 +138,6 @@ func _place_entity(entity: Entity, blueprint: BlueprintEntity):
 	add_child(entity)
 
 	SoundManager.play("entity_placed")
-
-	# trigger item changed for cooldown
-	blueprint.stack_count += 0
 
 
 func _create_preview(pos: Vector2) -> Node2D:
@@ -161,6 +157,23 @@ func _make_placer_queue_entry(
 
 	var queue_entry = {"entity": entity, "blueprint": blueprint, "preview": preview}
 	_entity_placer_queue[entity_name].append(queue_entry)
+
+
+func _process_placer_queue(entity_name: String):
+	if not _entity_placer_queue.has(entity_name):
+		return
+
+	if _entity_placer_queue[entity_name].is_empty():
+		return
+
+	var queue_entry = _entity_placer_queue[entity_name].pop_front()
+
+	var entity := queue_entry["entity"] as Entity
+	var blueprint := queue_entry["blueprint"] as BlueprintEntity
+	var preview := queue_entry["preview"] as Node
+
+	preview.queue_free()
+	_place_entity(entity, blueprint)
 
 
 func _show_entity_gui(location: Vector2i) -> void:

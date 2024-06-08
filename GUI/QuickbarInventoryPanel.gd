@@ -44,6 +44,10 @@ func start_cooldown(time: float) -> void:
 	_timer.start(time)
 
 
+func pause_cooldown(paused: bool) -> void:
+	_timer.paused = paused
+
+
 func _end_cooldown() -> void:
 	if _panel.held_item == null:
 		return

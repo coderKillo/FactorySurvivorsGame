@@ -13,7 +13,16 @@ func add_entity(blueprint: BlueprintEntity) -> void:
 	printerr("could not add entity '%s': quickbar is full!" % blueprint.name)
 
 
+func pause_cooldowns(paused: bool) -> void:
+	for child in get_children():
+		if child.has_method("pause_cooldown"):
+			child.pause_cooldown(paused)
+
+
 func select_panel(index: int) -> void:
+	if not visible:
+		return
+
 	var event = InputEventMouseButton.new()
 	event.button_index = MOUSE_BUTTON_LEFT
 	event.pressed = true

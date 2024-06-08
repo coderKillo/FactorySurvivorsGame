@@ -116,6 +116,7 @@ mouse_filter = 2
 theme_override_constants/margin_top = 140
 
 [node name="Quickbar" parent="MarginContainer" instance=ExtResource("5_heml8")]
+visible = false
 layout_mode = 2
 
 [node name="ScoreUI" type="MarginContainer" parent="."]
