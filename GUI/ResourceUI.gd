@@ -4,7 +4,6 @@ extends MarginContainer
 @export var resources: CollectedResources
 
 @onready var _load_bar: TextureProgressBar = $HBoxContainer/LoadBar
-@onready var _molten_bar: TextureProgressBar = $HBoxContainer/MoltenBar
 
 var _gui: GUI
 
@@ -22,5 +21,3 @@ func setup(gui: GUI):
 func _on_resource_collection_changed():
 	_load_bar.max_value = resources.ore_limit
 	_load_bar.value = resources.ore_amount
-	_molten_bar.max_value = resources.molt_limit
-	_molten_bar.value = resources.molt_amount

@@ -3,7 +3,6 @@ extends Node2D
 
 class PlayerData:
 	var ore_limit: int = 500
-	var molt_limit: int = 500
 	var max_health: int = 40
 	var max_energy: int = 100
 	var max_bodies: int = 1

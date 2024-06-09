@@ -12,7 +12,6 @@ func _ready():
 
 	resources = CollectedResources.new()
 	resources.ore_limit = UpgradeData.player_data.ore_limit
-	resources.molt_limit = UpgradeData.player_data.molt_limit
 
 	_collect_objects.entity_collected.connect(_on_entity_collected)
 	resources.changed.connect(_on_resources_changed)
@@ -35,10 +34,7 @@ func _on_entity_collected(entity: GroundEntity):
 func _on_resources_changed() -> void:
 	_collect_objects.active = (resources.ore_amount <= resources.ore_limit)
 
-	if resources.ore_amount > resources.molt_amount:
-		_set_load_sprite(float(resources.ore_amount) / resources.ore_limit)
-	else:
-		_set_load_sprite(float(resources.molt_amount) / resources.molt_limit)
+	_set_load_sprite(float(resources.ore_amount) / resources.ore_limit)
 
 
 func _on_system_tick(delta: float) -> void:
@@ -57,20 +53,9 @@ func _on_system_tick(delta: float) -> void:
 		var heat_bucket = entity.get_node_or_null("HeatBucket") as Bucket
 		heat_bucket.take(int(50 * delta))
 
-		var molt_bucket = entity.get_node_or_null("MoltBucket") as Bucket
-		amount = clamp(resources.molt_limit - resources.molt_amount, 0, amount_per_tick)
-		resources.molt_amount += molt_bucket.take(amount)
-
-	elif entity_name == "PowerPlant":
-		var molt_bucket = entity.get_node_or_null("MoltBucket") as Bucket
-		var amount = clamp(resources.molt_amount, 0, amount_per_tick)
-		resources.molt_amount -= molt_bucket.put(amount)
-		pass
-
 
 func _on_upgrade_data_changed() -> void:
 	resources.ore_limit = UpgradeData.player_data.ore_limit
-	resources.molt_limit = UpgradeData.player_data.molt_limit
 
 
 func _set_load_sprite(percent: float) -> void:

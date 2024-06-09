@@ -55,10 +55,7 @@ func _on_system_tick(delta):
 
 func _provide_molt() -> void:
 	_ore_bucket.take(self.data.value)
-	if self.data.upgrade_2:
-		_heat_provider.amount += self.data.amount
-	else:
-		_molt_bucket.put(self.data.amount)
+	_heat_provider.amount += self.data.amount
 
 
 func _update_heat(delta) -> void:

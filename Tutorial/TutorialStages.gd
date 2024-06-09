@@ -68,9 +68,6 @@ func _process(_delta):
 	if _player.resources.ore_amount > 0:
 		tutorial_event.emit(TutorialEvents.ORE_COLLECTED)
 
-	if _player.resources.molt_amount > 0:
-		tutorial_event.emit(TutorialEvents.MELT_COLLECTED)
-
 
 func setup(tutorial_gui: TutorialGUI, player: Player) -> void:
 	_tutorial_gui = tutorial_gui

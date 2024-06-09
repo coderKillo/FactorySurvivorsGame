@@ -10,13 +10,3 @@ extends Resource
 	set(value):
 		ore_limit = value
 		changed.emit()
-
-@export var molt_amount := 0:
-	set(value):
-		molt_amount = value
-		changed.emit()
-
-@export var molt_limit := 100:
-	set(value):
-		molt_limit = value
-		changed.emit()
