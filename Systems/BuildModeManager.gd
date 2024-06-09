@@ -7,7 +7,10 @@ enum GameMode
 	BUILD_MODE
 }
 
-var _current_game_mode := GameMode.NORMAL_MODE
+var _current_game_mode := GameMode.NORMAL_MODE:
+	set(value):
+		_current_game_mode = value
+		Events.build_mode_changed.emit(_current_game_mode)
 
 var _player: Player
 var _gui: GUI
@@ -37,10 +40,7 @@ func _unhandled_input(event):
 func _set_build_mode(active:bool)->void:
 	_simulation_timer.paused = active
 
-	_gui.set_quickbar_visible(active)
 	_gui.destroy_blueprint()
-	_gui.pause_quickbar_cooldowns(active)
-	_gui.set_build_mode_icon(active)
 
 	_pause_scene(_player, active)
 	_pause_scene(_enemy_placer, active)

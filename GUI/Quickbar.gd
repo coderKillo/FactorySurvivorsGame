@@ -4,6 +4,10 @@ extends InventoryBar
 const GLOBAL_COOLDOWN := 0.5
 
 
+func _ready_intern():
+	Events.build_mode_changed.connect(_on_build_mode_changed)
+
+
 func add_entity(blueprint: BlueprintEntity) -> void:
 	for panel in panels:
 		if panel.held_item == null:
@@ -11,12 +15,6 @@ func add_entity(blueprint: BlueprintEntity) -> void:
 			return
 
 	printerr("could not add entity '%s': quickbar is full!" % blueprint.name)
-
-
-func pause_cooldowns(paused: bool) -> void:
-	for child in get_children():
-		if child.has_method("pause_cooldown"):
-			child.pause_cooldown(paused)
 
 
 func select_panel(index: int) -> void:
@@ -62,3 +60,20 @@ func _on_panel_item_changed(_panel: InventoryPanel, _item: BlueprintEntity) -> v
 	for child in get_children():
 		if child.has_method("start_cooldown"):
 			child.start_cooldown(GLOBAL_COOLDOWN)
+
+
+func _on_build_mode_changed(mode: BuildModeManager.GameMode) -> void:
+	match mode:
+		BuildModeManager.GameMode.BUILD_MODE:
+			_pause_cooldowns(true)
+			visible = true
+
+		BuildModeManager.GameMode.NORMAL_MODE:
+			_pause_cooldowns(false)
+			visible = false
+
+
+func _pause_cooldowns(paused: bool) -> void:
+	for child in get_children():
+		if child.has_method("pause_cooldown"):
+			child.pause_cooldown(paused)

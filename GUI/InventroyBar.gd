@@ -10,6 +10,11 @@ var _gui: GUI
 
 func _ready():
 	_make_panels()
+	_ready_intern()
+
+
+func _ready_intern():
+	pass
 
 
 func setup(gui: GUI):

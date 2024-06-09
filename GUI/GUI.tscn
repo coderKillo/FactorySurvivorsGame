@@ -218,6 +218,7 @@ explosiveness = 1.0
 
 [node name="BuildModeUI" type="MarginContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_right = 280
 theme_override_constants/margin_bottom = 145
 script = ExtResource("20_q6u0e")

@@ -79,18 +79,6 @@ func get_quickbar_panels() -> Array:
 	return _quickbar.panels
 
 
-func set_build_mode_icon(pause: bool) -> void:
-	_build_mode_ui.set_pause_icon(pause)
-
-
-func set_quickbar_visible(value: bool) -> void:
-	_quickbar.visible = value
-
-
-func pause_quickbar_cooldowns(paused: bool) -> void:
-	_quickbar.pause_cooldowns(paused)
-
-
 func add_to_quickbar(entity: BlueprintEntity) -> void:
 	return _quickbar.add_entity(entity)
 
