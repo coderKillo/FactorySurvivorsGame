@@ -3,10 +3,12 @@ extends Node
 @onready var DamageNumberScene: PackedScene = preload("res://GUI/DamageNumber.tscn")
 
 
-func display(value: int, pos: Vector2) -> void:
+func display(value: int, pos: Vector2, color: Color = Color.WHITE) -> void:
 	var number := DamageNumberScene.instantiate() as Node2D
 	number.global_position = pos
+	number.z_index = 5
 	number.get_node("Label").text = str(value)
+	number.get_node("Label").modulate = color
 
 	call_deferred("add_child", number)
 

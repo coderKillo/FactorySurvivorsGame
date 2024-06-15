@@ -2,6 +2,7 @@ class_name EntityTracker
 extends RefCounted
 
 var entities = {}
+var blocked_cells: Array[Vector2] = []
 
 
 func place_entities(entity: Entity, cellv: Vector2):
@@ -38,7 +39,7 @@ func remove_queued_entity() -> void:
 
 
 func is_cell_occupied(cellv: Vector2) -> bool:
-	return entities.has(cellv)
+	return entities.has(cellv) or blocked_cells.has(cellv)
 
 
 func get_entity_at(cellv: Vector2) -> Entity:

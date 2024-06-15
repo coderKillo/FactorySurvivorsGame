@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://dl1vvohs3eypo"]
+[gd_scene load_steps=31 format=3 uid="uid://dl1vvohs3eypo"]
 
 [ext_resource type="Script" path="res://Entities/Entities/SmelterEntity.gd" id="1_pkhbk"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="2_iyxwc"]
 [ext_resource type="Script" path="res://Systems/Mining/HeatProvider.gd" id="3_4kk5f"]
 [ext_resource type="Texture2D" uid="uid://rpb5g8uoxfv4" path="res://Shared/animations/Smelter_Fire.png" id="4_gjms3"]
+[ext_resource type="Script" path="res://Systems/Mining/HeatReceiver.gd" id="4_hx2ll"]
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="5_c66rm"]
 [ext_resource type="Shader" path="res://Shader/hologram.gdshader" id="5_relxs"]
 [ext_resource type="Script" path="res://GUI/SmelterGuiComponent.gd" id="6_2o7og"]
@@ -113,6 +114,9 @@ shape = SubResource("RectangleShape2D_yxq4u")
 
 [node name="HeatProvider" type="Node2D" parent="."]
 script = ExtResource("3_4kk5f")
+
+[node name="HeatReceiver" type="Node2D" parent="."]
+script = ExtResource("4_hx2ll")
 
 [node name="FireAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v2hys")

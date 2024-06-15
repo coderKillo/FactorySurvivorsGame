@@ -120,7 +120,7 @@ func _request_entity(location: Vector2i):
 		return
 	_player.energy.energy -= entity.data.energy_cost
 
-	_tracker.place_entities(entity, location)
+	_tracker.blocked_cells.append(Vector2(location))
 
 	var preview := _create_preview(entity.position)
 	_make_placer_queue_entry(entity_name, entity, _gui.blueprint, preview)
@@ -137,6 +137,10 @@ func _place_entity(entity: Entity, blueprint: BlueprintEntity):
 	await drop_pod.opened
 
 	add_child(entity)
+
+	var cellv: Vector2 = local_to_map(entity.position)
+	_tracker.blocked_cells.erase(cellv)
+	_tracker.place_entities(entity, cellv)
 
 	SoundManager.play("entity_placed")
 

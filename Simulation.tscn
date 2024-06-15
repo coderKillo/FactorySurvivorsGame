@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bn036liop3mqv"]
+[gd_scene load_steps=30 format=3 uid="uid://bn036liop3mqv"]
 
 [ext_resource type="Script" path="res://Systems/Simulation.gd" id="1_j5ers"]
 [ext_resource type="PackedScene" uid="uid://caan0o3hcqc0o" path="res://Systems/Worldgenerator/WorldGenerator.tscn" id="2_lgle3"]
@@ -10,10 +10,16 @@
 [ext_resource type="Shader" path="res://Shader/hologram2.gdshader" id="5_yfihi"]
 [ext_resource type="Script" path="res://Systems/GroundEntitySpawner.gd" id="8_lmmv0"]
 [ext_resource type="Script" path="res://VFX/VfxManager.gd" id="9_23opm"]
+[ext_resource type="Script" path="res://Systems/Pipe/PipeHeatDistributor.gd" id="9_jqu8n"]
 [ext_resource type="PackedScene" uid="uid://eikwnrlq7dx" path="res://Entities/Minecart.tscn" id="10_31aaa"]
 [ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="10_cj28n"]
 [ext_resource type="AudioStream" uid="uid://ctcf73xxbwgki" path="res://Shared/Music/exploratig_the_cosmos_1_sub_38_bit.ogg" id="11_5j556"]
 [ext_resource type="Script" path="res://Systems/BuildModeManager.gd" id="11_gbaok"]
+[ext_resource type="Script" path="res://Systems/Pipe/PipeSystem.gd" id="11_vnvrd"]
+[ext_resource type="Script" path="res://Systems/Pipe/PipePathFinder.gd" id="12_ch4yn"]
+[ext_resource type="Texture2D" uid="uid://1mdgf5pf2y35" path="res://Shared/Pipes.png" id="12_samr0"]
+[ext_resource type="Script" path="res://Systems/Pipe/PipePathPreview.gd" id="13_2vn1y"]
+[ext_resource type="Script" path="res://Systems/Pipe/PipePaths.gd" id="13_l8l8l"]
 
 [sub_resource type="Gradient" id="Gradient_usn34"]
 offsets = PackedFloat32Array(0.2, 0.4, 0.6, 0.8)
@@ -26,6 +32,97 @@ gradient = SubResource("Gradient_usn34")
 shader = ExtResource("3_6wbvq")
 shader_parameter/desaturation = 0.75
 shader_parameter/palette = SubResource("GradientTexture1D_iwika")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pjjoo"]
+texture = ExtResource("12_samr0")
+2:0/next_alternative_id = 7
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+2:0/1 = 1
+2:0/1/terrain_set = 0
+2:0/1/terrain = 0
+2:0/2 = 2
+2:0/2/terrain_set = 0
+2:0/2/terrain = 0
+2:0/2/terrains_peering_bit/left_side = 0
+2:0/3 = 3
+2:0/3/terrain_set = 0
+2:0/3/terrain = 0
+2:0/3/terrains_peering_bit/right_side = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/bottom_side = 0
+1:2/0/terrains_peering_bit/top_side = 0
+0:2/next_alternative_id = 3
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/bottom_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+0:2/1 = 1
+0:2/1/terrain_set = 0
+0:2/1/terrain = 0
+0:2/1/terrains_peering_bit/bottom_side = 0
+0:2/2 = 2
+0:2/2/terrain_set = 0
+0:2/2/terrain = 0
+0:2/2/terrains_peering_bit/top_side = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/terrains_peering_bit/right_side = 0
+1:3/0/terrains_peering_bit/top_side = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/terrains_peering_bit/right_side = 0
+2:3/0/terrains_peering_bit/left_side = 0
+2:3/0/terrains_peering_bit/top_side = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/right_side = 0
+2:2/0/terrains_peering_bit/bottom_side = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_side = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/right_side = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/left_side = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0/terrains_peering_bit/left_side = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/terrains_peering_bit/bottom_side = 0
+3:2/0/terrains_peering_bit/left_side = 0
+3:2/0/terrains_peering_bit/top_side = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+3:3/0/terrains_peering_bit/left_side = 0
+3:3/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_d62kq"]
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_pjjoo")
 
 [sub_resource type="TileSet" id="TileSet_njyke"]
 
@@ -49,6 +146,24 @@ y_sort_enabled = true
 
 [node name="WorldGenerator" parent="GameWorld" instance=ExtResource("2_lgle3")]
 material = SubResource("ShaderMaterial_chun3")
+
+[node name="PipeSystem" type="Node2D" parent="GameWorld"]
+script = ExtResource("11_vnvrd")
+
+[node name="TileMap" type="TileMap" parent="GameWorld/PipeSystem"]
+tile_set = SubResource("TileSet_d62kq")
+format = 2
+layer_0/z_index = -2
+script = ExtResource("13_l8l8l")
+
+[node name="PipePathFinder" type="Node2D" parent="GameWorld/PipeSystem"]
+script = ExtResource("12_ch4yn")
+
+[node name="PipePathPreview" type="Node2D" parent="GameWorld/PipeSystem"]
+script = ExtResource("13_2vn1y")
+
+[node name="PipeHeatDistributor" type="Node2D" parent="GameWorld/PipeSystem"]
+script = ExtResource("9_jqu8n")
 
 [node name="EntityPlacer" type="TileMap" parent="GameWorld"]
 y_sort_enabled = true
@@ -87,7 +202,7 @@ one_shot = true
 script = ExtResource("8_lmmv0")
 
 [node name="Player" parent="GameWorld" instance=ExtResource("2_trfnq")]
-position = Vector2(-2, 1)
+position = Vector2(0, 0)
 slide_on_ceiling = false
 safe_margin = 1.0
 

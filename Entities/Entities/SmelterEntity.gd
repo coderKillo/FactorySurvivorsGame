@@ -4,6 +4,7 @@ const OVERHEAT_TIME = 20  # sek
 const HEAT_PER_SEK = 10
 
 @onready var _heat_provider: HeatProvider = $HeatProvider
+@onready var _heat_receiver: HeatReceiver = $HeatReceiver
 @onready var _fire: AnimatedSprite2D = $FireAnimation
 @onready var _ore_bucket: Bucket = $OreBucket
 @onready var _heat_bucket: Bucket = $HeatBucket
@@ -13,6 +14,8 @@ const HEAT_PER_SEK = 10
 
 func _ready():
 	_heat_bucket._limit = OVERHEAT_TIME * HEAT_PER_SEK
+
+	_heat_receiver.matieral_provided.connect(_on_heat_provided)
 
 	Events.system_tick.connect(_on_system_tick)
 
@@ -44,13 +47,22 @@ func _on_system_tick(delta):
 		_fire.hide()
 		return
 
-	if not _molt_bucket.full():
+	if _molt_bucket.full():
+		_heat_receiver.required_heat = 0
+	else:
+		_heat_receiver.required_heat = self.data.amount
 		_provide_molt()
 
 	_update_heat(delta)
 
 	_fire.show()
 	SoundManager.play("smelter_active")
+
+
+func _on_heat_provided(amount: int) -> void:
+	if _molt_bucket.full():
+		return
+	_molt_bucket.put(amount)
 
 
 func _provide_molt() -> void:

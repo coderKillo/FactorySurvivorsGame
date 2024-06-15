@@ -6,15 +6,13 @@ var _tracker := EntityTracker.new()
 @warning_ignore("unused_variable")
 @warning_ignore("unused_private_class_variable")
 var _power_system := PowerSystem.new()
-@warning_ignore("unused_variable")
-@warning_ignore("unused_private_class_variable")
-var _mining_system := MiningSystem.new()
 var _upgrade_system := UpgradeSystem.new()
 
 @onready var _entity_placer = $GameWorld/EntityPlacer
 @onready var _enemy_placer = $GameWorld/EnemyPlacer
 @onready var _player = $GameWorld/Player
 @onready var _world_generator: WorldGenerator = $GameWorld/WorldGenerator
+@onready var _pipe_system: PipeSystem = $GameWorld/PipeSystem
 @onready var _gui: GUI = $CanvasLayer/GUI
 @onready var _build_mode_manager: BuildModeManager = $BuildModeManager
 
@@ -28,6 +26,7 @@ func _ready():
 	_entity_placer.setup(_gui, _tracker, _player)
 	_enemy_placer.setup(_player)
 	_world_generator.setup(_player)
+	_pipe_system.setup(_tracker)
 	_upgrade_system.setup(_player, _tracker, _gui)
 	_build_mode_manager.setup(_player, _gui, _enemy_placer, _tracker, simulation_timer)
 	simulation_timer.start(simulation_speed)
