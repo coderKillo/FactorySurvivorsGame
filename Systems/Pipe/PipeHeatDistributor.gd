@@ -6,6 +6,8 @@ var _heat_providers = {}
 
 var _paths: PipePaths
 
+@onready var _visualizer: PipeHeatNumberVisualizer = $PipeHeatNumberVisualizer
+
 var _queue_repathing := false
 var _heat_connections := {}  # Position of provider to receiver list
 
@@ -64,13 +66,11 @@ func _distribute_heat() -> void:
 			heat_used += heat_provided
 			receiver.matieral_provided.emit(heat_provided)
 
-			DamageNumbers.display(
-				heat_provided, receiver.global_position + Vector2(4, 0), Color.GREEN
-			)
+			_visualizer.add_number(heat_provided, receiver.global_position + Vector2(0, 4))
 
 		provider.amount -= heat_used
 
-		DamageNumbers.display(-heat_used, provider.global_position + Vector2(-4, 0), Color.RED)
+		_visualizer.add_number(-heat_used, provider.global_position + Vector2(0, 4))
 
 
 func _repath() -> void:

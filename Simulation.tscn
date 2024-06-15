@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bn036liop3mqv"]
+[gd_scene load_steps=31 format=3 uid="uid://bn036liop3mqv"]
 
 [ext_resource type="Script" path="res://Systems/Simulation.gd" id="1_j5ers"]
 [ext_resource type="PackedScene" uid="uid://caan0o3hcqc0o" path="res://Systems/Worldgenerator/WorldGenerator.tscn" id="2_lgle3"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Systems/Pipe/PipeHeatDistributor.gd" id="9_jqu8n"]
 [ext_resource type="PackedScene" uid="uid://eikwnrlq7dx" path="res://Entities/Minecart.tscn" id="10_31aaa"]
 [ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="10_cj28n"]
+[ext_resource type="Script" path="res://Systems/Pipe/PipeHeatNumberVisualizer.gd" id="10_ynmei"]
 [ext_resource type="AudioStream" uid="uid://ctcf73xxbwgki" path="res://Shared/Music/exploratig_the_cosmos_1_sub_38_bit.ogg" id="11_5j556"]
 [ext_resource type="Script" path="res://Systems/BuildModeManager.gd" id="11_gbaok"]
 [ext_resource type="Script" path="res://Systems/Pipe/PipeSystem.gd" id="11_vnvrd"]
@@ -164,6 +165,11 @@ script = ExtResource("13_2vn1y")
 
 [node name="PipeHeatDistributor" type="Node2D" parent="GameWorld/PipeSystem"]
 script = ExtResource("9_jqu8n")
+
+[node name="PipeHeatNumberVisualizer" type="Node2D" parent="GameWorld/PipeSystem/PipeHeatDistributor"]
+script = ExtResource("10_ynmei")
+
+[node name="Timer" type="Timer" parent="GameWorld/PipeSystem/PipeHeatDistributor/PipeHeatNumberVisualizer"]
 
 [node name="EntityPlacer" type="TileMap" parent="GameWorld"]
 y_sort_enabled = true
