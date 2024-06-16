@@ -122,9 +122,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -158.0
-offset_top = -11.0
+offset_top = -26.0
 offset_right = 162.0
-offset_bottom = 169.0
+offset_bottom = 154.0
 grow_horizontal = 2
 texture = ExtResource("4_xgxwg")
 
@@ -135,9 +135,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -160.0
-offset_top = -15.44
+offset_top = -28.845
 offset_right = 160.0
-offset_bottom = 164.56
+offset_bottom = 151.155
 grow_horizontal = 2
 texture = ExtResource("4_xgxwg")
 
@@ -166,9 +166,9 @@ script = ExtResource("7_oo2nh")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 13.0
-offset_top = 110.0
+offset_top = 92.365
 offset_right = 73.0
-offset_bottom = 169.0
+offset_bottom = 172.365
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(60, 0)
@@ -181,6 +181,12 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
 text = "Tutorial"
+
+[node name="ContolsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "Controls"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(60, 0)

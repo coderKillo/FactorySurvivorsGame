@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=31 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
@@ -18,10 +18,10 @@
 [ext_resource type="Script" path="res://GUI/PauseMenu.gd" id="13_sfcl2"]
 [ext_resource type="Texture2D" uid="uid://bpbcnanmtiemb" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_Filler_03a.png" id="14_cy8vg"]
 [ext_resource type="PackedScene" uid="uid://s77jcnwyfctw" path="res://GUI/DeathScreen.tscn" id="18_jvfaf"]
-[ext_resource type="Texture2D" uid="uid://bmlf0pw8gnmr5" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Frame_Horizontal_01a.png" id="18_vt0vm"]
 [ext_resource type="Script" path="res://GUI/GUISprite.gd" id="20_431g1"]
 [ext_resource type="Texture2D" uid="uid://drp84srw5u2wv" path="res://Shared/PauseIcon.png" id="20_lmm4y"]
 [ext_resource type="Script" path="res://GUI/BuildModeUI.gd" id="20_q6u0e"]
+[ext_resource type="PackedScene" uid="uid://bbdhpfhg31c1t" path="res://GUI/keymap.tscn" id="21_ytp13"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_csb1a"]
 shader = ExtResource("6_5iwyi")
@@ -72,14 +72,6 @@ shader = ExtResource("6_5iwyi")
 shader_parameter/phase_color = Color(0.00390625, 0, 0.359375, 1)
 shader_parameter/phase_factor = 0.23
 shader_parameter/blend_color = Color(0, 0.243137, 0.541176, 0.901961)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bdtgd"]
-texture = ExtResource("18_vt0vm")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 3.0
-region_rect = Rect2(0, 0, 96, 32)
 
 [node name="GUI" type="CenterContainer"]
 anchors_preset = 15
@@ -279,37 +271,44 @@ layout_mode = 2
 
 [node name="PauseMenu" type="MarginContainer" parent="."]
 process_mode = 3
+visible = false
 layout_mode = 2
 script = ExtResource("13_sfcl2")
 
-[node name="PanelContainer" type="PanelContainer" parent="PauseMenu"]
-z_index = 5
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+custom_minimum_size = Vector2(320, 180)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_bdtgd")
+color = Color(0, 0, 0, 0.541176)
 
-[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PauseMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 16
 text = "Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Continue" type="Button" parent="PauseMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Keymap" parent="PauseMenu/MarginContainer/VBoxContainer" instance=ExtResource("21_ytp13")]
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 5
 text = "Continue"
 
-[node name="Quit" type="Button" parent="PauseMenu/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 5
 text = "Quit"

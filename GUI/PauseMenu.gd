@@ -1,8 +1,7 @@
 extends MarginContainer
 
-@onready var _continue_button: Button = $PanelContainer/MarginContainer/VBoxContainer/Continue
-@onready var _quit_button: Button = $PanelContainer/MarginContainer/VBoxContainer/Quit
-@onready var _panel: Control = $PanelContainer
+@onready var _continue_button: Button = %Continue
+@onready var _quit_button: Button = %Quit
 
 var _is_paused := false
 
@@ -11,7 +10,7 @@ func _ready():
 	_continue_button.pressed.connect(_on_continue_pressed)
 	_quit_button.pressed.connect(_on_quit_pressed)
 
-	_panel.hide()
+	hide()
 
 
 func _unhandled_input(event):
@@ -33,6 +32,6 @@ func _set_pause(paused: bool) -> void:
 	_is_paused = paused
 
 	if paused:
-		_panel.show()
+		show()
 	else:
-		_panel.hide()
+		hide()
