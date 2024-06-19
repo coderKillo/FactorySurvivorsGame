@@ -116,9 +116,7 @@ func _request_entity(location: Vector2i):
 	entity._setup(_gui.blueprint)
 	entity._setup_gui(_gui)
 
-	if _player.energy.energy < entity.data.energy_cost:
-		return
-	_player.energy.energy -= entity.data.energy_cost
+	Events.money_changed.emit(-entity.data.energy_cost)
 
 	_tracker.blocked_cells.append(Vector2(location))
 

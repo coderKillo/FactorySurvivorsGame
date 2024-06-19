@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=32 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
@@ -36,6 +36,9 @@ texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
 region_rect = Rect2(672, 231, 64, 19)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tq48n"]
+load_path = "res://.godot/imported/s4m_ur4i_factory-o-pixelart_tileset.png-7c69c0e7e183d1b61fcf53a7064d6585.ctex"
 
 [sub_resource type="Gradient" id="Gradient_abr2b"]
 interpolation_mode = 1
@@ -144,13 +147,17 @@ theme_override_constants/margin_top = -5
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = -5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer/VBoxContainer2"]
 use_parent_material = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = -1
 
-[node name="GUISprite" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("6_t50jr")]
+[node name="GUISprite" parent="ScoreUI/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer" instance=ExtResource("6_t50jr")]
 use_parent_material = true
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
@@ -160,12 +167,13 @@ mouse_filter = 2
 texture = ExtResource("6_f4nhr")
 region_enabled = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="Label" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="TotalEnergyLabel" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 use_parent_material = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
@@ -179,7 +187,8 @@ text = "10000
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="CurrentPowerLabel" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 use_parent_material = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
@@ -188,6 +197,39 @@ size_flags_vertical = 0
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 4
 text = "100/100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScoreUI/PanelContainer/MarginContainer/VBoxContainer2"]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 3
+
+[node name="GUISprite" parent="ScoreUI/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer2" instance=ExtResource("6_t50jr")]
+use_parent_material = true
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("CompressedTexture2D_tq48n")
+region_enabled = true
+region_rect = Rect2(20, 195, 8, 8)
+
+[node name="MoneyLabel" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
+modulate = Color(0.901961, 0.635294, 0.231373, 1)
+use_parent_material = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
+text = "20000"
 horizontal_alignment = 2
 vertical_alignment = 1
 

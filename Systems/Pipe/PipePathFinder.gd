@@ -9,17 +9,14 @@ func find_path(start: Vector2, end: Vector2) -> PackedVector2Array:
 	direction.y = clamp(direction.y, -1, 1)
 
 	var point = start
+	points.append(point)
 
-	for x in _range_inclusive(int(start.x), int(end.x), int(direction.x)):
-		point.x = x
+	while point.x != end.x:
+		point.x += direction.x
 		points.append(point)
 
-	for y in _range_inclusive(int(start.y + direction.y), int(end.y), int(direction.y)):
-		point.y = y
+	while point.y != end.y:
+		point.y += direction.y
 		points.append(point)
 
 	return points
-
-
-func _range_inclusive(start: int, end: int, direction: int) -> Array:
-	return range(start, end + direction, direction if direction != 0 else 1)

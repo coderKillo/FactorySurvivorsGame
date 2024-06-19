@@ -36,7 +36,7 @@ var entites_data := {
 	EntityData.new(
 		{
 			cooldown = 4.0,
-			energy_cost = 0,
+			energy_cost = 50,
 			speed = 15.0,
 			damage = 1,
 			stack_size = 10,
@@ -50,7 +50,7 @@ var entites_data := {
 	EntityData.new(
 		{
 			cooldown = 20.0,
-			energy_cost = 5,
+			energy_cost = 1000,
 			speed = 1.0,
 			damage = 1,
 			stack_size = 10,
@@ -64,7 +64,7 @@ var entites_data := {
 	EntityData.new(
 		{
 			cooldown = 3.0,
-			energy_cost = 40,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 10,
 			stack_size = 10,
@@ -92,11 +92,11 @@ var entites_data := {
 	EntityData.new(
 		{
 			cooldown = 20.0,
-			energy_cost = 5,
+			energy_cost = 500,
 			speed = 1.0,
 			damage = 25,
 			stack_size = 10,
-			value = 10,
+			value = 5,
 			amount = 0,
 			upgrade_1 = false,
 			upgrade_2 = false
@@ -120,7 +120,7 @@ var entites_data := {
 	EntityData.new(
 		{
 			cooldown = 30.0,
-			energy_cost = 0,
+			energy_cost = 5000,
 			speed = 1.0,
 			damage = 1,
 			stack_size = 10,
@@ -134,7 +134,7 @@ var entites_data := {
 	EntityData.new(
 		{
 			cooldown = 60.0,
-			energy_cost = 0,
+			energy_cost = 10000,
 			speed = 1.0,
 			damage = 1,
 			stack_size = 10,
@@ -148,11 +148,11 @@ var entites_data := {
 	EntityData.new(
 		{
 			cooldown = 10.0,
-			energy_cost = 2,
+			energy_cost = 250,
 			speed = 1.0,
 			damage = 15,
 			stack_size = 10,
-			value = 10,
+			value = 2,
 			amount = 0,
 			upgrade_1 = false,
 			upgrade_2 = false
@@ -162,11 +162,11 @@ var entites_data := {
 	EntityData.new(
 		{
 			cooldown = 20.0,
-			energy_cost = 4,
+			energy_cost = 2000,
 			speed = 1.0,
 			damage = 10,
 			stack_size = 10,
-			value = 10,
+			value = 4,
 			amount = 1,
 			upgrade_1 = false,
 			upgrade_2 = false

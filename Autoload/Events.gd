@@ -39,3 +39,7 @@ signal slot_cooldown_finished(entity_name: String)
 signal upgrade_data_changed
 
 signal build_mode_changed(mode: BuildModeManager.GameMode)
+
+signal money_changed(amount: int)
+
+signal total_money_changed(amount: int)

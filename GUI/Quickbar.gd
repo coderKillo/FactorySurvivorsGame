@@ -41,6 +41,7 @@ func _select(index):
 
 
 func _make_panels():
+	print("make Panel")
 	for i in slot_count:
 		var panel := InventoryPanelScene.instantiate()
 		add_child(panel)

@@ -58,3 +58,6 @@ func _on_system_tick(delta):
 	power_used += network_power - power_available
 
 	Events.power_produced.emit(_total_power, power_produced, power_used)
+
+	var money_produced = network_power
+	Events.money_changed.emit(money_produced)

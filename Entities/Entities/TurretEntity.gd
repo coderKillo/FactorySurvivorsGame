@@ -52,7 +52,7 @@ func _face_target():
 
 func _process(_delta):
 	_animation.speed_scale = ANIMATION_TIME / self.data.speed
-	_power.power_required = self.data.energy_cost
+	_power.power_required = self.data.value
 
 
 func _on_received_power(amount, _delta):
