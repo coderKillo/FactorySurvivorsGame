@@ -51,7 +51,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Minecart" type="AnimatableBody2D"]
+[node name="Minecart" type="AnimatableBody2D" groups=["draggable"]]
 collision_layer = 4
 collision_mask = 133129
 sync_to_physics = false

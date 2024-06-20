@@ -1,11 +1,13 @@
-[gd_scene load_steps=56 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=59 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
 [ext_resource type="Script" path="res://Entities/Player/PlayerCamera.gd" id="3_5q30c"]
 [ext_resource type="Shader" path="res://VFX/monitor_effect.gdshader" id="3_27dss"]
 [ext_resource type="Script" path="res://Entities/Player/DragObjects.gd" id="5_7xnov"]
+[ext_resource type="Texture2D" uid="uid://bkf20gih6ykxk" path="res://Shared/small_arraow.png" id="6_a0jsp"]
 [ext_resource type="Script" path="res://Systems/Health/Health.gd" id="6_bhgi1"]
+[ext_resource type="Shader" path="res://Shader/panning.gdshader" id="6_c1e2t"]
 [ext_resource type="Script" path="res://Entities/Player/Energy.gd" id="6_ogtao"]
 [ext_resource type="Script" path="res://Entities/Player/WeaponList.gd" id="6_pn85v"]
 [ext_resource type="Script" path="res://Entities/Player/ChargeBar.gd" id="6_yceki"]
@@ -56,6 +58,10 @@ radius = 18.0
 radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4b2o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8vnkg"]
+shader = ExtResource("6_c1e2t")
+shader_parameter/speed = Vector2(-3, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwdvn"]
 bg_color = Color(0.078125, 0.0273438, 0.183594, 1)
@@ -337,6 +343,24 @@ script = ExtResource("5_7xnov")
 visible = false
 shape = SubResource("CircleShape2D_s4b2o")
 debug_color = Color(0, 0.643137, 0.301961, 0.419608)
+
+[node name="PullLine" type="Line2D" parent="DragObjects"]
+modulate = Color(0.0509804, 1, 0.431373, 0.501961)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_8vnkg")
+points = PackedVector2Array(0, 0, 56, -30)
+width = 5.0
+texture = ExtResource("6_a0jsp")
+texture_mode = 1
+
+[node name="PushLine" type="Line2D" parent="DragObjects"]
+modulate = Color(1, 0.0509804, 0.0666667, 0.501961)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_8vnkg")
+points = PackedVector2Array(0, 0, 56, -30)
+width = 5.0
+texture = ExtResource("6_a0jsp")
+texture_mode = 1
 
 [node name="ChargeBar" type="ProgressBar" parent="." node_paths=PackedStringArray("_drag_objects")]
 offset_left = -5.0

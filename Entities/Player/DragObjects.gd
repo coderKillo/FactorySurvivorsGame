@@ -3,9 +3,13 @@ extends Area2D
 
 signal charge_time_updated(time: float)
 
-@export var max_distance = 9
+@export var min_distance = 25
 @export var max_charge_time := 1.0
 @export var max_charge_push := 200
+@export var pull_force := 40
+
+@onready var _pull_line: Line2D = $PullLine
+@onready var _push_line: Line2D = $PushLine
 
 var is_charging := false
 var is_graped := false
@@ -36,11 +40,6 @@ func bodies_grabed() -> int:
 	return len(get_bodies())
 
 
-func _draw():
-	for body in get_bodies():
-		draw_line(position, to_local(body.global_position), Color.BLACK, 1.0)
-
-
 func _process(delta):
 	if is_charging:
 		_charge_time += delta
@@ -49,36 +48,36 @@ func _process(delta):
 
 
 func _physics_process(_delta):
+	_push_line.points = []
+	_pull_line.points = []
+
 	for body in get_bodies():
 		var distance = body.global_position.distance_to(global_position)
 		var direction = body.global_position.direction_to(global_position)
 		var entity := body as GroundEntity
-		var player_velocity = owner.velocity
-		var player_direction = player_velocity.normalized()
-		var player_speed = player_velocity.length()
 
 		if not entity.is_draggable:
 			continue
 
-		if distance < max_distance:
-			continue
+		if distance > min_distance:
+			entity.velocity = direction * pull_force
 
-		entity.velocity = (player_direction + direction).normalized() * player_speed
+		var body_position = to_local(body.global_position)
+		_pull_line.points = [body_position, position]
 
-	queue_redraw()
+		if is_charging:
+			var mouse_position = to_local(get_global_mouse_position())
+			_push_line.points = [body_position, mouse_position]
 
 
 func get_bodies() -> Array:
-	var bodies := []
 	if not is_graped:
-		return bodies
-
-	for body in get_overlapping_bodies():
-		bodies.append(body)
-		if len(bodies) >= UpgradeData.player_data.max_bodies:
-			break
-
-	return bodies
+		return []
+	var bodies = get_tree().get_nodes_in_group("draggable")
+	bodies.sort_custom(
+		func(a, b): return position.distance_to(a.position) > position.distance_to(b.position)
+	)
+	return bodies.slice(0, UpgradeData.player_data.max_bodies)
 
 
 func _push_bodies_in_mouse_direction() -> void:
