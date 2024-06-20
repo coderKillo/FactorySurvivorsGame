@@ -41,10 +41,7 @@ var _current_quickbar_index := 0
 
 
 func _ready():
-	print("gui ready")
-	print("gui setup quickbar")
 	_quickbar.setup(self)
-	print("add entity")
 	_quickbar.add_entity(Library.blueprints["Smelter"].instantiate())
 	_quickbar.add_entity(Library.blueprints["PowerPlant"].instantiate())
 	_quickbar.add_entity(Library.blueprints["Conveyor"].instantiate())

@@ -47,6 +47,9 @@ func _set_build_mode(active:bool)->void:
 
 	for entity in _entity_tracker.entities.values():
 		_pause_scene(entity, active)
+		
+	for node in get_tree().get_nodes_in_group("draggable"):
+		_pause_scene(node, active)
 
 
 func _pause_scene(node: Node, pause:bool)->void:

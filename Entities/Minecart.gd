@@ -3,6 +3,7 @@ extends GroundEntity
 @onready var _collect_objects: CollectObjects = $CollectObjects
 @onready var _selector: BuildingSelector = $BuildingSelector
 @onready var _load_spirte: Sprite2D = $LoadSprite
+@onready var _unload_partical: GPUParticles2D = $UnloadPartical
 
 var resources: CollectedResources
 
@@ -39,6 +40,7 @@ func _on_resources_changed() -> void:
 
 func _on_system_tick(delta: float) -> void:
 	if _selector.selected == null:
+		_unload_partical.emitting = false
 		return
 
 	var entity := _selector.selected as Entity
@@ -48,10 +50,14 @@ func _on_system_tick(delta: float) -> void:
 	if entity_name == "Smelter":
 		var ore_bucket = entity.get_node_or_null("OreBucket") as Bucket
 		var amount = clamp(resources.ore_amount, 0, amount_per_tick)
-		resources.ore_amount -= ore_bucket.put(amount)
+		var amount_transmitted = ore_bucket.put(amount)
+		resources.ore_amount -= amount_transmitted
 
 		var heat_bucket = entity.get_node_or_null("HeatBucket") as Bucket
 		heat_bucket.take(int(50 * delta))
+
+		_unload_partical.look_at(entity.global_position)
+		_unload_partical.emitting = amount_transmitted > 0
 
 
 func _on_upgrade_data_changed() -> void:

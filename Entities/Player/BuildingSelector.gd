@@ -8,12 +8,6 @@ var selected: Entity
 
 func _physics_process(_delta) -> void:
 	selected = _find_closest_entity()
-	queue_redraw()
-
-
-func _draw():
-	if selected != null:
-		draw_line(position, to_local(selected.global_position), Color.YELLOW, 1.0)
 
 
 func _find_closest_entity() -> Entity:
