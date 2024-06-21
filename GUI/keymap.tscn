@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbdhpfhg31c1t"]
+[gd_scene load_steps=15 format=3 uid="uid://bbdhpfhg31c1t"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_dwghv"]
 [ext_resource type="Texture2D" uid="uid://bmghdt2lh7d6g" path="res://Shared/pixel_keys/pixel_keys_x16_white.png" id="2_63qfr"]
@@ -28,6 +28,10 @@ region = Rect2(64, 64, 15, 16)
 atlas = ExtResource("2_63qfr")
 region = Rect2(0, 80, 31, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u17nf"]
+atlas = ExtResource("2_63qfr")
+region = Rect2(0, 48, 31, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cdgp3"]
 atlas = ExtResource("2_63qfr")
 region = Rect2(0, 32, 15, 16)
@@ -36,17 +40,9 @@ region = Rect2(0, 32, 15, 16)
 atlas = ExtResource("2_63qfr")
 region = Rect2(128, 32, 15, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u17nf"]
-atlas = ExtResource("2_63qfr")
-region = Rect2(0, 48, 31, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_iv858"]
 atlas = ExtResource("2_63qfr")
 region = Rect2(80, 64, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t24fb"]
-atlas = ExtResource("2_63qfr")
-region = Rect2(64, 48, 15, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0r26n"]
 atlas = ExtResource("2_63qfr")
@@ -78,21 +74,24 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_8qt8d")
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/line_spacing = 0
@@ -100,11 +99,37 @@ theme_override_font_sizes/font_size = 6
 text = "Shoot/
 Place Building"
 
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_8qt8d")
+flip_h = true
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 6
+text = "Pull / Push
+Miningcart"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
@@ -141,7 +166,7 @@ texture = SubResource("AtlasTexture_s0xxk")
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 theme_override_constants/line_spacing = 3
 theme_override_font_sizes/font_size = 7
 text = "
@@ -162,6 +187,12 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_lncjb")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_u17nf")
 
 [node name="1__9" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
@@ -185,12 +216,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_rsjca")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_u17nf")
-
 [node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 
@@ -200,17 +225,17 @@ size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 6
 text = "Jetpack"
 
-[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 6
-text = "Select Building"
-
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 6
 text = "Toggle Build Mode"
+
+[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 6
+text = "Select Building"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -223,12 +248,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_iv858")
-
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_t24fb")
 
 [node name="TextureRect4" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
@@ -244,12 +263,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 6
 text = "Place Bombe"
-
-[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 6
-text = "Drag Objects"
 
 [node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer2/VBoxContainer3"]
 layout_mode = 2
