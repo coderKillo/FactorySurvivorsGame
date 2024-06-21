@@ -153,9 +153,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 70.0
-offset_right = 250.0
-offset_bottom = 180.0
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -268,6 +269,16 @@ offset_right = 70.0
 offset_bottom = 160.0
 theme_override_font_sizes/font_size = 6
 text = "Return"
+
+[node name="DropButton" type="Button" parent="."]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 0
+offset_left = 247.0
+offset_top = 140.0
+offset_right = 307.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 6
+text = "Drop"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5

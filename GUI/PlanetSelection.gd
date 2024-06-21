@@ -1,6 +1,7 @@
 extends Control
 
 @onready var _return_button: Button = $ReturnButton
+@onready var _drop_button: Button = $DropButton
 @onready var _next_button: TextureButton = $NextButton
 @onready var _previous_button: TextureButton = $PreviousButton
 
@@ -11,30 +12,35 @@ extends Control
 
 var _planet_base_position := Vector2.ZERO
 
+
 func _ready():
 	_return_button.pressed.connect(_on_return_button_pressed)
 	_next_button.pressed.connect(_on_next_button_pressed)
 	_previous_button.pressed.connect(_on_previous_button_pressed)
-	_planet_texture.gui_input.connect(_on_planet_texture_gui_input)
+	_drop_button.pressed.connect(_on_drop_button_pressed)
 
 	_planet_base_position = _planet_texture.position
 
 	_update_index()
 
+
 func _on_return_button_pressed():
 	get_tree().change_scene_to_file("res://MainMenu.tscn")
+
 
 func _on_next_button_pressed():
 	PlanetData.next_planet()
 	_update_index()
 
+
 func _on_previous_button_pressed():
 	PlanetData.previous_planet()
 	_update_index()
 
-func _on_planet_texture_gui_input(event: InputEvent):
-	if event.is_action_pressed("left_click"):
-		get_tree().change_scene_to_file("res://Simulation.tscn")
+
+func _on_drop_button_pressed():
+	get_tree().change_scene_to_file("res://Simulation.tscn")
+
 
 func _update_index():
 	_previous_button.visible = not PlanetData.is_first_planet()
@@ -48,15 +54,19 @@ func _update_index():
 
 	_move_planet()
 
+
 func _move_planet() -> void:
 	_animation.stop()
 	_animation.play("move_planet")
 
+
 func _set_planet_name(planet_name: String) -> void:
 	_planet_name.text = planet_name
 
+
 func _set_resource_value(current_value: int, max_value: int) -> void:
 	_resource_text.text = str(current_value) + "/" + str(max_value)
+
 
 func _set_planet_color(color_name: String) -> void:
 	_planet_texture.material.set_shader_parameter(
