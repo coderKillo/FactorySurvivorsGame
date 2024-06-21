@@ -8,9 +8,12 @@ var _tracker := EntityTracker.new()
 var _power_system := PowerSystem.new()
 var _upgrade_system := UpgradeSystem.new()
 
+@onready var PlayerScene := preload("res://Entities/Player/Player.tscn")
+@onready var CartScene := preload("res://Entities/Minecart.tscn")
+@onready var DropPodScene: PackedScene = preload("res://Entities/DropPod.tscn")
+
 @onready var _entity_placer = $GameWorld/EntityPlacer
 @onready var _enemy_placer = $GameWorld/EnemyPlacer
-@onready var _player = $GameWorld/Player
 @onready var _world_generator: WorldGenerator = $GameWorld/WorldGenerator
 @onready var _pipe_system: PipeSystem = $GameWorld/PipeSystem
 @onready var _gui: GUI = $CanvasLayer/GUI
@@ -23,15 +26,21 @@ func _ready():
 
 	var simulation_timer = $SimulationTimer
 
-	_entity_placer.setup(_gui, _tracker, _player)
-	_enemy_placer.setup(_player)
-	_world_generator.setup(_player)
+	var player = PlayerScene.instantiate()
+	var cart = CartScene.instantiate()
+
+	_entity_placer.setup(_gui, _tracker, player)
+	_enemy_placer.setup(player)
+	_world_generator.setup(player)
 	_pipe_system.setup(_tracker)
-	_upgrade_system.setup(_player, _tracker, _gui)
-	_build_mode_manager.setup(_player, _gui, _enemy_placer, _tracker, simulation_timer)
+	_upgrade_system.setup(player, _tracker, _gui)
+	_build_mode_manager.setup(player, _gui, _enemy_placer, _tracker, simulation_timer)
 	simulation_timer.start(simulation_speed)
 	simulation_timer.timeout.connect(_on_SimulationTimer_timeout)
 	Events.player_died.connect(_on_player_death)
+
+	_drop_entity(player, Vector2(0, 0))
+	_drop_entity(cart, Vector2(-60, -30))
 
 
 func _on_SimulationTimer_timeout() -> void:
@@ -43,6 +52,20 @@ func _set_world_color(color_name: String) -> void:
 	_world_generator.material.set_shader_parameter(
 		"palette", RecolorTable._get_color_platte_from(color_name)
 	)
+
+
+func _drop_entity(entity: Node2D, location: Vector2) -> void:
+	entity.visible = false
+	entity.position = location
+	$GameWorld.add_child(entity)
+
+	var drop_pod := DropPodScene.instantiate() as DropPod
+	drop_pod.global_position = location
+	add_child(drop_pod)
+
+	await drop_pod.opened
+
+	entity.visible = true
 
 
 func _on_player_death() -> void:
