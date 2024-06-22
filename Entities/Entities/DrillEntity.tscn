@@ -153,7 +153,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ysvq"]
-size = Vector2(24, 24)
+size = Vector2(48, 48)
 
 [node name="DrillEntity" type="Node2D"]
 script = ExtResource("1_1bvee")
