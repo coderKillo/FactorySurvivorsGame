@@ -2,7 +2,7 @@ class_name EntityTracker
 extends RefCounted
 
 var entities = {}
-var blocked_cells: Array[Vector2] = []
+var blocked_cells: Dictionary = {}
 
 
 func place_entities(entity: Entity, cellv: Vector2):

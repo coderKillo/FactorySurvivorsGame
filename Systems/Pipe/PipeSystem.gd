@@ -56,6 +56,10 @@ func _on_build_mode_changed(mode: BuildModeManager.GameMode) -> void:
 
 func _get_entity_name_under_mouse() -> String:
 	var current_mouse_cell = _paths.get_cell_under_mouse()
+
+	if current_mouse_cell in _entity_tracker.blocked_cells:
+		return _entity_tracker.blocked_cells[current_mouse_cell]
+
 	if not current_mouse_cell in _entity_tracker.entities.keys():
 		return ""
 

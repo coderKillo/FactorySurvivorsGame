@@ -118,7 +118,7 @@ func _request_entity(location: Vector2i):
 
 	Events.money_changed.emit(-entity.data.energy_cost)
 
-	_tracker.blocked_cells.append(Vector2(location))
+	_tracker.blocked_cells[(Vector2(location))] = entity_name
 
 	var preview := _create_preview(entity.position)
 	_make_placer_queue_entry(entity_name, entity, _gui.blueprint, preview)
