@@ -30,7 +30,7 @@ func _physics_process(delta):
 		queue_free()
 
 
-func _on_body_entered(_body: PhysicsBody2D):
+func _on_body_entered(_body: Node2D):
 	_destroy_projectile()
 
 

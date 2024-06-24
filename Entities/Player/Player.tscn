@@ -494,13 +494,13 @@ position = Vector2(-2, 3)
 scale = Vector2(1, -0.5)
 skew = 0.773181
 sprite_frames = SubResource("SpriteFrames_20hi3")
-animation = &"boost"
+animation = &"idle"
 
 [node name="Body" type="AnimatedSprite2D" parent="Model"]
 use_parent_material = true
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_20hi3")
-animation = &"boost"
+animation = &"idle"
 
 [node name="Hands" type="AnimatedSprite2D" parent="Model"]
 z_index = 1

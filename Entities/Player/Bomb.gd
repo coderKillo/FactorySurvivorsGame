@@ -34,6 +34,7 @@ func _explode() -> void:
 
 	_damage()
 
+	Events.bomb_explode.emit(global_position)
 	Events.camera_shake.emit(8.0)
 	SoundManager.play("explosive")
 

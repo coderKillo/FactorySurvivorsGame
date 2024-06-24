@@ -26,20 +26,20 @@ func setup_spawner(player: Node2D, tutorial_stages: TutorialStages):
 
 func _on_tutorial_stage_started(stage: TutorialStages.Stages) -> void:
 	match stage:
-		TutorialStages.Stages.KILL:
+		TutorialStages.Stages.KILL_ENEMY:
 			_spawn_enemy()
 
 
 func _on_tutorial_event(event: TutorialStages.TutorialEvents) -> void:
 	var has_enemy := get_child_count() > 2
-	if (event == TutorialStages.TutorialEvents.TURRET_CONNECTED) and (not has_enemy):
+	if (event == TutorialStages.TutorialEvents.SMELTER_LOADED) and (not has_enemy):
 		_spawn_enemy()
 
 
 func _on_enemy_died(enemy):
 	_spawn_enemy_corps(enemy)
 
-	_tutorial_stages.tutorial_event.emit(TutorialStages.TutorialEvents.ENEMY_KILLED)
+	_tutorial_stages.tutorial_event.emit(TutorialStages.TutorialEvents.ENEMY_DIED)
 
 
 func _spawn_enemy():

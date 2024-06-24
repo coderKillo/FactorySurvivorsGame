@@ -43,3 +43,5 @@ signal build_mode_changed(mode: BuildModeManager.GameMode)
 signal money_changed(amount: int)
 
 signal total_money_changed(amount: int)
+
+signal bomb_explode(pos: Vector2)

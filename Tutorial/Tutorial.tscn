@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://6g0jtryj3kwm"]
+[gd_scene load_steps=32 format=3 uid="uid://6g0jtryj3kwm"]
 
 [ext_resource type="Script" path="res://Tutorial/Tutorial.gd" id="1_7v537"]
 [ext_resource type="TileSet" uid="uid://bhar52vwaumua" path="res://Shared/factory_tileset.tres" id="2_duqm6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bukmtg3hk4xkj" path="res://Entities/Player/Player.tscn" id="3_33lob"]
 [ext_resource type="Script" path="res://Systems/EntityPlacer.gd" id="4_secw0"]
 [ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="4_voaax"]
+[ext_resource type="PackedScene" uid="uid://eikwnrlq7dx" path="res://Entities/Minecart.tscn" id="5_3a56m"]
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="5_acmsq"]
 [ext_resource type="AudioStream" uid="uid://ctcf73xxbwgki" path="res://Shared/Music/exploratig_the_cosmos_1_sub_38_bit.ogg" id="5_enymh"]
 [ext_resource type="Script" path="res://Entities/DestructionTimer.gd" id="5_xg1i1"]
@@ -13,10 +14,12 @@
 [ext_resource type="Script" path="res://Systems/GroundEntitySpawner.gd" id="6_bonib"]
 [ext_resource type="Texture2D" uid="uid://bo4ufccc1484h" path="res://Shared/General.png" id="6_jmadg"]
 [ext_resource type="Texture2D" uid="uid://6r7kohtdjxh3" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Textfield_02a.png" id="7_hyc7r"]
-[ext_resource type="PackedScene" uid="uid://dvv3k8f26s3ro" path="res://Entities/Entities/PowerPlantEntity.tscn" id="7_yspir"]
 [ext_resource type="Script" path="res://Tutorial/TutorialEntitySpawner.gd" id="8_5uqhu"]
 [ext_resource type="PackedScene" uid="uid://doikpy0r26sxu" path="res://Entities/Entities/TurretEntity.tscn" id="8_bx01j"]
 [ext_resource type="Script" path="res://Tutorial/TutorialEntityWatcher.gd" id="9_ct7k3"]
+[ext_resource type="PackedScene" uid="uid://cvachtv0y62o7" path="res://Systems/Pipe/PipeSystem.tscn" id="12_kqgmc"]
+[ext_resource type="Script" path="res://Systems/BuildModeManager.gd" id="13_ymabs"]
+[ext_resource type="Script" path="res://VFX/VfxManager.gd" id="14_hhop5"]
 
 [sub_resource type="TileSet" id="TileSet_dl105"]
 
@@ -107,6 +110,9 @@ layer_0/tile_data = PackedInt32Array(196612, 65536, 11, 262148, 65536, 11, 32768
 
 [node name="Player" parent="GameWorld" instance=ExtResource("3_33lob")]
 
+[node name="Cart" parent="GameWorld" instance=ExtResource("5_3a56m")]
+position = Vector2(200, 105)
+
 [node name="EntityPlacer" type="TileMap" parent="GameWorld"]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_dl105")
@@ -129,11 +135,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_l2t6a")
 value = 80.26
 show_percentage = false
 
-[node name="PowerPlantEntity" parent="GameWorld/EntityPlacer" instance=ExtResource("7_yspir")]
-position = Vector2(232, 104)
-
 [node name="TurretEntity" parent="GameWorld/EntityPlacer" instance=ExtResource("8_bx01j")]
-position = Vector2(200, 104)
+position = Vector2(104, 136)
 
 [node name="GroundEntitySpawner" type="Node2D" parent="GameWorld"]
 script = ExtResource("6_bonib")
@@ -148,6 +151,14 @@ position = Vector2(152, 137)
 
 [node name="TutorialEntityWatcher" type="Node2D" parent="GameWorld"]
 script = ExtResource("9_ct7k3")
+
+[node name="PipeSystem" parent="GameWorld" instance=ExtResource("12_kqgmc")]
+
+[node name="BuildModeManager" type="Node2D" parent="."]
+script = ExtResource("13_ymabs")
+
+[node name="VfxManager" type="Node2D" parent="."]
+script = ExtResource("14_hhop5")
 
 [node name="SimulationTimer" type="Timer" parent="."]
 

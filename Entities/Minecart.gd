@@ -1,3 +1,4 @@
+class_name Minecart
 extends GroundEntity
 
 @onready var _collect_objects: CollectObjects = $CollectObjects

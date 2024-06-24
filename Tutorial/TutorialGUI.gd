@@ -12,6 +12,12 @@ func _ready():
 	_container.hide()
 
 
+func _unhandled_input(event: InputEvent):
+	if event.is_action_pressed("continue"):
+		if not text_full_visable():
+			_text_finished()
+
+
 func show_text(text: String, duration: float) -> void:
 	get_tree().paused = true
 
@@ -30,6 +36,10 @@ func show_text(text: String, duration: float) -> void:
 
 func hide_text() -> void:
 	_container.hide()
+
+
+func text_full_visable() -> bool:
+	return _text.visible_ratio >= 1.0
 
 
 func _text_finished() -> void:
