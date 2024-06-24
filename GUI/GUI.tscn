@@ -319,7 +319,6 @@ layout_mode = 2
 
 [node name="PauseMenu" type="MarginContainer" parent="."]
 process_mode = 3
-visible = false
 layout_mode = 2
 script = ExtResource("13_sfcl2")
 
@@ -347,17 +346,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Keymap" parent="PauseMenu/MarginContainer/VBoxContainer" instance=ExtResource("21_ytp13")]
+custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 
 [node name="Continue" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 5
 text = "Continue"
 
 [node name="Quit" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 5
 text = "Quit"
 
