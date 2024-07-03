@@ -4,6 +4,7 @@ extends Node2D
 @export var time_between_waves := 15.0  # sek
 @export var time_between_enemies := 0.1
 @export var spawn_distance := 10
+@export var spawn_arc := 30
 @export var start_credits := 100
 @export var credits_per_level := 50
 
@@ -80,7 +81,7 @@ func _spawn_wave():
 	for enemy in enemies:
 		await get_tree().create_timer(time_between_enemies).timeout
 
-		var angle = randi_range(spawn_angle - 30, spawn_angle + 30)
+		var angle = randi_range(spawn_angle - spawn_arc, spawn_angle + spawn_arc)
 		var spawn_pos = _player.position + (Vector2.from_angle(deg_to_rad(angle)) * spawn_distance)
 
 		enemy.position = spawn_pos

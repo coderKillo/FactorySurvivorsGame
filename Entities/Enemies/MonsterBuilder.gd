@@ -7,10 +7,10 @@ const DIFFICULTY_DAMAGE_FACTOR := 0.1
 const DIFFICULTY_HEALTH_FACTOR := 0.2
 
 const BASE_MONSTER_HEALTH := 12
-const BASE_MONSTER_DAMAGE := 5
-const BASE_MONSTER_SPEED := 50
+const BASE_MONSTER_DAMAGE := 3
+const BASE_MONSTER_SPEED := 20
 
-const CRYSTAL_SCALE_FACTOR := 1.5
+const CRYSTAL_SCALE_FACTOR := 2
 
 var BaseEnemy := preload("res://Entities/Enemies/BaseEnemy.tscn")
 
@@ -21,22 +21,22 @@ var _monster_difficulty_array := [1, 1, 1, 1, 1]
 var _monster_color = ["blue", "green", "yellow", "brown", "purple", "red", "grey"]
 
 var _stats_table = {
-	"head1": PartStats.new(-5, -2, 5, 2, 4),
-	"head2": PartStats.new(0, 0, 0, 3, 2),
+	"head1": PartStats.new(-5, -2, 5, 2, 10),
+	"head2": PartStats.new(0, 0, 0, 3, 3),
 	"head3": PartStats.new(5, 2, -5, 4, 1),
-	"body1": PartStats.new(0, 0, 5, 2, 4),
+	"body1": PartStats.new(0, 0, 5, 2, 5),
 	"body2": PartStats.new(5, 2, -10, 4, 1),
 	"arms": PartStats.new(2, 5, -5, 4, 1),
 	"no_arms": PartStats.new(0, 0, 0, 0, 3),
-	"legs1": PartStats.new(0, 0, 0, 2, 4),
-	"legs2": PartStats.new(0, -2, 10, 4, 2),
-	"tail1": PartStats.new(-2, -1, 0, 2, 4),
+	"legs1": PartStats.new(0, 0, 0, 2, 10),
+	"legs2": PartStats.new(0, -2, 10, 4, 1),
+	"tail1": PartStats.new(-2, -1, 0, 2, 5),
 	"tail2": PartStats.new(5, 0, -5, 4, 1),
 	"tail3": PartStats.new(2, -1, 5, 3, 3),
-	"no_tail": PartStats.new(0, 0, 0, 0, 3),
+	"no_tail": PartStats.new(0, 0, 0, 0, 10),
 	"wings1": PartStats.new(0, 0, 10, 2, 4),
-	"wings2": PartStats.new(2, 3, 5, 4, 2),
-	"no_wings": PartStats.new(0, 0, 0, 0, 3),
+	"wings2": PartStats.new(2, 3, 5, 4, 1),
+	"no_wings": PartStats.new(0, 0, 0, 0, 15),
 	"crystal1": PartStats.new(20, 0, -20, 0, 1),
 	"no_crystal": PartStats.new(0, 0, 0, 0, 50),
 }

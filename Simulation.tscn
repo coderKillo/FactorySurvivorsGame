@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://bn036liop3mqv"]
+[gd_scene load_steps=17 format=3 uid="uid://bn036liop3mqv"]
 
 [ext_resource type="Script" path="res://Systems/Simulation.gd" id="1_j5ers"]
 [ext_resource type="PackedScene" uid="uid://caan0o3hcqc0o" path="res://Systems/Worldgenerator/WorldGenerator.tscn" id="2_lgle3"]
-[ext_resource type="Shader" path="res://Shader/recolor_shader.gdshader" id="3_6wbvq"]
 [ext_resource type="Script" path="res://Systems/EntityPlacer.gd" id="3_sbt4h"]
 [ext_resource type="Script" path="res://Entities/DestructionTimer.gd" id="4_h002n"]
 [ext_resource type="PackedScene" uid="uid://cvachtv0y62o7" path="res://Systems/Pipe/PipeSystem.tscn" id="4_olfeq"]
@@ -13,18 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://c3ljipsd1xli" path="res://GUI/GUI.tscn" id="10_cj28n"]
 [ext_resource type="AudioStream" uid="uid://ctcf73xxbwgki" path="res://Shared/Music/exploratig_the_cosmos_1_sub_38_bit.ogg" id="11_5j556"]
 [ext_resource type="Script" path="res://Systems/BuildModeManager.gd" id="11_gbaok"]
-
-[sub_resource type="Gradient" id="Gradient_usn34"]
-offsets = PackedFloat32Array(0.2, 0.4, 0.6, 0.8)
-colors = PackedColorArray(0.285156, 0.121094, 0.316406, 1, 0.859375, 0.300781, 0.25, 1, 0.960938, 0.550781, 0.25, 1, 0.972656, 0.765625, 0.640625, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_iwika"]
-gradient = SubResource("Gradient_usn34")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_chun3"]
-shader = ExtResource("3_6wbvq")
-shader_parameter/desaturation = 0.75
-shader_parameter/palette = SubResource("GradientTexture1D_iwika")
 
 [sub_resource type="TileSet" id="TileSet_njyke"]
 
@@ -47,7 +34,6 @@ script = ExtResource("1_j5ers")
 y_sort_enabled = true
 
 [node name="WorldGenerator" parent="GameWorld" instance=ExtResource("2_lgle3")]
-material = SubResource("ShaderMaterial_chun3")
 
 [node name="PipeSystem" parent="GameWorld" instance=ExtResource("4_olfeq")]
 
@@ -77,9 +63,10 @@ show_percentage = false
 [node name="EnemyPlacer" type="Node2D" parent="GameWorld"]
 script = ExtResource("5_ttm65")
 time_between_waves = 10.0
+time_between_enemies = 0.5
 spawn_distance = 200
-start_credits = 20
-credits_per_level = 10
+spawn_arc = 70
+credits_per_level = 30
 
 [node name="SpawnTimer" type="Timer" parent="GameWorld/EnemyPlacer"]
 one_shot = true
