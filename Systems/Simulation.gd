@@ -49,9 +49,8 @@ func _on_SimulationTimer_timeout() -> void:
 
 
 func _set_world_color(color_name: String) -> void:
-	_world_generator.material.set_shader_parameter(
-		"palette", RecolorTable._get_color_platte_from(color_name)
-	)
+	_world_generator.material = RecolorTable.create_recolor_material_from(color_name)
+	_world_generator.material.set_shader_parameter("desaturation", 0.75)
 
 
 func _drop_entity(entity: Node2D, location: Vector2) -> void:
