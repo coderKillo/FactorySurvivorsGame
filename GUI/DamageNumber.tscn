@@ -4,7 +4,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_cq3cm"]
 line_spacing = 0.0
-font_size = 5
+font_size = 6
 outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.490196)
 

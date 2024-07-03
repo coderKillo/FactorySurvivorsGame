@@ -6,6 +6,7 @@ signal push_back(direction: Vector2)
 
 @export var health: Health
 @export var hit_sound := ""
+@export var damage_color := Color.WHITE
 
 var can_take_damage = true
 
@@ -31,7 +32,7 @@ func take_damage(damage: int, source_position: Vector2):
 		"hit_effect", global_position, rad_to_deg(hit_direction.angle())
 	)
 
-	DamageNumbers.display(damage, global_position)
+	DamageNumbers.display(damage, global_position, damage_color)
 
 	hit.emit(damage)
 	push_back.emit(-hit_direction)
