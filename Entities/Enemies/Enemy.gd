@@ -30,6 +30,7 @@ var _is_pyhsics_called_after_death := false
 func _ready():
 	health.max_health = max_health
 	weapon.damage = damage
+	parts.reverse()
 	for part in parts:
 		model.add_part(part)
 
@@ -88,8 +89,8 @@ func _handle_states() -> void:
 		_is_attacking = true
 
 		model.play(EnemySpriteFrames.ATTACK)
-		await model.frame_changed
-		await model.frame_changed
+
+		await get_tree().create_timer(0.2).timeout
 
 		weapon.fire()
 
