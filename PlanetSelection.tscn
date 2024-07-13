@@ -1,25 +1,29 @@
-[gd_scene load_steps=18 format=3 uid="uid://s3ffjroj52u1"]
+[gd_scene load_steps=16 format=3 uid="uid://s3ffjroj52u1"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_oqvhd"]
 [ext_resource type="Script" path="res://GUI/PlanetSelection.gd" id="2_e2ml8"]
 [ext_resource type="Texture2D" uid="uid://c7ba3qwxm52ut" path="res://Shared/background2.png" id="3_y0536"]
 [ext_resource type="Texture2D" uid="uid://3wb7sfpx8dc5" path="res://Shared/planet.png" id="4_1auqq"]
-[ext_resource type="Shader" path="res://Shader/recolor_shader.gdshader" id="4_6krtm"]
+[ext_resource type="Shader" path="res://Shader/recolor.gdshader" id="4_lq2um"]
 [ext_resource type="Texture2D" uid="uid://0rlw68sd0us5" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Arrow_Large_01a.png" id="5_t0whs"]
 [ext_resource type="Shader" path="res://VFX/monitor_effect.gdshader" id="6_ceiim"]
 [ext_resource type="Texture2D" uid="uid://cqymriijmqg4f" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Arrow_Large_01a_pressed.png" id="7_652oi"]
 [ext_resource type="AudioStream" uid="uid://j8f1wb08iirs" path="res://Shared/Music/Juhani Junkala [Retro Game Music Pack] Title Screen.wav" id="7_s2l0i"]
 [ext_resource type="Texture2D" uid="uid://b3kk5c2bhpjib" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Arrow_Large_01a_hover.png" id="8_cemj6"]
 
-[sub_resource type="Gradient" id="Gradient_6iyji"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_lhmgx"]
-gradient = SubResource("Gradient_6iyji")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_samg2"]
-shader = ExtResource("4_6krtm")
+shader = ExtResource("4_lq2um")
+shader_parameter/original_0 = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/original_1 = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/original_2 = Color(0.6, 0.6, 0.6, 1)
+shader_parameter/original_3 = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/original_4 = Color(0, 0, 0, 1)
+shader_parameter/replace_0 = Color(0, 0, 0, 1)
+shader_parameter/replace_1 = Color(0.321569, 0.321569, 0.321569, 1)
+shader_parameter/replace_2 = Color(0.490196, 0.490196, 0.490196, 1)
+shader_parameter/replace_3 = Color(0.788235, 0.788235, 0.788235, 1)
+shader_parameter/replace_4 = Color(0, 0, 0, 1)
 shader_parameter/desaturation = 0.0
-shader_parameter/palette = SubResource("GradientTexture1D_lhmgx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gm6i"]
 shader = ExtResource("6_ceiim")
@@ -153,9 +157,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 70.0
-offset_right = 250.0
-offset_bottom = 180.0
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)

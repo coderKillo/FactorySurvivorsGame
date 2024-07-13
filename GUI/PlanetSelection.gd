@@ -69,6 +69,5 @@ func _set_resource_value(current_value: int, max_value: int) -> void:
 
 
 func _set_planet_color(color_name: String) -> void:
-	_planet_texture.material.set_shader_parameter(
-		"palette", RecolorTable._get_color_platte_from(color_name)
-	)
+	_planet_texture.material = RecolorTable.create_recolor_material_from(color_name)
+	_planet_texture.material.set_shader_parameter("desaturation", 0.25)
