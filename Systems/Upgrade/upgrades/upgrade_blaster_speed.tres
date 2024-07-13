@@ -8,7 +8,7 @@ script = ExtResource("2_wts60")
 path = ":fire_rate"
 operation = 0
 type = 3
-upgrade_value = 0.06
+upgrade_value = 0.2
 
 [resource]
 script = ExtResource("1_rk0vy")

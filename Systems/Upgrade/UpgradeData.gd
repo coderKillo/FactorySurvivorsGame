@@ -22,8 +22,8 @@ var pickaxe_data := PickaxeData.new()
 
 
 class BlasterData:
-	var damage: int = 10
-	var fire_rate: float = 2.0
+	var damage: int = 6
+	var fire_rate: float = 3.0
 	var cost_reduction: int = 0
 	var ProjectileScene := preload("res://Systems/Weapon/Projectile.tscn")
 	var projectile_scale: float = 1.0
