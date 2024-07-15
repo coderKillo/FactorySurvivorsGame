@@ -13,6 +13,7 @@ var _monster_builder := MonsterBuilder.new()
 var _current_enemy_count := 0
 var _current_credits := 0
 
+@onready var _wave_timer: Timer = $WaveTimer
 @onready var _spawn_timer: Timer = $SpawnTimer
 
 
@@ -20,7 +21,7 @@ func _ready():
 	_current_credits = start_credits
 
 	randomize()
-	_spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+	_wave_timer.timeout.connect(_on_wave_timer_timeout)
 	Events.enemy_died.connect(_on_enemy_died)
 
 
@@ -33,7 +34,7 @@ func _start() -> void:
 	_spawn_wave()
 
 
-func _on_spawn_timer_timeout():
+func _on_wave_timer_timeout():
 	_spawn_wave()
 
 
@@ -47,7 +48,7 @@ func _on_enemy_died(enemy):
 		Events.enemies_attack.emit(false)
 		Events.leveled_up.emit()
 
-		_spawn_timer.start(time_between_waves)
+		_wave_timer.start(time_between_waves)
 
 
 func _spawn_enemy_corps(enemy: Enemy) -> void:
@@ -79,7 +80,8 @@ func _spawn_wave():
 	var enemies = _monster_builder.create_monster_wave(_current_credits)
 
 	for enemy in enemies:
-		await get_tree().create_timer(time_between_enemies).timeout
+		_spawn_timer.start(time_between_enemies)
+		await _spawn_timer.timeout
 
 		var angle = randi_range(spawn_angle - spawn_arc, spawn_angle + spawn_arc)
 		var spawn_pos = _player.position + (Vector2.from_angle(deg_to_rad(angle)) * spawn_distance)

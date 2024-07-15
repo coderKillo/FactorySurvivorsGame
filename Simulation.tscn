@@ -71,6 +71,9 @@ credits_per_level = 30
 [node name="SpawnTimer" type="Timer" parent="GameWorld/EnemyPlacer"]
 one_shot = true
 
+[node name="WaveTimer" type="Timer" parent="GameWorld/EnemyPlacer"]
+one_shot = true
+
 [node name="GroundEntitySpawner" type="Node2D" parent="GameWorld"]
 script = ExtResource("8_lmmv0")
 
