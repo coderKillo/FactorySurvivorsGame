@@ -17,12 +17,14 @@ func _ready():
 
 func _physics_process(delta):
 	for body in _bodies:
-		if _collision.shape.get_rect().has_point(body.global_position - global_position):
-			var motion = (
-				body.global_position.move_toward(_marker.global_position, self.data.speed * delta)
-				- body.global_position
-			)
-			body.move_and_collide(motion)
+		if not _collision.shape.get_rect().has_point(_collision.to_local(body.global_position)):
+			continue
+
+		var origin = body.global_position
+		var destination = origin.move_toward(_marker.global_position, self.data.speed * delta)
+		var motion = destination - origin
+
+		body.move_and_collide(motion)
 
 
 func _on_body_exited(body):
