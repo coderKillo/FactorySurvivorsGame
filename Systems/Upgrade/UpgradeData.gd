@@ -63,8 +63,8 @@ var entites_data := {
 	"Drill":
 	EntityData.new(
 		{
-			cooldown = 3.0,
-			energy_cost = 100,
+			cooldown = 5.0,
+			energy_cost = 300,
 			speed = 1.0,
 			damage = 10,
 			stack_size = 10,

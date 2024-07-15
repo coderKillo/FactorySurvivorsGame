@@ -5,79 +5,64 @@ const ANIMATION_TIME = 4.0
 const DESTRICTION_TIME = 12.0 / 19.0  # destction happen on 12th frame
 
 @onready var _area: Area2D = $Area2D
-@onready var _animation: AnimatedSprite2D = $AnimatedSprite2D
+
+@onready var DrillScene = preload("res://Entities/Entities/Drill.tscn")
 
 var _components: Array[DestructionComponent]
+var _worker_size := 1
 var _worker := 0
-var _is_ready := false
-
-
-func _ready():
-	_set_animation_speed()
-
-	# wait till physics is ready
-	var timer = get_tree().create_timer(0.3)
-	await timer.timeout
-
-	_get_destriction_components()
-	_is_ready = true
+var _is_working := false
 
 
 func _process(_delta):
-	if not _is_ready:
+	_worker_size = self.data.value
+
+
+func _physics_process(_delta):
+	if _is_working:
 		return
 
-	if _worker <= 0:
-		_destroy()
+	_components = _find_close_desctruction_components()
+
+	if len(_components) > 0:
+		_is_working = true
+		_start_destruction()
 
 
-func _get_destriction_components() -> void:
+func _find_close_desctruction_components() -> Array[DestructionComponent]:
+	var components: Array[DestructionComponent] = []
+
 	for body in _area.get_overlapping_bodies():
 		var destruction := body.get_node_or_null("DestructionComponent") as DestructionComponent
 		if destruction != null:
-			_components.append(destruction)
+			components.append(destruction)
 
-		if len(_components) >= (self.data.amount * self.data.value):
+		if len(components) >= _worker_size:
 			break
 
-	_start_destruction()
-
-
-func _set_animation_speed() -> void:
-	_animation.speed_scale = self.data.speed
+	return components
 
 
 func _start_destruction() -> void:
-	_destruct(_animation)
-
-	# parallel worker
-	for _i in self.data.value - 1:
-		var animation = _animation.duplicate()
-		add_child(animation)
-		_destruct(animation)
-
-
-func _destruct(animation: AnimatedSprite2D) -> void:
-	_worker += 1
+	var destruction_time = DESTRICTION_TIME * ANIMATION_TIME / self.data.speed
+	var animation_scale = self.data.speed
 
 	while not _components.is_empty():
-		var destruction_component = _components.pop_front()
-		while destruction_component != null and not destruction_component.empty():
-			animation.global_position = destruction_component.global_position
-			animation.play("work")
+		var component = _components.pop_front()
+		var worker := DrillScene.instantiate() as Drill
 
-			var destruction_time = DESTRICTION_TIME * ANIMATION_TIME / self.data.speed
-			await get_tree().create_timer(destruction_time).timeout
+		worker.work_done.connect(_on_woker_done)
+		print("new worker")
+		_worker += 1
 
-			if destruction_component != null:
-				destruction_component.destruct(self.data.damage)
+		add_child(worker)
 
-			await animation.animation_finished
+		worker.set_animation_speed(animation_scale)
+		worker.destruct(component, self.data.damage, destruction_time)
 
-	animation.queue_free()
 
+func _on_woker_done() -> void:
 	_worker -= 1
-
-
-func _destroy() -> void:
-	queue_destruction = true
+	print("work done")
+	if _worker <= 0:
+		_is_working = false
