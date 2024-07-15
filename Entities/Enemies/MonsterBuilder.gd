@@ -138,9 +138,13 @@ func _add_part(enemy: Enemy, part_name: String) -> int:
 	enemy.parts.append(part)
 
 	var stat = _stats_table[part_name] as PartStats
-	enemy.max_health += stat.health
 	enemy.damage += stat.damage
+	enemy.max_health += stat.health
+	if enemy.max_health < 2:
+		enemy.max_health = 2
 	enemy.speed += stat.speed
+	if enemy.speed < 5:
+		enemy.speed = 5
 
 	return stat.credits
 
