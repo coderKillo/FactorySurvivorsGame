@@ -401,6 +401,7 @@ _health = NodePath("../Health")
 
 [node name="Energy" type="Node2D" parent="."]
 script = ExtResource("6_ogtao")
+charge_amount = 5
 
 [node name="Timer" type="Timer" parent="Energy"]
 

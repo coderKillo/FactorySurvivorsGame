@@ -6,7 +6,7 @@ signal charge_status_changed(is_charging)
 
 @export var max_energy := 100
 @export var energy_low_trashold := 20
-@export var charge_amount := 2
+@export var charge_amount := 2  # charge per system tick
 @export var charge_delay := 1
 
 @onready var energy := 0:
