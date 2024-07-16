@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://eikwnrlq7dx"]
+[gd_scene load_steps=16 format=3 uid="uid://eikwnrlq7dx"]
 
 [ext_resource type="Script" path="res://Entities/Minecart.gd" id="1_16msw"]
 [ext_resource type="Texture2D" uid="uid://bwd2uf7jgu58f" path="res://Shared/export/s4m_ur4i_factory-o-pixelart_tileset.png" id="1_dtt4l"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="3_q8q8n"]
 [ext_resource type="Script" path="res://Entities/Player/BuildingSelector.gd" id="4_60p4j"]
 [ext_resource type="Texture2D" uid="uid://dq5ss32licqa5" path="res://Shared/06_Hologram_Theme/Sprites/Spritesheet_Animation_UI_Hologram_Select_02a.png" id="5_4hybs"]
-[ext_resource type="Texture2D" uid="uid://dtmcy7o5thn1r" path="res://Shared/ore_blue.png" id="6_mqp4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_morxa"]
 size = Vector2(10, 5)
@@ -52,13 +51,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Curve" id="Curve_0e8vq"]
-_data = [Vector2(0, 0.526316), 0.0, 0.0, 0, 0, Vector2(1, 0.221053), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_ab6o5"]
-curve = SubResource("Curve_0e8vq")
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wquhe"]
 emission_shape = 3
 emission_box_extents = Vector3(2, 1, 1)
@@ -71,7 +63,10 @@ angular_velocity_min = -300.0
 angular_velocity_max = 300.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_curve = SubResource("CurveTexture_ab6o5")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5ovb"]
+atlas = ExtResource("1_dtt4l")
+region = Rect2(70, 165, 4, 5)
 
 [node name="Minecart" type="AnimatableBody2D" groups=["draggable"]]
 collision_layer = 4
@@ -128,5 +123,5 @@ position = Vector2(0, -2)
 emitting = false
 amount = 6
 process_material = SubResource("ParticleProcessMaterial_wquhe")
-texture = ExtResource("6_mqp4o")
+texture = SubResource("AtlasTexture_i5ovb")
 lifetime = 0.5
