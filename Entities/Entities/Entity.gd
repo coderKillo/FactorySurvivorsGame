@@ -1,6 +1,8 @@
 class_name Entity
 extends Node2D
 
+@export var walkable := false
+
 var data: EntityData
 
 # if set to true, the EntityTracker will remove this entity

@@ -566,7 +566,9 @@ theme_override_constants/line_separation = -12
 theme_override_font_sizes/normal_font_size = 13
 bbcode_enabled = true
 text = "[p align=center]MISSION ACCOMPLISHED!
-mortality rate:  within acceptable range"
+
+mortality rate:  
+within acceptable range"
 fit_content = true
 autowrap_mode = 0
 visible_characters_behavior = 1

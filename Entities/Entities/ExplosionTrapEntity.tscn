@@ -133,6 +133,7 @@ height = 14.0
 [node name="ExplosionTrapEntity" type="Node2D" groups=["power_receivers"]]
 script = ExtResource("1_b67pf")
 _sound_effect = "explosive"
+walkable = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
