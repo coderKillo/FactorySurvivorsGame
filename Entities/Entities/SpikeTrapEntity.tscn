@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://22h2hmh3x6it"]
+[gd_scene load_steps=14 format=3 uid="uid://22h2hmh3x6it"]
 
 [ext_resource type="Script" path="res://Entities/Entities/TrapEntity.gd" id="1_2trx2"]
 [ext_resource type="Texture2D" uid="uid://bcf61g50a400p" path="res://Shared/spike_trap.png" id="1_nlp3l"]
 [ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_7xfvg"]
+[ext_resource type="PackedScene" uid="uid://cexmvaml7r7de" path="res://GUI/PowerReceiverGUI.tscn" id="4_3bldb"]
 [ext_resource type="Script" path="res://Entities/Entities/TrapEffects/SlowTrapEffect.gd" id="4_o5i0y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3edno"]
@@ -66,13 +67,17 @@ size = Vector2(17, 16.9375)
 [node name="SpikeTrapEntity" type="Node2D" groups=["power_receivers"]]
 script = ExtResource("1_2trx2")
 _sound_effect = "trap_active"
+walkable = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
 sprite_frames = SubResource("SpriteFrames_1gacr")
 animation = &"reload"
+frame = 2
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 65536
 collision_mask = 2
 
@@ -82,6 +87,11 @@ shape = SubResource("RectangleShape2D_ociln")
 [node name="PowerReceiver" type="Node2D" parent="."]
 script = ExtResource("3_7xfvg")
 power_required = 5.0
+
+[node name="PowerReceiverGUI" parent="." node_paths=PackedStringArray("power_receiver") instance=ExtResource("4_3bldb")]
+offset_top = -6.0
+offset_bottom = -6.0
+power_receiver = NodePath("../PowerReceiver")
 
 [node name="Effects" type="Node2D" parent="."]
 
