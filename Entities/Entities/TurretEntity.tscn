@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://doikpy0r26sxu"]
+[gd_scene load_steps=15 format=3 uid="uid://doikpy0r26sxu"]
 
 [ext_resource type="Script" path="res://Entities/Entities/TurretEntity.gd" id="1_msr5f"]
 [ext_resource type="Texture2D" uid="uid://doupr71mtl7tr" path="res://Shared/turret.png" id="2_h1qt4"]
 [ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_se41v"]
+[ext_resource type="PackedScene" uid="uid://cexmvaml7r7de" path="res://GUI/PowerReceiverGUI.tscn" id="4_dhc1a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hlv50"]
 atlas = ExtResource("2_h1qt4")
@@ -98,6 +99,11 @@ shape = SubResource("CircleShape2D_hhsga")
 
 [node name="PowerReceiver" type="Node2D" parent="."]
 script = ExtResource("3_se41v")
+
+[node name="PowerReceiverGUI" parent="." node_paths=PackedStringArray("power_receiver") instance=ExtResource("4_dhc1a")]
+offset_top = 5.0
+offset_bottom = 5.0
+power_receiver = NodePath("../PowerReceiver")
 
 [node name="Projectiles" type="Node2D" parent="."]
 

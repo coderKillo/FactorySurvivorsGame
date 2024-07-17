@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://bws8mc6eaovrx"]
+[gd_scene load_steps=24 format=3 uid="uid://bws8mc6eaovrx"]
 
 [ext_resource type="Script" path="res://Entities/Entities/TrapEntity.gd" id="1_b67pf"]
 [ext_resource type="Texture2D" uid="uid://cq65vy61i74jx" path="res://Shared/Barrel.png" id="2_4wx56"]
 [ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_1kdc4"]
 [ext_resource type="Script" path="res://Entities/Entities/TrapEffects/PushbackTrapEffect.gd" id="4_uf0ls"]
+[ext_resource type="PackedScene" uid="uid://cexmvaml7r7de" path="res://GUI/PowerReceiverGUI.tscn" id="4_y5ftm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ilmgn"]
 atlas = ExtResource("2_4wx56")
@@ -152,6 +153,11 @@ shape = SubResource("CircleShape2D_na47m")
 [node name="PowerReceiver" type="Node2D" parent="."]
 script = ExtResource("3_1kdc4")
 power_required = 5.0
+
+[node name="PowerReceiverGUI" parent="." node_paths=PackedStringArray("power_receiver") instance=ExtResource("4_y5ftm")]
+offset_top = 4.0
+offset_bottom = 4.0
+power_receiver = NodePath("../PowerReceiver")
 
 [node name="Effects" type="Node2D" parent="."]
 

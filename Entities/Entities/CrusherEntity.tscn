@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://d23u3bg73f2he"]
+[gd_scene load_steps=26 format=3 uid="uid://d23u3bg73f2he"]
 
 [ext_resource type="Script" path="res://Entities/Entities/CrusherEntity.gd" id="1_0gscn"]
 [ext_resource type="Texture2D" uid="uid://dn317g7xjubkp" path="res://Shared/animations/crusher_idle.png" id="2_t0qjn"]
 [ext_resource type="Script" path="res://Systems/Power/PowerReceiver.gd" id="3_1e5yo"]
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="4_o7nak"]
 [ext_resource type="PackedScene" uid="uid://ttwt5lj1j33o" path="res://Systems/Work/WorkComponent.tscn" id="4_r32me"]
+[ext_resource type="PackedScene" uid="uid://cexmvaml7r7de" path="res://GUI/PowerReceiverGUI.tscn" id="4_u5o7c"]
 [ext_resource type="Shader" path="res://Shader/hologram.gdshader" id="5_tbxg8"]
 [ext_resource type="Script" path="res://GUI/WorkerGuiComponent.gd" id="6_fwtb6"]
 [ext_resource type="Texture2D" uid="uid://bh8jgs6q1b1jk" path="res://Shared/06_Hologram_Theme/Sprites/UI_Hologram_Fillbar_02a.png" id="7_n4fc6"]
@@ -101,6 +102,11 @@ position = Vector2(13, 0)
 
 [node name="PowerReceiver" type="Node2D" parent="."]
 script = ExtResource("3_1e5yo")
+
+[node name="PowerReceiverGUI" parent="." node_paths=PackedStringArray("power_receiver") instance=ExtResource("4_u5o7c")]
+offset_top = 6.0
+offset_bottom = 6.0
+power_receiver = NodePath("../PowerReceiver")
 
 [node name="WorkComponent" parent="." node_paths=PackedStringArray("pickup_area", "output_pos") instance=ExtResource("4_r32me")]
 input_name = "EnemyCorps"
