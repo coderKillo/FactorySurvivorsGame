@@ -32,8 +32,7 @@ func _on_entity_removed(_entity: Entity, cellv: Vector2):
 
 func _on_system_tick(delta):
 	var power_produced := 0
-	var power_used := 0
-
+	var power_required := 0
 	var power_available = 0
 
 	for source in power_sources.values():
@@ -46,6 +45,7 @@ func _on_system_tick(delta):
 
 		receiver.received_power.emit(power_provided, delta)
 		power_available -= power_provided
+		power_required += receiver.power_required
 
 	var network_utilization = (1 - (power_available / network_power)) if network_power > 0 else 0
 
@@ -55,9 +55,8 @@ func _on_system_tick(delta):
 
 	_total_power += network_power
 	power_produced += network_power
-	power_used += network_power - power_available
 
-	Events.power_produced.emit(_total_power, power_produced, power_used)
+	Events.power_produced.emit(_total_power, power_required, power_produced)
 
 	var money_produced = network_power
 	Events.money_changed.emit(money_produced)

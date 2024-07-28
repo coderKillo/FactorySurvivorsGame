@@ -14,6 +14,7 @@ func _on_ground_entity_spawn(entity_name: String, pos: Vector2, color: String) -
 
 	var sprite := entity.get_node_or_null("Sprite2D") as Sprite2D
 	if sprite != null:
+
 		sprite.material = RecolorTable.create_recolor_material_from(color)
 
 	add_child(entity)

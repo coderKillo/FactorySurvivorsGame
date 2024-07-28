@@ -89,8 +89,8 @@ script = ExtResource("3_7xfvg")
 power_required = 5.0
 
 [node name="PowerReceiverGUI" parent="." node_paths=PackedStringArray("power_receiver") instance=ExtResource("4_3bldb")]
-offset_top = -6.0
-offset_bottom = -6.0
+offset_top = -4.0
+offset_bottom = -4.0
 power_receiver = NodePath("../PowerReceiver")
 
 [node name="Effects" type="Node2D" parent="."]

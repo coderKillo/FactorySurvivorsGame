@@ -18,7 +18,7 @@ var _target: Node2D
 
 func _ready():
 	_animation.play("idle")
-	_power.received_power.connect(_on_received_power)
+	Events.system_tick.connect(_on_system_tick)
 
 
 func _physics_process(_delta):
@@ -55,8 +55,10 @@ func _process(_delta):
 	_power.power_required = self.data.value
 
 
-func _on_received_power(amount, _delta):
-	if amount >= _power.power_required and _active:
+func _on_system_tick(_delta):
+	if _target == null:
+		return
+	if _power.consume_power():
 		_attack()
 
 

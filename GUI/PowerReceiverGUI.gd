@@ -2,20 +2,17 @@ extends Node
 
 @export var power_receiver: PowerReceiver
 
-@onready var _on: ColorRect = $OnColorRect
-@onready var _off: ColorRect = $OffColorRect
+@onready var _battery_low: TextureRect = $TextureRect
 
 
 func _ready():
 	assert(power_receiver)
 
-	power_receiver.received_power.connect(_on_received_power)
+	Events.system_tick.connect(_on_system_tick)
+
+	_battery_low.hide()
 
 
-func _on_received_power(amount, _delta):
-	if amount >= power_receiver.power_required:
-		_on.show()
-		_off.hide()
-	else:
-		_on.hide()
-		_off.show()
+func _on_system_tick(_delta):
+	_battery_low.visible = power_receiver.is_battery_low()
+	print(power_receiver.is_battery_low())

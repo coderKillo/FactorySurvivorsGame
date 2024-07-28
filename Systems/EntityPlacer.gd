@@ -48,15 +48,11 @@ func _unhandled_input(event: InputEvent):
 	_destruction_timer.update_input(event, _get_cell_under_mouse())
 
 	if event.is_action_pressed("left_click"):
-		_close_entity_gui()
-
 		if _has_placable_blueprint():
 			if _can_placed_on_cell():
 				_request_entity(_get_cell_under_mouse())
 			else:
 				SoundManager.play("entity_placed_failed")
-		elif _is_cell_occupied():
-			_show_entity_gui(_get_cell_under_mouse())
 		else:
 			_player.fire(1, true)
 
@@ -64,8 +60,12 @@ func _unhandled_input(event: InputEvent):
 		_player.fire(1, false)
 
 	elif event.is_action_pressed("right_click"):
+		_close_entity_gui()
 		if _gui.blueprint:
 			_gui.destroy_blueprint()
+		if _is_cell_occupied():
+			# TODO: how to show entity ui?
+			_show_entity_gui(_get_cell_under_mouse())
 
 	elif event.is_action_pressed("place_bomb"):
 		_player.place_bomb()
@@ -118,7 +118,7 @@ func _request_entity(location: Vector2i):
 
 	Events.money_changed.emit(-entity.data.energy_cost)
 
-	_tracker.blocked_cells[(Vector2(location))] = entity_name
+	_tracker.blocked_cells[Vector2(location)] = entity_name
 
 	var preview := _create_preview(entity.position)
 	_make_placer_queue_entry(entity_name, entity, _gui.blueprint, preview)

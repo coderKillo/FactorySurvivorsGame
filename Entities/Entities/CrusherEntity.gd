@@ -6,17 +6,20 @@ extends Entity
 
 
 func _ready():
-	_power.received_power.connect(_on_received_power)
+	Events.system_tick.connect(_on_system_tick)
 
 
 func _process(_delta):
 	_worker.pickup_time = self.data.speed * 1.0
 	_worker.process_time = self.data.speed * 2.0
-	_power.power_required = self.data.energy_cost
+	_power.power_required = self.data.value
 
 
-func _on_received_power(amount, _delta):
-	if amount >= _power.power_required:
+func _on_system_tick(_delta):
+	if not _worker.has_available_work():
+		return
+
+	if _power.consume_power():
 		_animation.play()
 		_worker.start()
 	else:

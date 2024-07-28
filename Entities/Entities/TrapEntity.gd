@@ -14,7 +14,7 @@ var _effects: Array[TrapEffect]
 
 
 func _ready():
-	_power.received_power.connect(_on_received_power)
+	Events.system_tick.connect(_on_system_tick)
 	_animation.speed_scale = ANIMATION_TIME / self.data.speed
 
 	for child in $Effects.get_children():
@@ -35,8 +35,11 @@ func _process(_delta):
 	_animation.speed_scale = ANIMATION_TIME / self.data.speed
 
 
-func _on_received_power(amount, _delta):
-	if amount >= _power.power_required and _active:
+func _on_system_tick(_delta):
+	if not _active:
+		return
+
+	if _power.consume_power():
 		_activate()
 
 
