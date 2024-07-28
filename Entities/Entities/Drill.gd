@@ -19,7 +19,6 @@ func destruct(destruction_component: DestructionComponent, damage: int, time: fl
 
 		if destruction_component != null:
 			destruction_component.destruct(damage)
-			print("destruct")
 
 		await _animation.animation_finished
 

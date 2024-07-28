@@ -11,6 +11,7 @@ script = ExtResource("1_1bvee")
 walkable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
 texture = ExtResource("2_vwyjb")
 region_enabled = true
 region_rect = Rect2(80, 0, 16, 16)

@@ -52,7 +52,6 @@ func _start_destruction() -> void:
 		var worker := DrillScene.instantiate() as Drill
 
 		worker.work_done.connect(_on_woker_done)
-		print("new worker")
 		_worker += 1
 
 		add_child(worker)
@@ -63,6 +62,5 @@ func _start_destruction() -> void:
 
 func _on_woker_done() -> void:
 	_worker -= 1
-	print("work done")
 	if _worker <= 0:
 		_is_working = false

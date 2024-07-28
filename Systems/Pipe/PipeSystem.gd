@@ -20,7 +20,6 @@ func setup(entity_tracker: EntityTracker) -> void:
 	_preview.setup(_paths)
 	_distributor.setup(_paths)
 
-
 func _ready():
 	Events.build_mode_changed.connect(_on_build_mode_changed)
 

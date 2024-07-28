@@ -34,7 +34,9 @@ func _on_entity_placed(entity: Entity, cellv: Vector2):
 
 
 func _on_entity_removed(_entity: Entity, cellv: Vector2):
-	_heat_receivers.erase(cellv)
+	if _heat_receivers.erase(cellv):
+		_queue_repathing = true
+
 	if _heat_providers.erase(cellv):
 		_queue_repathing = true
 
@@ -74,6 +76,7 @@ func _distribute_heat() -> void:
 
 
 func _repath() -> void:
+	_heat_connections.clear()
 	for path in _paths.get_paths():
 		var _last_provider = null
 		for point in path:
