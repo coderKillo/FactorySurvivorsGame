@@ -41,7 +41,7 @@ func _on_system_tick(delta):
 	var network_power = power_available
 
 	for receiver in power_receivers.values():
-		var power_provided = min(receiver.power_required, power_available)
+		var power_provided = min(receiver.get_effective_power(), power_available)
 
 		receiver.received_power.emit(power_provided, delta)
 		power_available -= power_provided
