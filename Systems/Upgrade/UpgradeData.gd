@@ -35,12 +35,12 @@ var entites_data := {
 	"Conveyor":
 	EntityData.new(
 		{
-			cooldown = 4.0,
-			energy_cost = 150,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 15.0,
 			damage = 1,
 			stack_size = 10,
-			value = 10,
+			value = 2,
 			amount = 1,
 			upgrade_1 = false,
 			upgrade_2 = false
@@ -49,8 +49,8 @@ var entites_data := {
 	"Crusher":
 	EntityData.new(
 		{
-			cooldown = 20.0,
-			energy_cost = 1500,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 1,
 			stack_size = 10,
@@ -63,8 +63,8 @@ var entites_data := {
 	"Drill":
 	EntityData.new(
 		{
-			cooldown = 5.0,
-			energy_cost = 500,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 10,
 			stack_size = 10,
@@ -77,8 +77,8 @@ var entites_data := {
 	"EnemyCorpse":
 	EntityData.new(
 		{
-			cooldown = 2.0,
-			energy_cost = 0,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 1,
 			stack_size = 999,
@@ -91,8 +91,8 @@ var entites_data := {
 	"ExplosionTrap":
 	EntityData.new(
 		{
-			cooldown = 20.0,
-			energy_cost = 1000,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 25,
 			stack_size = 10,
@@ -105,8 +105,8 @@ var entites_data := {
 	"Ore":
 	EntityData.new(
 		{
-			cooldown = 2.0,
-			energy_cost = 0,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 1,
 			stack_size = 999,
@@ -119,8 +119,8 @@ var entites_data := {
 	"PowerPlant":
 	EntityData.new(
 		{
-			cooldown = 30.0,
-			energy_cost = 5000,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 1,
 			stack_size = 10,
@@ -133,8 +133,8 @@ var entites_data := {
 	"Smelter":
 	EntityData.new(
 		{
-			cooldown = 60.0,
-			energy_cost = 10000,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 1,
 			stack_size = 10,
@@ -147,8 +147,8 @@ var entites_data := {
 	"SpikeTrap":
 	EntityData.new(
 		{
-			cooldown = 10.0,
-			energy_cost = 500,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 15,
 			stack_size = 10,
@@ -161,8 +161,8 @@ var entites_data := {
 	"Turret":
 	EntityData.new(
 		{
-			cooldown = 20.0,
-			energy_cost = 3500,
+			cooldown = 1.0,
+			energy_cost = 100,
 			speed = 1.0,
 			damage = 10,
 			stack_size = 10,
