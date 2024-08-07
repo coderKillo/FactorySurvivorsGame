@@ -46,6 +46,9 @@ func _ready():
 	_quickbar.add_entity(Library.blueprints["PowerPlant"].instantiate())
 	_quickbar.add_entity(Library.blueprints["Conveyor"].instantiate())
 	_quickbar.add_entity(Library.blueprints["SpikeTrap"].instantiate())
+	_quickbar.add_entity(Library.blueprints["Crusher"].instantiate())
+	_quickbar.add_entity(Library.blueprints["Drill"].instantiate())
+	_quickbar.add_entity(Library.blueprints["Turret"].instantiate())
 	_resource.setup(self)
 
 
