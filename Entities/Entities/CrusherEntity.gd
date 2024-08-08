@@ -18,6 +18,8 @@ func _process(_delta):
 func _on_system_tick(_delta):
 	if not _worker.has_available_work():
 		return
+	if _worker.is_working():
+		return
 
 	if _power.consume_power():
 		_animation.play()
