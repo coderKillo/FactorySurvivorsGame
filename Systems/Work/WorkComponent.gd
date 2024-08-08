@@ -35,7 +35,7 @@ func _process(_delta):
 
 
 func start() -> void:
-	if !_process_timer.is_stopped() or not has_available_work():
+	if is_working() or not has_available_work():
 		return
 	_process_timer.start(process_time)
 	update_progress.emit(0.0)
@@ -48,6 +48,10 @@ func stop() -> void:
 
 func has_available_work() -> bool:
 	return not _slots[INPUT_SLOT].empty()
+
+
+func is_working() -> bool:
+	return !_process_timer.is_stopped()
 
 
 func _on_pickup_timer_timeout() -> void:

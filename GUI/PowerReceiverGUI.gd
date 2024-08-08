@@ -15,4 +15,3 @@ func _ready():
 
 func _on_system_tick(_delta):
 	_battery_low.visible = power_receiver.is_battery_low()
-	print(power_receiver.is_battery_low())
