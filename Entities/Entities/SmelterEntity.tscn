@@ -87,7 +87,7 @@ bg_color = Color(0.105469, 0.121094, 0.128906, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r31av"]
 bg_color = Color(0, 0.639216, 0.00392157, 1)
 
-[node name="SmelterEntity" type="StaticBody2D" groups=["heat_provider"]]
+[node name="SmelterEntity" type="StaticBody2D" groups=["heat_provider", "heat_receiver"]]
 position = Vector2(0, 11)
 collision_layer = 133120
 collision_mask = 9

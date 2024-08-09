@@ -43,7 +43,7 @@ func _on_system_tick(delta):
 		_fire.hide()
 		return
 
-	if _ore_bucket.empty():
+	if _ore_bucket.empty() and _molt_bucket.empty():
 		_fire.hide()
 		return
 
@@ -53,7 +53,8 @@ func _on_system_tick(delta):
 		_heat_receiver.required_heat = self.data.amount
 		_provide_molt()
 
-	_update_heat(delta)
+	_produce_heat()
+	_update_overheat(delta)
 
 	_fire.show()
 	SoundManager.play("smelter_active")
@@ -66,11 +67,14 @@ func _on_heat_provided(amount: int) -> void:
 
 
 func _provide_molt() -> void:
-	_ore_bucket.take(self.data.value)
-	_heat_provider.amount += self.data.amount
+	_molt_bucket.put(_ore_bucket.take(self.data.value))
 
 
-func _update_heat(delta) -> void:
+func _produce_heat() -> void:
+	_heat_provider.amount += _molt_bucket.take(self.data.amount)
+
+
+func _update_overheat(delta) -> void:
 	if self.data.upgrade_1:
 		if _molt_bucket.full():
 			_heat_bucket.put(HEAT_PER_SEK * delta)

@@ -68,11 +68,13 @@ func _distribute_heat() -> void:
 			heat_used += heat_provided
 			receiver.matieral_provided.emit(heat_provided)
 
-			_visualizer.add_number(heat_provided, receiver.global_position + Vector2(0, 4))
+			if not receiver_pos in _heat_providers:
+				_visualizer.add_number(heat_provided, receiver.global_position + Vector2(0, 6))
 
 		provider.amount -= heat_used
+		provider.amount = max(0, provider.amount)
 
-		_visualizer.add_number(-heat_used, provider.global_position + Vector2(0, 4))
+		# _visualizer.add_number(-heat_used, provider.global_position + Vector2(0, 4))
 
 
 func _repath() -> void:
@@ -80,8 +82,10 @@ func _repath() -> void:
 	for path in _paths.get_paths():
 		var _last_provider = null
 		for point in path:
-			if point in _heat_receivers and _last_provider != null:
-				_heat_connections[_last_provider].append(point)
+			if point in _heat_receivers:
+				if _last_provider != null:
+					if not _heat_connections[_last_provider].has(point):
+						_heat_connections[_last_provider].append(point)
 
 			if point in _heat_providers:
 				_last_provider = point

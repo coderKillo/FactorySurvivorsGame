@@ -27,6 +27,8 @@ func add_number(number: int, pos: Vector2) -> void:
 func _display_numbers() -> void:
 	for pos in _numbers:
 		var color := Color.GREEN if _numbers[pos] > 0 else Color.RED
-		DamageNumbers.display(_numbers[pos], pos, color)
+		var suffix := "+" if _numbers[pos] > 0 else ""
+
+		DamageNumbers.display(_numbers[pos], pos, color, suffix)
 
 	_numbers.clear()
