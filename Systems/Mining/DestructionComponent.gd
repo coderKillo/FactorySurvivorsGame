@@ -33,7 +33,7 @@ func destruct(damage: int) -> void:
 
 
 func empty() -> bool:
-	return health < DAMAGE_TRESHOLD
+	return health <= 0
 
 
 func _spawn_ore() -> void:
