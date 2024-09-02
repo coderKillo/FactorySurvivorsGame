@@ -35,3 +35,5 @@ func _set_pause(paused: bool) -> void:
 		show()
 	else:
 		hide()
+
+	Events.pause_menu_shown.emit(paused)

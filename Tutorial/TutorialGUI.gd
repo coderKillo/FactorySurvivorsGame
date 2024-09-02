@@ -11,6 +11,8 @@ var _tween: Tween
 func _ready():
 	_container.hide()
 
+	Events.pause_menu_shown.connect(_on_pause_menu_shown)
+
 
 func _unhandled_input(event: InputEvent):
 	if event.is_action_pressed("continue"):
@@ -51,3 +53,7 @@ func _text_finished() -> void:
 	_text.visible_ratio = 1.0
 
 	get_tree().paused = false
+
+
+func _on_pause_menu_shown(is_shown: bool) -> void:
+	visible = not is_shown

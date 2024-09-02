@@ -10,10 +10,10 @@ enum Stages {
 	MOVE,
 	SHOT,
 	PLACE_BOMB,
-	KILL_ENEMY,
-	MINING,
 	PULL_CART,
 	PUSH_CART,
+	KILL_ENEMY,
+	MINING,
 	COLLECT_ORE,
 	BUILD_MODE,
 	PLACE_SMELTER,
@@ -30,10 +30,10 @@ enum TutorialEvents {
 	MOVEMENT_KEY_PRESSED,
 	FIRE_PRESSED,
 	BOMB_EXPLODED,
-	ENEMY_DIED,
-	ORE_EXTRACTED,
 	CART_PULLED,
 	CART_PUSHED,
+	ENEMY_DIED,
+	ORE_EXTRACTED,
 	ORE_COLLECTED,
 	BUILD_MODE_ACTIVATE,
 	SMELTER_PLACED,
@@ -186,7 +186,7 @@ func _get_current_stage_text() -> String:
 		Stages.PLACE_PIPE:
 			return "Pipes, spaceman! Connect smelters to power plants, and let that heat flow like lava!\n[i](Press and hold [left click] on the smelter, drag the cursor to the power plant, and release)[/i]"
 		Stages.FILL_SMELTER:
-			return "Get those carts to the smelters, unload the ore, and keep those furnaces blazing hot!\n[i](Move the cart close to the smelter will fill it with ore)[/i]"
+			return "Get those carts to the smelters, unload the ore, and keep those furnaces blazing hot!\n[i](Press [Tab] to exit build mode and move the cart close to the smelter will fill it with ore)[/i]"
 		Stages.OUTRO_1:
 			return "Alright, spaceman! This energy powers our turrets and traps. Keep the flow steady, and we'll crush the enemy like bugs!\n[i](Press [space] to continue)[/i]"
 		Stages.OUTRO_2:

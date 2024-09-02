@@ -45,3 +45,5 @@ signal money_changed(amount: int)
 signal total_money_changed(amount: int)
 
 signal bomb_explode(pos: Vector2)
+
+signal pause_menu_shown(visible: bool)
