@@ -31,10 +31,10 @@ func create_recolor_material_from(color_name: String) -> ShaderMaterial:
 	material.set_shader_parameter("original_2", BASE_COLOR[2])
 	material.set_shader_parameter("original_3", BASE_COLOR[3])
 
-	material.set_shader_parameter("replace_0", replace_colors[0])
-	material.set_shader_parameter("replace_1", replace_colors[1])
-	material.set_shader_parameter("replace_2", replace_colors[2])
-	material.set_shader_parameter("replace_3", replace_colors[3])
+	material.set_shader_parameter("replace_0", BASE_COLOR[0])
+	material.set_shader_parameter("replace_1", replace_colors[0])
+	material.set_shader_parameter("replace_2", replace_colors[1])
+	material.set_shader_parameter("replace_3", BASE_COLOR[3])
 
 	return material
 

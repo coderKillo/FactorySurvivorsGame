@@ -97,44 +97,44 @@ func _create_monster(enemy: Enemy, color: String) -> int:
 	enemy.color = color
 
 	part = _pick_random_part(["head1", "head2", "head3"])
-	credits_used += _add_part(enemy, part)
+	credits_used += _add_part(enemy, part, enemy.color)
 
 	part = _pick_random_part(["body1", "body2"])
-	credits_used += _add_part(enemy, part)
+	credits_used += _add_part(enemy, part, enemy.color)
 
 	part = _pick_random_part(["arms", "no_arms"])
 	if part != "no_arms":
-		credits_used += _add_part(enemy, part)
+		credits_used += _add_part(enemy, part, enemy.color)
 
 	part = _pick_random_part(["legs1", "legs2", "tail1", "tail3"])
-	credits_used += _add_part(enemy, part)
+	credits_used += _add_part(enemy, part, enemy.color)
 
 	if part == "tail1":
 		# flying
 		part = _pick_random_part(["wings1", "wings2"])
-		credits_used += _add_part(enemy, part)
+		credits_used += _add_part(enemy, part, _monster_color.pick_random())
 
 	else:
 		# ground
 		part = _pick_random_part(["wings1", "wings2", "no_wings"])
 		if part != "no_wings":
-			credits_used += _add_part(enemy, part)
+			credits_used += _add_part(enemy, part, _monster_color.pick_random())
 
 		part = _pick_random_part(["tail2", "no_tail"])
 		if part != "no_tail":
-			credits_used += _add_part(enemy, part)
+			credits_used += _add_part(enemy, part, enemy.color)
 
 	part = _pick_random_part(["crystal1", "no_crystal"])
 	if part != "no_crystal":
-		credits_used += _add_part(enemy, part)
+		credits_used += _add_part(enemy, part, _monster_color.pick_random())
 		enemy.scale *= CRYSTAL_SCALE_FACTOR
 
 	return credits_used
 
 
-func _add_part(enemy: Enemy, part_name: String) -> int:
+func _add_part(enemy: Enemy, part_name: String, color: String) -> int:
 	var part := _parts[part_name].instantiate() as AnimatedSprite2D
-	part.material = RecolorTable.create_recolor_material_from(enemy.color)
+	part.material = RecolorTable.create_recolor_material_from(color)
 	enemy.parts.append(part)
 
 	var stat = _stats_table[part_name] as PartStats
