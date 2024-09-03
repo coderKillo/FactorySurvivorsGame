@@ -59,14 +59,15 @@ grow_vertical = 2
 texture = ExtResource("3_igtu2")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -99.83
-offset_top = 24.75
-offset_right = 34.17
-offset_bottom = 99.75
+offset_left = -67.0
+offset_top = 20.74
+offset_right = 67.0
+offset_bottom = 100.74
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
 theme_override_styles/panel = SubResource("StyleBoxTexture_exnlw")
