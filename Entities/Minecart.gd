@@ -54,9 +54,6 @@ func _on_system_tick(delta: float) -> void:
 		var amount_transmitted = ore_bucket.put(amount)
 		resources.ore_amount -= amount_transmitted
 
-		var heat_bucket = entity.get_node_or_null("HeatBucket") as Bucket
-		heat_bucket.take(int(50 * delta))
-
 		_unload_partical.look_at(entity.global_position)
 		_unload_partical.emitting = amount_transmitted > 0
 

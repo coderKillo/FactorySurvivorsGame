@@ -17,6 +17,8 @@ const BOOST_COST_PER_SEC = 10.0
 @onready var _drag_objects: DragObjects = $DragObjects
 @onready var _auto_attack_area: Area2D = $AutoattackArea
 @onready var _bomb_placer: BombPlacer = $BombPlacer
+@onready var _selector: BuildingSelector = $BuildingSelector
+@onready var _wrench: AnimatedSprite2D = $WrenchAnimation
 
 var load_treshold_slow := 15
 
@@ -26,6 +28,7 @@ var _boost_active := false
 func _ready():
 	_weapons[1].energy_used.connect(_on_weapon_energy_used)
 	Events.upgrade_data_changed.connect(_on_upgrade_data_changed)
+	Events.system_tick.connect(_on_system_tick)
 	health.death.connect(_on_death)
 
 	_on_upgrade_data_changed()
@@ -109,6 +112,24 @@ func _on_death() -> void:
 	Events.player_died.emit()
 
 	hide()
+
+
+func _on_system_tick(delta: float) -> void:
+	if _selector.selected == null:
+		_wrench.hide()
+		return
+
+	var entity := _selector.selected as Entity
+	var entity_name := Library.get_entity_name(entity)
+
+	if entity_name == "Smelter":
+		var heat_bucket = entity.get_node_or_null("HeatBucket") as Bucket
+		heat_bucket.take(int(50 * delta))
+
+		_wrench.show()
+		_wrench.global_position = entity.global_position
+	else:
+		_wrench.hide()
 
 
 func _is_boosting() -> bool:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=66 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://Entities/HurtBoxComponent.gd" id="13_4fvic"]
 [ext_resource type="Shader" path="res://Shader/hitshader.gdshader" id="16_e4tol"]
 [ext_resource type="Script" path="res://Entities/Player/BombPlacer.gd" id="18_h2tdl"]
+[ext_resource type="Texture2D" uid="uid://rnpij6flhphq" path="res://Shared/wrench-sheet.png" id="23_jbno7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dydcu"]
 radius = 2.0
@@ -282,6 +283,49 @@ animations = [{
 radius = 2.0
 height = 10.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoadb"]
+atlas = ExtResource("23_jbno7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epwqj"]
+atlas = ExtResource("23_jbno7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6x8o"]
+atlas = ExtResource("23_jbno7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff42b"]
+atlas = ExtResource("23_jbno7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkdjh"]
+atlas = ExtResource("23_jbno7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1wkd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoadb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epwqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6x8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff42b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkdjh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(233, 138)
@@ -374,9 +418,8 @@ script = ExtResource("6_yceki")
 _drag_objects = NodePath("../DragObjects")
 
 [node name="BuildingSelector" type="Area2D" parent="."]
-process_mode = 4
 collision_layer = 0
-collision_mask = 131080
+collision_mask = 2048
 script = ExtResource("7_4fi52")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingSelector"]
@@ -521,3 +564,9 @@ damage_color = Color(0.709804, 0.168627, 0.168627, 1)
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_yqor6")
 debug_color = Color(0.992157, 0, 0.270588, 0.419608)
+
+[node name="WrenchAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+top_level = true
+sprite_frames = SubResource("SpriteFrames_t1wkd")
+autoplay = "default"
