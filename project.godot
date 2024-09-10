@@ -10,9 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Melt them All"
+config/name="Melt Them All"
 run/main_scene="res://MainMenu.tscn"
 config/features=PackedStringArray("4.1")
+boot_splash/bg_color=Color(0.223529, 0.109804, 0.192157, 1)
+boot_splash/image="res://splash.png"
 config/icon="res://icon.png"
 
 [autoload]
@@ -29,6 +31,7 @@ UpgradeData="*res://Systems/Upgrade/UpgradeData.gd"
 
 window/size/viewport_width=320
 window/size/viewport_height=180
+window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
