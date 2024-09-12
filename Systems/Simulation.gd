@@ -24,6 +24,8 @@ func _ready():
 	var planet_data = PlanetData.current_planet()
 	_set_world_color(planet_data.color)
 
+	UpgradeData.setup()  # reset upgrades
+
 	var simulation_timer = $SimulationTimer
 
 	var player = PlayerScene.instantiate()

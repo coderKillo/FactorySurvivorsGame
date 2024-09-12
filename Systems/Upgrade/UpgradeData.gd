@@ -8,17 +8,11 @@ class PlayerData:
 	var max_bodies: int = 1
 
 
-var player_data := PlayerData.new()
-
-
 class PickaxeData:
 	var damage: int = 10
 	var max_hit: int = 1
 	var weapon_size: float = 1.0
 	var fire_rate: float = 1.0
-
-
-var pickaxe_data := PickaxeData.new()
 
 
 class BlasterData:
@@ -29,150 +23,182 @@ class BlasterData:
 	var projectile_scale: float = 1.0
 
 
-var blaster_data := BlasterData.new()
+class ConveyorData:
+	extends EntityData
 
-var entites_data := {
-	"Conveyor":
-	EntityData.new(
-		{
-			cooldown = 4.0,
-			energy_cost = 150,
-			speed = 15.0,
-			damage = 1,
-			stack_size = 10,
-			value = 10,
-			amount = 1,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-	"Crusher":
-	EntityData.new(
-		{
-			cooldown = 20.0,
-			energy_cost = 1500,
-			speed = 1.0,
-			damage = 1,
-			stack_size = 10,
-			value = 10,
-			amount = 1,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-	"Drill":
-	EntityData.new(
-		{
-			cooldown = 5.0,
-			energy_cost = 500,
-			speed = 1.0,
-			damage = 10,
-			stack_size = 10,
-			value = 1,
-			amount = 1,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-	"EnemyCorpse":
-	EntityData.new(
-		{
-			cooldown = 2.0,
-			energy_cost = 0,
-			speed = 1.0,
-			damage = 1,
-			stack_size = 999,
-			value = 10,
-			amount = 1,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-	"ExplosionTrap":
-	EntityData.new(
-		{
-			cooldown = 20.0,
-			energy_cost = 1000,
-			speed = 1.0,
-			damage = 25,
-			stack_size = 10,
-			value = 5,
-			amount = 0,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-	"Ore":
-	EntityData.new(
-		{
-			cooldown = 2.0,
-			energy_cost = 0,
-			speed = 1.0,
-			damage = 1,
-			stack_size = 999,
-			value = 200,
-			amount = 1,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-	"PowerPlant":
-	EntityData.new(
-		{
-			cooldown = 30.0,
-			energy_cost = 5000,
-			speed = 1.0,
-			damage = 1,
-			stack_size = 10,
-			value = 15,
-			amount = 10,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-	"Smelter":
-	EntityData.new(
-		{
-			cooldown = 60.0,
-			energy_cost = 10000,
-			speed = 1.0,
-			damage = 1,
-			stack_size = 10,
-			value = 20,
-			amount = 10,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-	"SpikeTrap":
-	EntityData.new(
-		{
-			cooldown = 10.0,
-			energy_cost = 500,
-			speed = 1.0,
-			damage = 15,
-			stack_size = 10,
-			value = 2,
-			amount = 0,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-	"Turret":
-	EntityData.new(
-		{
-			cooldown = 20.0,
-			energy_cost = 3500,
-			speed = 1.0,
-			damage = 10,
-			stack_size = 10,
-			value = 4,
-			amount = 1,
-			upgrade_1 = false,
-			upgrade_2 = false
-		}
-	),
-}
+	func _init():
+		cooldown = 4.0
+		energy_cost = 150
+		speed = 15.0
+		damage = 1
+		stack_size = 10
+		value = 10
+		amount = 1
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+class CrusherData:
+	extends EntityData
+
+	func _init():
+		cooldown = 20.0
+		energy_cost = 1500
+		speed = 1.0
+		damage = 1
+		stack_size = 10
+		value = 10
+		amount = 1
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+class DrillData:
+	extends EntityData
+
+	func _init():
+		cooldown = 5.0
+		energy_cost = 500
+		speed = 1.0
+		damage = 10
+		stack_size = 10
+		value = 1
+		amount = 1
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+class EnemyCorpseData:
+	extends EntityData
+
+	func _init():
+		cooldown = 2.0
+		energy_cost = 0
+		speed = 1.0
+		damage = 1
+		stack_size = 999
+		value = 10
+		amount = 1
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+class ExplosionTrapData:
+	extends EntityData
+
+	func _init():
+		cooldown = 20.0
+		energy_cost = 1000
+		speed = 1.0
+		damage = 25
+		stack_size = 10
+		value = 5
+		amount = 0
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+class OreData:
+	extends EntityData
+
+	func _init():
+		cooldown = 2.0
+		energy_cost = 0
+		speed = 1.0
+		damage = 1
+		stack_size = 999
+		value = 200
+		amount = 1
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+class PowerPlantData:
+	extends EntityData
+
+	func _init():
+		cooldown = 30.0
+		energy_cost = 5000
+		speed = 1.0
+		damage = 1
+		stack_size = 10
+		value = 15
+		amount = 10
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+class SmelterData:
+	extends EntityData
+
+	func _init():
+		cooldown = 60.0
+		energy_cost = 10000
+		speed = 1.0
+		damage = 1
+		stack_size = 10
+		value = 20
+		amount = 10
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+class SpikeTrapData:
+	extends EntityData
+
+	func _init():
+		cooldown = 10.0
+		energy_cost = 500
+		speed = 1.0
+		damage = 15
+		stack_size = 10
+		value = 2
+		amount = 0
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+class TurretData:
+	extends EntityData
+
+	func _init():
+		cooldown = 20.0
+		energy_cost = 3500
+		speed = 1.0
+		damage = 10
+		stack_size = 10
+		value = 4
+		amount = 1
+		upgrade_1 = false
+		upgrade_2 = false
+
+
+var player_data: PlayerData
+var pickaxe_data: PickaxeData
+var blaster_data: BlasterData
+var entites_data: Dictionary
+
+
+func _init():
+	setup()
+
+
+func setup():
+	player_data = PlayerData.new()
+	pickaxe_data = PickaxeData.new()
+	blaster_data = BlasterData.new()
+	entites_data = {
+		"Conveyor": ConveyorData.new(),
+		"Crusher": CrusherData.new(),
+		"Drill": DrillData.new(),
+		"EnemyCorpse": EnemyCorpseData.new(),
+		"ExplosionTrap": ExplosionTrapData.new(),
+		"Ore": OreData.new(),
+		"PowerPlant": PowerPlantData.new(),
+		"Smelter": SmelterData.new(),
+		"SpikeTrap": SpikeTrapData.new(),
+		"Turret": TurretData.new(),
+	}
 
 
 func get_update_object(type: String, object: String) -> Object:
