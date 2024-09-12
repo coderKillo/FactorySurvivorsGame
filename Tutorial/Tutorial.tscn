@@ -224,6 +224,7 @@ text = "This is just some long test text. This is just some long test text. This
 visible_characters_behavior = 1
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("5_enymh")
 volume_db = -6.0
 autoplay = true
