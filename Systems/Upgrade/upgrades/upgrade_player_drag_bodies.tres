@@ -19,7 +19,7 @@ unique = false
 quality = 2
 description = "Increase the number of corpse you can drag."
 requirements = {
-"energy": 3,
+"energy": 2,
 "player": 2
 }
 upgrades = Array[ExtResource("2_6l1lh")]([SubResource("Resource_g3dkk")])

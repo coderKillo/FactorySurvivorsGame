@@ -19,6 +19,6 @@ unique = false
 quality = 0
 description = "Reduce the cooldown of your smelter."
 requirements = {
-"energy": 10
+"energy": 6
 }
 upgrades = Array[ExtResource("2_8b1ll")]([SubResource("Resource_flef8")])

@@ -11,6 +11,6 @@ unique = true
 quality = 3
 description = "Unlocks a crusher, a static building  that extracts minerals from monster corpses."
 requirements = {
-"mining": 10
+"mining": 6
 }
 upgrades = Array[Resource("res://Systems/Upgrade/UpgradeValue.gd")]([])

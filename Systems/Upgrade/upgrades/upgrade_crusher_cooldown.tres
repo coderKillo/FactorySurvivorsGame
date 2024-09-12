@@ -20,6 +20,6 @@ quality = 0
 description = "Reduce the cooldown of your crusher."
 requirements = {
 "Crusher": 1,
-"mining": 15
+"mining": 10
 }
 upgrades = Array[ExtResource("2_c67jc")]([SubResource("Resource_rr48i")])

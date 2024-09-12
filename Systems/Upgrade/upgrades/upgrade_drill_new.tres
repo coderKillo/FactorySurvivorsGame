@@ -11,6 +11,6 @@ unique = true
 quality = 3
 description = "Unlocks a drill, a mobile tool to extract minerals from monster corpses. Disappears after work is done."
 requirements = {
-"mining": 3
+"mining": 2
 }
 upgrades = Array[Resource("res://Systems/Upgrade/UpgradeValue.gd")]([])

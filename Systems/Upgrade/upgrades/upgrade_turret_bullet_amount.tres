@@ -19,7 +19,7 @@ unique = false
 quality = 2
 description = "Your turret fire additional projectiles."
 requirements = {
-"Turret": 5,
-"damage": 15
+"Turret": 3,
+"damage": 10
 }
 upgrades = Array[ExtResource("2_jysot")]([SubResource("Resource_jaxqg")])

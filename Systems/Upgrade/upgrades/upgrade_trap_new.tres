@@ -12,6 +12,6 @@ quality = 3
 description = "Unlock a explosion trap, that deals 25 damage."
 requirements = {
 "SpikeTrap": 3,
-"damage": 10
+"damage": 6
 }
 upgrades = Array[Resource("res://Systems/Upgrade/UpgradeValue.gd")]([])

@@ -19,6 +19,6 @@ unique = false
 quality = 0
 description = "Increase the energy production of your power plants."
 requirements = {
-"energy": 7
+"energy": 4
 }
 upgrades = Array[ExtResource("2_s617w")]([SubResource("Resource_ai57f")])

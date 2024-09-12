@@ -19,6 +19,6 @@ unique = false
 quality = 2
 description = "Your spike traps reduce the enemy movementspeed."
 requirements = {
-"damage": 3
+"damage": 2
 }
 upgrades = Array[ExtResource("2_5xhw8")]([SubResource("Resource_qsffl")])

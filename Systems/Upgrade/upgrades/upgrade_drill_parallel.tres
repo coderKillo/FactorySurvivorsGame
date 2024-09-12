@@ -19,7 +19,7 @@ unique = false
 quality = 2
 description = "Increase the amount of drills that spawn."
 requirements = {
-"Drill": 5,
-"mining": 12
+"Drill": 3,
+"mining": 8
 }
 upgrades = Array[ExtResource("2_jol32")]([SubResource("Resource_upvcu")])

@@ -20,6 +20,6 @@ quality = 1
 description = "Increase the attack speed of your spike trap."
 requirements = {
 "SpikeTrap": 1,
-"damage": 7
+"damage": 4
 }
 upgrades = Array[ExtResource("2_bobn4")]([SubResource("Resource_x3xe1")])

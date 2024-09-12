@@ -19,6 +19,6 @@ unique = false
 quality = 0
 description = "Increase the heat production of smelter plants."
 requirements = {
-"energy": 7
+"energy": 4
 }
 upgrades = Array[ExtResource("2_0hdf8")]([SubResource("Resource_58ghg")])

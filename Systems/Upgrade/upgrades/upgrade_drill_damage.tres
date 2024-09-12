@@ -20,6 +20,6 @@ quality = 0
 description = "Increase the damage of your drill."
 requirements = {
 "Drill": 1,
-"mining": 7
+"mining": 4
 }
 upgrades = Array[ExtResource("2_xhyac")]([SubResource("Resource_rwuer")])

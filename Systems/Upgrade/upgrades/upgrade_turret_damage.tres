@@ -20,6 +20,6 @@ quality = 1
 description = "Increase the damage of your turret."
 requirements = {
 "Turret": 1,
-"damage": 12
+"damage": 8
 }
 upgrades = Array[ExtResource("2_6yn1p")]([SubResource("Resource_y8qcw")])

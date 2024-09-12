@@ -20,6 +20,6 @@ quality = 2
 description = "Reduce the cooldown of your spike trap."
 requirements = {
 "SpikeTrap": 1,
-"damage": 7
+"damage": 4
 }
 upgrades = Array[ExtResource("2_ty17y")]([SubResource("Resource_xbr8b")])

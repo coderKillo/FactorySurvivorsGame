@@ -20,6 +20,6 @@ quality = 0
 description = "Reduce the cooldown of your drill."
 requirements = {
 "Drill": 3,
-"mining": 10
+"mining": 6
 }
 upgrades = Array[ExtResource("2_kqxy6")]([SubResource("Resource_ya20j")])

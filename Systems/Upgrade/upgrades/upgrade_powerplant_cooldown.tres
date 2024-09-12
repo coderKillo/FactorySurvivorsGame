@@ -19,6 +19,6 @@ unique = false
 quality = 0
 description = "Reduce the cooldown of your power plant."
 requirements = {
-"energy": 10
+"energy": 6
 }
 upgrades = Array[ExtResource("2_g2bfe")]([SubResource("Resource_ugers")])

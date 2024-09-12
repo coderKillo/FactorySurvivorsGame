@@ -20,6 +20,6 @@ quality = 2
 description = "Reduce the cooldown of your turret."
 requirements = {
 "Turret": 1,
-"damage": 12
+"damage": 8
 }
 upgrades = Array[ExtResource("2_mc05r")]([SubResource("Resource_3kugn")])

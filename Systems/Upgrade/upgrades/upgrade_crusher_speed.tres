@@ -20,6 +20,6 @@ quality = 0
 description = "Increase the production speed of crusher."
 requirements = {
 "Crusher": 1,
-"mining": 15
+"mining": 10
 }
 upgrades = Array[ExtResource("2_xre2y")]([SubResource("Resource_abihp")])

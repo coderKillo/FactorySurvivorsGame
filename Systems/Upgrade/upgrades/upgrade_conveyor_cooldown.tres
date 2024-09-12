@@ -19,7 +19,6 @@ unique = false
 quality = 0
 description = "Reduce the cooldown of your conveyor."
 requirements = {
-"Conveyor": 1,
-"energy": 7
+"energy": 2
 }
 upgrades = Array[ExtResource("2_n4gmv")]([SubResource("Resource_g3uyw")])

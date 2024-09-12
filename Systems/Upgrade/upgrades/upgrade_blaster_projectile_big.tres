@@ -20,7 +20,7 @@ unique = true
 quality = 2
 description = "Unlease the full potential of your blaster."
 requirements = {
-"blaster": 5,
-"damage": 15
+"blaster": 3,
+"damage": 10
 }
 upgrades = Array[ExtResource("2_iaiqd")]([SubResource("Resource_q3n6t")])

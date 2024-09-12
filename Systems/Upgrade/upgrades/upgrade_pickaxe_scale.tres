@@ -19,7 +19,7 @@ unique = false
 quality = 1
 description = "Increases the size of your pickaxe"
 requirements = {
-"mining": 7,
+"mining": 4,
 "pickaxe": 3
 }
 upgrades = Array[ExtResource("2_7ktap")]([SubResource("Resource_rxtia")])

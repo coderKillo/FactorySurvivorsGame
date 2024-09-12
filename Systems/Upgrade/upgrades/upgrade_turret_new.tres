@@ -11,6 +11,6 @@ unique = true
 quality = 3
 description = "Unlocks a turret, that fires on enemies in range."
 requirements = {
-"damage": 10
+"damage": 6
 }
 upgrades = Array[Resource("res://Systems/Upgrade/UpgradeValue.gd")]([])

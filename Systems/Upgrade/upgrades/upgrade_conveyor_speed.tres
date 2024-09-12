@@ -19,7 +19,6 @@ unique = false
 quality = 0
 description = "Increase the transport speed of conveyor."
 requirements = {
-"Conveyor": 1,
-"energy": 7
+"energy": 2
 }
 upgrades = Array[ExtResource("2_ojjf2")]([SubResource("Resource_g8uoo")])
