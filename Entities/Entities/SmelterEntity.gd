@@ -6,6 +6,7 @@ const HEAT_PER_SEK = 10
 @onready var _heat_provider: HeatProvider = $HeatProvider
 @onready var _heat_receiver: HeatReceiver = $HeatReceiver
 @onready var _fire: AnimatedSprite2D = $FireAnimation
+@onready var _overheat_fire: AnimatedSprite2D = $OverheatAnimation
 @onready var _ore_bucket: Bucket = $OreBucket
 @onready var _heat_bucket: Bucket = $HeatBucket
 @onready var _molt_bucket: Bucket = $MoltBucket
@@ -41,9 +42,11 @@ func _on_system_tick(delta):
 	if _heat_bucket.full():
 		_smoke.emitting = true
 		_fire.hide()
+		_overheat_fire.hide()
 		return
 
 	if _ore_bucket.empty() and _molt_bucket.empty():
+		_overheat_fire.hide()
 		_fire.hide()
 		return
 
@@ -56,6 +59,7 @@ func _on_system_tick(delta):
 	_produce_heat()
 	_update_overheat(delta)
 
+	_overheat_fire.visible = _heat_bucket.fill_level() > 0.75
 	_fire.show()
 	SoundManager.play("smelter_active")
 

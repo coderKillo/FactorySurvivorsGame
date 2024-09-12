@@ -35,5 +35,9 @@ func full() -> bool:
 	return _content >= _limit
 
 
+func fill_level() -> float:
+	return _content / float(_limit)
+
+
 func connect_collector(collector: CollectedResources) -> void:
 	_collector = collector
