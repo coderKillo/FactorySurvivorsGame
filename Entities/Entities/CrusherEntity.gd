@@ -11,7 +11,7 @@ func _ready():
 
 func _process(_delta):
 	_worker.pickup_time = self.data.speed * 1.0
-	_worker.process_time = self.data.speed * 2.0
+	_worker.process_time = 0.2
 	_power.power_required = self.data.value
 
 
