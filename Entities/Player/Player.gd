@@ -124,7 +124,7 @@ func _on_system_tick(delta: float) -> void:
 
 	if entity_name == "Smelter":
 		var heat_bucket = entity.get_node_or_null("HeatBucket") as Bucket
-		heat_bucket.take(int(50 * delta))
+		heat_bucket.take(int(100 * delta))
 
 		_wrench.show()
 		_wrench.global_position = entity.global_position

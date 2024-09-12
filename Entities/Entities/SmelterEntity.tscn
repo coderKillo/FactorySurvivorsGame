@@ -472,7 +472,7 @@ _content = 0
 
 [node name="HeatBucket" type="Node2D" parent="."]
 script = ExtResource("8_co2h4")
-_limit = 100
+_limit = 250
 _content = 0
 
 [node name="Smoke" parent="." instance=ExtResource("17_gkqut")]
