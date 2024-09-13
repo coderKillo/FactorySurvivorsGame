@@ -26,6 +26,10 @@ var preview: Node:
 	get:
 		return _drag_preview._preview
 
+var tooltip: Tooltip:
+	get:
+		return _tooltip
+
 var open_entity_ui: BaseGuiComponent:
 	set(value):
 		open_entity_ui = value
@@ -36,6 +40,7 @@ var open_entity_ui: BaseGuiComponent:
 @onready var _resource: ResourceUI = $ResourceUI
 @onready var _upgrade_gui: UpgradeSystemUI = $UpgradeSystemGUI
 @onready var _build_mode_ui: BuildModeUI = $BuildModeUI
+@onready var _tooltip: Tooltip = $Tooltip
 
 var _current_quickbar_index := 0
 

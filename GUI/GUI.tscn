@@ -1,8 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://c3ljipsd1xli"]
+[gd_scene load_steps=34 format=3 uid="uid://c3ljipsd1xli"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_my5u3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="2_tddr5"]
 [ext_resource type="PackedScene" uid="uid://dxfuoin5a4kit" path="res://GUI/DragPreview.tscn" id="3_luiu2"]
+[ext_resource type="PackedScene" uid="uid://302e581me7br" path="res://GUI/Tooltip.tscn" id="4_6mhgp"]
 [ext_resource type="Script" path="res://GUI/Alarm.gd" id="4_mynwd"]
 [ext_resource type="PackedScene" uid="uid://dckp5fvjnbxnj" path="res://GUI/Quickbar.tscn" id="5_heml8"]
 [ext_resource type="Shader" path="res://Shader/hologram.gdshader" id="6_5iwyi"]
@@ -125,6 +126,10 @@ theme_override_constants/margin_top = 140
 
 [node name="Quickbar" parent="MarginContainer" instance=ExtResource("5_heml8")]
 visible = false
+layout_mode = 2
+tooltip_text = "sadad"
+
+[node name="Tooltip" parent="." instance=ExtResource("4_6mhgp")]
 layout_mode = 2
 
 [node name="ScoreUI" type="MarginContainer" parent="."]

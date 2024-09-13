@@ -9,6 +9,7 @@ use_parent_material = true
 script = ExtResource("1_pixpi")
 entity_name = "Crusher"
 rotateable = true
+tooltip = "Crushes dead bodies into smaller pieces. Requires power to function."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

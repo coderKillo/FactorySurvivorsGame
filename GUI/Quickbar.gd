@@ -7,6 +7,10 @@ const GLOBAL_COOLDOWN := 0.5
 func _ready_intern():
 	Events.build_mode_changed.connect(_on_build_mode_changed)
 
+	for panel in panels:
+		panel.mouse_entered.connect(_on_mouse_enter.bind(panel))
+		panel.mouse_exited.connect(_on_mouse_exit.bind(panel))
+
 
 func add_entity(blueprint: BlueprintEntity) -> void:
 	for panel in panels:
@@ -77,3 +81,15 @@ func _pause_cooldowns(paused: bool) -> void:
 	for child in get_children():
 		if child.has_method("pause_cooldown"):
 			child.pause_cooldown(paused)
+
+
+func _on_mouse_enter(panel: InventoryPanel):
+	if panel.held_item == null:
+		_gui.tooltip.hide_tooltip()
+		return
+
+	_gui.tooltip.show_tooltip(panel.held_item.tooltip)
+
+
+func _on_mouse_exit(_panel: InventoryPanel):
+	_gui.tooltip.hide_tooltip()

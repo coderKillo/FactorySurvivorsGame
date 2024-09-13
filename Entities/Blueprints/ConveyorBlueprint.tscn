@@ -8,6 +8,7 @@ use_parent_material = true
 script = ExtResource("1_jed8a")
 entity_name = "Conveyor"
 rotateable = true
+tooltip = "Moves items and materials across distances. Essential for efficient automation."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

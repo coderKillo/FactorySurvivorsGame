@@ -6,6 +6,7 @@
 [node name="ExposionTrapBlueprint" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_asbf0")
+tooltip = "Detonates when steped on it, dealing massive damage to enemies nearby. Use with caution!"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

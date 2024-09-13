@@ -6,6 +6,7 @@
 [node name="TurretBlueprint" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_qriha")
+tooltip = "An automated defense unit that fires at nearby enemies. Requires power to function."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true

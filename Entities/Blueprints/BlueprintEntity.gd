@@ -7,6 +7,7 @@ signal stack_count_changed(count: int)
 @export var placeable := true
 @export var rotateable := false
 @export var on_cooldown := false
+@export_multiline var tooltip: String = "This is a generic tooltip!"
 
 var stack_count := 1:
 	set = _set_stack_count

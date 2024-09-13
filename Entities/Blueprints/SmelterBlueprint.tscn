@@ -6,6 +6,7 @@
 [node name="SmelterBlueprint" type="Node2D"]
 use_parent_material = true
 script = ExtResource("1_reuh6")
+tooltip = "Converts raw ore into heat. Essential for producing energy."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
