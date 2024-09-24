@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+GlobalSteam="*res://Autoload/steam.gd"
 Events="*res://Autoload/Events.gd"
 Library="*res://Autoload/Library.gd"
 RecolorTable="*res://Autoload/RecolorTable.gd"
@@ -26,6 +27,10 @@ SoundManager="*res://Sound/SoundManager.tscn"
 DamageNumbers="*res://Autoload/DamageNumbers.gd"
 PlanetData="*res://Autoload/PlanetData.gd"
 UpgradeData="*res://Systems/Upgrade/UpgradeData.gd"
+
+[debug]
+
+file_logging/enable_file_logging=true
 
 [display]
 
@@ -207,5 +212,7 @@ continue={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.0784314, 0.027451, 0.184314, 1)
 environment/defaults/default_environment="res://default_env.tres"
