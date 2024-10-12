@@ -8,6 +8,7 @@ const GROUND_LAYER := 0
 var _tracker: EntityTracker
 var _player: Player
 var _gui: GUI
+var _left_mouse_pressed: bool = false
 
 @onready var _destruction_timer: DestructionTimer = $Timer
 @onready var DropPodScene: PackedScene = preload("res://Entities/DropPod.tscn")
@@ -48,15 +49,15 @@ func _unhandled_input(event: InputEvent):
 	_destruction_timer.update_input(event, _get_cell_under_mouse())
 
 	if event.is_action_pressed("left_click"):
+		_left_mouse_pressed = true
 		if _has_placable_blueprint():
-			if _can_placed_on_cell():
-				_request_entity(_get_cell_under_mouse())
-			else:
+			if not _can_placed_on_cell():
 				SoundManager.play("entity_placed_failed")
 		else:
 			_player.fire(1, true)
 
 	elif event.is_action_released("left_click"):
+		_left_mouse_pressed = false
 		_player.fire(1, false)
 
 	elif event.is_action_pressed("right_click"):
@@ -73,6 +74,11 @@ func _unhandled_input(event: InputEvent):
 	elif event.is_action_pressed("deconstruct"):
 		if _is_cell_occupied():
 			_destruction_timer.start_destruction(_get_cell_under_mouse())
+
+	if _left_mouse_pressed:
+		if _has_placable_blueprint():
+			if _can_placed_on_cell():
+				_request_entity(_get_cell_under_mouse())
 
 
 func _process(_delta):
@@ -128,11 +134,12 @@ func _place_entity(entity: Entity, blueprint: BlueprintEntity):
 	# trigger item changed for cooldown
 	blueprint.stack_count += 0
 
-	var drop_pod := DropPodScene.instantiate() as DropPod
-	drop_pod.global_position = entity.position
-	add_child(drop_pod)
+	if Library.get_entity_name(blueprint) != "Conveyor":
+		var drop_pod := DropPodScene.instantiate() as DropPod
+		drop_pod.global_position = entity.position
+		add_child(drop_pod)
 
-	await drop_pod.opened
+		await drop_pod.opened
 
 	add_child(entity)
 
