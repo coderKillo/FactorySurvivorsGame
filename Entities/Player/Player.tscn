@@ -351,9 +351,8 @@ layer = 5
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
 material = SubResource("ShaderMaterial_u4lfm")
-offset_left = -1.0
-offset_right = 319.0
-offset_bottom = 179.0
+offset_right = 320.0
+offset_bottom = 180.0
 mouse_filter = 2
 
 [node name="Timer" type="Timer" parent="Camera2D"]
