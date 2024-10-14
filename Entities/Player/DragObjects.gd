@@ -23,9 +23,13 @@ var _charge_time := 0.0:
 func grab():
 	is_graped = true
 
+	SoundManager.play("cart_follow")
+
 
 func charge():
 	is_charging = true
+
+	SoundManager.play("cart_carge")
 
 
 func release():
@@ -34,6 +38,9 @@ func release():
 	_push_bodies_in_mouse_direction()
 
 	is_graped = false
+
+	SoundManager.stop("cart_carge")
+	SoundManager.play("cart_release")
 
 
 func bodies_grabed() -> int:

@@ -17,3 +17,11 @@ func play(sound_name: String) -> void:
 		return
 
 	_sound_library[sound_name].play_sound()
+
+
+func stop(sound_name: String) -> void:
+	if not _sound_library.has(sound_name):
+		printerr("could not find sound: %s" % sound_name)
+		return
+
+	_sound_library[sound_name].stop_all_sound()

@@ -25,3 +25,8 @@ func play_sound() -> void:
 		_audio_steams[_index].play()
 		_index += 1
 		_index %= _audio_steams.size()
+
+
+func stop_all_sound() -> void:
+	for stream in _audio_steams:
+		stream.stop()

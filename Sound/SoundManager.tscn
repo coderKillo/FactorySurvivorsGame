@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dod0571rbs1wd"]
+[gd_scene load_steps=21 format=3 uid="uid://dod0571rbs1wd"]
 
 [ext_resource type="Script" path="res://Sound/SoundManager.gd" id="1_kwr75"]
 [ext_resource type="Script" path="res://Sound/SoundQueue.gd" id="2_2r1yp"]
@@ -17,6 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://51staymgm3vo" path="res://Shared/sfx/tinywarble.wav" id="14_pflum"]
 [ext_resource type="AudioStream" uid="uid://b3rrsh278a3sj" path="res://Shared/sfx/blunk.wav" id="15_b5ajk"]
 [ext_resource type="AudioStream" uid="uid://nmqltq1tk6th" path="res://Shared/sfx/explodify5.wav" id="16_466qh"]
+[ext_resource type="AudioStream" uid="uid://2pds8d0whi72" path="res://Shared/sfx/r2d2.wav" id="18_dastb"]
+[ext_resource type="AudioStream" uid="uid://v4itx7l7mn4c" path="res://Shared/sfx/blastoff.wav" id="19_1whqr"]
+[ext_resource type="AudioStream" uid="uid://xk1l7rhhwaq" path="res://Shared/sfx/flump.wav" id="20_b6xfg"]
 
 [node name="SoundManager" type="Node2D"]
 script = ExtResource("1_kwr75")
@@ -184,3 +187,24 @@ count = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="drag_preview_enabled"]
 stream = ExtResource("14_pflum")
+
+[node name="cart_follow" type="Node2D" parent="."]
+script = ExtResource("2_2r1yp")
+count = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="cart_follow"]
+stream = ExtResource("18_dastb")
+
+[node name="cart_carge" type="Node2D" parent="."]
+script = ExtResource("2_2r1yp")
+count = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="cart_carge"]
+stream = ExtResource("19_1whqr")
+
+[node name="cart_release" type="Node2D" parent="."]
+script = ExtResource("2_2r1yp")
+count = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="cart_release"]
+stream = ExtResource("20_b6xfg")

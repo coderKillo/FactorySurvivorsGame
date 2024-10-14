@@ -6,8 +6,9 @@
 [ext_resource type="Script" path="res://Entities/Player/BuildingSelector.gd" id="4_60p4j"]
 [ext_resource type="Texture2D" uid="uid://dq5ss32licqa5" path="res://Shared/06_Hologram_Theme/Sprites/Spritesheet_Animation_UI_Hologram_Select_02a.png" id="5_4hybs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_morxa"]
-size = Vector2(10, 5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p83i2"]
+radius = 2.5
+height = 10.0002
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jhrid"]
 radius = 15.0
@@ -86,9 +87,9 @@ region_enabled = true
 region_rect = Rect2(52, 162.285, 8, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(9.86215e-05, 1)
-rotation = -0.000197243
-shape = SubResource("RectangleShape2D_morxa")
+position = Vector2(9.87053e-05, 0.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_p83i2")
 
 [node name="CollectObjects" type="Area2D" parent="."]
 position = Vector2(0, 1)
@@ -97,6 +98,7 @@ script = ExtResource("3_q8q8n")
 collect_distance = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectObjects"]
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_jhrid")
 debug_color = Color(0.541176, 0.407843, 0.996078, 0.419608)
 
