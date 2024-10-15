@@ -9,6 +9,7 @@ var color := ""
 var max_health := 20
 var damage := 10
 var parts := []
+var need_target_update := false
 
 enum States { IDLE, MOVE, ATTACK, DEATH }
 
@@ -19,12 +20,17 @@ var _current_state: States = States.IDLE
 @onready var weapon: EnemyWeapon = $Weapon
 
 @onready var _hurt_box: HurtBoxComponent = $HurtBoxComponent
-@onready var _navigation: NavigationAgent2D = $NavigationAgent2D
-@onready var _navigation_timer: Timer = $NavigationAgent2D/Timer
+@onready var _raycast: RayCast2D = $RayCast2D
+@onready var _navigation_timer: Timer = $UpdateNavigationTimer
 
 var _is_attacking := false
 var _is_death := false
 var _is_pyhsics_called_after_death := false
+var _target_position := Vector2.ZERO
+
+var _query_parameters := NavigationPathQueryParameters2D.new()
+var _query_result := NavigationPathQueryResult2D.new()
+var _path: PackedVector2Array = []
 
 
 func _ready():
@@ -37,7 +43,8 @@ func _ready():
 	health.death.connect(_on_death)
 	_hurt_box.hit.connect(_on_hit)
 	_hurt_box.push_back.connect(_on_hit_push_back)
-	_navigation_timer.timeout.connect(_on_navi_remake_path)
+
+	_navigation_timer.timeout.connect(_on_update_target_position)
 
 
 func _process(_delta):
@@ -56,7 +63,7 @@ func _process(_delta):
 	_handle_states()
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if _is_pyhsics_called_after_death:
 		return
 
@@ -67,9 +74,10 @@ func _physics_process(_delta):
 	var direction = Vector2.ZERO
 
 	if _current_state == States.MOVE:
-		direction = to_local(_navigation.get_next_path_position()).normalized()
+		update_path_target(delta)
+		direction = global_position.direction_to(_get_target_position())
 
-	velocity = lerp(velocity, direction * speed, 0.5)
+	velocity = direction * speed
 
 	move_and_slide()
 
@@ -126,6 +134,27 @@ func _target_in_range() -> bool:
 	return target != null and global_position.distance_to(target.global_position) < attack_range
 
 
+func _get_target_position() -> Vector2:
+	if target == null:
+		return global_position + velocity
+
+	return _target_position
+
+
+func update_path_target(delta):
+	if _path.is_empty():
+		_target_position = target.global_position
+		return
+
+	if global_position.distance_to(_target_position) > (speed * delta):
+		return
+
+	_path.remove_at(0)
+
+	if not _path.is_empty():
+		_target_position = _path[0]
+
+
 func _on_death():
 	_current_state = States.DEATH
 
@@ -134,11 +163,30 @@ func _on_hit(_damage: int) -> void:
 	model.hit(0.2)
 
 
-func _on_navi_remake_path() -> void:
+func _on_update_target_position() -> void:
 	if target == null:
 		return
 
-	_navigation.target_position = target.global_position
+	var target_pos := target.global_position
+
+	_raycast.target_position = _raycast.global_position.direction_to(target_pos) * 10
+	if _raycast.is_colliding():
+		_query_parameters.map = get_world_2d().get_navigation_map()
+		_query_parameters.start_position = global_position
+		_query_parameters.target_position = target_pos
+		_query_parameters.path_postprocessing = (
+			NavigationPathQueryParameters2D.PATH_POSTPROCESSING_EDGECENTERED
+		)
+		_query_parameters.navigation_layers = 1
+
+		NavigationServer2D.query_path(_query_parameters, _query_result)
+		_path = _query_result.get_path()
+		if _path.size() >= 2:
+			_path.remove_at(0)
+			_target_position = _path[0]
+
+	else:
+		_path = []
 
 
 func _on_hit_push_back(direction: Vector2) -> void:

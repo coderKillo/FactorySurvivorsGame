@@ -17,15 +17,12 @@ shader_parameter/hit = true
 radius = 4.0
 height = 14.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ynex"]
-radius = 2.0
-height = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifp5i"]
+size = Vector2(6, 6)
 
 [node name="BaseEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 131082
-motion_mode = 1
-safe_margin = 1.0
 script = ExtResource("1_3i6do")
 attack_range = 10
 
@@ -47,8 +44,9 @@ shape = SubResource("CapsuleShape2D_ptdpi")
 debug_color = Color(0.92549, 0.196078, 0.478431, 0.419608)
 
 [node name="CollisonShape" type="CollisionShape2D" parent="."]
+position = Vector2(8.14604e-08, -2)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_0ynex")
+shape = SubResource("RectangleShape2D_ifp5i")
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("4_5w144")
@@ -64,9 +62,11 @@ script = ExtResource("6_kujet")
 position = Vector2(-8, 0)
 gizmo_extents = 5.0
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_postprocessing = 1
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 23.55)
+collision_mask = 131080
 
-[node name="Timer" type="Timer" parent="NavigationAgent2D"]
-wait_time = 0.5
+[node name="UpdateNavigationTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 3.0
 autostart = true

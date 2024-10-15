@@ -1,10 +1,15 @@
 class_name EnemyPlacer
 extends Node2D
 
+@export_group("Times")
 @export var time_between_waves := 15.0  # sek
 @export var time_between_enemies := 0.1
+
+@export_group("Spawn")
 @export var spawn_distance := 10
 @export var spawn_arc := 30
+
+@export_group("Credit")
 @export var start_credits := 100
 @export var credits_per_level := 50
 
