@@ -74,6 +74,7 @@ func _on_build_mode_changed(mode: BuildModeManager.GameMode) -> void:
 
 		BuildModeManager.GameMode.NORMAL_MODE:
 			_pause_cooldowns(false)
+			_gui.tooltip.hide_tooltip()
 			visible = false
 
 
