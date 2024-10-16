@@ -1,7 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cxgai8gqi237l"]
+[gd_scene load_steps=23 format=3 uid="uid://cxgai8gqi237l"]
 
 [ext_resource type="Script" path="res://Entities/Entities/ConveyorEntity.gd" id="1_1aslv"]
 [ext_resource type="Texture2D" uid="uid://cn5j2fqgalneh" path="res://Shared/animations/conveyor-green_idle.png" id="1_flwq5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_blgl1"]
+size = Vector2(32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_motvr"]
 atlas = ExtResource("1_flwq5")
@@ -140,6 +143,8 @@ size = Vector2(32, 16)
 
 [node name="ConveyorEntity" type="Node2D"]
 script = ExtResource("1_1aslv")
+shape = SubResource("RectangleShape2D_blgl1")
+shape_offset = Vector2(-8, 0)
 walkable = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

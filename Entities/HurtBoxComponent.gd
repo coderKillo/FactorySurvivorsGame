@@ -26,8 +26,6 @@ func take_damage(damage: int, source_position: Vector2):
 
 	var hit_direction = global_position.direction_to(source_position).normalized()
 
-	Events.frame_freeze.emit()
-	Events.camera_shake.emit(1.0)
 	Events.spawn_effect_rotated.emit(
 		"hit_effect", global_position, rad_to_deg(hit_direction.angle())
 	)

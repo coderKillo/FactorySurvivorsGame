@@ -21,6 +21,10 @@ func _ready():
 	Events.upgrade_data_changed.connect(_on_upgrade_data_changed)
 
 
+func add_force(force: Vector2) -> void:
+	velocity += force
+
+
 func _on_entity_collected(entity: GroundEntity):
 	var entity_name := Library.get_entity_name(entity)
 

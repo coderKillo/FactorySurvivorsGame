@@ -14,6 +14,7 @@ func _fire():
 	projectile.transform = _shoot_position.global_transform
 	projectile.top_level = true
 	projectile.damage = UpgradeData.blaster_data.damage
+	projectile.has_screenshake = true
 	projectile.scale = Vector2(
 		UpgradeData.blaster_data.projectile_scale, UpgradeData.blaster_data.projectile_scale
 	)

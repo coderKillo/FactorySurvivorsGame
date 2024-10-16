@@ -106,6 +106,7 @@ offset_bottom = -4.0
 power_receiver = NodePath("../PowerReceiver")
 
 [node name="Projectiles" type="Node2D" parent="."]
+z_index = 2
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(5, -4)

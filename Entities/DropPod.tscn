@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8r3hm3ndbeex"]
+[gd_scene load_steps=14 format=3 uid="uid://c8r3hm3ndbeex"]
 
 [ext_resource type="Script" path="res://Entities/DropPod.gd" id="1_cpulu"]
 [ext_resource type="Texture2D" uid="uid://cq8ov6nm5cdtd" path="res://Shared/drop_pod2.png" id="2_wuv3d"]
@@ -147,8 +147,12 @@ tracks/7/keys = {
 "values": [false, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_2et26"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xxkgc"]
 _data = {
+"RESET": SubResource("Animation_2et26"),
 "land": SubResource("Animation_wltt7")
 }
 
@@ -158,6 +162,10 @@ size = Vector2(9, 16)
 [node name="DropPod" type="Node2D"]
 position = Vector2(153, 84)
 script = ExtResource("1_cpulu")
+velocity_min = Vector2i(200, 5)
+velocity_max = Vector2i(400, 10)
+angular_veclocity_min = 1
+angular_veclocity_max = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -399)
@@ -190,7 +198,7 @@ collision_layer = 8
 collision_mask = 11
 mass = 0.05
 gravity_scale = 0.0
-linear_damp = 5.0
+linear_damp = 15.0
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftShell"]
 position = Vector2(-8, 0)
@@ -202,6 +210,7 @@ region_rect = Rect2(0, 0, 16, 32)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftShell"]
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_0idss")
+disabled = true
 
 [node name="RightShell" type="RigidBody2D" parent="."]
 visible = false
@@ -209,7 +218,7 @@ collision_layer = 8
 collision_mask = 11
 mass = 0.05
 gravity_scale = 0.0
-linear_damp = 5.0
+linear_damp = 15.0
 
 [node name="Sprite2D" type="Sprite2D" parent="RightShell"]
 position = Vector2(8, 0)
@@ -220,3 +229,4 @@ region_rect = Rect2(16, 0, 16, 32)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightShell"]
 position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_0idss")
+disabled = true

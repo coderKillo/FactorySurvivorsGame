@@ -149,12 +149,13 @@ func _set_animation(direction: Vector2):
 
 
 func _auto_attack_area_has_entities() -> bool:
-	var bodies := []
-	for body in _auto_attack_area.get_overlapping_bodies():
-		var entity := body as GroundEntity
+	var areas := []
+	for area in _auto_attack_area.get_overlapping_areas():
+		var node := area as Node2D
+		var entity := node as GroundEntity
 		if entity != null and not entity.is_destructable:
 			continue
 
-		bodies.append(body)
+		areas.append(area)
 
-	return not bodies.is_empty()
+	return not areas.is_empty()
