@@ -127,7 +127,6 @@ theme_override_constants/margin_top = 140
 [node name="Quickbar" parent="MarginContainer" instance=ExtResource("5_heml8")]
 visible = false
 layout_mode = 2
-tooltip_text = "sadad"
 
 [node name="Tooltip" parent="." instance=ExtResource("4_6mhgp")]
 layout_mode = 2
