@@ -4,6 +4,7 @@ extends TileMap
 @export var preview_material: Material
 
 const GROUND_LAYER := 0
+const ENTITY_GUI_HOVER_TIME := 0.5
 
 var _tracker: EntityTracker
 var _player: Player
@@ -14,6 +15,7 @@ var _left_mouse_pressed: bool = false
 @onready var DropPodScene: PackedScene = preload("res://Entities/DropPod.tscn")
 
 var _entity_placer_queue := {}
+var _entity_gui_timer := 0.0
 
 ########## PUBLIC
 
@@ -61,12 +63,8 @@ func _unhandled_input(event: InputEvent):
 		_player.fire(1, false)
 
 	elif event.is_action_pressed("right_click"):
-		_close_entity_gui()
 		if _gui.blueprint:
 			_gui.destroy_blueprint()
-		if _is_cell_occupied():
-			# TODO: how to show entity ui?
-			_show_entity_gui(_get_cell_under_mouse())
 
 	elif event.is_action_pressed("place_bomb"):
 		_player.place_bomb()
@@ -81,10 +79,11 @@ func _unhandled_input(event: InputEvent):
 				_request_entity(_get_cell_under_mouse())
 
 
-func _process(_delta):
+func _process(delta):
 	_update_blueprint()
 	_update_mouse_position_on_grid()
 	_update_player_position_on_grid()
+	_update_entity_gui(delta)
 
 
 ########## PRIVATE
@@ -186,6 +185,22 @@ func _process_placer_queue(entity_name: String):
 	_place_entity(entity, blueprint)
 
 
+func _update_entity_gui(delta: float) -> void:
+	if _is_cell_occupied():
+		_entity_gui_timer -= delta
+		if _entity_gui_timer <= 0:
+			# this will update to the correct entity
+			# will close and show if hover over same entity,
+			# but because it only happens 1-2 times per sec
+			# and the entity gui is unique it is fine
+			_entity_gui_timer = ENTITY_GUI_HOVER_TIME
+			_close_entity_gui()
+			_show_entity_gui(_get_cell_under_mouse())
+	else:
+		_close_entity_gui()
+		_entity_gui_timer = ENTITY_GUI_HOVER_TIME
+
+
 func _show_entity_gui(location: Vector2i) -> void:
 	var entity: Entity = _tracker.get_entity_at(location)
 	if entity != null:
@@ -193,8 +208,12 @@ func _show_entity_gui(location: Vector2i) -> void:
 		_gui.open_entity_ui = entity._get_ui_component()
 
 
+func _is_entity_gui_shown() -> bool:
+	return _gui.open_entity_ui != null
+
+
 func _close_entity_gui() -> void:
-	if _gui.open_entity_ui != null:
+	if _is_entity_gui_shown():
 		_gui.open_entity_ui.hide()
 		_gui.open_entity_ui = null
 
