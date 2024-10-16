@@ -196,6 +196,7 @@ vertical_alignment = 1
 
 [node name="CurrentPowerLabel" type="Label" parent="ScoreUI/PanelContainer/MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 use_parent_material = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
