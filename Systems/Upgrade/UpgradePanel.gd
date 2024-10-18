@@ -17,6 +17,11 @@ func _gui_input(event: InputEvent) -> void:
 		mouse_clicked.emit()
 
 
+func _input(event):
+	if event.is_action_pressed("ui_accept") and has_focus():
+		mouse_clicked.emit()
+
+
 func make_shiny():
 	material = shiny_shader
 

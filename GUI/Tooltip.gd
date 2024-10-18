@@ -4,7 +4,7 @@ extends Control
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		global_position = get_global_mouse_position()
+		global_position = InputManager.get_cursor_position()
 
 
 func _ready():

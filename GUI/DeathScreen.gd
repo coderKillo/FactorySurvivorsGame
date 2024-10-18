@@ -29,6 +29,7 @@ func _on_player_death() -> void:
 	get_tree().paused = true
 	show()
 
+	_retry_button.grab_focus()
 	_animation.play("death")
 
 

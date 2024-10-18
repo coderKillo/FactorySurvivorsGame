@@ -19,7 +19,7 @@ func setup(timer: Timer):
 
 
 func _process(_delta):
-	var mouse = get_global_mouse_position()
+	var mouse = InputManager.get_cursor_position()
 	look_at(mouse)
 
 	_set_weapon_direction(mouse)

@@ -10,31 +10,39 @@ var blueprint: BlueprintEntity:
 
 var _mouse_grid_pos = Vector2.ZERO
 var _panel_reference: InventoryPanel
+var _build_mode := BuildModeManager.GameMode.NORMAL_MODE
 
 @onready var _label: Label = $CanvasLayer/Label
 @onready var _preview: Node = $CanvasLayer/Preview
+@onready var _helper: Node = $CanvasLayer/RegionHelper
 
 
 func _ready():
 	Events.mouse_grid_position.connect(_on_mouse_grid_position)
+	Events.build_mode_changed.connect(_on_build_mode_changed)
 
 
 func _input(event):
-	if event is InputEventMouseMotion:
-		global_position = (
-			(get_viewport().get_screen_transform().affine_inverse() * event.global_position).floor()
-		)
-	elif event.is_action_pressed("rotate_blueprint"):
+	if event.is_action_pressed("rotate_blueprint"):
 		if blueprint != null and blueprint.rotateable:
 			_preview.global_rotation_degrees += 90
 
 
 func _process(_delta):
+	if _build_mode == BuildModeManager.GameMode.NORMAL_MODE:
+		_helper.visible = false
+		return
+
 	if _preview == null:
 		pass
+
 	elif position_mode == PositionMode.NORMAL:
+		_helper.visible = false
 		_preview.position = Vector2.ZERO
+
 	elif position_mode == PositionMode.SNAP:
+		_helper.visible = _preview.get_child_count() <= 0
+		_helper.global_position = _mouse_grid_pos
 		_preview.global_position = _mouse_grid_pos
 
 	_update_label()
@@ -69,6 +77,10 @@ func on_panel_clicked(panel: InventoryPanel):
 
 func _on_mouse_grid_position(pos: Vector2):
 	_mouse_grid_pos = pos
+
+
+func _on_build_mode_changed(mode: BuildModeManager.GameMode) -> void:
+	_build_mode = mode
 
 
 func _set_blueprint(_entity: BlueprintEntity):

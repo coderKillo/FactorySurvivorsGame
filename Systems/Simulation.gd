@@ -44,6 +44,8 @@ func _ready():
 	_drop_entity(player, Vector2(0, 0))
 	_drop_entity(cart, Vector2(-60, -30))
 
+	InputManager.setup(player, cart)
+
 
 func _on_SimulationTimer_timeout() -> void:
 	Events.system_tick.emit(simulation_speed)

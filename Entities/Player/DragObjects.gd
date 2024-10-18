@@ -73,7 +73,7 @@ func _physics_process(_delta):
 		_pull_line.points = [body_position, position]
 
 		if is_charging:
-			var mouse_position = to_local(get_global_mouse_position())
+			var mouse_position = to_local(InputManager.get_cart_aim_position())
 			_push_line.points = [body_position, mouse_position]
 
 
@@ -90,7 +90,7 @@ func get_bodies() -> Array:
 func _push_bodies_in_mouse_direction() -> void:
 	for body in get_bodies():
 		var entity := body as GroundEntity
-		var direction = body.global_position.direction_to(get_global_mouse_position())
+		var direction = body.global_position.direction_to(InputManager.get_cart_aim_position())
 		var charge_factor = min(_charge_time, max_charge_time) / max_charge_time
 
 		if not entity.is_draggable:

@@ -117,6 +117,7 @@ offset_right = 80.0
 offset_bottom = 120.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 2
 theme = ExtResource("1_mduy3")
 theme_override_styles/panel = SubResource("StyleBoxTexture_iysgj")
 script = ExtResource("1_urlyd")

@@ -26,7 +26,7 @@ func _unhandled_input(event):
 
 
 func _process(_delta):
-	look_at(get_global_mouse_position())
+	look_at(InputManager.get_cursor_position())
 
 
 func _physics_process(_delta):

@@ -12,7 +12,7 @@ var _paths := []
 
 
 func get_cell_under_mouse() -> Vector2:
-	return local_to_map(to_local(get_global_mouse_position()))
+	return local_to_map(to_local(InputManager.get_cursor_position()))
 
 
 func add(path: Array) -> void:

@@ -18,6 +18,7 @@ func _ready():
 	_next_button.pressed.connect(_on_next_button_pressed)
 	_previous_button.pressed.connect(_on_previous_button_pressed)
 	_drop_button.pressed.connect(_on_drop_button_pressed)
+	_drop_button.grab_focus()
 
 	_planet_base_position = _planet_texture.position
 

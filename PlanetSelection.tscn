@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://s3ffjroj52u1"]
+[gd_scene load_steps=26 format=3 uid="uid://s3ffjroj52u1"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_oqvhd"]
 [ext_resource type="Script" path="res://GUI/PlanetSelection.gd" id="2_e2ml8"]
@@ -24,6 +24,40 @@ shader_parameter/replace_2 = Color(0.490196, 0.490196, 0.490196, 1)
 shader_parameter/replace_3 = Color(0.788235, 0.788235, 0.788235, 1)
 shader_parameter/replace_4 = Color(0, 0, 0, 1)
 shader_parameter/desaturation = 0.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_fuuiy"]
+button_index = 13
+pressed = true
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_gydre"]
+axis_value = -1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ee8v4"]
+button_index = 9
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_acjm8"]
+events = [SubResource("InputEventJoypadButton_fuuiy"), SubResource("InputEventJoypadMotion_gydre"), SubResource("InputEventJoypadButton_ee8v4")]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_3n8o7"]
+button_index = 10
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_tjsqa"]
+button_index = 14
+pressed = true
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_0id14"]
+axis_value = 1.0
+
+[sub_resource type="Shortcut" id="Shortcut_xxxct"]
+events = [SubResource("InputEventJoypadButton_3n8o7"), SubResource("InputEventJoypadButton_tjsqa"), SubResource("InputEventJoypadMotion_0id14")]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_i0ajs"]
+button_index = 1
+
+[sub_resource type="Shortcut" id="Shortcut_rhr24"]
+events = [SubResource("InputEventJoypadButton_i0ajs")]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gm6i"]
 shader = ExtResource("6_ceiim")
@@ -157,10 +191,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -90.0
-offset_right = 90.0
-offset_bottom = 90.0
+offset_left = 70.0
+offset_right = 250.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -242,6 +275,9 @@ offset_right = 52.0
 offset_bottom = 3.8147e-05
 grow_vertical = 2
 scale = Vector2(2, 2)
+focus_mode = 1
+shortcut = SubResource("Shortcut_acjm8")
+shortcut_in_tooltip = false
 texture_normal = ExtResource("5_t0whs")
 texture_pressed = ExtResource("7_652oi")
 texture_hover = ExtResource("8_cemj6")
@@ -259,6 +295,9 @@ offset_right = -52.9998
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(2, 2)
+focus_mode = 1
+shortcut = SubResource("Shortcut_xxxct")
+shortcut_in_tooltip = false
 texture_normal = ExtResource("5_t0whs")
 texture_pressed = ExtResource("7_652oi")
 texture_hover = ExtResource("8_cemj6")
@@ -271,7 +310,10 @@ offset_left = 10.0
 offset_top = 140.0
 offset_right = 70.0
 offset_bottom = 160.0
+focus_mode = 1
 theme_override_font_sizes/font_size = 6
+shortcut = SubResource("Shortcut_rhr24")
+shortcut_in_tooltip = false
 text = "Return"
 
 [node name="DropButton" type="Button" parent="."]

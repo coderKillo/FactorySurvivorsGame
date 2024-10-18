@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bukmtg3hk4xkj"]
+[gd_scene load_steps=67 format=3 uid="uid://bukmtg3hk4xkj"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_h72yr"]
 [ext_resource type="Script" path="res://Entities/Player/CollectObjects.gd" id="2_4cwld"]
@@ -67,8 +67,8 @@ shader_parameter/speed = Vector2(-3, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwdvn"]
 bg_color = Color(0.078125, 0.0273438, 0.183594, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap7fx"]
-bg_color = Color(0.308594, 0.640625, 0.71875, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8wxj"]
+bg_color = Color(0.984314, 0, 0.282353, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gx5gj"]
 size = Vector2(24, 24)
@@ -108,6 +108,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap7fx"]
+bg_color = Color(0.298039, 0.647059, 0.686275, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66wbc"]
 atlas = ExtResource("8_3ndie")
@@ -410,7 +413,7 @@ offset_right = 5.0
 offset_bottom = -9.0
 theme_override_font_sizes/font_size = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_xwdvn")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ap7fx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o8wxj")
 value = 48.79
 show_percentage = false
 script = ExtResource("6_yceki")

@@ -18,12 +18,28 @@ func display_options(upgrades: Array[Upgrade], callback: Callable):
 	get_tree().paused = true
 	_active = false
 
+	var panels := []
 	for upgrade in upgrades:
 		var panel := _create_panel(upgrade)
 
+		panel.focus_entered.connect(_on_mouse_enter.bind(panel))
+		panel.focus_exited.connect(_on_mouse_exit.bind(panel))
 		panel.mouse_entered.connect(_on_mouse_enter.bind(panel))
 		panel.mouse_exited.connect(_on_mouse_exit.bind(panel))
 		panel.mouse_clicked.connect(_on_mouse_clicked.bind(upgrade, callback))
+
+		panels.append(panel)
+
+	if panels.size() != 3:
+		printerr(
+			"the panel size missmatches expected size of 3, this can lead to not selectable panels with controller"
+		)
+
+	panels[0].focus_neighbor_right = panels[1].get_path()
+	panels[1].focus_neighbor_right = panels[2].get_path()
+	panels[1].focus_neighbor_left = panels[0].get_path()
+	panels[2].focus_neighbor_left = panels[1].get_path()
+	panels[1].grab_focus()
 
 	var transition = _create_transition()
 	await transition.finished

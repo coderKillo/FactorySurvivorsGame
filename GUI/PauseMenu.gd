@@ -33,7 +33,9 @@ func _set_pause(paused: bool) -> void:
 
 	if paused:
 		show()
+		_continue_button.grab_focus()
 	else:
 		hide()
+		_continue_button.release_focus()
 
 	Events.pause_menu_shown.emit(paused)

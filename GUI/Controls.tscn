@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cd3jafq3p5rcm"]
+[gd_scene load_steps=12 format=3 uid="uid://cd3jafq3p5rcm"]
 
 [ext_resource type="Theme" uid="uid://weaopiyujqgb" path="res://Shared/PixelTheme/pixel_theme.tres" id="1_g2s1d"]
 [ext_resource type="Script" path="res://GUI/ControlsMenu.gd" id="2_vkyby"]
@@ -14,6 +14,12 @@ texture_margin_left = 7.0
 texture_margin_top = 7.0
 texture_margin_right = 7.0
 texture_margin_bottom = 7.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_tra4n"]
+button_index = 1
+
+[sub_resource type="Shortcut" id="Shortcut_xwweb"]
+events = [SubResource("InputEventJoypadButton_tra4n")]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gm6i"]
 shader = ExtResource("8_v7obt")
@@ -64,10 +70,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -67.0
+offset_left = -80.0
 offset_top = 20.74
-offset_right = 67.0
-offset_bottom = 100.74
+offset_right = 75.0
+offset_bottom = 110.74
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
 theme_override_styles/panel = SubResource("StyleBoxTexture_exnlw")
@@ -86,6 +92,8 @@ offset_bottom = 168.585
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
+shortcut = SubResource("Shortcut_xwweb")
+shortcut_in_tooltip = false
 text = "Back"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

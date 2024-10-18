@@ -19,7 +19,7 @@ func _process(_delta):
 	if time_left > 0:
 		_progress_bar.show()
 		_progress_bar.value = time_left
-		_progress_bar.global_position = _progress_bar.get_global_mouse_position()
+		_progress_bar.global_position = InputManager.get_cursor_position()
 	else:
 		_progress_bar.hide()
 

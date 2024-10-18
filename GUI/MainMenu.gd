@@ -12,6 +12,8 @@ func _ready():
 	_controls_button.pressed.connect(_on_controls_pressed)
 	_quit_button.pressed.connect(_on_quit_pressed)
 
+	_start_button.grab_focus()
+
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://PlanetSelection.tscn")

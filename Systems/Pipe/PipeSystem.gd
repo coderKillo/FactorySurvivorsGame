@@ -20,19 +20,20 @@ func setup(entity_tracker: EntityTracker) -> void:
 	_preview.setup(_paths)
 	_distributor.setup(_paths)
 
+
 func _ready():
 	Events.build_mode_changed.connect(_on_build_mode_changed)
 
 
 func _input(event: InputEvent):
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("place_entity"):
 		if _get_entity_name_under_mouse() == "Smelter":
 			_start_point = _paths.get_cell_under_mouse()
 			_current_cell_under_mouse = _start_point
 
 			update_preview_path()
 
-	if event.is_action_released("left_click"):
+	if event.is_action_released("place_entity"):
 		if _get_entity_name_under_mouse() == "PowerPlant":
 			add_path()
 

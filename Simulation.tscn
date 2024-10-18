@@ -66,6 +66,7 @@ time_between_waves = 10.0
 time_between_enemies = 0.5
 spawn_distance = 200
 spawn_arc = 70
+start_credits = 10
 credits_per_level = 30
 
 [node name="SpawnTimer" type="Timer" parent="GameWorld/EnemyPlacer"]

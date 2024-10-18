@@ -157,6 +157,7 @@ texture = SubResource("AtlasTexture_qjybh")
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_vertical = 4
+focus_mode = 0
 theme = ExtResource("1_pqv7m")
 max_value = 1.0
 step = 0.05

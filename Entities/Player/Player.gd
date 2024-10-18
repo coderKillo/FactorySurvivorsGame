@@ -44,13 +44,7 @@ func _process(_delta):
 func _physics_process(delta):
 	fire(0, _auto_attack_area_has_entities())
 
-	var input_direction = (
-		Vector2(
-			Input.get_action_strength("right") - Input.get_action_strength("left"),
-			Input.get_action_strength("down") - Input.get_action_strength("up")
-		)
-		. normalized()
-	)
+	var input_direction = Input.get_vector("left", "right", "up", "down")
 
 	_set_animation(input_direction)
 
@@ -72,12 +66,12 @@ func _unhandled_input(event):
 		_boost_active = false
 
 	if _drag_objects.bodies_grabed():
-		if event.is_action_pressed("grab"):
+		if InputManager.is_grabed_pressed(event):
 			_drag_objects.charge()
-		if event.is_action_released("grab") and _drag_objects.is_charging:
+		if InputManager.is_grabed_released(event) and _drag_objects.is_charging:
 			_drag_objects.release()
 	else:
-		if event.is_action_pressed("grab"):
+		if InputManager.is_grabed_pressed(event):
 			_drag_objects.grab()
 
 

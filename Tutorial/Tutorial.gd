@@ -34,6 +34,8 @@ func _ready():
 	$SimulationTimer.start(simulation_speed)
 	$SimulationTimer.timeout.connect(_on_SimulationTimer_timeout)
 
+	InputManager.setup(_player, _cart)
+
 
 func _on_SimulationTimer_timeout() -> void:
 	Events.system_tick.emit(simulation_speed)

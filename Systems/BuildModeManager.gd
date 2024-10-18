@@ -1,11 +1,7 @@
 class_name BuildModeManager
 extends Node2D
 
-enum GameMode 
-{
-	NORMAL_MODE,
-	BUILD_MODE
-}
+enum GameMode { NORMAL_MODE, BUILD_MODE }
 
 var _current_game_mode := GameMode.NORMAL_MODE:
 	set(value):
@@ -18,7 +14,14 @@ var _enemy_placer: EnemyPlacer
 var _entity_tracker: EntityTracker
 var _simulation_timer: Timer
 
-func setup(player: Player, gui: GUI, enemy_placer: EnemyPlacer, entity_tracker: EntityTracker, simulation_timer):
+
+func setup(
+	player: Player,
+	gui: GUI,
+	enemy_placer: EnemyPlacer,
+	entity_tracker: EntityTracker,
+	simulation_timer
+):
 	_player = player
 	_gui = gui
 	_enemy_placer = enemy_placer
@@ -37,7 +40,7 @@ func _unhandled_input(event):
 			_current_game_mode = GameMode.NORMAL_MODE
 
 
-func _set_build_mode(active:bool)->void:
+func _set_build_mode(active: bool) -> void:
 	_simulation_timer.paused = active
 
 	_gui.destroy_blueprint()
@@ -47,18 +50,18 @@ func _set_build_mode(active:bool)->void:
 
 	for entity in _entity_tracker.entities.values():
 		_pause_scene(entity, active)
-		
+
 	for node in get_tree().get_nodes_in_group("draggable"):
 		_pause_scene(node, active)
 
 
-func _pause_scene(node: Node, pause:bool)->void:
+func _pause_scene(node: Node, pause: bool) -> void:
 	_pause_node(node, pause)
 	for child in node.get_children():
 		_pause_scene(child, pause)
 
 
-func _pause_node(node: Node, pause:bool)->void:
+func _pause_node(node: Node, pause: bool) -> void:
 	node.set_process(!pause)
 	node.set_physics_process(!pause)
 	node.set_process_input(!pause)

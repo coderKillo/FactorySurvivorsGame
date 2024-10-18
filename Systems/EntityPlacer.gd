@@ -50,19 +50,23 @@ func _ready():
 func _unhandled_input(event: InputEvent):
 	_destruction_timer.update_input(event, _get_cell_under_mouse())
 
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("place_entity"):
 		_left_mouse_pressed = true
 		if _has_placable_blueprint():
 			if not _can_placed_on_cell():
 				SoundManager.play("entity_placed_failed")
-		else:
+
+	elif event.is_action_released("place_entity"):
+		_left_mouse_pressed = false
+
+	if event.is_action_pressed("fire"):
+		if not _has_placable_blueprint():
 			_player.fire(1, true)
 
-	elif event.is_action_released("left_click"):
-		_left_mouse_pressed = false
+	elif event.is_action_released("fire"):
 		_player.fire(1, false)
 
-	elif event.is_action_pressed("right_click"):
+	elif event.is_action_pressed("drop_blueprint"):
 		if _gui.blueprint:
 			_gui.destroy_blueprint()
 
@@ -280,4 +284,4 @@ func _can_placed_on_cell() -> bool:
 
 
 func _get_cell_under_mouse() -> Vector2i:
-	return local_to_map(to_local(get_global_mouse_position()))
+	return local_to_map(to_local(InputManager.get_cursor_position()))
