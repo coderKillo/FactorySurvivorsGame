@@ -63,9 +63,6 @@ func _unhandled_input(event: InputEvent):
 		if not _has_placable_blueprint():
 			_player.fire(1, true)
 
-	elif event.is_action_released("fire"):
-		_player.fire(1, false)
-
 	elif event.is_action_pressed("drop_blueprint"):
 		if _gui.blueprint:
 			_gui.destroy_blueprint()
@@ -84,6 +81,9 @@ func _unhandled_input(event: InputEvent):
 
 
 func _process(delta):
+	if not Input.is_action_pressed("fire"):
+		_player.fire(1, false)
+
 	_update_blueprint()
 	_update_mouse_position_on_grid()
 	_update_player_position_on_grid()
