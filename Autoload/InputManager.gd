@@ -2,17 +2,25 @@ extends Node2D
 
 enum Device { KEYBOARD, GAMEPAD }
 
+signal device_changed(device: Device)
+
 var _player: Player
 var _cart: Minecart
 var _build_mode := BuildModeManager.GameMode.NORMAL_MODE
-var _active_device := Device.KEYBOARD
 var _last_joystick_input := Vector2.ZERO
 var _virtual_cursor_position := Vector2.ZERO
+
+var _active_device := Device.KEYBOARD:
+	set(value):
+		if value != _active_device:
+			_active_device = value
+			device_changed.emit(value)
 
 
 func _ready():
 	Events.build_mode_changed.connect(_on_build_mode_changed)
 
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_process(false)
 
 
@@ -44,7 +52,7 @@ func get_cursor_position() -> Vector2:
 		return get_global_mouse_position()
 
 	elif _active_device == Device.GAMEPAD:
-		if _build_mode == BuildModeManager.GameMode.NORMAL_MODE:
+		if _build_mode == BuildModeManager.GameMode.NORMAL_MODE and is_instance_valid(_player):
 			return _player.global_position + (_get_joystick_direction() * 20)
 		elif _build_mode == BuildModeManager.GameMode.BUILD_MODE:
 			return _virtual_cursor_position
@@ -55,7 +63,8 @@ func get_cursor_position() -> Vector2:
 func get_cart_aim_position() -> Vector2:
 	if _active_device == Device.KEYBOARD:
 		return get_global_mouse_position()
-	elif _active_device == Device.GAMEPAD:
+
+	elif _active_device == Device.GAMEPAD and _cart != null:
 		return _cart.global_position + (_get_joystick_direction() * 100)
 
 	return Vector2.ZERO
@@ -94,7 +103,7 @@ func _set_joystick_direction() -> void:
 
 
 func _update_virtual_cursor_position(delta: float) -> void:
-	if _build_mode == BuildModeManager.GameMode.NORMAL_MODE:
+	if _build_mode == BuildModeManager.GameMode.NORMAL_MODE and is_instance_valid(_player):
 		_virtual_cursor_position = _player.position
 		return
 

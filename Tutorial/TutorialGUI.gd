@@ -14,12 +14,6 @@ func _ready():
 	Events.pause_menu_shown.connect(_on_pause_menu_shown)
 
 
-func _unhandled_input(event: InputEvent):
-	if event.is_action_pressed("continue"):
-		if not text_full_visable():
-			_text_finished()
-
-
 func show_text(text: String, duration: float) -> void:
 	get_tree().paused = true
 
@@ -29,11 +23,15 @@ func show_text(text: String, duration: float) -> void:
 	_tween = get_tree().create_tween()
 	_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	_tween.tween_property(_text, "visible_ratio", 1.0, duration)
-	_tween.tween_callback(_text_finished)
+	_tween.tween_callback(text_finished)
 
 	_animation.play("speak")
 
 	_container.show()
+
+
+func update_text(text: String) -> void:
+	_text.text = text
 
 
 func hide_text() -> void:
@@ -44,7 +42,7 @@ func text_full_visable() -> bool:
 	return _text.visible_ratio >= 1.0
 
 
-func _text_finished() -> void:
+func text_finished() -> void:
 	if _tween:
 		_tween.kill()
 

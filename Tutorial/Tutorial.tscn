@@ -97,7 +97,7 @@ process_mode = 1
 script = ExtResource("1_7v537")
 
 [node name="TutorialStages" type="Node2D" parent="."]
-process_mode = 1
+process_mode = 3
 script = ExtResource("2_u2er1")
 
 [node name="GameWorld" type="Node2D" parent="."]
@@ -216,7 +216,7 @@ theme_override_constants/margin_left = 16
 layout_mode = 2
 mouse_filter = 1
 theme_override_constants/line_separation = -4
-theme_override_font_sizes/normal_font_size = 6
+theme_override_font_sizes/normal_font_size = 5
 theme_override_font_sizes/bold_font_size = 7
 theme_override_font_sizes/italics_font_size = 4
 bbcode_enabled = true
