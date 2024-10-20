@@ -26,5 +26,12 @@ func _fire():
 	SoundManager.play("blaster_fire")
 
 
+func _process(_delta):
+	super._process(_delta)
+
+	if InputManager.get_active_device() == InputManager.Device.GAMEPAD:
+		show()
+
+
 func _update_weapon_direction():
 	_sprite.flip_v = not is_right
