@@ -23,7 +23,6 @@ func _physics_process(_delta):
 		return
 
 	_components = _find_close_desctruction_components()
-
 	if len(_components) > 0:
 		_is_working = true
 		_start_destruction()
@@ -32,7 +31,7 @@ func _physics_process(_delta):
 func _find_close_desctruction_components() -> Array[DestructionComponent]:
 	var components: Array[DestructionComponent] = []
 
-	for body in _area.get_overlapping_bodies():
+	for body in _area.get_overlapping_areas():
 		var destruction := body.get_node_or_null("DestructionComponent") as DestructionComponent
 		if destruction != null:
 			components.append(destruction)

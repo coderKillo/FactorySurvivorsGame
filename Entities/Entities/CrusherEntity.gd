@@ -17,6 +17,8 @@ func _process(_delta):
 
 func _on_system_tick(_delta):
 	if not _worker.has_available_work():
+		_animation.stop()
+		_worker.stop()
 		return
 	if _worker.is_working():
 		return

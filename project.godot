@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Melt Them All"
 run/main_scene="res://MainMenu.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 boot_splash/bg_color=Color(0.223529, 0.109804, 0.192157, 1)
 boot_splash/image="res://splash.png"
 config/icon="res://icon.png"

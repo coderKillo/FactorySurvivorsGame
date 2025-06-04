@@ -48,7 +48,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3xi3"]
-size = Vector2(12, 16)
+size = Vector2(17, 16)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oce1i"]
 shader = ExtResource("5_tbxg8")
@@ -94,7 +94,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InputArea"]
-position = Vector2(-3, 0)
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_y3xi3")
 
 [node name="OutputPos" type="Marker2D" parent="."]

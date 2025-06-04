@@ -82,8 +82,8 @@ func _on_process_timer_timeout() -> void:
 	_slots[OUTPUT_SLOT].stack += 1
 
 
-func _get_valid_input_entity() -> Entity:
-	for body in pickup_area.get_overlapping_bodies():
+func _get_valid_input_entity() -> Node2D:
+	for body in pickup_area.get_overlapping_areas():
 		var entitiy_name = Library.get_entity_name(body)
 		if entitiy_name == input_name:
 			return body
